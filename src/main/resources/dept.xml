@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace xml을 구별하기 위한 이름 -->
+<!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
+<mapper namespace="deptns">
+	<resultMap type="dept" id="deptResult">
+	  <!-- 테이블명하고 일치하면 Map이 아니라 type을 써도 됨 mybatis예제에 있음 지금은 Map -->
+      <!--property dept.java 이름 -->    <!-- column : oracle 테이블 명 -->
+		<result property="deptno" column="deptno"/>
+		<result property="dname"  column="dname"/>
+		<result property="loc" 	  column="loc"/>
+	</resultMap>   <!-- Map은 위에 id랑 일치해야함 -->
+	<select id="list" resultMap="deptResult">
+		select * from dept order by deptno
+	</select>                                <!-- resultType은 조회할때만 쓴다 -->
+	<select id="select" parameterType="integer" resultType="dept">
+		select * from dept where deptno =#{deptno}
+	</select>
+	<insert id="insert" parameterType="dept">
+		insert into dept values (#{deptno}, #{dname},#{loc})
+	</insert>
+	<update id="update" parameterType="dept">
+		update dept set dname=#{dname}, loc=#{loc} where deptno=#{deptno}
+	</update>
+	<delete id="delete" parameterType="integer">
+		delete from dept where deptno=#{deptno}
+	</delete>
+</mapper>
