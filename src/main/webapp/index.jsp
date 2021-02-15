@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 안녕???? -->
+<!-- 안녕??????? -->
 <script type="text/javascript">
 	location.href="deptList.do";
 </script>
