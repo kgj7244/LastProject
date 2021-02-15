@@ -9,6 +9,7 @@
 <body>
 <script type="text/javascript">
 //location.href="fruitList.do";
+/* ㅏㄴ우ㅡ랑ㄴ무라ㅜㅁㄴㅇ */
 location.href="deptList.do";
 </script>
 </body>
