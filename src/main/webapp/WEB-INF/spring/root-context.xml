@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- 업로드할꺼야!!! 그림, 음악, 문서등 업로드 할떄 -->
+	<!-- <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean> -->
+	
+	<!-- 주로 공통적인 작업을 설정 -->  <!-- db.properties의 정보를 가지고 와서 url, driver, id, password 사용 -->
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<!-- myBatis시작 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- java/resources에 있는 configuration.xml에서 mybatis정보 취득 -->
+		<property name="configLocation" value="classpath:configuration.xml" />
+	</bean>                                 <!-- SqlSessionTemplate 이게 mybatis임 -->
+	<bean id="session" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	
+
+	<!-- DB연결 풀 -->  <!-- 미리 연결해서 사용할 떄 빌려주고 끝나고 나면 반환 -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="${driver}" />
+		<property name="jdbcUrl" value="${url}" />
+		<property name="username" value="${userId}" />
+		<property name="password" value="${password}" />
+	</bean>
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig"></constructor-arg>
+	</bean>
+
+</beans>
