@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 실험합니다. -->
+<!-- 연지씨! -->
 <script type="text/javascript">
 	location.href="main.do";
 </script>
