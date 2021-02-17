@@ -8,6 +8,7 @@
 </head>
 <body>
 <!-- dd -->
+<!-- 테스트~ -->
 <script type="text/javascript">
 	location.href="mainForm.do";
 </script>
