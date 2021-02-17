@@ -3,6 +3,6 @@ package com.ch.ch.model;
 import lombok.Data;
 
 @Data
-public class Moive {
+public class Store {
 
 }

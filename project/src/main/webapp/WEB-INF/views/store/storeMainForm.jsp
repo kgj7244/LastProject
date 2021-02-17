@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 유진씨!! -->
-<script type="text/javascript">
-	location.href="mainForm.do";
-</script>
+<h2>스토어 들어가짐???</h2>
 </body>
 </html>

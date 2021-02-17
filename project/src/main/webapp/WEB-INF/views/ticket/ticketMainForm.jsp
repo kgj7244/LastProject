@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 유진씨!! -->
-<script type="text/javascript">
-	location.href="mainForm.do";
-</script>
+<h2>예매 사이트 이동되는지 확인</h2>
 </body>
 </html>

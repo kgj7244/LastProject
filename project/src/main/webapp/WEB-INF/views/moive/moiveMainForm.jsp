@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 유진씨!! -->
-<script type="text/javascript">
-	location.href="mainForm.do";
-</script>
+<h2>화면이동 되는지 실험입니다.</h2>
 </body>
 </html>
