@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>        <!-- 별칭 -->          <!-- 주소 -->
 		<typeAlias alias="member" type="com.ch.ch.model.Member" />
+		<typeAlias alias="moive" type="com.ch.ch.model.Moive" />
 	</typeAliases>
 	<mappers>   <!-- 어디로 연결할지 --> 
 		<mapper resource="member.xml" />
+		<mapper resource="moive.xml" />
 	</mappers>
 </configuration>
