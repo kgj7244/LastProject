@@ -11,7 +11,7 @@
 <div class="container" align="center">
 	<table>
 		<tr>
-			<td><a href="#">영화</a></td>
+			<td><a href="../moiveMainForm.do">영화</a></td>
 			<td><a href="#">예매</a></td>
 			<td><a href="#">스토어</a></td>
 			<td><a href="#">고객센터</a></td>
