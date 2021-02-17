@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- dd -->
-<!-- 테스트~ -->
+
+<!-- 유진씨!! -->
 <script type="text/javascript">
 	location.href="mainForm.do";
 </script>
