@@ -16,7 +16,7 @@ create table movie (
 	m_del char(1) default 'n'	        --삭제여부 		
 );
 create sequence movie_seq start with 1;
-
+ 
 
 
 --------------------------------------극장
