@@ -6,9 +6,11 @@
 	<typeAliases>        <!-- 별칭 -->          <!-- 주소 -->
 		<typeAlias alias="member" type="com.ch.ch.model.Member" />
 		<typeAlias alias="moive" type="com.ch.ch.model.Moive" />
+		<typeAlias alias="store" type="com.ch.ch.model.Store" />
 	</typeAliases>
 	<mappers>   <!-- 어디로 연결할지 --> 
 		<mapper resource="member.xml" />
 		<mapper resource="moive.xml" />
+		<mapper resource="store.xml" />
 	</mappers>
 </configuration>

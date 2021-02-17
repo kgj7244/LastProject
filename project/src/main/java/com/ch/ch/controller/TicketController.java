@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ch.ch.service.MoiveService;
+import com.ch.ch.service.TicketService;
 
 @Controller
-public class MoiveController {
+public class TicketController {
 	@Autowired
-	private MoiveService ms;
-	@RequestMapping("moiveMainForm")
-	public String moiveMainForm(){
-		return "moive/moiveMainForm";
+	private TicketService ts;
+	@RequestMapping("ticketMainForm")
+	public String ticketMainForm() {
+		return "ticket/ticketMainForm";
 	}
 }
