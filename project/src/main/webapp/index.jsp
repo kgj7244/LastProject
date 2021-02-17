@@ -9,7 +9,7 @@
 <body>
 <!-- 연지씨! -->
 <script type="text/javascript">
-	location.href="main.do";
+	location.href="mainForm.do";
 </script>
 </body>
 </html>

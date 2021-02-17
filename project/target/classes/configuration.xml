@@ -4,11 +4,9 @@
 <!-- mybatis 기본??으로 입력해야 하는 내용? -->
 <configuration>
 	<typeAliases>        <!-- 별칭 -->          <!-- 주소 -->
-		<typeAlias alias="board" type="com.ch.ch10.model.Board" />
-		<typeAlias alias="rbd" type="com.ch.ch10.model.ReplyBoard" />
+		<typeAlias alias="member" type="com.ch.ch.model.Member" />
 	</typeAliases>
 	<mappers>   <!-- 어디로 연결할지 --> 
-		<mapper resource="board.xml" />
-		<mapper resource="rbd.xml" />
+		<mapper resource="member.xml" />
 	</mappers>
 </configuration>
