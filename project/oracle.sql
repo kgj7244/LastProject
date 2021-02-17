@@ -17,7 +17,7 @@ create table movie (
 );
 create sequence movie_seq start with 1;
  
-
+ 
 
 --------------------------------------극장
 
