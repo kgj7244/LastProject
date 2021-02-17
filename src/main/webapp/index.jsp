@@ -8,6 +8,7 @@
 </head>
 <body>
 <!-- 안녕??????? -->
+<!-- 하세요  -->
 <script type="text/javascript">
 	location.href="deptList.do";
 </script>
