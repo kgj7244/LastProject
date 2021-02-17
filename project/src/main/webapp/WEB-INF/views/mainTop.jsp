@@ -7,8 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-	location.href="mainForm.do";
-</script>
+<div class="container" align="center">
+<table>
+	<tr>
+		<td><a>로그인</a></td>
+		<td><a>회원가입</a></td>
+	</tr>
+</table>
+</div>
 </body>
 </html>

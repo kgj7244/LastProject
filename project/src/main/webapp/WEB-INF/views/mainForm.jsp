@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file ="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>메인 폼 되나요?</h2>
+	<div><%@include file="mainTop.jsp" %></div>
+	<div><%@include file="mainNav.jsp" %></div>
+	<div><%@include file="mainCenter.jsp" %></div>
+	<div><%@include file="mainFloor.jsp" %></div>
 </body>
 </html>

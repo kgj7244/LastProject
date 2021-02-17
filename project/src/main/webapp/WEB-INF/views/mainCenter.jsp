@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-	location.href="mainForm.do";
-</script>
+<div class="container" align="center">
+	<hr>
+	메인 임시화면입니다.
+</div>
 </body>
 </html>
