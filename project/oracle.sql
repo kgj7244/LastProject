@@ -148,7 +148,7 @@ create table store(
 create sequence s_num increment by 1 start with 1;
 
 
-
+ 
 
 --------------------------------------예매
 create table ticket(
