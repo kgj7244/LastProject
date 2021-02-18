@@ -41,6 +41,7 @@ create table member(
 	member_date date default sysdate not null,    -- 가입일
 	member_del char(1) default 'n'			      -- 탈퇴여부			
 );
+select * from member;
 
 --------------------------------------영화
 
@@ -60,8 +61,12 @@ create table movie (
 	m_del char(1) default 'n'	        --삭제여부 		
 );
 create sequence m_num increment by 1 start with 1;
-
- 
+insert into movie values(1, '해리포터','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
+insert into movie values(2, '해리포터','아프라카타브라','19','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
+insert into movie values(3, '해리포터','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
+insert into movie values(4, '트랜스포머','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
+insert into movie values(5, '어벤져스','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
+insert into movie values(6, '해리포터','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n'); 
 
 --------------------------------------극장
 
