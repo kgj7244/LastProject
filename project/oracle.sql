@@ -50,7 +50,7 @@ create table theater(
 	t_title varchar2(50) not null,      --이름
 	t_loc varchar2(100) not null,       --위치(주소)
 	t_info varchar2(1000) not null,     --시설 정보
-	t_gui varchar2(1000) not null,     --시설 안내
+	t_gui varchar2(1000) not null     --시설 안내
 );
 create sequence t_num increment by 1 start with 1;
 
@@ -69,7 +69,7 @@ create table movie (
 	m_director varchar2(50) not null,	--감독
 	m_actor varchar2(100) not null,		--배우
 	m_genre  varchar2(50) not null,		--장르
-	m_del char(1) default 'n',	        --삭제여부 		
+	m_del char(1) default 'n'	        --삭제여부 		
 );
 create sequence m_num increment by 1 start with 1;
 
@@ -105,24 +105,22 @@ create table board(
 );
 
 
---------------------------------------입금금액
-create table bank(
-	t_account varchar2(50) primary key not null, --입금번호
-	t_date date default sysdate not null, --입금일	
-	t_price number(10) not null,          --금액
-	t_deal varchar2(50) not null,        --거래방법
-	
-	member_id varchar2(50) references member(member_id) not null, --아이디
-	aam_account varchar2(50) references master_bank(aam_account)  --관리자계좌
-	
-);
-
 --------------------------------------관리자계좌
 create table aam_bank(
 	aam_account varchar2(50) primary key not null, --계좌번호
 	bank_name varchar2(50) default '카카오뱅크' not null,   --은행이름
 	aam_name varchar2(50) default 'AAM' not null   --이름
 
+);
+
+--------------------------------------입금금액
+create table bank(
+	t_account varchar2(50) primary key not null, --입금번호
+	t_date date default sysdate not null, --입금일	
+	t_price number(10) not null,          --금액
+	t_deal varchar2(50) not null,        --거래방법
+	member_id varchar2(50) references member(member_id), --아이디
+	aam_account varchar2(50) references aam_bank(aam_account)  --관리자계좌
 );
 
 --------------------------------------스토어
