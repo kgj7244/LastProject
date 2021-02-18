@@ -10,8 +10,8 @@
 <div class="container" align="center">
 <table>
 	<tr>
-		<td><a>로그인</a></td>
-		<td><a>회원가입</a></td>
+		<td><a href="memberLoginForm.do">로그인</a></td>
+		<td><a href="memberJoinForm.do">회원가입</a></td>
 	</tr>
 </table>
 </div>

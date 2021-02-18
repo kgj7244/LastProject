@@ -1,11 +1,46 @@
+--삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
+drop sequence t_ordernum; 
+drop sequence m_num; 
+drop sequence t_num; 
+drop sequence s_num; 
+drop sequence re_num; 
+
+-----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
+
+drop table ticket CASCADE CONSTRAINTS;
+drop table review CASCADE CONSTRAINTS; 
+drop table movie CASCADE CONSTRAINTS; 
+drop table bank; 
+drop table member CASCADE CONSTRAINTS; 
+drop table master;  
+drop table theater CASCADE CONSTRAINTS; 
+drop table board CASCADE CONSTRAINTS; 
+drop table store CASCADE CONSTRAINTS;
+
+
 --------------------------------------관리자
 
 create table master (
-	master_id varchar2(50) primary key,
+	master_id varchar2(50) primary key not null,
 	master_password varchar2(50) not null
-	);
+);
 	
-insert into manager values ('master','1234');
+insert into master values ('master','1234');
+
+--------------------------------------회원
+
+create table member(
+	member_id varchar2(50) primary key not null , --아이디
+	member_password varchar2(50) not null, 		  -- 비번
+	member_name varchar2(50) not null, 			  -- 이름 
+	member_gender varchar2(50) not null, 		  -- 성별
+	member_birth date not null,       			  -- 생년월일 관람등급
+	member_email varchar2(50) not null,           -- 이메일
+	member_number varchar2(50) not null,          -- 휴대전화
+	member_addr varchar2(200) not null, 		  -- 주소
+	member_date date default sysdate not null,    -- 가입일
+	member_del char(1) default 'n'			      -- 탈퇴여부			
+);
 
 --------------------------------------영화
 
@@ -24,40 +59,25 @@ create table movie (
 	m_genre  varchar2(50) not null,		--장르
 	m_del char(1) default 'n'	        --삭제여부 		
 );
-create sequence movie_seq start with 1;
-  
+create sequence m_num increment by 1 start with 1;
+
  
 
 --------------------------------------극장
 
 create table theater(
-	t_num number primary key,  --극장번호
-	t_title varchar2(50),      --이름
-	t_loc varchar2(100),       --위치(주소)
-	t_info varchar2(1000),     --시설 정보
-	t_gui varchar2(1000)       --시설 안내
+	t_num number primary key not null,  --극장번호
+	t_title varchar2(50) not null,      --이름
+	t_loc varchar2(100) not null,       --위치(주소)
+	t_info varchar2(1000) not null,     --시설 정보
+	t_gui varchar2(1000) not null      --시설 안내
 );
-create sequence theater_seq start with 1;
+create sequence t_num increment by 1 start with 1;
 
-
---------------------------------------회원
-
-create table member(
-	member_id varchar2(50) primary key not null , --아이디
-	member_password varchar2(50) not null, 		  -- 비번
-	member_name varchar2(50) not null, 			  -- 이름 
-	member_gender varchar2(50) not null, 		  -- 성별
-	member_birth date not null,       			  -- 생년월일 관람등급
-	member_email varchar2(50) not null,           -- 이메일
-	member_number varchar2(50) not null,          -- 휴대전화
-	member_addr varchar2(200) not null, 		  -- 주소
-	member_date date default sysdate not null,    -- 가입일
-	member_del char(1) default 'n'			      -- 탈퇴여부			
-);
 --------------------------------------회원 게시판
 create table board(
-	b_num number not null primary key, --게시글 번호
-	member_id varchar2(50) references member(member_id), --아이디
+	b_num number primary key not null, --게시글 번호
+	member_id varchar2(50) references member(member_id) not null, --아이디
 	b_email varchar2(50) not null,     --이메일
 	b_title varchar2(50) not null, 	   --제목
 	b_content varchar2(1000) not null, --내용
@@ -66,24 +86,23 @@ create table board(
 	b_ip varchar2(50) not null, 	   --아이피	
 	b_ref number not null, 			   --참조번호
 	b_level number not null, 		   --참조레벨	
-	b_date date not null default sysdate,--작성일	
+	b_date date default sysdate not null,--작성일	
 	b_ans char(1) default 'n', 		   --답변여부
 	b_del char(1) default 'n'		   --삭제여부
 );
 
 
 --------------------------------------계좌
-
 create table bank(
-	t_account varchar2(50) not null primary key, --계좌번호
-	t_ordername varchar2(50) REFERENCES member(member_id),  --주문자
+	t_account varchar2(50) primary key not null, --계좌번호
+	t_ordername varchar2(50) REFERENCES member(member_id) not null,  --주문자
 	t_price number not null,              		 --금액
 	t_deal varchar2(50) not null        		 --거래방법
 );
 
 --------------------------------------스토어
 create table store(
-	s_num number not null primary key,  --스토어 게시글 번호
+	s_num number primary key not null,  --스토어 게시글 번호
 	s_title varchar2(50) not null, 		-- 제목
 	s_del char(1) default 'n', 			--게시글 삭제여부
 	s_Pclass varchar2(100) not null, 	--상품 분류(관람권,스낵)
@@ -97,27 +116,28 @@ create table store(
 	s_purchase number not null, --구매수량
 	s_prive number not null,	--금액
 	s_sale number not null,		--할인율
-	s_del char(1) default 'n'	--구매 취소 여부
+	del char(1) default 'n'	--구매 취소 여부
 );
 
-create sequence store_seq start with 1;
+create sequence s_num increment by 1 start with 1;
 
 
 --------------------------------------한줄평
 create table review (
-	re_num number not null primary key, --번호
+	re_num number primary key not null, --번호
 	re_con varchar2(500) not null,		--한줄평 내용
-	re_grade number not null			--한줄평 평점
+	re_grade number not null,			--한줄평 평점
 	re_date date not null, 				--업로드 시간
-	member_id varchar2(50) references member(member_id), --회원아이디
+	member_id varchar2(50) references member(member_id) not null, --회원아이디
 	m_num number references movie(m_num) --영화번호
+);
 
-create sequence review_seq start with 1
+create sequence re_num increment by 1 start with 1;
 
 
 --------------------------------------예매
 create table ticket(
-	t_ordernum number not null primary key, --주문번호
+	t_ordernum number primary key not null, --주문번호
 	m_num number references movie(m_num),	--영화번호
 	t_account varchar2(50) references bank(t_account),   --계좌번호
 	member_id varchar2(50) references member(member_id), --회원 아이디
@@ -134,4 +154,4 @@ create table ticket(
 	t_addr varchar2(50) not null	--지역
 );
 
-create sequence ticket_seq start with 1;
+create sequence t_ordernum increment by 1 start with 1;
