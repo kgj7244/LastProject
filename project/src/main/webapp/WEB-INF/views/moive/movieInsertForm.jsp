@@ -38,10 +38,17 @@
 					</td>
 				</tr>
 				<tr>
-					<td>관렴 연령 등급</td>
+					<td>관람 연령 등급</td>
 					<td>
-						<input type="text" name="name" required="required"></td>
-					</tr>
+						<input type="text" name="name" required="required">
+					</td>
+				</tr>
+				<tr>
+					<td>상영 상태</td>
+					<td>
+						<input type="text" name="m_state" required="required">
+					</td>
+				</tr>
 				<tr>
 					<td>
 						포스터

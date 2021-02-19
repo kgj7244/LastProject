@@ -46,7 +46,7 @@
         	</span>
     	</div> 
     	<div align="center">
-			<a href="mavieInsert.do">영화 추가</a> 
+			<a href="mavieInsert.do">영화 추가</a>
 		</div>
 	</div>
 </body>
