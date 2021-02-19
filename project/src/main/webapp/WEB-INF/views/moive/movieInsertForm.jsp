@@ -40,13 +40,13 @@
 				<tr>
 					<td>관람 연령 등급</td>
 					<td>
-						<input type="text" name="name" required="required">
+						<input type="" name="m_rank" required="required">
 					</td>
 				</tr>
 				<tr>
 					<td>상영 상태</td>
 					<td>
-						<input type="text" name="m_state" required="required">
+						<input type="" name="m_state" required="required">
 					</td>
 				</tr>
 				<tr>
