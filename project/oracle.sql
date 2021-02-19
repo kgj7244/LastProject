@@ -72,6 +72,7 @@ create table movie (
 	m_genre  varchar2(50) not null,		--장르
 	m_del char(1) default 'n'	        --삭제여부 		
 );
+select * from movie;
 create sequence m_num increment by 1 start with 1;
 <<<<<<< HEAD
 insert into movie values(1, '해리포터','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
