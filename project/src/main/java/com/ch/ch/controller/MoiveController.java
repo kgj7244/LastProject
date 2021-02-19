@@ -10,6 +10,7 @@ import com.ch.ch.service.MoiveService;
 public class MoiveController {
 	@Autowired
 	private MoiveService ms;
+	
 	@RequestMapping("moiveMainForm")
 	public String moiveMainForm(){
 		return "moive/moiveMainForm";
