@@ -54,15 +54,17 @@
 		</table>
 	</div>
 	<div> <!-- 결제창 -->
-		<table class="table table-bordered">
-			<tr>
-				<td>영화선택</td>
-				<td>좌석선택</td>
-				<td>결제선택</td>
-				<td>결제</td>
-				<td>결제하기</td>
-			</tr>
-		</table>
+		<form>
+			<table class="table table-bordered">
+				<tr>
+					<td>영화선택</td>
+					<td>좌석선택</td>
+					<td>결제선택</td>
+					<td>결제</td>
+					<td>결제하기</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 </div>
 <%@ include file="../mainFloor.jsp" %>
