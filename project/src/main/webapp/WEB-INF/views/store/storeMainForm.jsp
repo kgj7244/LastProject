@@ -9,7 +9,7 @@
 <body>
 <h2>스토어</h2>
 
-
+ 
 
 <h3 class="s_Pclass">추천</h3>
 <h3 class="s_Pclass">관람권</h3>

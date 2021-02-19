@@ -13,7 +13,7 @@
 <input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
 
 <table>
-
+ 
 <!-- 이름/분류 -->
 <tr><td>${store.s_Pname }/${store.s_Pclass }</td></tr>
 
