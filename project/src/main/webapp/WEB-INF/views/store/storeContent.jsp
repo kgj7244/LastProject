@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>상품 상세</title>
 </head>
-<body>
+<body> 
 
 <form action="" method="post" name="storeContent">
 <input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
