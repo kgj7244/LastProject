@@ -45,6 +45,9 @@
             	<a class="link-reservation" href="#">예매</a>
         	</span>
     	</div> 
+    	<div align="center">
+			<a href="mavieInsert.do">영화 추가</a>
+		</div>
 	</div>
 </body>
 </html>
