@@ -55,6 +55,6 @@ public class MovieController {
 		model.addAttribute("result", result);
 		model.addAttribute("m_poster", m_poster);
 		
-		return "movie/movieInsert";
+		return "movie/movieInsert"; 
 	}
 }
