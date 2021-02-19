@@ -75,16 +75,28 @@ create table movie (
 select * from movie;
 create sequence m_num increment by 1 start with 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
+insert into movie values(1, '중앙','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
+insert into movie values(2, '불의잔','아프라카타브라','19','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
+insert into movie values(3, '가즈아','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
+=======
+<<<<<<< HEAD
 insert into movie values(1, '해리포터','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
 insert into movie values(2, '해리포터','아프라카타브라','19','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
 insert into movie values(3, '해리포터','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 insert into movie values(4, '트랜스포머','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
 insert into movie values(5, '어벤져스','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n');
 insert into movie values(6, '해리포터','아프라카타브라','15','2011-11-11','상영','120','0','xxx.jsp','김희주','해리','마법','n'); 
 =======
 
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+select * from movie;
+=======
 >>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 --------------------------------------한줄평
 create table review (
 	re_num number(10) primary key not null, --리뷰번호
