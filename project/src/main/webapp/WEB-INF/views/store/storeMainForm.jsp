@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>스토어 들어가짐???</h2>
+<h2>스토어</h2>
+
+
+
+<h3 class="s_Pclass">추천</h3>
+<h3 class="s_Pclass">관람권</h3>
+<h3 class="s_Pclass">콤보</h3>
+<h3 class="s_Pclass">팝콘/음료</h3>
+<h3 class="s_Pclass">스낵</h3>
+
 </body>
 </html>
