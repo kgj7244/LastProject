@@ -20,7 +20,8 @@ public class MemberController {
 	public String mainForm() {
 		return "mainForm";
 	}
-	
+
+	/* 깃 */
 	// 회원가입 폼 이동
 	@RequestMapping("memberJoinForm")
 	public String memberJoinForm() {
