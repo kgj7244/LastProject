@@ -2,10 +2,12 @@ package com.ch.ch.model;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
-public class Moive {
+public class Movie {
 	private int m_num;
 	private String m_title;
 	private String m_content;
@@ -19,4 +21,7 @@ public class Moive {
 	private String m_actor;
 	private String m_genre;
 	private String m_del;
+	
+	//포스터 upload용
+	private MultipartFile file;
 }
