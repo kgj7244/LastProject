@@ -6,29 +6,45 @@
 <head>
 <meta charset="UTF-8">
 <title>영화 추가</title>
+<script type="text/javascript">
+	function numChk() {
+		if(!frm.m_num.value){
+			alert("영화번호를 입력하고 중복 확인을 누르세요");
+			frm.m_num.focus();
+			return false;
+		}
+	
+		$.post("numChk.do", "m_num=" + frm.m_num.value, function(data){
+			$('#disp').html(data);
+		});
+	}
+</script>
 </head>
 <body>
 	<div class="container" align="center">
-		<form action="movieInsert.do" method="post" enctype="multipart/form-data">
+		<form action="movieInsert.do" method="post" name="frm" enctype="multipart/form-data">
 			<h2 class="text-primary">영화 추가</h2>
+			<input type="hidden" name="m_grade" value="0">
 			<table class="table table-bordered">
 				<tr>
 					<th>영화 번호</th>
 					<td>
 						<input type="number" name="m_num"
 							required="required" autofocus="autofocus">
+						<input type="button" onclick="numChk()" class="btn btn-warning btn-sm" value="중복 확인">
+						<div id="disp" class="err"></div>
 					</td>
 					<th>장르</th>
 					<td>
 						<select name="m_genre">
-							<option value="1">판타지</option>
-							<option value="2">공포/스릴러</option>
-							<option value="3">로맨스</option>
-							<option value="4">드라마</option>
-							<option value="5">애니메이션</option>
-							<option value="6">뮤지컬</option>
-							<option value="7">SF</option>
-							<option value="8">에로</option>
+							<option value="판타지">판타지</option>
+							<option value="공포/스릴러">공포/스릴러</option>
+							<option value="로맨스">로맨스</option>
+							<option value="드라마">드라마</option>
+							<option value="애니메이션">애니메이션</option>
+							<option value="뮤지컬">뮤지컬</option>
+							<option value="SF">SF</option>
+							<option value="에로">에로</option>
 						</select>
 					</td>
 				</tr>
@@ -75,10 +91,10 @@
 					</td>
 					<th>관람 연령 등급</th>
 					<td>
-						<input type="radio" name="m_rank" value="all" checked="checked">전 연령
+						<input type="radio" name="m_rank" value="전 연령" checked="checked">전 연령
 						<input type="radio" name="m_rank" value="12">12세
 						<input type="radio" name="m_rank" value="15">15세
-						<input type="radio" name="m_rank" value="19">청불
+						<input type="radio" name="m_rank" value="창불">청불
 					</td>
 				</tr>
 				<tr>
@@ -87,7 +103,7 @@
 						<span class="glyphicon glyphicon-picture"></span>
 					</th>
 					<td colspan="3">
-						<input type="file" name="m_poster" required="required">
+						<input type="file" name="file" required="required">
 					</td>
 				</tr>
 				<tr><td colspan="4" align="center"><input type="submit"></td></tr>

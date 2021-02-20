@@ -5,19 +5,19 @@
 <!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
 <mapper namespace="moviens">
 	<resultMap type="movie" id="movieResult">
-		<result property="m_num" column="m_num"/>
-		<result property="m_title" column="m_title"/>
-		<result property="m_content" column="m_content"/>
-		<result property="m_rank" column="m_rank"/>
-		<result property="m_opendate" column="m_opendate"/>
-		<result property="m_state" column="m_state"/>
-		<result property="m_time" column="m_time"/>
-		<result property="m_grade" column="m_grade"/>
-		<result property="m_poster" column="m_poster"/>
-		<result property="m_director" column="m_director"/>
-		<result property="m_actor" column="m_actor"/>
-		<result property="m_genre" column="m_genre"/>
-		<result property="m_del" column="m_del"/>
+		<result column="m_num" property="m_num"/>
+		<result column="m_title" property="m_title"/>
+		<result column="m_content" property="m_content"/>
+		<result column="m_rank" property="m_rank"/>
+		<result column="m_opendate" property="m_opendate"/>
+		<result column="m_state" property="m_state"/>
+		<result column="m_time" property="m_time"/>
+		<result column="m_grade" property="m_grade"/>
+		<result column="m_poster" property="m_poster"/>
+		<result column="m_director" property="m_director"/>
+		<result column="m_actor" property="m_actor"/>
+		<result column="m_genre" property="m_genre"/>
+		<result column="m_del" property="m_del"/>
 	</resultMap>
 	<select id="list" resultMap="movieResult">
 		select * from movie order by m_num

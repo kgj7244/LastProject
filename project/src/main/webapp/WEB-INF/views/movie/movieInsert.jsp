@@ -22,9 +22,22 @@
 	</c:if>
 	<c:if test="${result == -1}">
 		<script type="text/javascript">
-			alert("이미 있는 영화 번호입니다. 다른 번호로 적어주세요.");
+			alert("이미 있는 영화 번호입니다. 다른 번호로 적어주세요");
 			history.go(-1);
 		</script>
 	</c:if>
+	<%-- 영화 번호 : ${m_num}
+	제목 : ${m_title}
+	줄거리 : ${m_content}
+	장르 : ${m_genre}
+	등급 : ${m_rank}
+	상영 시간 : ${m_time}분
+	개봉일 : ${m_opendate}
+	상태 : ${m_state}
+	감독 : ${m_director}
+	배우 : ${m_actor}
+	포스터 이름 : ${m_poster}
+	<img alt="" src="resources/images/m_poster/${m_poster}"> --%>
+	
 </body>
 </html>
