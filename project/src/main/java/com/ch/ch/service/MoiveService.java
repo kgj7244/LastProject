@@ -2,12 +2,12 @@ package com.ch.ch.service;
 
 import java.util.List;
 
-import com.ch.ch.model.Moive;
+import com.ch.ch.model.Movie;
 
 public interface MoiveService {
 
-	List<Moive> select();
+	List<Movie> select();
 
-	Moive selectMovie(int m_num);
+	Movie selectMovie(int m_num);
 
 }

@@ -2,12 +2,12 @@ package com.ch.ch.dao;
 
 import java.util.List;
 
-import com.ch.ch.model.Moive;
+import com.ch.ch.model.Movie;
 
 public interface MoiveDao {
 
-	List<Moive> select();
+	List<Movie> select();
 
-	Moive selectMovie(int m_num);
+	Movie selectMovie(int m_num);
 
 }

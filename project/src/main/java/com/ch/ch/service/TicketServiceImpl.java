@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.ch.dao.TicketDao;
-import com.ch.ch.model.Moive;
+import com.ch.ch.model.Movie;
 
 @Service
 public class TicketServiceImpl implements TicketService{
 	@Autowired
 	private TicketDao td;
-	public List<Moive> select() {
+	public List<Movie> select() {
 		return td.select();
 	}
 }

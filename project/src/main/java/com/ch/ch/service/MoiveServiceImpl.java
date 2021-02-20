@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.ch.dao.MoiveDao;
-import com.ch.ch.model.Moive;
+import com.ch.ch.model.Movie;
 
 @Service
 public class MoiveServiceImpl implements MoiveService{
 	@Autowired
 	private MoiveDao md;
-	public List<Moive> select() {
+	public List<Movie> select() {
 		return md.select();
 	}
-	public Moive selectMovie(int m_num) {
+	public Movie selectMovie(int m_num) {
 		return md.selectMovie(m_num);
 	}
 }
