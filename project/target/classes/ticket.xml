@@ -3,11 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace xml을 구별하기 위한 이름 -->
 <!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
-<mapper namespace="moivens">
-	<select id="list" resultType="moive">
-		select * from movie
-	</select>
-	<select id="selectMovie" parameterType="int">
-		select * from movie where m_num=${m_num}
+<mapper namespace="ticketns">
+	<select id="select" resultType="ticket">
+		select * from movie m ,ticket t where m.m_num = t.m_num
 	</select>
 </mapper>

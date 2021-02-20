@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$('#selectMovie').click(function(){
+		$('#selectMovie1').hide();
+	});
+</script>
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>
@@ -21,12 +27,36 @@
 			</tr>
 			<tr>
 				<td> <!-- 안에 내용 -->
-					<table class="table table-bordered"> 
-						<tr>
-							<td>등급</td>
-							<td>제목</td>
-						</tr>
-					</table>
+					<form action="selectMovie.do" method="post" name="frm1">
+						<table class="table table-bordered"> 
+							<c:if test="${not empty movie}"> <!-- 값이 있으면 -->
+								<c:forEach var="i" items="${movie}">
+									<tr>
+										<c:choose>
+											<c:when test="${i.m_rank == '전체'}">
+												<td><img src="resources/images/m_rank/전체.png" height="30px" width="30px"></td>
+											</c:when>									
+											<c:when test="${i.m_rank == 12}">
+												<td><img src="resources/images/m_rank/12세.png" height="30px" width="30px"></td>
+											</c:when>									
+											<c:when test="${i.m_rank == 15}">
+												<td><img src="resources/images/m_rank/15세.png" height="30px" width="30px"></td>
+											</c:when>									
+											<c:when test="${i.m_rank == 19}">
+												<td><img src="resources/images/m_rank/청불.png" height="30px" width="30px"></td>
+											</c:when>									
+										</c:choose>
+										<td><input type="button" id="selectMovie" value="${i.m_title}"></td>
+									</tr>
+								</c:forEach>
+							</c:if>
+							<c:if test="${!not empty movie}"> <!-- 값이 없으면 -->
+								<tr>
+									<td>보여줄 영화가 없습니다</td>
+								</tr>
+							</c:if>
+						</table>
+					</form>
 				</td>
 				<td>
 					<table class="table table-bordered"> 
@@ -57,6 +87,9 @@
 		<form>
 			<table class="table table-bordered">
 				<tr>
+					<td>
+						<%-- <div id="selectMovie1"><img alt="${movie.m_title}"src=""></div> --%>
+					</td>
 					<td>영화선택</td>
 					<td>좌석선택</td>
 					<td>결제선택</td>

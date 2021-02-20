@@ -8,11 +8,12 @@
 		<typeAlias alias="moive" type="com.ch.ch.model.Moive" />
 		<typeAlias alias="store" type="com.ch.ch.model.Store" />
 		<typeAlias alias="theater" type="com.ch.ch.model.Theater" />
+		<typeAlias alias="ticket" type="com.ch.ch.model.Ticket" />
 	</typeAliases>
 	<mappers>   <!-- 어디로 연결할지 --> 
 		<mapper resource="member.xml" />
 		<mapper resource="moive.xml" />
 		<mapper resource="store.xml" />
-		<mapper resource="theater.xml" />
+		<mapper resource="ticket.xml" />
 	</mappers>
 </configuration>
