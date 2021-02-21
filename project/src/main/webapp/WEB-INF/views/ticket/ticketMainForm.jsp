@@ -7,9 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	$('#selectMovie').click(function(){
-		$('#selectMovie1').hide();
-	});
+	function chk(m_num) {
+		var m = m_num;
+		alert(m);
+		document.getElementById("demo").innerHTML =m2;
+	}
+	
 </script>
 </head>
 <body>
@@ -34,19 +37,19 @@
 									<tr>
 										<c:choose>
 											<c:when test="${i.m_rank == '전체'}">
-												<td><img src="resources/images/m_rank/전체.png" height="30px" width="30px"></td>
-											</c:when>									
-											<c:when test="${i.m_rank == 12}">
+												<td><img src="resources/images/m_rank/전체.png" height="30px" width="30px" ></td>
+											</c:when>								
+											<c:when test="${i.m_rank == '12'}">
 												<td><img src="resources/images/m_rank/12세.png" height="30px" width="30px"></td>
 											</c:when>									
-											<c:when test="${i.m_rank == 15}">
+											<c:when test="${i.m_rank == '15'}">
 												<td><img src="resources/images/m_rank/15세.png" height="30px" width="30px"></td>
 											</c:when>									
-											<c:when test="${i.m_rank == 19}">
+											<c:when test="${i.m_rank == '19'}">
 												<td><img src="resources/images/m_rank/청불.png" height="30px" width="30px"></td>
-											</c:when>									
+											</c:when>							
 										</c:choose>
-										<td><input type="button" id="selectMovie" value="${i.m_title}"></td>
+										<td><input type="button" id="selectMovie" value="${i.m_title}" onclick="chk(${i.m_num})"></td>
 									</tr>
 								</c:forEach>
 							</c:if>
@@ -60,10 +63,15 @@
 				</td>
 				<td>
 					<table class="table table-bordered"> 
-						<tr>
-							<td>서울(29)</td>
-							<td>서울리스트</td>
-						</tr>
+						<c:if test="${not empty theater}">
+							<c:forEach var="i" items="${theater1}">
+								<tr>
+									<td class="btn">${i.t_loc}</td>
+								</tr>
+							</c:forEach> 	
+						</c:if>
+							<!-- <td>서울()</td>
+							<td>서울리스트</td> -->
 					</table>
 				</td>
 				<td>
@@ -90,7 +98,7 @@
 					<td>
 						<%-- <div id="selectMovie1"><img alt="${movie.m_title}"src=""></div> --%>
 					</td>
-					<td>영화선택</td>
+					<td id='demo'>영화선택</td>
 					<td>좌석선택</td>
 					<td>결제선택</td>
 					<td>결제</td>
