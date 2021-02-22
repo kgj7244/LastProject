@@ -15,5 +15,8 @@ public class TheaterServiceImpl implements TheaterService{
 	public List<Theater> locList(Theater theater) {
 		return td.locList(theater);
 	}
+	public List<Theater> selectTheater(String id) {
+		return td.selectTheater(id);
+	}
 	
 }
