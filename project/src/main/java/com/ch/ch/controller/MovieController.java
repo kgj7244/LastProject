@@ -47,7 +47,7 @@ public class MovieController {
 		return data;
 	}
 	
-	//영화 목록 추가 결과
+	//영화 목록 추가 결과 (글 작성 + 이미지 업로드)
 	@RequestMapping("movieInsert")
 	public String movieInsert(Movie movie, Model model, HttpServletRequest request) throws IOException { 
 		if(!movie.getFile().isEmpty()) {
@@ -74,5 +74,15 @@ public class MovieController {
 		model.addAttribute("result", result);
 		
 		return "movie/movieInsert";
-	}	
+	}
+	
+	//영화 상세보기
+	@RequestMapping("movieView")
+	public String movieView(int m_num, Model model) {
+		Movie movie = ms.select(m_num);
+		
+		model.addAttribute("movie", movie);
+		
+		return "movie/movieView";
+	}
 }
