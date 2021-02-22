@@ -9,10 +9,19 @@ import org.springframework.stereotype.Repository;
 import com.ch.ch.model.Movie;
 
 @Repository
-public class TicketDaoImpl implements TicketDao{
+public class MovieDaoImpl implements MovieDao{
 	@Autowired
 	private SqlSessionTemplate sst;
-	public List<Movie> select() {
-		return sst.selectList("ticketns.select");
+	
+	public List<Movie> list() {
+		return sst.selectList("moviens.list");
+	}
+	
+	public Movie select(int m_num) {
+		return sst.selectOne("moviens.select", m_num);
+	}
+	
+	public int insert(Movie movie) {
+		return sst.insert("moviesns.insert", movie);
 	}
 }

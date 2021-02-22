@@ -4,5 +4,7 @@
 <!-- namespace xml을 구별하기 위한 이름 -->
 <!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
 <mapper namespace="theaterns">
-	
+	<select id="locList" parameterType="theater" resultType="theater">
+		select distinct t_loc from theater order by t_loc
+	</select>
 </mapper>
