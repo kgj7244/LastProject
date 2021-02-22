@@ -92,8 +92,8 @@
 					<th>관람 연령 등급</th>
 					<td>
 						<input type="radio" name="m_rank" value="전 연령" checked="checked">전 연령
-						<input type="radio" name="m_rank" value="12">12세
-						<input type="radio" name="m_rank" value="15">15세
+						<input type="radio" name="m_rank" value="12세">12세
+						<input type="radio" name="m_rank" value="15세">15세
 						<input type="radio" name="m_rank" value="창불">청불
 					</td>
 				</tr>
