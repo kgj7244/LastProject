@@ -22,6 +22,6 @@ public class MovieDaoImpl implements MovieDao{
 	}
 	
 	public int insert(Movie movie) {
-		return sst.insert("moviesns.insert", movie);
+		return sst.insert("moviens.insert", movie);
 	}
 }
