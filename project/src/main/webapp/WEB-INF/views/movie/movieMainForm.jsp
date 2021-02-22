@@ -24,12 +24,7 @@
 			                	<img alt="" src="resources/images/m_poster/${movie.m_poster}" height="100px">
 			                </span>
 			            </a>
-			            <%-- <span class="agerank">
-			            	<c:if test="${movie.m_rank.equals('전 연령')}"><img alt="" src="resources/images/m_rank/${movie.m_rank}.png"></c:if>
-			                <c:if test="${movie.m_rank.equals('12세')}"><img alt="" src="resources/images/m_rank/12세.png"></c:if>
-			                <c:if test="${movie.m_rank.equals('15세')}"><img alt="" src="resources/images/m_rank/15세.png"></c:if>
-			                <c:if test="${movie.m_rank.equals('청불')}"><img alt="" src="resources/images/m_rank/청불.png"></c:if>        
-			            </span> --%>
+			            
 			        </div>
 			        <div class="box-contents">
 			        	<a href="movieView.do?m_title=${movie.m_title}">

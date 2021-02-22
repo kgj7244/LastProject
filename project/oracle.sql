@@ -211,16 +211,16 @@ create table bank(
 
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
-	s_title varchar2(50) not null, 		-- 제목
+--	s_title varchar2(50) not null, 		-- 제목#
 	s_del char(1) default 'n', 			--게시글 삭제여부
 	s_Pclass varchar2(100) not null, 	--상품 분류(관람권,스낵)
 	s_Pname varchar2(50) not null, 		--상품 이름
 	s_Pconfig varchar2(50) not null, 	--상품 구성
 	s_Pimage varchar2(100) not null, 	--상품 이미지
 	
-	s_per date not null, 			--판매기간  날짜+숫자=날짜 항상
-	s_validity date not null, 		--유효기간 
-	s_total number(10) not null, 	--총 판매수량 제한없음
+	s_per date not null, 			--판매기간 #  날짜+숫자=날짜
+	s_validity date not null, 		--유효기간 #
+	s_total number(10) not null, 	--총 판매수량 #
 	s_purchase number(10) not null, --구매수량
 	s_prive number(10) not null,	--금액
 	s_sale number(10) not null,		--할인율 

@@ -11,14 +11,14 @@
 
 <c:if test="${result > 0 }">
  <script type="text/javascript">
-  alert("수정 성공했습니다");
+  alert("삭제 성공했습니다");
   location.href="storeMainForm.do";
  </script>
 </c:if>
 
 <c:if test="${result == 0 }">
  <script type="text/javascript">
-  alert("수정 실패했습니다. 다시 확인해주세요");
+  alert("삭제 실패했습니다. 다시 확인해주세요");
   history.go(-1);
  </script>
 </c:if>
