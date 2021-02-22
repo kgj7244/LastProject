@@ -22,7 +22,7 @@
 	</c:if>
 	<c:if test="${result == -1}">
 		<script type="text/javascript">
-			alert("이미 있는 영화 번호입니다. 다른 번호로 적어주세요.");
+			alert("이미 있는 영화 번호입니다. 다른 번호로 적어주세요");
 			history.go(-1);
 		</script>
 	</c:if>

@@ -1,3 +1,37 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace xml을 구별하기 위한 이름 -->
+<!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
+<mapper namespace="moviens">
+	<resultMap type="movie" id="movieResult">
+		<result column="m_num" property="m_num"/>
+		<result column="m_title" property="m_title"/>
+		<result column="m_content" property="m_content"/>
+		<result column="m_rank" property="m_rank"/>
+		<result column="m_opendate" property="m_opendate"/>
+		<result column="m_state" property="m_state"/>
+		<result column="m_time" property="m_time"/>
+		<result column="m_grade" property="m_grade"/>
+		<result column="m_poster" property="m_poster"/>
+		<result column="m_director" property="m_director"/>
+		<result column="m_actor" property="m_actor"/>
+		<result column="m_genre" property="m_genre"/>
+		<result column="m_del" property="m_del"/>
+	</resultMap>
+	<select id="list" resultMap="movieResult">
+		select * from movie order by m_num
+	</select>
+	<select id="select" parameterType="integer" resultType="movie">
+		select * from movie where m_num=#{m_num}
+	</select>
+	<insert id="insert" parameterType="movie">
+		insert into movie values (#{m_num}, #{m_title}, #{m_content}, 
+			#{m_rank}, #{m_opendate}, #{m_state}, #{m_time},
+			0, #{m_poster}, #{m_director}, #{m_actor}, #{m_genre}, 'n')
+	</insert>
+=======
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -30,4 +64,5 @@
 			#{m_rank}, #{m_opendate}, #{m_state}, #{m_time},
 			0, #{m_poster}, #{m_director}, #{m_actor}, #{m_genre}, 'n')
 	</insert>
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 </mapper>

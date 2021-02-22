@@ -14,4 +14,6 @@ public class StoreController {
 	public String storeMainForm() {
 		return "store/storeMainForm";
 	}
+	
+	
 }

@@ -210,21 +210,23 @@ create table bank(
 --------------------------------------스토어
 
 create table store(
-	s_num number primary key not null,                           --스토어 게시글 번호
-	s_title nvarchar2(50) not null, 		                     --제목
-	s_del char(1) default 'n', 			                         --게시글 삭제여부
-	s_Pclass nvarchar2(100) not null, 	                         --상품 분류(관람권,스낵)
-	s_Pname nvarchar2(50) not null, 		                     --상품 이름
-	s_Pconfig nvarchar2(50) not null, 	                         --상품 구성
-	s_Pimage nvarchar2(100) not null, 	                         --상품 이미지
-	s_per date not null, 		                                 --판매기간  날짜+숫자=날짜
-	s_validity date not null, 		                             --유효기간 
-	s_total number not null, 	                                 --총 판매수량
-	s_purchase number not null,                                  --구매수량
-	s_prive number not null,	                                 --금액
-	s_sale number not null,		                                 --할인율 
-	del char(1) default 'n',		                             --구매 취소 여부
-	t_account nvarchar2(50) references bank(t_account) not null  --입금번호
+	s_num number(10) primary key not null,  --스토어 게시글 번호
+	s_title varchar2(50) not null, 		-- 제목
+	s_del char(1) default 'n', 			--게시글 삭제여부
+	s_Pclass varchar2(100) not null, 	--상품 분류(관람권,스낵)
+	s_Pname varchar2(50) not null, 		--상품 이름
+	s_Pconfig varchar2(50) not null, 	--상품 구성
+	s_Pimage varchar2(100) not null, 	--상품 이미지
+	
+	s_per date not null, 			--판매기간  날짜+숫자=날짜 항상
+	s_validity date not null, 		--유효기간 
+	s_total number(10) not null, 	--총 판매수량 제한없음
+	s_purchase number(10) not null, --구매수량
+	s_prive number(10) not null,	--금액
+	s_sale number(10) not null,		--할인율 
+	del char(1) default 'n',		--구매 취소 여부
+	
+	t_account varchar2(50) references bank(t_account) not null --입금번호
 );
 
 create sequence s_num increment by 1 start with 1;
