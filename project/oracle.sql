@@ -246,5 +246,5 @@ create table service(
 
 create sequence sv_num increment by 1 start with 1;
 
-
+select t_title from theater where t_loc='서울'; 
 

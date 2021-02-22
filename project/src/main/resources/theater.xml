@@ -7,4 +7,7 @@
 	<select id="locList" parameterType="theater" resultType="theater">
 		select distinct t_loc from theater order by t_loc
 	</select>
+	<select id="selectTheater" parameterType="string" resultType="theater">
+		select * from theater where t_loc=#{id} 
+	</select>
 </mapper>

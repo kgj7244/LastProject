@@ -7,5 +7,7 @@ import com.ch.ch.model.Theater;
 public interface TheaterDao {
 
 	List<Theater> locList(Theater theater);
+
+	List<Theater> selectTheater(String id);
 	
 }

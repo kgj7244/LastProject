@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace xml을 구별하기 위한 이름 -->
@@ -31,38 +30,4 @@
 			#{m_rank}, #{m_opendate}, #{m_state}, #{m_time},
 			0, #{m_poster}, #{m_director}, #{m_actor}, #{m_genre}, 'n')
 	</insert>
-=======
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- namespace xml을 구별하기 위한 이름 -->
-<!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
-<mapper namespace="moviens">
-	<resultMap type="movie" id="movieResult">
-		<result property="m_num" column="m_num"/>
-		<result property="m_title" column="m_title"/>
-		<result property="m_content" column="m_content"/>
-		<result property="m_rank" column="m_rank"/>
-		<result property="m_opendate" column="m_opendate"/>
-		<result property="m_state" column="m_state"/>
-		<result property="m_time" column="m_time"/>
-		<result property="m_grade" column="m_grade"/>
-		<result property="m_poster" column="m_poster"/>
-		<result property="m_director" column="m_director"/>
-		<result property="m_actor" column="m_actor"/>
-		<result property="m_genre" column="m_genre"/>
-		<result property="m_del" column="m_del"/>
-	</resultMap>
-	<select id="list" resultMap="movieResult">
-		select * from movie order by m_num
-	</select>
-	<select id="select" parameterType="integer" resultType="movie">
-		select * from movie where m_num=#{m_num}
-	</select>
-	<insert id="insert" parameterType="movie">
-		insert into movie values (#{m_num}, #{m_title}, #{m_content}, 
-			#{m_rank}, #{m_opendate}, #{m_state}, #{m_time},
-			0, #{m_poster}, #{m_director}, #{m_actor}, #{m_genre}, 'n')
-	</insert>
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 </mapper>

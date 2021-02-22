@@ -7,13 +7,33 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function chk(m_num) {
-		var m = m_num;
-		alert(m);
-		document.getElementById("demo").innerHTML =m2;
+	$(function() {
+		//$('#date').trigger('click');
+		$('#date').show('click');
+	});
+	function chk(m_title, m_poster) {
+		$('#img').html("<img alt='이미지 보여지는지' src='${path}/resources/images/m_rank/m_poster.png'>");
+		$('#title').html(m_title);
 	}
-	
+	function chk2(t_loc) {
+		$.post("selectTheater.do","id="+t_loc, function(data) {
+			$('#test').html(data);
+		});
+		$.post("selectCalendar.do","id="+t_loc, function(data) {
+			$('#test1').html(data);
+		});
+	}
+	function chk3(t_title) {
+		$('#t_title').html("극장 : "+t_title);
+	}
+	function dal() {
+		var val = $('#date').val();
+		if (val != null && val !=""){
+			$('#sc_date').html("일시 : " + val);	
+		}
+	}
 </script>
+
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>
@@ -24,7 +44,7 @@
 		<table class="table table-bordered">
 			<tr><!-- 제목 -->
 				<td>영화</td>
-				<td>극장</td>
+				<td colspan="2">극장</td>
 				<td>날짜</td>
 				<td>시간</td>
 			</tr>
@@ -49,7 +69,7 @@
 												<td><img src="resources/images/m_rank/청불.png" height="30px" width="30px"></td>
 											</c:when>							
 										</c:choose>
-										<td><input type="button" id="selectMovie" value="${i.m_title}" onclick="chk(${i.m_num})"></td>
+										<td><input type="button" value="${i.m_title}" onclick="chk('${i.m_title}','${i.m_poster}')"></td>
 									</tr>
 								</c:forEach>
 							</c:if>
@@ -66,7 +86,7 @@
 						<c:if test="${not empty theater}">
 							<c:forEach var="i" items="${theater1}">
 								<tr>
-									<td class="btn">${i.t_loc}</td>
+									<td><input type="button" value="${i.t_loc}" onclick="chk2('${i.t_loc}')"></td>
 								</tr>
 							</c:forEach> 	
 						</c:if>
@@ -75,9 +95,24 @@
 					</table>
 				</td>
 				<td>
+					<table>
+						<tr>
+							<td id="test"></td>
+						</tr>
+					</table>
+				</td>
+				<td>
 					<table class="table table-bordered">
 						<tr>
-							<td>날짜 쫙~</td>
+							 <td><input type="date" id="date" onclick="dal()" ></td>
+<!-- 							<td>
+								  <script>
+									  $( function() {
+									    $( "#datepicker" ).datepicker();
+									  } );
+								 </script>
+								
+							</td> -->
 						</tr>
 					</table>
 				</td>
@@ -95,11 +130,23 @@
 		<form>
 			<table class="table table-bordered">
 				<tr>
+					<td><div id="img"></div><div id="title"></div></td>
 					<td>
-						<%-- <div id="selectMovie1"><img alt="${movie.m_title}"src=""></div> --%>
+						<table>
+							<tr>
+								<td id="t_title">극장 : </td>
+							</tr>
+							<tr>
+								<td id="sc_date">일시 : </td>
+							</tr>
+							<tr>
+								<td id="t_title">상영관 : </td>
+							</tr>
+							<tr>
+								<td id="t_title">인원 : </td>
+							</tr>
+						</table>
 					</td>
-					<td id='demo'>영화선택</td>
-					<td>좌석선택</td>
 					<td>결제선택</td>
 					<td>결제</td>
 					<td>결제하기</td>
