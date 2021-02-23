@@ -10,16 +10,10 @@
 <body>
 <%@ include file="../mainTop.jsp" %>
 <%@ include file="../mainNav.jsp" %>
-<div class="container" align="center">
-	<table>
-		<tr>
-			<td>로그아웃 되었습니다.</td>
-		</tr>
-		<tr>
-			<td><a href="mainForm.do">메인으로</a></td>
-		</tr>
-	</table>
-</div>
+<script type="text/javascript">
+	alert("로그아웃 되었습니다");
+	location.href="loginForm.do";
+</script>
 <%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

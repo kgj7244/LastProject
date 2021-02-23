@@ -68,7 +68,7 @@
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="text" name="member_number" required="required" ></td>
+				<td><input type="tel" name="member_number" required="required" placeholder="휴대폰번호를 입력하세요" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"></td>
 			</tr>
 			<tr>
 				<th>주소</th>
