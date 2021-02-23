@@ -4,5 +4,54 @@
 <!-- namespace xml을 구별하기 위한 이름 -->
 <!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
 <mapper namespace="storens">
+<resultMap type="store" id="storeResult">
+		<result column="s_num" property="s_num"/>
+		
+		<result column="s_Pname" property="s_Pname"/>
+		<result column="s_Pclass" property="s_Pclass"/>
+		<result column="s_Pconfig" property="s_Pconfig"/>
+		<result column="s_Pimage" property="s_Pimage"/>
+		
+		<result column="s_validity" property="s_validity"/>		
+		<result column="s_per" property="s_per"/>
+		
+		<result column="s_total" property="s_total"/>
+		<result column="s_purchase" property="s_purchase"/>
+		<result column="s_prive" property="s_prive"/>
+		<result column="s_sale" property="s_sale"/>
+		<result column="del" property="del"/>
+		
+		
+		<!-- <result column="s_title" property="s_title"/> -->
+		<result column="s_del" property="s_del"/>
+		<result column="t_account" property="t_account"/>
+	</resultMap>
+	
+	
+	<select id="list" resultMap="storeResult">
+	select * from store order by s_num
+	</select>
+	
+	
+	<select id="select" parameterType="integer" resultType="store"> 
+	select * from store where s_num=#{s_num}
+	</select>
+	
+<!-- sql 미수정 -->	
+
+	<insert id="insert" parameterType="store">
+	insert into store values (#{s_num} , #{s_Pname} , #{s_Pconfig})
+	</insert>
+	
+	
+	<update id="update" parameterType="store">
+	 update store set s_Pname=#{s_Pname}, s_Pconfig=#{s_Pconfig}
+	 where s_num=#{s_num} 
+	</update>
+	
+	<delete id="delete" parameterType="integer">
+	 delete from store where s_num=#{s_num} 
+	</delete>
+	
 	
 </mapper>

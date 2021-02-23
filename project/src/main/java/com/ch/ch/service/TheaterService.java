@@ -8,4 +8,6 @@ public interface TheaterService {
 
 	List<Theater> locList(Theater theater);
 
+	List<Theater> selectTheater(String id);
+
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.ch.model.Movie;
 import com.ch.ch.model.Theater;
@@ -29,5 +30,12 @@ public class TicketController {
 		model.addAttribute("movie", movie);
 		model.addAttribute("theater1", theater1);
 		return "ticket/ticketMainForm";
+	}
+	
+	@RequestMapping(value = "selectTheater") // 극장주소을 클릭시 옆에 극장명 나오기
+	public String selectTheater(String id, Model model) {
+		List<Theater> selectTheater = tts.selectTheater(id);
+		model.addAttribute("selectTheater", selectTheater);
+		return "ticket/selectTheater";
 	}
 }
