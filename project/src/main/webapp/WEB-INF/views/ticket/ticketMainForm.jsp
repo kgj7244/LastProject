@@ -104,8 +104,18 @@
 				<td>
 					<table class="table table-bordered">
 						<tr>
-							 <td><input type="date" id="date" onclick="dal()" ></td>
-<!-- 							<td>
+							 <!-- <td><input type="date" id="date" onclick="dal()" ></td> -->
+							 <form id="frm" name="form1">
+								<input type="date" name="calendar" id = "cal1" onchange="date_pick(); " value=""> <br>
+									<script>
+										function date_pick() {
+											if(frm.cal1.value != null){
+											document.getElementById('sc_date').innerHTML = "일시 : " + frm.cal1.value;
+											}
+										}
+									</script>
+							</form>
+							<!--<td>
 								  <script>
 									  $( function() {
 									    $( "#datepicker" ).datepicker();
