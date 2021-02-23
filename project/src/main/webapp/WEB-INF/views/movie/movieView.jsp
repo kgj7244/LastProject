@@ -23,7 +23,7 @@
 					<th>한줄평</th>
 				</tr>
 				<tr>
-					<td colspan="3">${movie.m_content}</td>
+					<td colspan="3"><pre>${movie.m_content}</pre></td>
 				</tr>
 				<tr>
 					<td colspan="3">
