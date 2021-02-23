@@ -6,7 +6,7 @@
 <table>
 <c:forEach var ="i" items="${selectTheater}">
 		<tr>
-			<td><input type="button" value="${i.t_title}" onclick="chk3('${i.t_title}')"></td>
+			<td><input type="button" value="${i.t_title}" onclick="theaterSelectChk('${i.t_title}')"></td>
 		</tr>
 </c:forEach>
 </table>
