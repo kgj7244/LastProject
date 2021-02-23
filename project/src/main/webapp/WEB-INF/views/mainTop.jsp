@@ -18,7 +18,7 @@
 <c:if test="${not empty mem}">
 	<div>
 		${mem.member_id}님 환영합니다.
-		<a href="#">마이페이지</a>
+		<a href="mypage.do">마이페이지</a>
 		<a href="memberLogout.do">로그아웃</a>
 	</div>
 </c:if>

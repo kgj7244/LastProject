@@ -20,6 +20,17 @@ public class MemberController {
 	public String mainForm() {
 		return "mainForm";
 	}
+	
+	// 마이페이지
+	@RequestMapping("mypage")
+	public String main(Model model, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id"); // session에 저장된 id를 가져오기
+		Member member = null;
+		if (member_id != null && !member_id.equals("")) 
+			member = ms.select(member_id);
+		model.addAttribute("member", member);
+		return "/member/mypage";
+	}
 
 	/* 깃 */
 	// 회원가입 폼 이동
@@ -44,7 +55,7 @@ public class MemberController {
 	
 	// 회원가입 확인
 	@RequestMapping("memberJoin")
-	public String memberJoin(Model model, Member member) {
+	public String memberJoin(Model model, Member member, HttpSession session) {
 		int result = 0;
 		Member mem = ms.select(member.getMember_id());
 		if(mem==null) {
@@ -70,7 +81,7 @@ public class MemberController {
 		Member mem = new Member();
 		mem = ms.select(member_id);
 		if(mem == null || mem.getMember_del().equals("y")) {
-			result = -1; // 없는 아이디 이거나 삭제 됬음
+			result = -1; // 없는 아이디 이거나 삭제 됐음
 		}else if(member_password.equals(mem.getMember_password())) {
 			result = 1; // 성공
 			session.setAttribute("mem", mem);
@@ -87,5 +98,22 @@ public class MemberController {
 	public String memberLogout(HttpSession session) {
 		session.invalidate();
 		return "/member/memberLogout";
+	}
+	
+	// 회원정보 조회
+	@RequestMapping("memberView")
+	public String memberView(Model model, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id");
+		Member member = null;
+		if (member_id != null && member_id.equals(""))
+			member = ms.select(member_id);
+		model.addAttribute("member", member);
+		return "/member/memberView";
+	}
+	
+	//회원정보 수정
+	@RequestMapping("memberUpdateForm")
+	public String memberUpdateForm() {
+		return "/member/memberUpdateForm";
 	}
 }
