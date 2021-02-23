@@ -7,30 +7,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	$(function() {
-		//$('#date').trigger('click');
-		$('#date').show('click');
-	});
-	function chk(m_title, m_poster) {
-		$('#img').html("<img alt='이미지 보여지는지' src='${path}/resources/images/m_rank/m_poster.png'>");
-		$('#title').html(m_title);
+	function movieChk(m_title, m_poster) {
+		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_rank/"+m_poster+"'>");
+		$('#title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled'>");
 	}
-	function chk2(t_loc) {
+	function theaterChk(t_loc) {
 		$.post("selectTheater.do","id="+t_loc, function(data) {
-			$('#test').html(data);
-		});
-		$.post("selectCalendar.do","id="+t_loc, function(data) {
-			$('#test1').html(data);
+			$('#theaterSelect').html(data);
 		});
 	}
-	function chk3(t_title) {
-		$('#t_title').html("극장 : "+t_title);
+	function theaterSelectChk(t_title) {
+		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"' disabled='disabled'>");
 	}
-	function dal() {
-		var val = $('#date').val();
-		if (val != null && val !=""){
-			$('#sc_date').html("일시 : " + val);	
+	function date_pick() {
+		$('#sc_date').html("<input type='text' name='sc_date' value='"+cal1.value+"' disabled='disabled'>");
+	}
+	/* function date_pick() {
+		if(frm.cal1.value != null){
+		document.getElementById('sc_date').innerHTML = "일시 : " + frm.cal1.value;
 		}
+	} */
+	function(){
+		if()
 	}
 </script>
 
@@ -69,7 +67,7 @@
 												<td><img src="resources/images/m_rank/청불.png" height="30px" width="30px"></td>
 											</c:when>							
 										</c:choose>
-										<td><input type="button" value="${i.m_title}" onclick="chk('${i.m_title}','${i.m_poster}')"></td>
+										<td><input type="button" value="${i.m_title}" onclick="movieChk('${i.m_title}','${i.m_poster}')"></td>
 									</tr>
 								</c:forEach>
 							</c:if>
@@ -81,48 +79,34 @@
 						</table>
 					</form>
 				</td>
+				<!-- 극장 -->
 				<td>
 					<table class="table table-bordered"> 
-						<c:if test="${not empty theater}">
+						<c:if test="${not empty theater1}">
 							<c:forEach var="i" items="${theater1}">
 								<tr>
-									<td><input type="button" value="${i.t_loc}" onclick="chk2('${i.t_loc}')"></td>
+									<td><input type="button" value="${i.t_loc}" onclick="theaterChk('${i.t_loc}')"></td>
 								</tr>
 							</c:forEach> 	
 						</c:if>
-							<!-- <td>서울()</td>
-							<td>서울리스트</td> -->
 					</table>
 				</td>
 				<td>
 					<table>
 						<tr>
-							<td id="test"></td>
+							<td id="theaterSelect"></td> <!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
 						</tr>
 					</table>
 				</td>
 				<td>
 					<table class="table table-bordered">
 						<tr>
-							 <!-- <td><input type="date" id="date" onclick="dal()" ></td> -->
-							 <form id="frm" name="form1">
-								<input type="date" name="calendar" id = "cal1" onchange="date_pick(); " value=""> <br>
-									<script>
-										function date_pick() {
-											if(frm.cal1.value != null){
-											document.getElementById('sc_date').innerHTML = "일시 : " + frm.cal1.value;
-											}
-										}
-									</script>
-							</form>
-							<!--<td>
-								  <script>
-									  $( function() {
-									    $( "#datepicker" ).datepicker();
-									  } );
-								 </script>
-								
-							</td> -->
+							<td>
+								<input type="date" name="calendar" id = "cal1" onchange="date_pick(); " value="">
+								<!-- <form id="frm" name="form1">
+									<input type="date" name="calendar" id = "cal1" onchange="date_pick(); " value=""> <br>
+								</form> -->
+							</td>
 						</tr>
 					</table>
 				</td>
@@ -144,16 +128,16 @@
 					<td>
 						<table>
 							<tr>
-								<td id="t_title">극장 : </td>
+								<td id="t_title"></td>
 							</tr>
 							<tr>
-								<td id="sc_date">일시 : </td>
+								<td id="sc_date"></td>
 							</tr>
 							<tr>
-								<td id="t_title">상영관 : </td>
+								<td id="t_title"></td>
 							</tr>
 							<tr>
-								<td id="t_title">인원 : </td>
+								<td id="t_title"></td>
 							</tr>
 						</table>
 					</td>

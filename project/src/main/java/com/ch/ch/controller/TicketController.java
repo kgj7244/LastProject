@@ -26,7 +26,6 @@ public class TicketController {
 	public String ticketMainForm(Model model, Theater theater) {
 		List<Movie> movie = ms.list(); // 영화 리스트
 		List<Theater> theater1 = tts.locList(theater); // 극장 지역 리스트
-		
 		model.addAttribute("movie", movie);
 		model.addAttribute("theater1", theater1);
 		return "ticket/ticketMainForm";
