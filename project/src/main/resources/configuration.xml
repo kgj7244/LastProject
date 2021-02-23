@@ -6,6 +6,7 @@
 	<typeAliases>        <!-- 별칭 -->          <!-- 주소 -->
 		<typeAlias alias="member" type="com.ch.ch.model.Member" />
 		<typeAlias alias="movie" type="com.ch.ch.model.Movie" />
+		<typeAlias alias="rv" type="com.ch.ch.model.Review" />
 		<typeAlias alias="store" type="com.ch.ch.model.Store" />
 		<typeAlias alias="theater" type="com.ch.ch.model.Theater" />
 		<typeAlias alias="ticket" type="com.ch.ch.model.Ticket" />
@@ -13,6 +14,7 @@
 	<mappers>   <!-- 어디로 연결할지 --> 
 		<mapper resource="member.xml" />
 		<mapper resource="movie.xml" />
+		<mapper resource="rv.xml" />
 		<mapper resource="store.xml" />
 		<mapper resource="theater.xml"/>
 		<mapper resource="ticket.xml" />

@@ -124,8 +124,10 @@ create table review (
 	re_con nvarchar2(500) not null,			                       --한줄평 내용
 	re_grade number(10,1) not null,			                       --한줄평 평점 9.5 
 	re_date date default sysdate not null,                         --업로드 시간
+	re_update date default sysdate not null,					   --수정시간
 	member_id nvarchar2(50) references member(member_id) not null, --회원아이디
-	m_num number references movie(m_num)                           --영화번호
+	m_num number references movie(m_num),						   --영화번호
+	re_del char(1) default 'n'									   --삭제여부
 );
 
 create sequence re_num increment by 1 start with 1;
