@@ -15,8 +15,8 @@ public class Store {
 	private String s_del;	  //게시글 삭제여부
 	// #
 	
-	private String s_Pclass;  //상품 분류
 	private String s_Pname;	  //상품 이름
+	private String s_Pclass;  //상품 분류
 	private String s_Pconfig; //상품구성
 	private String s_Pimage;
 	
