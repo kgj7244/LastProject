@@ -37,10 +37,19 @@
 	select * from store where s_num=#{s_num}
 	</select>
 	
+	<delete id="delete" parameterType="integer">
+	 delete from store where s_num=#{s_num} 
+	</delete>
+	
+	
 <!-- sql 미수정 -->	
 
 	<insert id="insert" parameterType="store">
-	insert into store values (#{s_num} , #{s_Pname} , #{s_Pconfig})
+	insert into store values (#{s_num} , 'n', #{s_Pclass} , #{s_Pname} , 
+	#{s_Pconfig} , #{s_Pimage} , #{s_per} ,
+	#{s_validity} , #{s_total} , #{s_purchase} ,
+	#{s_prive} , #{s_sale} , 'n'
+	)
 	</insert>
 	
 	
@@ -49,9 +58,6 @@
 	 where s_num=#{s_num} 
 	</update>
 	
-	<delete id="delete" parameterType="integer">
-	 delete from store where s_num=#{s_num} 
-	</delete>
 	
 	
 </mapper>
