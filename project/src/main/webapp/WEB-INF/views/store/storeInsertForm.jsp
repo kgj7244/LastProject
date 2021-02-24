@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 추가합시다</title>
+<title>상품 추가 페이지</title>
 </head>
 <body>
 
@@ -23,10 +23,11 @@
 <tr><td>상품 분류</td>
 <td>
  <select name="s_Pclass">
-   <option value="1">관람권</option>
-   <option value="2">콤보</option>
-   <option value="3">팝콘/음료</option>
-   <option value="4">스낵</option>
+   <option value="관람권">관람권</option>
+   <option value="콤보">콤보</option>
+   <option value="팝콘/음료">팝콘/음료</option>
+   <option value="스낵">스낵</option>
+   <option value="한정 상품">한정 상품</option>
  </select>
 </td></tr>
 
@@ -42,16 +43,13 @@ required="required"></td></tr>
 
 
 
-<tr><td>판매기간</td><td><input type="date" name="s_per"
+<tr><td>판매기간</td><td><input type="date" name="s_per" value="9999-12-31"
 required="required"></td></tr>
 
-<tr><td>상품 유효기간</td><td><input type="date" name="s_validity"
-required="required"></td></tr>
+<tr><td>상품 유효기간</td><td><input type="date" name="s_validity" 
+value="sysdate" required="required"></td></tr>
 
-<tr><td>총 판매수량</td><td><input type="number" name="s_total"
-required="required"></td></tr>
-
-<tr><td>구매수량</td><td><input type="number" name="s_purchase"
+<tr><td>총 판매수량</td><td><input type="number" name="s_total" value="9999"
 required="required"></td></tr>
 
 <tr><td>가격</td><td><input type="number" name="s_prive"

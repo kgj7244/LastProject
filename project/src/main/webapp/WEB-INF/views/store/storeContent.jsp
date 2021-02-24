@@ -10,7 +10,7 @@
 <body> 
 
 <form action="" method="post" name="storeContent">
-<input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
+<input type ="hidden" name = "s_Pclass" value = "${store.s_Pclass }">
 
 <table>
  
