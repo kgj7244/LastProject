@@ -25,11 +25,12 @@
 	<beans:bean id="sc" class="com.ch.ch.service.SessionChk"></beans:bean>
 	<interceptors>
 		<interceptor>
-			<mapping path="/member/mypage.do"/>
-			<mapping path="/member/memberView.do"/>
-			<mapping path="/member/memberUpdateForm.do"/>
-			<mapping path="/member/memberOrder.do"/>
-			<mapping path="/member/memberDelete.do"/>
+			<mapping path="/mypage.do"/>
+			<mapping path="/memberView.do"/>
+			<mapping path="/memberUpdateForm.do"/>
+			<mapping path="/memberTicket.do"/>
+			<mapping path="/memberStore.do"/>
+			<mapping path="/memberDelete.do"/>
 			
 			<beans:ref bean="sc"/>
 		</interceptor>

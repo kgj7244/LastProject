@@ -10,38 +10,24 @@
 <body>
 <%@ include file="../mainTop.jsp" %>
 <%@ include file="../mainNav.jsp" %>
-<div class="container" align="center">
-	<c:if test="${result>0}">
-		<table>
-			<tr>
-				<td>${member_id}님 환영합니다.</td>
-			</tr>
-			<tr>
-				<td><a href="mainForm.do">메인으로</a></td>
-			</tr>
-		</table>
-	</c:if>
-	<c:if test="${result==-1}">
-		<table>
-			<tr>
-				<td>입력하신 아이디가 없거나 비밀번호가 다릅니다. 다시 입력바랍니다.</td>
-			</tr>
-			<tr>
-				<td><a href="#">돌아가기</a></td>
-			</tr>
-		</table>
-	</c:if>
-	<c:if test="${result==0}">
-		<table>
-			<tr>
-				<td>입력하신 아이디가 없거나 비밀번호가 다릅니다. 다시 입력바랍니다.</td>
-			</tr>
-			<tr>
-				<td><a href="#">돌아가기</a></td>
-			</tr>
-		</table>
-	</c:if>
-</div>
+<c:if test="${result > 0}">
+	<script type="text/javascript">
+		alert("로그인 되었습니다");
+		location.href="mainForm.do"
+	</script>
+</c:if>
+<c:if test="${result == 0}">
+	<script type="text/javascript">
+		alert("잘못된 암호입니다");
+		history.go(-1);
+	</script>
+</c:if>
+<c:if test="${result == -1}">
+	<script type="text/javascript">
+		alert("없는 아이디입니다");
+		history.go(-1);
+	</script>
+</c:if>
 <%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

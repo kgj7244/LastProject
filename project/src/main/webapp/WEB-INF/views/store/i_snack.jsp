@@ -15,9 +15,6 @@
  <%@include file="storecategory.jsp" %>
 
 
-
-
-
 <table class="table table-striped">
 
  <tr>
@@ -29,7 +26,7 @@
  
 <!-- ====================================== -->
  <c:if test="${empty storeList }">
- <tr><td colspan="4">상품정보가 없습니다</td></tr>
+ <tr><td colspan="6">상품정보가 없습니다</td></tr>
  </c:if>
 <!-- ====================================== --> 
  <c:if test="${not empty storeList }">
@@ -41,15 +38,14 @@
  
   <td>${store.s_Pconfig }</td>
   <td><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="100"></td>
-  <td>${store.s_prive }</td>
+  <td>${store.s_prive }원</td>
+  
+ <td><input type="button" value="수정하기" onclick="location.href='storeUploadForm.do?s_num=${store.s_num}'"></td>
+ <td><input type="button" value="삭제하기" onclick="location.href='storeDelete.do?s_num=${store.s_num}'"></td>
+  
   </tr>
   
  </c:forEach></c:if></table>
-<!-- ====================================== -->  
-
-<div align="center">
- <a href="storeInsertForm.do">상품 추가</a>
-</div>
-</div>
+ </div>
 </body>
 </html>

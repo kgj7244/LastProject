@@ -9,15 +9,15 @@
 </head>
 <body>
 <div class="container" align="center">
-<c:if test="${!not empty mem}">
+<c:if test="${member_id == null}">
 	<div>
 		<a href="memberLoginForm.do">로그인</a>
 		<a href="memberJoinForm.do">회원가입</a>
 	</div>
 </c:if>
-<c:if test="${not empty mem}">
+<c:if test="${member_id != null && member_del == n}">
 	<div>
-		${mem.member_id}님 환영합니다.
+		${member_id}님 환영합니다.
 		<a href="mypage.do">마이페이지</a>
 		<a href="memberLogout.do">로그아웃</a>
 	</div>
