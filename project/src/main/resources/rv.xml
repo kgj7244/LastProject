@@ -12,4 +12,11 @@
 		insert into review values (#{re_num}, #{re_con},
 			#{re_grade}, sysdate, sysdate, #{member_id}, #{m_num}, 'n')
 	</insert>
+	<update id="delete" parameterType="integer">
+		update reivew set del='y' where re_num=#{re_num}
+	</update>
+	<update id="update" parameterType="rv">
+		update review set re_con=#{re_con}, re_grade=#{re_grade}, 
+			re_update=sysdate where re_num=#{re_num}
+	</update>
 </mapper>

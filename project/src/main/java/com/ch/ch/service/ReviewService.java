@@ -7,4 +7,8 @@ public interface ReviewService {
 	List<Review> list(int m_num);
 
 	void insert(Review rv);
+
+	void delete(int re_num);
+
+	void update(Review rv);
 }

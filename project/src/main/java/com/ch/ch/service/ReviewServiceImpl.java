@@ -19,4 +19,12 @@ public class ReviewServiceImpl implements ReviewService{
 	public void insert(Review rv) {
 		rvd.insert(rv);
 	}
+	
+	public void delete(int re_num) {
+		rvd.delete(re_num);
+	}
+	
+	public void update(Review rv) {
+		rvd.update(rv);
+	}
 }
