@@ -30,11 +30,17 @@ public class TicketController {
 		model.addAttribute("theater1", theater1);
 		return "ticket/ticketMainForm";
 	}
-	
 	@RequestMapping(value = "selectTheater") // 극장주소을 클릭시 옆에 극장명 나오기
 	public String selectTheater(String id, Model model) {
 		List<Theater> selectTheater = tts.selectTheater(id);
 		model.addAttribute("selectTheater", selectTheater);
+		return "ticket/selectTheater";
+	}
+	@RequestMapping(value = "selectTime") // 극장주소을 클릭시 옆에 극장명 나오기
+	public String selectTime(String m_title, String t_title, String sc_date, Model model) {
+		System.out.println("m_title : " + m_title);
+		System.out.println("t_title : " + t_title);
+		System.out.println("sc_date : " + sc_date);
 		return "ticket/selectTheater";
 	}
 }

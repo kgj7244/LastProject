@@ -7,9 +7,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+	var Mchk =0; // 영화가 선택 시 +1이 됨
+	var Tchk =0; // 극장 선택시+1
+	var Dchk =0; // 날짜 선택시+1
+	var m_title1="";
+	var t_title1="";
+	var sc_date1="";
 	function movieChk(m_title, m_poster) {
 		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_rank/"+m_poster+"'>");
-		$('#title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled'>");
+		$('#title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>");
+		Mchk = 1;
+		m_title1=m_title;
+		ThreeSelect(m_title1);
 	}
 	function theaterChk(t_loc) {
 		$.post("selectTheater.do","id="+t_loc, function(data) {
@@ -17,19 +26,25 @@
 		});
 	}
 	function theaterSelectChk(t_title) {
-		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"' disabled='disabled'>");
+		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"' disabled='disabled' id='t_title'>");
+		Tchk =1;
+		t_title1=t_title;
+		ThreeSelect(t_title1);
 	}
 	function date_pick() {
-		$('#sc_date').html("<input type='text' name='sc_date' value='"+cal1.value+"' disabled='disabled'>");
+		$('#sc_date').html("<input type='text' name='sc_date' value='"+cal1.value+"' disabled='disabled' id='sc_date'>");
+		Dchk =1;
+		sc_date1 = cal1.value;
+		ThreeSelect(sc_date1);
 	}
-	/* function date_pick() {
-		if(frm.cal1.value != null){
-		document.getElementById('sc_date').innerHTML = "일시 : " + frm.cal1.value;
+	function ThreeSelect(){
+		if(Mchk==1&&Tchk==1&&Dchk==1){
+			$.post("selectTime.do","m_title="+m_title1+"&t_title="+t_title1+"&sc_date="+sc_date1, function(data) {
+				$('#SelectTime').html(data);
+			});
 		}
-	} */
-	function(){
-		if()
 	}
+	
 </script>
 
 </head>
@@ -113,7 +128,7 @@
 				<td>
 					<table class="table table-bordered">
 						<tr>
-							<td>조조/심야</td>
+							<td id="SelectTime"></td>
 						</tr>
 					</table>	
 				</td>		
