@@ -16,7 +16,6 @@
 			<td><a href="ticketMainForm.do">예매 </a></td>
 			<td><a href="storeMainForm.do">스토어 </a></td>
 			<td><a href="#">고객센터 </a></td>
-			<td><a href="mypage.do">마이페이지</a></td>
 		</tr>
 	</table>
 </div>

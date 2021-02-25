@@ -30,4 +30,7 @@
 			#{m_rank}, #{m_opendate}, #{m_state}, #{m_time},
 			0, #{m_poster}, #{m_director}, #{m_actor}, #{m_genre}, 'n')
 	</insert>
+	<select id="selectTitle" parameterType="string" resultType="movie">
+		select * from movie where m_title=#{m_title}
+	</select>
 </mapper>

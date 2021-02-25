@@ -30,7 +30,7 @@
 
 
 <tr>
-<!-- <td><input type="button" value="장바구니" onclick="cart()"></td> -->
+<td><input type="button" value="장바구니" onclick="cartList()"></td> 
 <td><input type="submit" value="구매하기" ></td>
 </tr>
 

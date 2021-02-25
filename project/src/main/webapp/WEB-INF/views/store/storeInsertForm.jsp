@@ -23,11 +23,10 @@
 <tr><td>상품 분류</td>
 <td>
  <select name="s_Pclass">
-   <option value="관람권">관람권</option>
-   <option value="콤보">콤보</option>
-   <option value="팝콘/음료">팝콘/음료</option>
-   <option value="스낵">스낵</option>
-   <option value="한정 상품">한정 상품</option>
+   <option value="Ticket">관람권</option>
+   <option value="combo">콤보</option>
+   <option value="popcol">팝콘/음료</option>
+   <option value="event">이벤트</option>
  </select>
 </td></tr>
 

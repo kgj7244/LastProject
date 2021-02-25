@@ -21,6 +21,8 @@
 </script>
 </head>
 <body>
+	<div><%@include file="../mainTop.jsp" %></div>
+	<div><%@include file="../mainNav.jsp" %></div>
 	<div class="container" align="center">
 		<form action="movieInsert.do" method="post" name="frm" enctype="multipart/form-data">
 			<h2 class="text-primary">영화 추가</h2>
@@ -111,5 +113,6 @@
 			</table>
 		</form>
 	</div>
+	<div><%@include file="../mainFloor.jsp" %></div>
 </body>
 </html>

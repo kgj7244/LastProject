@@ -24,4 +24,7 @@ public class MovieDaoImpl implements MovieDao{
 	public int insert(Movie movie) {
 		return sst.insert("moviens.insert", movie);
 	}
+	public Movie selectTitle(String m_title) {
+		return sst.selectOne("moviens.selectTitle", m_title);
+	}
 }

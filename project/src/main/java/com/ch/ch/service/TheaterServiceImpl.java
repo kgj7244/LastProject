@@ -18,5 +18,8 @@ public class TheaterServiceImpl implements TheaterService{
 	public List<Theater> selectTheater(String id) {
 		return td.selectTheater(id);
 	}
+	public Theater selectTitle(String t_title) {
+		return td.selectTitle(t_title);
+	}
 	
 }

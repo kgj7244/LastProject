@@ -88,6 +88,11 @@ create table movieTheater(
 	t_num number references theater(t_num)  --극장번호
 );
 create sequence mt_num increment by 1 start with 1;
+insert into movieTheater values(1, '1관',150,1);
+insert into movieTheater values(2, '2관',170,1);
+insert into movieTheater values(3, '3관',185,1);
+insert into movieTheater values(4, '4관',115,1);
+insert into movieTheater values(5, '5관',120,1);
 
 --------------------------------------영화
 
@@ -124,8 +129,10 @@ create table review (
 	re_con nvarchar2(500) not null,			                       --한줄평 내용
 	re_grade number(10,1) not null,			                       --한줄평 평점 9.5 
 	re_date date default sysdate not null,                         --업로드 시간
+	re_update date default sysdate not null,					   --수정시간
 	member_id nvarchar2(50) references member(member_id) not null, --회원아이디
-	m_num number references movie(m_num)                           --영화번호
+	m_num number references movie(m_num),						   --영화번호
+	re_del char(1) default 'n'									   --삭제여부
 );
 
 create sequence re_num increment by 1 start with 1;
@@ -161,6 +168,13 @@ create table screen(
 	m_num number references movie(m_num)          --영화번호 
 );
 create sequence sc_num increment by 1 start with 1;
+insert into screen values(1, '2021-02-24','13:00','15:00',1,1,1);
+insert into screen values(2, '2021-02-24','15:00','17:00',1,1,1);
+insert into screen values(3, '2021-02-24','17:00','19:00',1,2,1);
+insert into screen values(4, '2021-02-24','19:00','21:00',1,2,1);
+insert into screen values(5, '2021-02-24','21:00','23:00',1,3,1);
+select * from screen where t_num = TO_NUMBER('1') and m_num = TO_NUMBER('1') and sc_date = '2021-02-24';
+
 
 
 --------------------------------------예매
@@ -185,6 +199,16 @@ create table seat(
 	sc_num number references screen(sc_num) --상영번호
 );
 
+insert into seat values('a1', 'n',1);
+insert into seat values('a2', 'n',1);
+insert into seat values('a3', 'n',1);
+insert into seat values('a4', 'n',1);
+insert into seat values('a5', 'n',1);
+insert into seat values('a1', 'n',2);
+insert into seat values('a2', 'n',2);
+insert into seat values('a3', 'n',2);
+insert into seat values('a4', 'n',2);
+
 
 
 --------------------------------------관리자계좌
@@ -208,7 +232,8 @@ create table bank(
 );
 
 --------------------------------------스토어
-insert into store values(1,'n','팝콘/음료','콜라 M','콜라 M','콜라M.jpg','9999-12-31',sysdate+730,9999,0,2500,0,'n');
+insert into store values(1,'n','popcol','콜라 M','콜라 M','콜라M.jpg','9999-12-31',sysdate+730,9999,0,2500,0,'n');
+
 
 select * from store;
 drop table store CASCADE CONSTRAINTS;
@@ -252,3 +277,5 @@ create sequence sv_num increment by 1 start with 1;
 
 select distinct t_loc, (select count(*) from theater where t_loc = '서울') as t_total from theater order by t_loc;
 
+select m_num from movie where m_title='극장판귀멸의칼날-무한열차편';
+select * from theater where t_title ='신촌';

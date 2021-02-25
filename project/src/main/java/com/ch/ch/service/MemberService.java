@@ -8,4 +8,8 @@ public interface MemberService {
 
 	int insert(Member member);
 
+	int update(Member member);
+
+	int delete(String member_id);
+
 }

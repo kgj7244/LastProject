@@ -9,5 +9,7 @@ public interface TheaterDao {
 	List<Theater> locList(Theater theater);
 
 	List<Theater> selectTheater(String id);
+
+	Theater selectTitle(String t_title);
 	
 }

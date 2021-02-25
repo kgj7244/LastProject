@@ -24,4 +24,7 @@ public class MovieServiceImpl implements MovieService{
 	public int insert(Movie movie) {
 		return md.insert(movie);
 	}
+	public Movie selectTitle(String m_title) {
+		return md.selectTitle(m_title);
+	}
 }
