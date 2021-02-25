@@ -40,43 +40,45 @@
 </script>
 </head>
 <body>
-	<c:if test="${empty rvList}">
-		<table class="table table-striped">
-			<tr>
-				<td colspan="5">아직 리뷰가 없습니다. 리뷰를 남겨주세요.</td>
-			</tr>
-		</table>
-	</c:if>
-	<c:if test="${not empty rvList}">
-		<table class="table table-striped">
-			<c:forEach var="rv" items="${rvList}">
-				<c:if test="${rv.re_del == 'y'}">
-					<tr>
-						<td colspan="4">삭제된 댓글입니다</td>
-					</tr>
-				</c:if>
-				<c:if test="${rv.re_del != 'y'}">
-					<tr>
-						<!-- 작성자 -->
-						<td>${rv.member_id}</td>
-						<!-- 평점 -->
-						<td>${rv.grade}</td>
-						<!-- 댓글 -->
-						<td id="td_${rv.re_num}">${rv.re_con}</td>
-						<!-- 작성일 -->
-						<td>${rv.re_date}</td>
-						<c:if test="${rv.member_id == mem.member_id}">
-							<td id="btn_${rv.re_num}">
-								<button class="btn btn-warning btn-sm" 
-									onclick="rUpdate(${rv.m_num}, ${rv.re_num})">수정</button>
-								<button class="btn btn-danger btn-sm" 
-									onclick="rDelete(${rv.m_num}, ${rv.re_num})">삭제</button>
-							</td>
-						</c:if>
-					</tr>
-				</c:if>
-			</c:forEach>
-		</table>
-	</c:if>
+	<div class="container" align="center">
+		<c:if test="${empty rvList}">
+			<table class="table table-striped">
+				<tr>
+					<td colspan="5">아직 리뷰가 없습니다. 리뷰를 남겨주세요.</td>
+				</tr>
+			</table>
+		</c:if>
+		<c:if test="${not empty rvList}">
+			<table class="table table-striped">
+				<c:forEach var="rv" items="${rvList}">
+					<c:if test="${rv.re_del == 'y'}">
+						<tr>
+							<td colspan="4">삭제된 댓글입니다</td>
+						</tr>
+					</c:if>
+					<c:if test="${rv.re_del != 'y'}">
+						<tr>
+							<!-- 작성자 -->
+							<td>${rv.member_id}</td>
+							<!-- 평점 -->
+							<td>${rv.grade}점</td>
+							<!-- 댓글 -->
+							<td id="td_${rv.re_num}">${rv.re_con}</td>
+							<!-- 작성일 -->
+							<td>${rv.re_date}</td>
+							<c:if test="${rv.member_id == mem.member_id}">
+								<td id="btn_${rv.re_num}">
+									<button class="btn btn-warning btn-sm" 
+										onclick="rUpdate(${rv.m_num}, ${rv.re_num})">수정</button>
+									<button class="btn btn-danger btn-sm" 
+										onclick="rDelete(${rv.m_num}, ${rv.re_num})">삭제</button>
+								</td>
+							</c:if>
+						</tr>
+					</c:if>
+				</c:forEach>
+			</table>
+		</c:if>
+	</div>
 </body>
 </html>

@@ -38,4 +38,20 @@ public class ReviewController {
 		
 		return "redirect:/movie/reviewList/m_num/" + rv.getM_num();
 	}
+	
+	//한줄평 삭제
+	@RequestMapping("rDelete")
+	public String rDelete(Review rv) {
+		rvs.delete(rv.getRe_num());
+		
+		return "redirect:/movie/reviewList/m_num/" + rv.getM_num();
+	}
+	
+	//한줄평 수정
+	@RequestMapping("rUpdate")
+	public String rUpdate(Review rv) {
+		rvs.update(rv);
+		
+		return "redirect:/movie/reviewList/m_num/" + rv.getM_num();
+	}
 }

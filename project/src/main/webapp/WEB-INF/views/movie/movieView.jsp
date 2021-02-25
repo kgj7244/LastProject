@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>${movie.m_title} | 영화 상세 보기</title>
+
 <script type="text/javascript">
 	$(function() {
 		//$('#gradedisp').load('${path}/grade/m_num/${movie.m_num}'); 통계부분
@@ -17,11 +18,13 @@
 				$('#rvListDisp').html(data);
 				frm.re_con.value = "";
 			});
-		});	
+		});
 	});
 </script>
 </head>
 <body>
+	<div><%@include file="../mainTop.jsp" %></div>
+	<div><%@include file="../mainNav.jsp" %></div>
 	<div class="container" align="center">
 		<h2 class="text-primary">${movie.m_title}</h2>
 		<div>
@@ -50,35 +53,45 @@
 				</tr>
 			</table>
 		</div>
-		<div>
-			<input type="hidden" name="member_id" value="${mem.member_id}">
-			<input type="hidden" name="member_name" value="${mem.member_name}">
-			<c:if test="${mem.member_id != null && mem.member_name != null}">
+		<div id="gradedisp"><!-- 통계 --></div>
+		<div id="rvListDisp"><!-- 한줄평 리스트 --></div>
+		<div class="review" align="center">
+			<input type="hidden" name="member_id" value="${member_id}">
+			<c:if test="${member_id != null}">
 				<form action="" name="frm" id="frm">
+					<input type="hidden" name="re_grade" value="0"/>
 					<input type="hidden" name="m_num" value="${movie.m_num}">
 					<h2 class="text-primary">한줄평 작성</h2>
-					<table class="table table-hover">
+					<table class="table table-striped">
 						<tr>
 							<td>
-								<input type="text" name="member_id"
-									value="${mem.member_name}(${mem.member_id})" size="4">
+								${member_id}
+							</td>
+							<td class="rating" align="center">
+					           	<div class="ratefill"></div>
+					               	<input type="checkbox" name="re_grade" id="rating1" value="1" class="rate_radio">
+					                <label for="rating1"></label>
+					                <input type="checkbox" name="re_grade" id="rating2" value="2" class="rate_radio">
+					                <label for="rating2"></label>
+					                <input type="checkbox" name="re_grade" id="rating3" value="3" class="rate_radio" >
+					                <label for="rating3"></label>
+					                <input type="checkbox" name="re_grade" id="rating4" value="4" class="rate_radio">
+					                <label for="rating4"></label>
+					                <input type="checkbox" name="re_grade" id="rating5" value="5" class="rate_radio">
+					                <label for="rating5"></label>
 							</td>
 							<td>
-								<input type="text">
+								<textarea rows="3" cols="70" name="re_con"></textarea>
 							</td>
 							<td>
-								<textarea rows="3" cols="30"
-									name="re_con"></textarea>
+								<input type="button" value="댓글 입력" id="rInsert">
 							</td>
-							<td>
-								<input type="button" value="댓글입력" id="rInsert">
-							</td>
+						</tr>
 					</table>
 				</form>
-			</c:if>
+			</c:if> 
 		</div>
-		<div id="gradedisp"><!-- 통계 --></div>
-		<div id="rvListDisp"><!-- 한줄평 --></div>
 	</div>
+	<div><%@include file="../mainFloor.jsp" %></div>
 </body>
 </html>

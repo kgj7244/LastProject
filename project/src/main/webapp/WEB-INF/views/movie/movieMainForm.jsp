@@ -5,9 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화 목록</title>
+<title>무비리스트 | AAM</title>
 </head>
 <body>
+	<div><%@include file="../mainTop.jsp" %></div>
+	<div><%@include file="../mainNav.jsp" %></div>
 	<div class="container" align="center">
 		<h2 class="text-primary">영화</h2>
 		<div>
@@ -64,8 +66,13 @@
 			</c:if>
 		</div>
     	<div align="center">
-			<a href="movieInsertForm.do">영화 추가</a>
+    		<!-- 나중에 관리자 적용되면 그때 master_id == 'master'로 변경 -->
+    		<input type="hidden" name="member_id" value="${member_id}">
+			<c:if test="${member_id == 'master'}">
+				<a href="movieInsertForm.do">영화 추가</a>
+			</c:if>
 		</div>
 	</div>
+	<div><%@include file="../mainFloor.jsp" %></div>
 </body>
 </html>
