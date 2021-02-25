@@ -12,4 +12,6 @@ public interface TheaterService {
 
 	Theater selectTitle(String t_title);
 
+	List<Theater> List();
+
 }

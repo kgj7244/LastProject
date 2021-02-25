@@ -21,5 +21,8 @@ public class TheaterServiceImpl implements TheaterService{
 	public Theater selectTitle(String t_title) {
 		return td.selectTitle(t_title);
 	}
+	public java.util.List<Theater> List() {
+		return td.list();
+	}
 	
 }

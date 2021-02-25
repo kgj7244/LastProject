@@ -8,7 +8,8 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="mainForm.do";
+	//location.href="mainForm.do";
+	location.href="theaterMainForm.do";
 </script>
 </body>
 </html>

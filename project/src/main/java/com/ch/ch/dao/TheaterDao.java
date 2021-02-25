@@ -11,5 +11,7 @@ public interface TheaterDao {
 	List<Theater> selectTheater(String id);
 
 	Theater selectTitle(String t_title);
+
+	List<Theater> list();
 	
 }
