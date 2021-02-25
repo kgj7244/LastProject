@@ -18,5 +18,11 @@ public class TheaterDaoImpl implements TheaterDao{
 	public List<Theater> selectTheater(String id) {
 		return sst.selectList("theaterns.selectTheater", id);
 	}
+	public Theater selectTitle(String t_title) {
+		return sst.selectOne("theaterns.selectTitle", t_title);
+	}
+	public List<Theater> list() {
+		return sst.selectList("theaterns.list");
+	}
 
 }

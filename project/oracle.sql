@@ -88,6 +88,11 @@ create table movieTheater(
 	t_num number references theater(t_num)  --극장번호
 );
 create sequence mt_num increment by 1 start with 1;
+insert into movieTheater values(1, '1관',150,1);
+insert into movieTheater values(2, '2관',170,1);
+insert into movieTheater values(3, '3관',185,1);
+insert into movieTheater values(4, '4관',115,1);
+insert into movieTheater values(5, '5관',120,1);
 
 --------------------------------------영화
 
@@ -124,8 +129,10 @@ create table review (
 	re_con nvarchar2(500) not null,			                       --한줄평 내용
 	re_grade number(10,1) not null,			                       --한줄평 평점 9.5 
 	re_date date default sysdate not null,                         --업로드 시간
+	re_update date default sysdate not null,					   --수정시간
 	member_id nvarchar2(50) references member(member_id) not null, --회원아이디
-	m_num number references movie(m_num)                           --영화번호
+	m_num number references movie(m_num),						   --영화번호
+	re_del char(1) default 'n'									   --삭제여부
 );
 
 create sequence re_num increment by 1 start with 1;
@@ -161,6 +168,13 @@ create table screen(
 	m_num number references movie(m_num)          --영화번호 
 );
 create sequence sc_num increment by 1 start with 1;
+insert into screen values(1, '2021-02-24','13:00','15:00',1,1,1);
+insert into screen values(2, '2021-02-24','15:00','17:00',1,1,1);
+insert into screen values(3, '2021-02-24','17:00','19:00',1,2,1);
+insert into screen values(4, '2021-02-24','19:00','21:00',1,2,1);
+insert into screen values(5, '2021-02-24','21:00','23:00',1,3,1);
+select * from screen where t_num = TO_NUMBER('1') and m_num = TO_NUMBER('1') and sc_date = '2021-02-24';
+
 
 
 --------------------------------------예매
@@ -185,6 +199,16 @@ create table seat(
 	sc_num number references screen(sc_num) --상영번호
 );
 
+insert into seat values('a1', 'n',1);
+insert into seat values('a2', 'n',1);
+insert into seat values('a3', 'n',1);
+insert into seat values('a4', 'n',1);
+insert into seat values('a5', 'n',1);
+insert into seat values('a1', 'n',2);
+insert into seat values('a2', 'n',2);
+insert into seat values('a3', 'n',2);
+insert into seat values('a4', 'n',2);
+
 
 
 --------------------------------------관리자계좌
@@ -208,26 +232,31 @@ create table bank(
 );
 
 --------------------------------------스토어
+insert into store values(1,'n','popcol','콜라 M','콜라 M','콜라M.jpg','9999-12-31',sysdate+730,9999,0,2500,0,'n');
+
+
+select * from store;
+drop table store CASCADE CONSTRAINTS;
 
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
-	s_title varchar2(50) not null, 		-- 제목
 	s_del char(1) default 'n', 			--게시글 삭제여부
 	s_Pclass varchar2(100) not null, 	--상품 분류(관람권,스낵)
 	s_Pname varchar2(50) not null, 		--상품 이름
 	s_Pconfig varchar2(50) not null, 	--상품 구성
 	s_Pimage varchar2(100) not null, 	--상품 이미지
 	
-	s_per date not null, 			--판매기간  날짜+숫자=날짜 항상
-	s_validity date not null, 		--유효기간 
-	s_total number(10) not null, 	--총 판매수량 제한없음
-	s_purchase number(10) not null, --구매수량
+	s_per date not null, 			--판매기간 #  날짜+숫자=날짜
+	s_validity date not null, 		--유효기간 #
+	s_total number(10) not null, 	--총 판매수량 #
+	s_purchase number(10) default 0 not null, --구매수량  (이벤트 한정 상품)
 	s_prive number(10) not null,	--금액
 	s_sale number(10) not null,		--할인율 
-	del char(1) default 'n',		--구매 취소 여부
-	
-	t_account varchar2(50) references bank(t_account) not null --입금번호
-);
+	del char(1) default 'n'		--구매 취소 여부
+);	
+  , t_account varchar2(50) references bank(t_account) not null --입금번호
+	--잠깐 제외시킴. 
+
 
 create sequence s_num increment by 1 start with 1;
 
@@ -246,5 +275,7 @@ create table service(
 
 create sequence sv_num increment by 1 start with 1;
 
-select t_title from theater where t_loc='서울'; 
+select distinct t_loc, (select count(*) from theater where t_loc = '서울') as t_total from theater order by t_loc;
 
+select m_num from movie where m_title='극장판귀멸의칼날-무한열차편';
+select * from theater where t_title ='신촌';

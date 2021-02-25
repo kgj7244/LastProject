@@ -22,7 +22,17 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.ch.ch" />
-	
-	
-	
+	<beans:bean id="sc" class="com.ch.ch.service.SessionChk"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/mypage.do"/>
+			<mapping path="/memberView.do"/>
+			<mapping path="/memberUpdateForm.do"/>
+			<mapping path="/memberTicket.do"/>
+			<mapping path="/memberStore.do"/>
+			<mapping path="/memberDelete.do"/>
+			
+			<beans:ref bean="sc"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

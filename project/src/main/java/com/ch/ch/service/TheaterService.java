@@ -10,4 +10,8 @@ public interface TheaterService {
 
 	List<Theater> selectTheater(String id);
 
+	Theater selectTitle(String t_title);
+
+	List<Theater> List();
+
 }

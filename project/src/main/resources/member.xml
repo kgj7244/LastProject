@@ -11,4 +11,10 @@
 		insert into member values(#{member_id}, #{member_password}, #{member_name}, #{member_gender},#{member_birth},
 		#{member_email},#{member_number},#{member_addr},sysdate, 'n')
 	</insert>
+	<update id="update" parameterType="member">
+		update member set member_name=#{member_name},member_password=#{member_password},member_gender=#{member_gender},member_birth=#{member_birth},member_email=#{member_email},member_number=#{member_number},member_addr=#{member_addr} where member_id=#{member_id}
+	</update>
+	<update id="delete" parameterType="string">
+		update member set member_del='y' where member_id=#{member_id}
+	</update>
 </mapper>

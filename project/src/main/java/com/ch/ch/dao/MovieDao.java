@@ -9,4 +9,6 @@ public interface MovieDao {
 	Movie select(int m_num);
 
 	int insert(Movie movie);
+
+	Movie selectTitle(String m_title);
 }

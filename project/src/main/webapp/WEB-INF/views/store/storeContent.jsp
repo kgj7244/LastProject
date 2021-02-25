@@ -10,7 +10,7 @@
 <body> 
 
 <form action="" method="post" name="storeContent">
-<input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
+<input type ="hidden" name = "s_Pclass" value = "${store.s_Pclass }">
 
 <table>
  
@@ -23,14 +23,14 @@
 
 <tr><td>유효기간</td><td>${store.s_validity }</td></tr>
 
-<tr><td>이미지</td><td><img src="../store/popimg/${store.s_Pimage }"height="100"></td></tr>
+<tr><td>이미지</td><td><img src="resources/images/s_pop/${store.s_Pimage}" height="100"></td></tr>
 
 <tr><td>구매 수량</td><td>${store.s_purchase }</td></tr>
 <tr><td>총 상품금액</td><td>${total+(s_prive*s_purchase)}</td></tr>
 
 
 <tr>
-<!-- <td><input type="button" value="장바구니" onclick="cart()"></td> -->
+<td><input type="button" value="장바구니" onclick="cartList()"></td> 
 <td><input type="submit" value="구매하기" ></td>
 </tr>
 

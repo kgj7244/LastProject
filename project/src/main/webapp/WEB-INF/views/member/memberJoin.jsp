@@ -10,29 +10,18 @@
 <body>
 <%@ include file="../mainTop.jsp" %>
 <%@ include file="../mainNav.jsp" %>
-<div class="container" align="center">
-	<c:if test="${result>0}">
-		<table>
-			<tr>
-				<td>회원가입에 성공하셨습니다</td>
-			</tr>
-			<tr>
-				<td>아이디 : ${member.member_id}</td>
-			</tr>
-			<tr>
-				<td><a href="memberLoginForm.do">로그인</a><a href="mainForm.do">메인으로</a></td>
-			</tr>
-		</table>
-	</c:if>
-	<c:if test="${result==0}">
-		<table>
-			<tr>
-				<td>죄송합니다. 회원가입에 실패하셨습니다.</td>
-				<td><a href="#">돌아가기</a></td>
-			</tr>
-		</table>
-	</c:if>
-</div>
+<c:if test="${result > 0}">
+	<script type="text/javascript">
+		alert("회원가입이 완료되었습니다");
+		location.href="memberLoginForm.do"
+	</script>
+</c:if>
+<c:if test="${result == 0}">
+	<script type="text/javascript">
+		alert("회원가입에 실패하였습니다");
+		history.go(-1);
+	</script>
+</c:if>
 <%@ include file="../mainFloor.jsp" %>
 </body>
 </html>
