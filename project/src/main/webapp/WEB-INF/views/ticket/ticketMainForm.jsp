@@ -44,6 +44,9 @@
 			});
 		}
 	}
+	function AllSelectChk(sc_num) {
+		$('#SelectTime').html("<input type='text' name='mt_name' value='"+t_title+"' disabled='disabled' id='t_title'>");
+	}
 	
 </script>
 
