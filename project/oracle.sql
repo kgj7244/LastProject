@@ -132,7 +132,9 @@ create table review (
 
 create sequence re_num increment by 1 start with 1;
 
-
+select* from review;
+insert into review values(1, '재미있어요', 5, sysdate, sysdate, 'lamslams', 1, 'n');
+insert into review values(2, '하하호호', 5, sysdate, sysdate, 'lamslams', 1, 'n');
 --------------------------------------회원 게시판
 
 create table board(

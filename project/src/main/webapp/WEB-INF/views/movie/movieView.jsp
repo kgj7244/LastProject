@@ -8,9 +8,10 @@
 <title>${movie.m_title} | 영화 상세 보기</title>
 
 <script type="text/javascript">
-	$(function() {
+	/* $(function() {
 		//$('#gradedisp').load('${path}/grade/m_num/${movie.m_num}'); 통계부분
-		$('#rvListDisp').load('${path}/reviewList/m_num/${movie.m_num}');
+		$('#rvListDisp').load('${path}/WEB-INF/views/movie/reviewList/m_num/${movie.m_num}');
+		//$('#rvListDisp').load('views/movie/reviewList/m_num/${movie.m_num}');
 		$('#rInsert').click(function() {
 			var sendData = $('#frm').serialize();
 			$.post('${path}/rInsert', sendData, function(data) {
@@ -19,7 +20,7 @@
 				frm.re_con.value = "";
 			});
 		});
-	});
+	}); */
 </script>
 </head>
 <body>
@@ -55,6 +56,14 @@
 		</div>
 		<div id="gradedisp"><!-- 통계 --></div>
 		<div id="rvListDisp"><!-- 한줄평 리스트 --></div>
+		<table>
+			<c:forEach var="i" items="${rview}">
+				<tr>
+						<td>${i.member_id}</td>
+						<td>${i.re_con}</td>
+				</tr>
+			</c:forEach>
+		</table>
 		<div class="review" align="center">
 			<input type="hidden" name="member_id" value="${member_id}">
 			<c:if test="${member_id != null}">

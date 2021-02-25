@@ -24,6 +24,7 @@ public class ReviewController {
 	public String reviewList(@PathVariable int m_num, Model model) {
 		Movie movie = ms.select(m_num);
 		List<Review> rvList = rvs.list(m_num);
+		System.out.println("rvList : " + rvList);
 		
 		model.addAttribute("movie", movie);
 		model.addAttribute("rvList", rvList);
