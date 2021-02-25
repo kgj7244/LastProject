@@ -12,7 +12,6 @@
 		<c:forEach var="movie" items="${movieList }">
 			<tr>
 				<td>${movie.m_title }</td>
-				<td>${movie.m_num }</td>
 			</tr>
 		</c:forEach>
 	</table>
