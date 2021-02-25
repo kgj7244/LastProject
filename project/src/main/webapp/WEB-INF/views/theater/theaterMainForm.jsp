@@ -28,6 +28,15 @@
 		}
 		$("#disp-date").html(doc);
 	}
+	$(function() {
+		$('#movie').click(function() {
+			$.post('choiceMovie.do', function(data) {
+				$('#disp-movie').html(data);
+			});
+			
+		});
+	});
+	
 </script>
 </head>
 <body>
@@ -36,29 +45,32 @@
 	<div class="container">
 		<div class="inner-wrap">
 			<div class="time-table-page">
-				<div class="movie-choice">
-					<div class="left-choice">
+				<div class="choice-movie">
+					<div class="choice-movie-left">
 						<ul>
-							<li id="movie"><a href="#" class="btn" title="영화별 선택">영화별</a></li>
+							<li><a id="movie" class="btn btn-success" title="영화별 선택">영화별</a></li>
 							<li id="theater"><a href="#" class="btn" title="극장별 선택">극장별</a></li>
 						</ul>
 					</div>
-					
+					<div id="choice-movie-movie"></div>
+					<div id="choice-movie-theather"></div>
 					<div class="center-choice">
 						<ul>
 							<li id="all-movie"><a href="#" class="btn" title="전체 영화">전체 영화</a></li>
 						</ul>
 					</div>
-					
+					<div id="choice-all-movie"></div>
 				</div>
 			</div>
 		</div>
 		<!-- 상영시간표 날짜 구현 -->
 		<div class="center-wrap">
 			<div class="date-choice-page">
-				<div id="disp-date"></div>
+				<div id="disp-date">
+				</div>
 			</div>
 		</div>
 	</div>
+	<div id="disp-movie"></div>
 </body>
 </html>
