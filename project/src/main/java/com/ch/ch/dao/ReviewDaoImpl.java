@@ -20,10 +20,14 @@ public class ReviewDaoImpl implements ReviewDao{
 	}
 	
 	public void delete(int re_num) {
-		sst.delete("rvns.delete", re_num);
+		sst.update("rvns.delete", re_num);
 	}
 	
 	public void update(Review rv) {
 		sst.update("rvns.update", rv);
+	}
+	
+	public int getTotal(Review review) {
+		return sst.selectOne("rvns.getTotal", review);
 	}
 }

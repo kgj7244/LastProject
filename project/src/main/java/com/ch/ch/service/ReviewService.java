@@ -11,4 +11,6 @@ public interface ReviewService {
 	void delete(int re_num);
 
 	void update(Review rv);
+
+	int getTotal(Review review);
 }

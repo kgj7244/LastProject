@@ -32,7 +32,7 @@ public class MovieController {
 	public String movieInsertForm() {
 		return "movie/movieInsertForm";
 	}
-	
+
 	//영화번호 중복 체크
 	@RequestMapping(value="numChk", produces = "text/html;charset=utf-8")
 	@ResponseBody
@@ -78,10 +78,11 @@ public class MovieController {
 	
 	//영화 상세보기
 	@RequestMapping("movieView")
-	public String movieView(int m_num, Model model) {
+	public String movieView(String pageNum, int m_num, Model model) {
 		Movie movie = ms.select(m_num);
 		
 		model.addAttribute("movie", movie);
+		model.addAttribute("pageNum", pageNum);
 		
 		return "movie/movieView";
 	}

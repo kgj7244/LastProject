@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ include file="../header.jsp" %>   
- <%@include file="../mainTop.jsp" %>
- <%@include file="../mainNav.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>스토어 리스트</h2>
+
+ <%@include file="../mainTop.jsp" %>
+ <%@include file="../mainNav.jsp" %>
+
 <div class="container" align="center">
  <%@include file="storecategory.jsp" %>
 
@@ -22,6 +24,8 @@
  <td>상품구성</td>
  <td>상품 이미지</td>
  <td>가격</td>
+ <td>수정</td>
+ <td>삭제</td>
  </tr>
  
 <!-- ====================================== -->

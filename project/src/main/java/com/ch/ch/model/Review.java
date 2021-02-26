@@ -12,5 +12,9 @@ public class Review {
 	private Date re_update;
 	private String member_id;
 	private int m_num;
-	private String re_del;	
+	private String re_del;
+	
+	// paging용
+	private int startRow;
+	private int endRow;
 }

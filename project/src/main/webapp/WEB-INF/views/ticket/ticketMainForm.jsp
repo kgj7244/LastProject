@@ -26,8 +26,14 @@
 			$('#theaterSelect').html(data);
 		});
 	}
+<<<<<<< HEAD
 	function theaterSelectChk(t_title) {
 		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>");
+=======
+	function theaterSelectChk(t_title) {
+		frm2.t_title.value=t_title;
+		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>");
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 		Tchk =1;
 		t_title1=t_title;
 		frm2.t_title2.value=t_title1;

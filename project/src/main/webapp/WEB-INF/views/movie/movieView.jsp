@@ -13,7 +13,7 @@
 		$('#rvListDisp').load('${path}/reviewList.do?m_num=${movie.m_num}');
 		$('#rInsert').click(function() {
 			var sendData = $('#frm').serialize();
-			$.post('${path}/rInsert', sendData, function(data) {
+			$.post('${path}/rInsert.do', sendData, function(data) {
 				alert('댓글이 작성되었습니다');
 				$('#rvListDisp').html(data);
 				frm.re_con.value = "";
@@ -59,28 +59,21 @@
 			<input type="hidden" name="member_id" value="${member_id}">
 			<c:if test="${member_id != null}">
 				<form action="" name="frm" id="frm">
-					<input type="hidden" name="re_grade" value="0"/>
 					<input type="hidden" name="m_num" value="${movie.m_num}">
-					<h2 class="text-primary">한줄평 작성</h2>
 					<table class="table table-striped">
 						<tr>
 							<td>
-								${member_id}
-							</td>
-							<td class="rating" align="center">
-					           	<div class="ratefill"></div>
-					               	<input type="checkbox" name="re_grade" id="rating1" value="1" class="rate_radio">
-					                <label for="rating1"></label>
-					                <input type="checkbox" name="re_grade" id="rating2" value="2" class="rate_radio">
-					                <label for="rating2"></label>
-					                <input type="checkbox" name="re_grade" id="rating3" value="3" class="rate_radio" >
-					                <label for="rating3"></label>
-					                <input type="checkbox" name="re_grade" id="rating4" value="4" class="rate_radio">
-					                <label for="rating4"></label>
-					                <input type="checkbox" name="re_grade" id="rating5" value="5" class="rate_radio">
-					                <label for="rating5"></label>
+								<input type="text" name="member_id" value="${member_id}">
 							</td>
 							<td>
+								<select name="re_grade">
+									<option value="5">★★★★★</option>
+									<option value="4">★★★★☆</option>
+									<option value="3">★★★☆☆</option>
+									<option value="2">★★☆☆☆</option>
+									<option value="1">★☆☆☆☆</option>
+									<option value="0">☆☆☆☆☆</option>
+								</select>
 								<textarea rows="3" cols="70" name="re_con"></textarea>
 							</td>
 							<td>
@@ -89,7 +82,47 @@
 						</tr>
 					</table>
 				</form>
-			</c:if> 
+			</c:if>
+		</div>
+		<div align="center">
+			<ul class="pagination">
+				<c:if test="${rpb.startPage > rpb.pagePerBlock}">
+					<li>
+						<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=1">
+						<span class="glyphicon glyphicon-backward"></span>
+						</a>
+					</li>
+					<li>
+						<a href="${path}/reviewList.do.do?m_num=${movie.m_num}&pageNum=${rpb.startPage - 1}">
+							<span class="glyphicon glyphicon-triangle-left"></span>
+						</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${rpb.startPage}" end="${rpb.endPage}">
+					<c:if test="${rpb.currentPage == i}">
+						<li class="active">
+							<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${i}">${i}</a>
+						</li>
+					</c:if>
+					<c:if test="${rpb.currentPage != i}">
+						<li>
+							<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${i}">${i}</a>
+						</li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${rpb.endPage < rpb.totalPage}">
+					<li>
+						<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${rpb.endPage+1}">
+							<span class="glyphicon glyphicon-triangle-right"></span>
+						</a>
+					</li>
+					<li>
+						<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${rpb.totalPage}">
+							<span class="glyphicon glyphicon-forward"></span>
+						</a>
+					</li>
+				</c:if>
+			</ul>
 		</div>
 	</div>
 	<div><%@include file="../mainFloor.jsp" %></div>

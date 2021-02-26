@@ -5,15 +5,18 @@
 	<select id="list" parameterType="integer" resultType="rv">
 		select * from review where m_num=#{m_num} order by re_num
 	</select>
+	<select id="getTotal" parameterType="rv" resultType="integer">
+		select count(*) from review
+	</select>
 	<insert id="insert" parameterType="rv">
 		<selectKey keyProperty="re_num" order="BEFORE" resultType="integer">
-			select nvl(max(re_num),0) + 1 from review
+			select nvl(max(re_num), 0) + 1 from review
 		</selectKey>
 		insert into review values (#{re_num}, #{re_con},
 			#{re_grade}, sysdate, sysdate, #{member_id}, #{m_num}, 'n')
 	</insert>
 	<update id="delete" parameterType="integer">
-		update reivew set del='y' where re_num=#{re_num}
+		update review set re_del='y' where re_num=#{re_num}
 	</update>
 	<update id="update" parameterType="rv">
 		update review set re_con=#{re_con}, re_grade=#{re_grade}, 

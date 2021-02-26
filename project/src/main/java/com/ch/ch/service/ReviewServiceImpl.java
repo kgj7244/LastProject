@@ -27,4 +27,8 @@ public class ReviewServiceImpl implements ReviewService{
 	public void update(Review rv) {
 		rvd.update(rv);
 	}
+	
+	public int getTotal(Review review) {
+		return rvd.getTotal(review);
+	}
 }
