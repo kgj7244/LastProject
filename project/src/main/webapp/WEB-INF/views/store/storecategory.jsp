@@ -10,13 +10,12 @@
 <body>
 
 <div class="container" align="left">
-
-<table>
-<tr><td><a href="i_snack.do?s_Pclass=Ticket">관람권</a></td></tr>
-<tr><td><a href="i_snack.do?s_Pclass=combo">콤보</a></td></tr>
-<tr><td><a href="i_snack.do?s_Pclass=popcol">팝콘/음료</a></td></tr>
-<tr><td><a href="i_snack.do?s_Pclass=event">이벤트</a></td></tr>
-</table>
+ 
+<a class="btn btn-link" href="i_snack.do?s_Pclass=1">관람권</a>
+<a href="i_snack.do?s_Pclass=2">콤보</a>
+<a href="i_snack.do?s_Pclass=3">팝콘/음료</a>
+<a href="i_snack.do?s_Pclass=4">이벤트</a>
+ 
 
 </div>
 </body>

@@ -39,4 +39,14 @@ public class StoreServiceImpl implements StoreService{
 	public int delete(int s_num) {
 		return sd.delete(s_num);
 	}
+
+
+	
+	public List<Store> pclist(int s_Pclass) {
+		return sd.pclist(s_Pclass);
+	}
+
+
+	
+
 }
