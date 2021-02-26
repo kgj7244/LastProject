@@ -38,7 +38,7 @@ public class ReviewController {
 		
 		Movie movie = ms.select(m_num);
 		List<Review> rvList = rvs.list(m_num);
-		
+
 		model.addAttribute("rpb", rpb);
 		model.addAttribute("movie", movie);
 		model.addAttribute("rvList", rvList);

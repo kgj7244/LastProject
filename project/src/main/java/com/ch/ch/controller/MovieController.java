@@ -10,16 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ch.ch.model.Movie;
-import com.ch.ch.model.Review;
 import com.ch.ch.service.MovieService;
-import com.ch.ch.service.ReviewService;
 
 @Controller
 public class MovieController {
 	@Autowired
 	private MovieService ms;
-	@Autowired
-	private ReviewService rs;
 	
 	//영화 메인
 	@RequestMapping("movieMainForm")

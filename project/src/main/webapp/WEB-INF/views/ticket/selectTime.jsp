@@ -6,13 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 <table>
 <c:forEach var ="i" items="${screen}">
-		<%-- <tr>
-			<td><input type="button" value="${i.t_title}" onclick="theaterSelectChk('${i.t_title}')" id="select1"></td>
-		</tr> --%>
 		<tr>
 			<td> <!-- 시간 -->
 				<input type="text" value="${i.sc_start}"><br>
@@ -24,11 +24,8 @@
 			<td>
 				<input type="text" value="${theater.t_title}"> 
 			</td>
-			<%-- <td>
-				<input type="text" value="${}"> 
-			</td> --%>
 			<td>
-				<input type="button" value="선택" onclick="AllSelectChk(${i.sc_num})">
+				<input type="button" value="${i.mt_num}관 " onclick="AllSelectChk(${i.t_num},'${movie.m_title}','${theater.t_title}',${i.mt_num})">
 			</td>
 		</tr>
 </c:forEach>

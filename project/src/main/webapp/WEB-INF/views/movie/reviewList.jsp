@@ -69,6 +69,7 @@
 							<!-- 작성자 -->
 							<td>${rv.member_id}</td>
 							<!-- 평점 -->
+<<<<<<< HEAD
 							<td> 
 								<%-- <c:if test="${rv.re_grade.equals('0')}">☆☆☆☆☆</c:if>
 								<c:if test="${rv.re_grade.equals('1')}">★☆☆☆☆</c:if>
@@ -78,6 +79,9 @@
 								<c:if test="${rv.re_grade.equals('5')}">★★★★★</c:if> --%>
 								(${rv.re_grade} / 5)
 							</td>
+=======
+							<td>${rv.re_grade}점</td>
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 							<!-- 댓글 -->
 							<td id="td_${rv.re_num}">${rv.re_con}</td>
 							<!-- 작성일 -->

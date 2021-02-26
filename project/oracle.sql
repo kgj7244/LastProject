@@ -84,7 +84,7 @@ select * from theater;
 create table movieTheater(
 	mt_num number primary key not null,     --상영관번호
 	mt_name nvarchar2(50) not null,         --상영관이름
-	mt_count number not null,                --좌석
+	mt_count number not null,               --좌석
 	t_num number references theater(t_num)  --극장번호
 );
 create sequence mt_num increment by 1 start with 1;
@@ -93,6 +93,8 @@ insert into movieTheater values(2, '2관',170,1);
 insert into movieTheater values(3, '3관',185,1);
 insert into movieTheater values(4, '4관',115,1);
 insert into movieTheater values(5, '5관',120,1);
+
+select * from movieTheater
 
 --------------------------------------영화
 
@@ -136,6 +138,8 @@ create table review (
 );
 
 create sequence re_num increment by 1 start with 1;
+insert into review values(1, '재미있습니다.', 5, sysdate, sysdate, 'lamslams', 1, 'n');
+insert into review values(2, '재미있습니다1111.', 5, sysdate, sysdate, 'lamslams', 1, 'n');
 
 select* from review;
 
@@ -176,7 +180,7 @@ insert into screen values(2, '2021-02-24','15:00','17:00',1,1,1);
 insert into screen values(3, '2021-02-24','17:00','19:00',1,2,1);
 insert into screen values(4, '2021-02-24','19:00','21:00',1,2,1);
 insert into screen values(5, '2021-02-24','21:00','23:00',1,3,1);
-select * from screen where t_num = TO_NUMBER('1') and m_num = TO_NUMBER('1') and sc_date = '2021-02-24';
+select * from screen;
 
 
 
@@ -282,3 +286,5 @@ select distinct t_loc, (select count(*) from theater where t_loc = '서울') as 
 
 select m_num from movie where m_title='극장판귀멸의칼날-무한열차편';
 select * from theater where t_title ='신촌';
+select * from theater t, movieTheater m, screen s where t.t_num = m.t_num = s.t_num; 
+select mt_count from screen s, movieTheater m where s.t_num = m.t_num
