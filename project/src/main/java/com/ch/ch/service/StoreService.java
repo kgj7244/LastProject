@@ -16,4 +16,7 @@ public interface StoreService {
 
 	int delete(int s_num);
 
+	List<Store> pclist(int s_Pclass);
+
+
 }

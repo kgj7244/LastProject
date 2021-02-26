@@ -239,7 +239,7 @@ create table bank(
 );
 
 --------------------------------------스토어
-insert into store values(1,'n','popcol','콜라 M','콜라 M','콜라M.jpg','9999-12-31',sysdate+730,9999,0,2500,0,'n');
+insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg','9999-12-31',sysdate+730,9999,0,2500,0,'n');
 
 
 select * from store;
@@ -248,7 +248,7 @@ drop table store CASCADE CONSTRAINTS;
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
 	s_del char(1) default 'n', 			--게시글 삭제여부
-	s_Pclass varchar2(100) not null, 	--상품 분류(관람권,스낵)
+	s_Pclass number(10) not null, 	--상품 분류(관람권,스낵)
 	s_Pname varchar2(50) not null, 		--상품 이름
 	s_Pconfig varchar2(50) not null, 	--상품 구성
 	s_Pimage varchar2(100) not null, 	--상품 이미지

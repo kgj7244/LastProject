@@ -60,5 +60,9 @@
 	</update>
 	
 	
+	<select id="pclist" resultMap="storeResult">
+	select * from store order by s_Pclass
+	</select>
+	
 	
 </mapper>

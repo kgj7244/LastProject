@@ -42,4 +42,15 @@ public class StoreDaoImpl implements StoreDao{
 	public int delete(int s_num) {
 		return sst.delete("storens.delete",s_num);
 	}
+
+
+
+	
+	public List<Store> pclist(int s_Pclass) {
+		return sst.selectList("storens.pclist",s_Pclass);
+	}
+
+
+
+	
 }
