@@ -27,6 +27,7 @@
 	}
 	function theaterSelectChk(t_title) {
 		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"' disabled='disabled' id='t_title'>");
+		/* var a = "<input type='text' name='t_title' value='"+t_title+"' disabled='disabled' id='t_title'>"; */
 		Tchk =1;
 		t_title1=t_title;
 		ThreeSelect(t_title1);
@@ -40,12 +41,12 @@
 	function ThreeSelect(){
 		if(Mchk==1&&Tchk==1&&Dchk==1){
 			$.post("selectTime.do","m_title="+m_title1+"&t_title="+t_title1+"&sc_date="+sc_date1, function(data) {
-				$('#SelectTime').html(data);
+				$('#selectTime').html(data);
 			});
 		}
 	}
 	function AllSelectChk(sc_num) {
-		$('#SelectTime').html("<input type='text' name='mt_name' value='"+t_title+"' disabled='disabled' id='t_title'>");
+		$('#mt_num').html("<input type='text' name='mt_name' value='"+mt_name+"' disabled='disabled' id='mt_name'>");
 	}
 	
 </script>
@@ -131,7 +132,7 @@
 				<td>
 					<table class="table table-bordered">
 						<tr>
-							<td id="SelectTime"></td>
+							<td><span id="selectTime"></span></td>
 						</tr>
 					</table>	
 				</td>		
@@ -139,7 +140,7 @@
 		</table>
 	</div>
 	<div> <!-- 결제창 -->
-		<form>
+		<form action="payment.do" method="post" onclick="Chk1('${t_title.value()}','${m_title.value()}',${sc_date.value()})">
 			<table class="table table-bordered">
 				<tr>
 					<td><div id="img"></div><div id="title"></div></td>

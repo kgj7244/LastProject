@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	$(function() {
 		//$('#gradedisp').load('${path}/grade/m_num/${movie.m_num}'); 통계부분
-		$('#rvListDisp').load('${path}/reviewList/m_num/${movie.m_num}');
+		$('#rvListDisp').load('${path}/reviewList.do?m_num=${movie.m_num}');
 		$('#rInsert').click(function() {
 			var sendData = $('#frm').serialize();
 			$.post('${path}/rInsert', sendData, function(data) {

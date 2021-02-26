@@ -20,8 +20,8 @@ public class ReviewController {
 	private MovieService ms;
 	
 	//한줄평 리스트
-	@RequestMapping("/reviewList/m_num/{m_num}")
-	public String reviewList(@PathVariable int m_num, Model model) {
+	@RequestMapping("reviewList")
+	public String reviewList(int m_num, Model model) {
 		Movie movie = ms.select(m_num);
 		List<Review> rvList = rvs.list(m_num);
 		

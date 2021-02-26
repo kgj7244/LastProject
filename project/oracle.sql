@@ -94,6 +94,8 @@ insert into movieTheater values(3, '3관',185,1);
 insert into movieTheater values(4, '4관',115,1);
 insert into movieTheater values(5, '5관',120,1);
 
+select * from movieTheater
+
 --------------------------------------영화
 
 create table movie (
@@ -136,6 +138,8 @@ create table review (
 );
 
 create sequence re_num increment by 1 start with 1;
+insert into review values(1, '재미있습니다.', 5, sysdate, sysdate, 'lamslams', 1, 'n');
+insert into review values(2, '재미있습니다1111.', 5, sysdate, sysdate, 'lamslams', 1, 'n');
 
 
 --------------------------------------회원 게시판
@@ -173,7 +177,7 @@ insert into screen values(2, '2021-02-24','15:00','17:00',1,1,1);
 insert into screen values(3, '2021-02-24','17:00','19:00',1,2,1);
 insert into screen values(4, '2021-02-24','19:00','21:00',1,2,1);
 insert into screen values(5, '2021-02-24','21:00','23:00',1,3,1);
-select * from screen where t_num = TO_NUMBER('1') and m_num = TO_NUMBER('1') and sc_date = '2021-02-24';
+select * from screen;
 
 
 
@@ -279,3 +283,4 @@ select distinct t_loc, (select count(*) from theater where t_loc = '서울') as 
 
 select m_num from movie where m_title='극장판귀멸의칼날-무한열차편';
 select * from theater where t_title ='신촌';
+select * from theater t, movieTheater m, screen s where t.t_num = m.t_num = s.t_num; 

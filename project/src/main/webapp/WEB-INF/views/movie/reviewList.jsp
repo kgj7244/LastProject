@@ -61,7 +61,7 @@
 							<!-- 작성자 -->
 							<td>${rv.member_id}</td>
 							<!-- 평점 -->
-							<td>${rv.grade}점</td>
+							<td>${rv.re_grade}점</td>
 							<!-- 댓글 -->
 							<td id="td_${rv.re_num}">${rv.re_con}</td>
 							<!-- 작성일 -->

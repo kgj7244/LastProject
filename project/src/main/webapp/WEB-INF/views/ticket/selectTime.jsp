@@ -28,7 +28,7 @@
 				<input type="text" value="${}"> 
 			</td> --%>
 			<td>
-				<input type="button" value="선택" onclick="AllSelectChk(${i.sc_num})">
+				<input type="button" value="선택" onclick="AllSelectChk('${movie.m_title}','${theater.t_title}',${i.sc_date})">
 			</td>
 		</tr>
 </c:forEach>
