@@ -11,6 +11,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 
 @Repository
@@ -23,5 +24,8 @@ public class ScreenDaoImpl implements ScreenDao{
 		map.put("theater_num", theater_num);
 		map.put("sc_date", sc_date);
 		return sst.selectList("screenns.selectTitleList", map);
+	}
+	public int selectCnt(int t_num) {
+		return sst.selectOne("screenns.selectCnt", t_num);
 	}
 }
