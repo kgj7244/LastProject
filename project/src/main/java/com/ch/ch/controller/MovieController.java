@@ -84,8 +84,7 @@ public class MovieController {
 	@RequestMapping("movieView")
 	public String movieView(int m_num, Model model) {
 		Movie movie = ms.select(m_num);
-		List<Review> rview = rs.list(m_num);
-		model.addAttribute("rview", rview);
+		
 		model.addAttribute("movie", movie);
 		
 		return "movie/movieView";

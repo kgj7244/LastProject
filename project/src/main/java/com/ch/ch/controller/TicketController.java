@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.ch.model.Movie;
+import com.ch.ch.model.Screen;
 import com.ch.ch.model.Theater;
 import com.ch.ch.service.MovieService;
+import com.ch.ch.service.ScreenService;
 import com.ch.ch.service.TheaterService;
 import com.ch.ch.service.TicketService;
 
@@ -22,6 +24,8 @@ public class TicketController {
 	private MovieService ms; // 영화
 	@Autowired
 	private TheaterService tts; // 극장
+	@Autowired
+	private ScreenService ss; // 상영
 	@RequestMapping("ticketMainForm")
 	public String ticketMainForm(Model model, Theater theater) {
 		List<Movie> movie = ms.list(); // 영화 리스트
@@ -36,11 +40,16 @@ public class TicketController {
 		model.addAttribute("selectTheater", selectTheater);
 		return "ticket/selectTheater";
 	}
-	@RequestMapping(value = "selectTime") // 극장주소을 클릭시 옆에 극장명 나오기
+	@RequestMapping(value = "selectTime") 
 	public String selectTime(String m_title, String t_title, String sc_date, Model model) {
-		System.out.println("m_title : " + m_title);
-		System.out.println("t_title : " + t_title);
-		System.out.println("sc_date : " + sc_date);
-		return "ticket/selectTheater";
+		Movie movie = ms.selectTitle(m_title); // movie.getM_num() 영화 번호 가져옴
+		int movie_num = movie.getM_num();
+		Theater theater = tts.selectTitle(t_title); // theater.getT_num() 극장번호 가져옴
+		int theater_num = theater.getT_num();
+		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date);
+		model.addAttribute("movie",movie);
+		model.addAttribute("theater",theater);
+		model.addAttribute("screen",screen);
+		return "ticket/selectTime";
 	}
 }

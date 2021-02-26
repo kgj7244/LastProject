@@ -11,4 +11,7 @@
 	<select id="selectTheater" parameterType="string" resultType="theater">
 		select * from theater where t_loc=#{id} 
 	</select>
+	<select id="selectTitle" parameterType="string" resultType="theater">
+		select * from theater where t_title =#{t_title}
+	</select>
 </mapper>

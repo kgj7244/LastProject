@@ -8,19 +8,18 @@
 <title>${movie.m_title} | 영화 상세 보기</title>
 
 <script type="text/javascript">
-	/* $(function() {
+	$(function() {
 		//$('#gradedisp').load('${path}/grade/m_num/${movie.m_num}'); 통계부분
-		$('#rvListDisp').load('${path}/WEB-INF/views/movie/reviewList/m_num/${movie.m_num}');
-		//$('#rvListDisp').load('views/movie/reviewList/m_num/${movie.m_num}');
+		$('#rvListDisp').load('${path}/reviewList.do?m_num=${movie.m_num}');
 		$('#rInsert').click(function() {
 			var sendData = $('#frm').serialize();
-			$.post('${path}/rInsert', sendData, function(data) {
+			$.post('${path}/rInsert.do', sendData, function(data) {
 				alert('댓글이 작성되었습니다');
 				$('#rvListDisp').html(data);
 				frm.re_con.value = "";
 			});
 		});
-	}); */
+	});
 </script>
 </head>
 <body>
@@ -56,40 +55,26 @@
 		</div>
 		<div id="gradedisp"><!-- 통계 --></div>
 		<div id="rvListDisp"><!-- 한줄평 리스트 --></div>
-		<table>
-			<c:forEach var="i" items="${rview}">
-				<tr>
-						<td>${i.member_id}</td>
-						<td>${i.re_con}</td>
-				</tr>
-			</c:forEach>
-		</table>
 		<div class="review" align="center">
 			<input type="hidden" name="member_id" value="${member_id}">
 			<c:if test="${member_id != null}">
 				<form action="" name="frm" id="frm">
-					<input type="hidden" name="re_grade" value="0"/>
 					<input type="hidden" name="m_num" value="${movie.m_num}">
 					<h2 class="text-primary">한줄평 작성</h2>
 					<table class="table table-striped">
 						<tr>
 							<td>
-								${member_id}
-							</td>
-							<td class="rating" align="center">
-					           	<div class="ratefill"></div>
-					               	<input type="checkbox" name="re_grade" id="rating1" value="1" class="rate_radio">
-					                <label for="rating1"></label>
-					                <input type="checkbox" name="re_grade" id="rating2" value="2" class="rate_radio">
-					                <label for="rating2"></label>
-					                <input type="checkbox" name="re_grade" id="rating3" value="3" class="rate_radio" >
-					                <label for="rating3"></label>
-					                <input type="checkbox" name="re_grade" id="rating4" value="4" class="rate_radio">
-					                <label for="rating4"></label>
-					                <input type="checkbox" name="re_grade" id="rating5" value="5" class="rate_radio">
-					                <label for="rating5"></label>
+								<input type="text" name="member_id" value="${member_id}">
 							</td>
 							<td>
+								<select name="re_grade">
+									<option value="5">★★★★★</option>
+									<option value="4">★★★★☆</option>
+									<option value="3">★★★☆☆</option>
+									<option value="2">★★☆☆☆</option>
+									<option value="1">★☆☆☆☆</option>
+									<option value="0">☆☆☆☆☆</option>
+								</select>
 								<textarea rows="3" cols="70" name="re_con"></textarea>
 							</td>
 							<td>

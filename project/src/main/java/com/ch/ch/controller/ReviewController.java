@@ -20,8 +20,8 @@ public class ReviewController {
 	private MovieService ms;
 	
 	//한줄평 리스트
-	@RequestMapping("/reviewList/m_num/{m_num}")
-	public String reviewList(@PathVariable int m_num, Model model) {
+	@RequestMapping("reviewList")
+	public String reviewList(int m_num, Model model) {
 		Movie movie = ms.select(m_num);
 		List<Review> rvList = rvs.list(m_num);
 		System.out.println("rvList : " + rvList);
@@ -33,11 +33,21 @@ public class ReviewController {
 	}
 	
 	//한줄평 작성
-	@RequestMapping("/rInsert")
+	@RequestMapping("rInsert")
 	public String rInsert(Review rv) {
 		rvs.insert(rv);
 		
-		return "redirect:/movie/reviewList/m_num/" + rv.getM_num();
+		System.out.println(rv.getM_num());
+		System.out.println(rv.getRe_num());
+		System.out.println(rv.getMember_id());
+		System.out.println(rv.getRe_con());
+		System.out.println(rv.getRe_date());
+		System.out.println(rv.getRe_update());
+		System.out.println(rv.getRe_del());
+		
+		
+//		return "redirect:/movie/reviewList/m_num/" + rv.getM_num();
+		return "movie/rInsert";
 	}
 	
 	//한줄평 삭제
