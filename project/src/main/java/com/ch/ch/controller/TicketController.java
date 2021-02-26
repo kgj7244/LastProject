@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.ch.model.Movie;
+import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Theater;
 import com.ch.ch.service.MovieService;
@@ -47,6 +48,9 @@ public class TicketController {
 		Theater theater = tts.selectTitle(t_title); // theater.getT_num() 극장번호 가져옴
 		int theater_num = theater.getT_num();
 		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date);
+		 //int movieTheaterCnt = ss.selectCnt(theater.getT_num());
+		 //System.out.println("movieTheaterCnt : " + movieTheaterCnt);
+		 
 		model.addAttribute("movie",movie);
 		model.addAttribute("theater",theater);
 		model.addAttribute("screen",screen);

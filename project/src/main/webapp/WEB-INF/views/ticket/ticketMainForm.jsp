@@ -26,7 +26,7 @@
 		});
 	}
 	function theaterSelectChk(t_title) {
-		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"' disabled='disabled' id='t_title'>");
+		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>");
 		Tchk =1;
 		t_title1=t_title;
 		ThreeSelect(t_title1);
@@ -44,8 +44,8 @@
 			});
 		}
 	}
-	function AllSelectChk(sc_num) {
-		$('#SelectTime').html("<input type='text' name='mt_name' value='"+t_title+"' disabled='disabled' id='t_title'>");
+	function AllSelectChk(mt_num){
+		$('#selectTime').html("<input type='text' name='mt_name' value='"+mt_num+"관' disabled='disabled' id='mt_num'>");
 	}
 	
 </script>
@@ -152,7 +152,7 @@
 								<td id="sc_date"></td>
 							</tr>
 							<tr>
-								<td id="t_title"></td>
+								<td id="selectTime"></td>
 							</tr>
 							<tr>
 								<td id="t_title"></td>

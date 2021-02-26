@@ -84,7 +84,7 @@ select * from theater;
 create table movieTheater(
 	mt_num number primary key not null,     --상영관번호
 	mt_name nvarchar2(50) not null,         --상영관이름
-	mt_count number not null,                --좌석
+	mt_count number not null,               --좌석
 	t_num number references theater(t_num)  --극장번호
 );
 create sequence mt_num increment by 1 start with 1;
@@ -274,3 +274,4 @@ select distinct t_loc, (select count(*) from theater where t_loc = '서울') as 
 
 select m_num from movie where m_title='극장판귀멸의칼날-무한열차편';
 select * from theater where t_title ='신촌';
+select mt_count from screen s, movieTheater m where s.t_num = m.t_num
