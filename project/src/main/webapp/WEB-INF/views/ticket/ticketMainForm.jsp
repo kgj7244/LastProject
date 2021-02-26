@@ -14,11 +14,11 @@
 	var t_title1="";
 	var sc_date1="";
 	function movieChk(m_title, m_poster) {
-		frm1.m_title.value=m_title;
 		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_rank/"+m_poster+"'>");
 		$('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>");
 		Mchk = 1;
 		m_title1=m_title;
+		frm1.m_title2.value=m_title1;
 		ThreeSelect(m_title1);
 	}
 	function theaterChk(t_loc) {
@@ -26,18 +26,24 @@
 			$('#theaterSelect').html(data);
 		});
 	}
+<<<<<<< HEAD
+	function theaterSelectChk(t_title) {
+		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>");
+=======
 	function theaterSelectChk(t_title) {
 		frm2.t_title.value=t_title;
 		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>");
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 		Tchk =1;
 		t_title1=t_title;
+		frm2.t_title2.value=t_title1;
 		ThreeSelect(t_title1);
 	}
 	function date_pick() {
 		$('#sc_date').html("<input type='text' name='sc_date' value='"+cal1.value+"' disabled='disabled' id='sc_date'>");
-		frm2.sc_date.value=sc_date;
 		Dchk =1;
 		sc_date1 = cal1.value;
+		frm3.sc_date2.value=sc_date1;
 		ThreeSelect(sc_date1);
 	}
 	function ThreeSelect(){
@@ -51,13 +57,13 @@
 		$('#mt_title').html("<input type='text' name='mt_name' value='"+mt_num+"관' disabled='disabled' id='mt_num'>");
 	}
 	function Chk1() {
-		alert(frm1.m_title.value);
-		alert(frm2.t_title.value);
-		alert(frm2.m_title.value);
-		if(t_title==null||m_title==null||sc_date==null){
+		frm9.m_title2.value=frm1.m_title2.value;
+		frm9.t_title2.value=frm1.t_title2.value;
+		frm9.sc_date2.value=frm1.sc_date2.value;
+		if(frm1.m_title2.value==""||frm2.t_title2.value==""||frm3.sc_date2.value==""){
 			alert("영화, 극장, 날짜, 시간대를 선택해주세요");
 			return false;  
-		}		
+		}	
 	}
 	
 </script>
@@ -79,7 +85,7 @@
 			<tr>
 				<td> <!-- 안에 내용 -->
 					<form action="selectMovie.do" method="post" name="frm1">
-						<input type="hidden" name="m_title">
+						<input type="hidden" name="m_title2">
 						<table class="table table-bordered"> 
 							<c:if test="${not empty movie}"> <!-- 값이 있으면 -->
 								<c:forEach var="i" items="${movie}">
@@ -112,24 +118,25 @@
 				</td>
 				<!-- 극장 -->
 				<td>
-					<form method="post" name="frm1">
-						<table class="table table-bordered"> 
-							<c:if test="${not empty theater1}">
-								<c:forEach var="i" items="${theater1}">
-									<tr>
-										<td><input type="button" value="${i.t_loc}" onclick="theaterChk('${i.t_loc}')"></td>
-									</tr>
-								</c:forEach> 	
-							</c:if>
-						</table>
-					</form>
+					<table class="table table-bordered"> 
+						<c:if test="${not empty theater1}">
+							<c:forEach var="i" items="${theater1}">
+								<tr>
+									<td><input type="button" value="${i.t_loc}" onclick="theaterChk('${i.t_loc}')"></td>
+								</tr>
+							</c:forEach> 	
+						</c:if>
+					</table>
 				</td>
 				<td>
-					<table>
-						<tr>
-							<td><span id="theaterSelect"></span></td><!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
-						</tr>
-					</table>
+					<form method="post" name="frm2">
+						<input type="hidden" name="t_title2">
+						<table>
+							<tr>
+								<td><span id="theaterSelect"></span></td><!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
+							</tr>
+						</table>
+					</form>
 				</td>
 				<td>
 					<table class="table table-bordered">
@@ -144,17 +151,23 @@
 					</table>
 				</td>
 				<td>
-					<table class="table table-bordered">
-						<tr>
-							<td><span id="selectTime"></span></td>
-						</tr>
-					</table>	
+					<form method="post" name="frm3">
+						<input type="hidden" name="sc_date2">
+						<table class="table table-bordered">
+							<tr>
+								<td><span id="selectTime"></span></td>
+							</tr>
+						</table>
+					</form>
 				</td>		
 			</tr>
 		</table>
 	</div>
 	<div> <!-- 결제창 -->
-		<form action="payment.do" method="post" id="frm2" onsubmit="Chk1()" >
+		<form action="paymentForm.do" method="post" onsubmit="Chk1()" name="frm9" >
+		<input type="hidden" name="m_title2">
+		<input type="hidden" name="t_title2">
+		<input type="hidden" name="sc_date2">
 			<table class="table table-bordered">
 				<tr>
 					<td><span id="img"></span><span id="m_title"></span></td>
