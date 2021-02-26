@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>스토어</h2>
+<h2>스토어 리스트</h2>
 <div class="container" align="center">
  <%@include file="storecategory.jsp" %>
 

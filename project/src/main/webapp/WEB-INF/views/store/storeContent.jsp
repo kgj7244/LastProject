@@ -10,7 +10,7 @@
 <body> 
 
 <form action="" method="post" name="storeContent">
-<input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
+<input type ="hidden" name = "s_Pclass" value = "${store.s_Pclass }">
 
 <table>
  
@@ -30,7 +30,7 @@
 
 
 <tr>
-<!-- <td><input type="button" value="장바구니" onclick="cart()"></td> -->
+<td><input type="button" value="장바구니" onclick="cartList()"></td> 
 <td><input type="submit" value="구매하기" ></td>
 </tr>
 

@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>장바구니</title>
 </head>
 <body>
-<script type="text/javascript">
-	//location.href="mainForm.do";
-	location.href="theaterMainForm.do";
-</script>
+
+<!-- cart 추가 -->
+
+
 </body>
 </html>
