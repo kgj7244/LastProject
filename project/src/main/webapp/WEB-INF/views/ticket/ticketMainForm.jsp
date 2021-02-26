@@ -14,8 +14,9 @@
 	var t_title1="";
 	var sc_date1="";
 	function movieChk(m_title, m_poster) {
+		frm1.m_title.value=m_title;
 		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_rank/"+m_poster+"'>");
-		$('#title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>");
+		$('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>");
 		Mchk = 1;
 		m_title1=m_title;
 		ThreeSelect(m_title1);
@@ -26,14 +27,15 @@
 		});
 	}
 	function theaterSelectChk(t_title) {
-		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"' disabled='disabled' id='t_title'>");
-		/* var a = "<input type='text' name='t_title' value='"+t_title+"' disabled='disabled' id='t_title'>"; */
+		frm2.t_title.value=t_title;
+		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>");
 		Tchk =1;
 		t_title1=t_title;
 		ThreeSelect(t_title1);
 	}
 	function date_pick() {
 		$('#sc_date').html("<input type='text' name='sc_date' value='"+cal1.value+"' disabled='disabled' id='sc_date'>");
+		frm2.sc_date.value=sc_date;
 		Dchk =1;
 		sc_date1 = cal1.value;
 		ThreeSelect(sc_date1);
@@ -45,8 +47,17 @@
 			});
 		}
 	}
-	function AllSelectChk(sc_num) {
-		$('#mt_num').html("<input type='text' name='mt_name' value='"+mt_name+"' disabled='disabled' id='mt_name'>");
+	function AllSelectChk(mt_num){
+		$('#mt_title').html("<input type='text' name='mt_name' value='"+mt_num+"관' disabled='disabled' id='mt_num'>");
+	}
+	function Chk1() {
+		alert(frm1.m_title.value);
+		alert(frm2.t_title.value);
+		alert(frm2.m_title.value);
+		if(t_title==null||m_title==null||sc_date==null){
+			alert("영화, 극장, 날짜, 시간대를 선택해주세요");
+			return false;  
+		}		
 	}
 	
 </script>
@@ -68,6 +79,7 @@
 			<tr>
 				<td> <!-- 안에 내용 -->
 					<form action="selectMovie.do" method="post" name="frm1">
+						<input type="hidden" name="m_title">
 						<table class="table table-bordered"> 
 							<c:if test="${not empty movie}"> <!-- 값이 있으면 -->
 								<c:forEach var="i" items="${movie}">
@@ -100,20 +112,22 @@
 				</td>
 				<!-- 극장 -->
 				<td>
-					<table class="table table-bordered"> 
-						<c:if test="${not empty theater1}">
-							<c:forEach var="i" items="${theater1}">
-								<tr>
-									<td><input type="button" value="${i.t_loc}" onclick="theaterChk('${i.t_loc}')"></td>
-								</tr>
-							</c:forEach> 	
-						</c:if>
-					</table>
+					<form method="post" name="frm1">
+						<table class="table table-bordered"> 
+							<c:if test="${not empty theater1}">
+								<c:forEach var="i" items="${theater1}">
+									<tr>
+										<td><input type="button" value="${i.t_loc}" onclick="theaterChk('${i.t_loc}')"></td>
+									</tr>
+								</c:forEach> 	
+							</c:if>
+						</table>
+					</form>
 				</td>
 				<td>
 					<table>
 						<tr>
-							<td id="theaterSelect"></td> <!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
+							<td><span id="theaterSelect"></span></td><!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
 						</tr>
 					</table>
 				</td>
@@ -140,34 +154,30 @@
 		</table>
 	</div>
 	<div> <!-- 결제창 -->
-		<form action="payment.do" method="post" onclick="Chk1('${t_title.value()}','${m_title.value()}',${sc_date.value()})">
+		<form action="payment.do" method="post" id="frm2" onsubmit="Chk1()" >
 			<table class="table table-bordered">
 				<tr>
-					<td><div id="img"></div><div id="title"></div></td>
+					<td><span id="img"></span><span id="m_title"></span></td>
 					<td>
 						<table>
 							<tr>
-								<td id="t_title"></td>
+								<td><span id="t_title"></span></td>
 							</tr>
 							<tr>
-								<td id="sc_date"></td>
+								<td><span id="sc_date"></span></td>
 							</tr>
 							<tr>
-								<td id="t_title"></td>
-							</tr>
-							<tr>
-								<td id="t_title"></td>
+								<td><span id="mt_title"></span></td>
 							</tr>
 						</table>
 					</td>
-					<td>결제선택</td>
-					<td>결제</td>
-					<td>결제하기</td>
+					<td><input type="submit" value="결제" class="btn btn-info"></td>
 				</tr>
 			</table>
 		</form>
 	</div>
 </div>
+
 <%@ include file="../mainFloor.jsp" %>
 </body>
 </html>
