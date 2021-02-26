@@ -5,6 +5,9 @@
 	<select id="list" parameterType="integer" resultType="rv">
 		select * from review where m_num=#{m_num} order by re_num
 	</select>
+	<select id="getTotal" parameterType="rv" resultType="integer">
+		select count(*) from review
+	</select>
 	<insert id="insert" parameterType="rv">
 		<selectKey keyProperty="re_num" order="BEFORE" resultType="integer">
 			select nvl(max(re_num), 0) + 1 from review

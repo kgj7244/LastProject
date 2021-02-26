@@ -21,8 +21,6 @@
 		<result column="s_sale" property="s_sale"/>
 		<result column="del" property="del"/>
 		
-		
-		<!-- <result column="s_title" property="s_title"/> -->
 		<result column="s_del" property="s_del"/>
 		<result column="t_account" property="t_account"/>
 	</resultMap>
@@ -45,16 +43,19 @@
 <!-- sql 미수정 -->	
 
 	<insert id="insert" parameterType="store">
-	insert into store values (#{s_num} , 'n', #{s_Pclass} , #{s_Pname} , 
-	#{s_Pconfig} , #{s_Pimage} , #{s_per} ,
-	#{s_validity} , #{s_total} , #{s_purchase} ,
-	#{s_prive} , #{s_sale} , 'n'
+	insert into store values (#{s_num} , 'n', #{s_Pclass}, #{s_Pname}, 
+	#{s_Pconfig}, #{s_Pimage}, #{s_per}, #{s_validity},
+	#{s_total}, 0, #{s_prive}, #{s_sale}, 'n'
 	)
 	</insert>
 	
-	
+	<!-- 디볼트 값들 -->
 	<update id="update" parameterType="store">
-	 update store set s_Pname=#{s_Pname}, s_Pconfig=#{s_Pconfig}
+	 update store set 
+	 s_del=#{s_del}, s_Pclass=#{s_Pclass}, s_Pname=#{s_Pname}, 
+	 s_Pconfig=#{s_Pconfig},s_Pimage=#{s_Pimage},s_per=#{s_per},s_validity=#{s_validity}, 
+	 s_total=#{s_total},s_purchase=#{s_purchase}, s_prive=#{s_prive}, 
+	 s_sale=#{s_sale},del=#{del}
 	 where s_num=#{s_num} 
 	</update>
 	

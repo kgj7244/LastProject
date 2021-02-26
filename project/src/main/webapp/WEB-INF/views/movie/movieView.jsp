@@ -60,7 +60,6 @@
 			<c:if test="${member_id != null}">
 				<form action="" name="frm" id="frm">
 					<input type="hidden" name="m_num" value="${movie.m_num}">
-					<h2 class="text-primary">한줄평 작성</h2>
 					<table class="table table-striped">
 						<tr>
 							<td>
@@ -83,7 +82,47 @@
 						</tr>
 					</table>
 				</form>
-			</c:if> 
+			</c:if>
+		</div>
+		<div align="center">
+			<ul class="pagination">
+				<c:if test="${rpb.startPage > rpb.pagePerBlock}">
+					<li>
+						<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=1">
+						<span class="glyphicon glyphicon-backward"></span>
+						</a>
+					</li>
+					<li>
+						<a href="${path}/reviewList.do.do?m_num=${movie.m_num}&pageNum=${rpb.startPage - 1}">
+							<span class="glyphicon glyphicon-triangle-left"></span>
+						</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${rpb.startPage}" end="${rpb.endPage}">
+					<c:if test="${rpb.currentPage == i}">
+						<li class="active">
+							<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${i}">${i}</a>
+						</li>
+					</c:if>
+					<c:if test="${rpb.currentPage != i}">
+						<li>
+							<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${i}">${i}</a>
+						</li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${rpb.endPage < rpb.totalPage}">
+					<li>
+						<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${rpb.endPage+1}">
+							<span class="glyphicon glyphicon-triangle-right"></span>
+						</a>
+					</li>
+					<li>
+						<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${rpb.totalPage}">
+							<span class="glyphicon glyphicon-forward"></span>
+						</a>
+					</li>
+				</c:if>
+			</ul>
 		</div>
 	</div>
 	<div><%@include file="../mainFloor.jsp" %></div>

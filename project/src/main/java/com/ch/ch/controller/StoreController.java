@@ -66,11 +66,12 @@ public class StoreController {
 		return "/store/storeDelete";	
 	}
 	
-//	@RequestMapping("i_snack")
-//	public String i_snack(Model model){		
-//        List<Store> storeList = ss.list();
-//		model.addAttribute("storeList", storeList);				
-//		return "store/i_snack";
-//	}
+	@RequestMapping("i_snack")
+	public String i_snack(String s_Pclass,  Model model){
+
+    //    List<Store> storeList = ss.list(s_Pclass);
+		model.addAttribute("s_Pclass", s_Pclass);				
+		return "store/i_snack";
+	}
 	
 }

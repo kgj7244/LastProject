@@ -26,4 +26,8 @@ public class ReviewDaoImpl implements ReviewDao{
 	public void update(Review rv) {
 		sst.update("rvns.update", rv);
 	}
+	
+	public int getTotal(Review review) {
+		return sst.selectOne("rvns.getTotal", review);
+	}
 }

@@ -235,10 +235,14 @@ create table bank(
 );
 
 --------------------------------------스토어
+insert into store values(1,'n','popcol','콜라 M','콜라 M','콜라M.jpg','9999-12-31',sysdate+730,9999,0,2500,0,'n');
+
+
+select * from store;
+drop table store CASCADE CONSTRAINTS;
 
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
---	s_title varchar2(50) not null, 		-- 제목#
 	s_del char(1) default 'n', 			--게시글 삭제여부
 	s_Pclass varchar2(100) not null, 	--상품 분류(관람권,스낵)
 	s_Pname varchar2(50) not null, 		--상품 이름
@@ -248,13 +252,14 @@ create table store(
 	s_per date not null, 			--판매기간 #  날짜+숫자=날짜
 	s_validity date not null, 		--유효기간 #
 	s_total number(10) not null, 	--총 판매수량 #
-	s_purchase number(10) not null, --구매수량
+	s_purchase number(10) default 0 not null, --구매수량  (이벤트 한정 상품)
 	s_prive number(10) not null,	--금액
 	s_sale number(10) not null,		--할인율 
-	del char(1) default 'n',		--구매 취소 여부
-	
-	t_account varchar2(50) references bank(t_account) not null --입금번호
-);
+	del char(1) default 'n'		--구매 취소 여부
+);	
+  , t_account varchar2(50) references bank(t_account) not null --입금번호
+	--잠깐 제외시킴. 
+
 
 create sequence s_num increment by 1 start with 1;
 

@@ -15,9 +15,6 @@
  <%@include file="storecategory.jsp" %>
 
 
-
-
-
 <table class="table table-striped">
 
  <tr>
@@ -28,9 +25,11 @@
  </tr>
  
 <!-- ====================================== -->
+
  <c:if test="${empty storeList }">
  <tr><td colspan="4">상품정보가 없습니다</td></tr>
  </c:if>
+
 <!-- ====================================== --> 
  <c:if test="${not empty storeList }">
  <c:forEach var="store" items="${storeList }">
