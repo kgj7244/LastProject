@@ -56,4 +56,10 @@ public class TicketController {
 		model.addAttribute("screen",screen);
 		return "ticket/selectTime";
 	}
+	@RequestMapping("paymentForm")
+	public String patmentForm(Model model ) {
+		
+		
+		return "ticke/patmentForm";
+	}
 }
