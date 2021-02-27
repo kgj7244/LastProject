@@ -28,4 +28,7 @@ public class ScreenDaoImpl implements ScreenDao{
 	public int selectCnt(int t_num) {
 		return sst.selectOne("screenns.selectCnt", t_num);
 	}
+	public Screen select(int sc_num) {
+		return sst.selectOne("screenns.select", sc_num);
+	}
 }
