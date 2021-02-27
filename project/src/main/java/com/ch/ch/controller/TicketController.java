@@ -57,9 +57,11 @@ public class TicketController {
 		return "ticket/selectTime";
 	}
 	@RequestMapping("paymentForm")
-	public String patmentForm(Model model ) {
+	public String paymentForm(Model model, String m_title2, String t_title2, String sc_date2, String mt_num2) {
+		//m_title2 : 영화제목, t_title2 : 지점이름(신촌), sc_date2 : 날짜, mt_num2 : 상영관
+		String m_title = m_title2;
+		Movie paymentMovie = ms.selectTitle(m_title); 
 		
-		
-		return "ticke/patmentForm";
+		return "ticket/paymentForm";
 	}
 }

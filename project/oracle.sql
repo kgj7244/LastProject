@@ -50,6 +50,8 @@ create table member(
 	member_date date default sysdate not null,    -- 가입일
 	member_del char(1) default 'n'			      -- 탈퇴여부			
 );
+insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
+insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
 select * from member;
 
 
@@ -94,7 +96,7 @@ insert into movieTheater values(3, '3관',185,1);
 insert into movieTheater values(4, '4관',115,1);
 insert into movieTheater values(5, '5관',120,1);
 
-select * from movieTheater
+select * from movieTheater;
 
 --------------------------------------영화
 
@@ -115,13 +117,13 @@ create table movie (
 );
 create sequence m_num increment by 1 start with 1;
 
-insert into movie values(1, '극장판귀멸의칼날-무한열차편','벽력일섬','15','2021-02-03','상영중',120,0,'001.jsp','소토자키 하루오','하나에 나츠키, 시모노 히로, 마츠오카 요시츠구, 키토 아카리','애니메이션','n');
-insert into movie values(2, '소울','피아노 위를 걷는다','전체','2021-01-20','상영중',107,0,'002.jsp','피트 닥터','제이미 폭스, 티나 페이, 다비드 딕스','애니메이션','n');
-insert into movie values(3, '미션 파서블','미션 임파서블이 아니네???','15','2021-02-17','상영중',105,0,'003.jsp','김형주','김영광, 이선빈','코미디, 액션','n');
-insert into movie values(4, '해리포터와 불의 잔','아브라카타브라','12','2021-02-10','상영중',156,0,'004.jsp','마이크 뉴웰','다니엘 래드클리프, 엠마 왓슨, 루퍼트 그린트','환타지','n');
-insert into movie values(5, '해피 투게더 리마스터링 ','유재석?','15','2021-02-04','상영중',97,0,'005.jsp','왕가위','장국영, 양조위, 장첸','드라마, 로맨스, 멜로','n');
-insert into movie values(6, '2046 리마스터링 ','ㅗㅜㅑ','19','2021-02-11','상영중',128,0,'006.jsp','왕가위','장쯔이, 장첸, 기무라 타쿠야, 유가령, 양조위, 왕페이, 베이 로건, 장만옥, 공리, 둥제, 소병림, 통차이 맥킨타이어, 오정엽','드라마','n');
-insert into movie values(7, '마리오네트 ','인형인가봐','12','2021-02-17','상영중',112,0,'007.jsp','엘버트 반 스트리엔','테크라 레우텐, 피터 뮬란, 엘리야 울프','미스터리, 스릴러','n');
+insert into movie values(1, '극장판귀멸의칼날-무한열차편','벽력일섬','15','2021-02-03','상영중',120,0,'001.jpg','소토자키 하루오','하나에 나츠키, 시모노 히로, 마츠오카 요시츠구, 키토 아카리','애니메이션','n');
+insert into movie values(2, '소울','피아노 위를 걷는다','전체','2021-01-20','상영중',107,0,'002.jpg','피트 닥터','제이미 폭스, 티나 페이, 다비드 딕스','애니메이션','n');
+insert into movie values(3, '미션 파서블','미션 임파서블이 아니네???','15','2021-02-17','상영중',105,0,'003.jpg','김형주','김영광, 이선빈','코미디, 액션','n');
+insert into movie values(4, '해리포터와 불의 잔','아브라카타브라','12','2021-02-10','상영중',156,0,'004.jpg','마이크 뉴웰','다니엘 래드클리프, 엠마 왓슨, 루퍼트 그린트','환타지','n');
+insert into movie values(5, '해피 투게더 리마스터링 ','유재석?','15','2021-02-04','상영중',97,0,'005.jpg','왕가위','장국영, 양조위, 장첸','드라마, 로맨스, 멜로','n');
+insert into movie values(6, '2046 리마스터링 ','ㅗㅜㅑ','19','2021-02-11','상영중',128,0,'006.jpg','왕가위','장쯔이, 장첸, 기무라 타쿠야, 유가령, 양조위, 왕페이, 베이 로건, 장만옥, 공리, 둥제, 소병림, 통차이 맥킨타이어, 오정엽','드라마','n');
+insert into movie values(7, '마리오네트 ','인형인가봐','12','2021-02-17','상영중',112,0,'007.jpg','엘버트 반 스트리엔','테크라 레우텐, 피터 뮬란, 엘리야 울프','미스터리, 스릴러','n');
 select * from movie;
 
 --------------------------------------한줄평
@@ -136,15 +138,13 @@ create table review (
 	m_num number references movie(m_num),						   --영화번호
 	re_del char(1) default 'n'									   --삭제여부
 );
-
 create sequence re_num increment by 1 start with 1;
-insert into review values(1, '재미있습니다.', 5, sysdate, sysdate, 'lamslams', 1, 'n');
-insert into review values(2, '재미있습니다1111.', 5, sysdate, sysdate, 'lamslams', 1, 'n');
+insert into review values(1,'재미있습니다.',5,sysdate,sysdate,'lamslams',1,'n');
+insert into review values(2,'재미있습니다1111.',5,sysdate,sysdate,'lamslams',1,'n');
+insert into review values(3,'재미있습니다.22',5,sysdate,sysdate,'lamslams',1,'n');
+insert into review values(4,'재미있습니다22222.',5,sysdate,sysdate,'lamslams',1,'n');
 
 select* from review;
-
-insert into review values(1, '재미있어요', 5, sysdate, sysdate, 'lamslams', 1, 'n');
-insert into review values(2, '하하호호', 5, sysdate, sysdate, 'lamslams', 1, 'n');
 --------------------------------------회원 게시판
 
 create table board(
@@ -287,4 +287,4 @@ select distinct t_loc, (select count(*) from theater where t_loc = '서울') as 
 select m_num from movie where m_title='극장판귀멸의칼날-무한열차편';
 select * from theater where t_title ='신촌';
 select * from theater t, movieTheater m, screen s where t.t_num = m.t_num = s.t_num; 
-select mt_count from screen s, movieTheater m where s.t_num = m.t_num
+select mt_count from screen s, movieTheater m where s.t_num = m.t_num;

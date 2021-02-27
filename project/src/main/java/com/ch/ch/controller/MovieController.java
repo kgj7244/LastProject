@@ -10,12 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ch.ch.model.Movie;
+import com.ch.ch.model.Review;
 import com.ch.ch.service.MovieService;
+import com.ch.ch.service.ReviewPagingBean;
+import com.ch.ch.service.ReviewService;
 
 @Controller
 public class MovieController {
 	@Autowired
 	private MovieService ms;
+	@Autowired
+	private ReviewService rvs;
 	
 	//영화 메인
 	@RequestMapping("movieMainForm")
@@ -78,11 +83,38 @@ public class MovieController {
 	
 	//영화 상세보기
 	@RequestMapping("movieView")
-	public String movieView(String pageNum, int m_num, Model model) {
+	public String movieView(String pageNum, Review review,int m_num, Model model) {
 		Movie movie = ms.select(m_num);
 		
+		System.out.println("pageNum1 : " + pageNum);
+		if (pageNum == null || pageNum.equals("") || pageNum == "0") {
+			System.out.println("pageNum2 : " + pageNum);
+			pageNum = "1";
+			System.out.println("pageNum3 : " + pageNum);
+		}
+
+		int currentPage = Integer.parseInt(pageNum);
+		System.out.println("currentPage : " + currentPage);
+		int rowPerPage = 10;
+		int total = rvs.getTotal(review);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		System.out.println("startRow : " + startRow);
+		System.out.println("endRow : " + endRow);
+
+		review.setStartRow(startRow);
+		review.setEndRow(endRow);
+
+		ReviewPagingBean rpb = new ReviewPagingBean(currentPage, rowPerPage, total);
+
+		List<Review> rvList = rvs.list(m_num);
+
+		model.addAttribute("rpb", rpb);
 		model.addAttribute("movie", movie);
-		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("rvList", rvList);
+		
+		
+		model.addAttribute("movie", movie);
 		
 		return "movie/movieView";
 	}

@@ -15,61 +15,62 @@ import com.ch.ch.service.ReviewService;
 public class ReviewController {
 	@Autowired
 	private ReviewService rvs;
-	
+
 	@Autowired
 	private MovieService ms;
-	
-	//한줄평 리스트
+
+	// 한줄평 리스트
 	@RequestMapping("reviewList")
 	public String reviewList(String pageNum, Review review, int m_num, Model model) {
-		if(pageNum == null || pageNum.equals("")|| pageNum =="0") pageNum ="1";
-		
+		if (pageNum == null || pageNum.equals("") || pageNum == "0") {
+			pageNum = "1";
+		}
+
 		int currentPage = Integer.parseInt(pageNum);
 		System.out.println("currentPage : " + currentPage);
 		int rowPerPage = 10;
 		int total = rvs.getTotal(review);
-		int startRow = (currentPage -1) * rowPerPage +1;
-		int endRow = startRow + rowPerPage -1;
-		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+
 		review.setStartRow(startRow);
 		review.setEndRow(endRow);
-		
+
 		ReviewPagingBean rpb = new ReviewPagingBean(currentPage, rowPerPage, total);
-		
+
 		Movie movie = ms.select(m_num);
 		List<Review> rvList = rvs.list(m_num);
 
 		model.addAttribute("rpb", rpb);
 		model.addAttribute("movie", movie);
 		model.addAttribute("rvList", rvList);
-		
+
 		return "movie/reviewList";
 	}
-	
-	//한줄평 작성
+
+	// 한줄평 작성
 	@RequestMapping("rInsert")
 	public String rInsert(Review rv) {
 		rvs.insert(rv);
-		
+
 		return "redirect:/reviewList.do?m_num=" + rv.getM_num();
-}
-	
-	//한줄평 삭제
+	}
+
+	// 한줄평 삭제
 	@RequestMapping("rDelete")
 	public String rDelete(Review rv) {
 		rvs.delete(rv.getRe_num());
-		
-		
+
 		System.out.print(rv.getM_num());
-		
+
 		return "redirect:/reviewList.do?m_num=" + rv.getM_num();
 	}
-	
-	//한줄평 수정
+
+	// 한줄평 수정
 	@RequestMapping("rUpdate")
 	public String rUpdate(Review rv) {
 		rvs.update(rv);
-		
+
 		return "redirect:/reviewList.do?m_num=" + rv.getM_num();
 	}
 }
