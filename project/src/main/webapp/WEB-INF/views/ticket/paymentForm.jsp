@@ -7,8 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	var a = "";
-	var b = "";
 	$(document).ready(function() {
 		$('#count_adult input[count_adult]').click(function(e) {
 			e.preventDefault();
@@ -22,7 +20,7 @@
 				$count.val(parseInt(count_val) - 1);
 			} else if (type == 'p') {
 				if (count_val < 8) {
-					$count.val(parseInt(count_val) + 1);
+				$count.val(parseInt(count_val) + 1);
 				}
 			}
 		});
@@ -43,10 +41,23 @@
 					$count1.val(parseInt(count1_val) + 1);
 				}
 			}
+			
 		});
 	});
 	
-	/* $("#cont") */
+	// 좌석뷰
+	$(function() {
+		$('#seatDisp').load('${path}/movieTheater50.do');
+	});
+/* 	function test1(row, y){
+		var test2 = row;
+		var test3 = y;
+		alert(test2);
+		alert(test3);
+	} */
+	function test1(num) {
+		alert(num.val);
+	}
 </script>
 </head>
 <body>
@@ -77,7 +88,7 @@
 						</tr>
 						<tr>
 							<td>좌석 설명</td>
-							<td>선택 좌석</td>
+							<td><span>좌석 클릭시 여기에 출력</span></td>
 						</tr>
 						<tr>
 							<td colspan="2">최종 금액</td>
@@ -91,7 +102,7 @@
 					성인&nbsp;&nbsp;&nbsp;&nbsp;			
 					<span id="count_adult">
   						<input value="-" count_adult="m" type="button">
-  						<input class="count" value="0" readonly="" name="">
+  						<input class="count" value="0" readonly="" name="" id="text1">
   						<input value="+" count_adult="p" type="button">
 					</span>
 					<p>
@@ -102,12 +113,10 @@
   						<input value="+" count_youth="p" type="button">
 					</span>
 				</td>
-				<td></td><!-- 공백 -->
 			</tr>
 			<!-- 좌석선택하는 곳 -->
 			<tr>
-				<td>그림 쫙~</td>
-				<td></td><!-- 공백 -->
+				<td><div id="seatDisp" style="width: 150px;"></div></td>
 			</tr>
 		</table>
 	</form>

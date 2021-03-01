@@ -76,4 +76,8 @@ public class TicketController {
 		
 		return "ticket/paymentForm";
 	}
+	@RequestMapping("movieTheater50")
+	public String movieTheater50() {
+		return "ticket/movieTheater50";
+	}
 }
