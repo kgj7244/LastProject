@@ -11,9 +11,10 @@
 	var selectList = new Array();
 	var type;
 	var $count;
-	var count_val;
 	var $count1;
-	var count1_val;
+	var count_val; // 성인
+	var count1_val; // 어린이
+	var sum;
 	$(document).ready(function() {
 		$('#count_adult input[count_adult]').click(function(e) {
 			e.preventDefault();
@@ -49,7 +50,6 @@
 					$count1.val(parseInt(count1_val) + 1);
 				}
 			}
-			
 		});
 	});
 	
@@ -67,7 +67,6 @@
 		}
 		$('#rowSelect').html("<input type='text' value="+selectList+">");
 	}
-		
 </script>
 </head>
 <body>
@@ -101,7 +100,7 @@
 							<td><span id="rowSelect"></span></td>
 						</tr>
 						<tr>
-							<td colspan="2">최종 금액</td>
+							<td colspan="2"><input type="text" value="${sum}" id="price"></td>
 						</tr>
 					</table>
 				</td>
@@ -126,7 +125,7 @@
 			</tr>
 			<!-- 좌석선택하는 곳 -->
 			<tr>
-				<td><div id="seatDisp" style="width: 150px;"></div></td>
+				<td><div id="seatDisp" style="width: 100px;"></div></td>
 			</tr>
 		</table>
 	</form>
