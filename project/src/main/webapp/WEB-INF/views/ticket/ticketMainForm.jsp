@@ -7,14 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	var Mchk =0; // 영화가 선택 시 +1이 됨
-	var Tchk =0; // 극장 선택시+1
-	var Dchk =0; // 날짜 선택시+1
-	var m_title1="";
-	var t_title1="";
-	var sc_date1="";
+	var Mchk =0; var Tchk =0; var Dchk =0; 
+	var m_title1=""; var t_title1=""; var sc_date1=""; var mt_num1="";	var sc_num1="";
 	function movieChk(m_title, m_poster) {
-		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_rank/"+m_poster+"'>");
+		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_poster/"+m_poster+"' height='100px;' width='80px;'>");
 		$('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>");
 		Mchk = 1;
 		m_title1=m_title;
@@ -26,14 +22,8 @@
 			$('#theaterSelect').html(data);
 		});
 	}
-<<<<<<< HEAD
 	function theaterSelectChk(t_title) {
 		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>");
-=======
-	function theaterSelectChk(t_title) {
-		frm2.t_title.value=t_title;
-		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>");
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 		Tchk =1;
 		t_title1=t_title;
 		frm2.t_title2.value=t_title1;
@@ -53,17 +43,22 @@
 			});
 		}
 	}
-	function AllSelectChk(mt_num){
-		$('#mt_title').html("<input type='text' name='mt_name' value='"+mt_num+"관' disabled='disabled' id='mt_num'>");
+	function AllSelectChk(mt_num, sc_num){
+		mt_num1 = mt_num;
+		sc_num1 = sc_num;
+		$('#mt_title').html("<input type='text' name='mt_num' value='"+mt_num+"관' disabled='disabled' id='mt_num'>");
 	}
 	function Chk1() {
-		frm9.m_title2.value=frm1.m_title2.value;
-		frm9.t_title2.value=frm1.t_title2.value;
-		frm9.sc_date2.value=frm1.sc_date2.value;
 		if(frm1.m_title2.value==""||frm2.t_title2.value==""||frm3.sc_date2.value==""){
 			alert("영화, 극장, 날짜, 시간대를 선택해주세요");
-			return false;  
-		}	
+			return false; 
+		}else{
+			frm9.m_title2.value=frm1.m_title2.value; // 영화제목
+			frm9.t_title2.value=frm2.t_title2.value; // 극장명
+			frm9.sc_date2.value=frm3.sc_date2.value; // 날짜
+			frm9.mt_num2.value=mt_num1; // 상영관 번호
+			frm9.sc_num2.value=sc_num1; // 상영 번호
+		}
 	}
 	
 </script>
@@ -164,10 +159,12 @@
 		</table>
 	</div>
 	<div> <!-- 결제창 -->
-		<form action="paymentForm.do" method="post" onsubmit="Chk1()" name="frm9" >
+		<form action="paymentForm.do" method="post" onsubmit="return Chk1()" name="frm9" >
 		<input type="hidden" name="m_title2">
 		<input type="hidden" name="t_title2">
 		<input type="hidden" name="sc_date2">
+		<input type="hidden" name="mt_num2">
+		<input type="hidden" name="sc_num2">
 			<table class="table table-bordered">
 				<tr>
 					<td><span id="img"></span><span id="m_title"></span></td>

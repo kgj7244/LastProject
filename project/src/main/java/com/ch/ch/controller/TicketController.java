@@ -57,9 +57,27 @@ public class TicketController {
 		return "ticket/selectTime";
 	}
 	@RequestMapping("paymentForm")
-	public String patmentForm(Model model ) {
+	public String paymentForm(Model model, String m_title2, String t_title2, String sc_date2, String mt_num2 ,String sc_num2) {
+		//m_title2 : 영화제목, t_title2 : 지점이름(신촌), sc_date2 : 날짜, mt_num2 : 상영관
+		String m_title = m_title2;
+		String t_title = t_title2;
+		String sc_date = sc_date2;
+		String mt_num = mt_num2;
+		int sc_num = Integer.parseInt(sc_num2);
+		Movie movie = ms.selectTitle(m_title); // 영화제목으로 검색해서 하나 가져옴
+		Theater theater = tts.selectTitle(t_title); //지점으로 검색해서 극장의 정보 하나 가져옴
+		Screen screen = ss.select(sc_num); // 해당 상영지점 구하기
 		
+	
+		model.addAttribute("mt_num", mt_num);
+		model.addAttribute("movie", movie);
+		model.addAttribute("theater", theater);
+		model.addAttribute("screen", screen);
 		
-		return "ticke/patmentForm";
+		return "ticket/paymentForm";
+	}
+	@RequestMapping("movieTheater50")
+	public String movieTheater50() {
+		return "ticket/movieTheater50";
 	}
 }

@@ -19,4 +19,7 @@ public class ScreenServiceImpl implements ScreenService{
 	public int selectCnt(int t_num) {
 		return sd.selectCnt(t_num);
 	}
+	public Screen select(int sc_num) {
+		return sd.select(sc_num);
+	}
 }

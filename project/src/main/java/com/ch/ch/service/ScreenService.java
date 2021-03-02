@@ -11,4 +11,6 @@ public interface ScreenService {
 
 	int selectCnt(int t_num);
 
+	Screen select(int sc_num);
+
 }
