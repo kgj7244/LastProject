@@ -74,11 +74,39 @@
 		</div>
 		<!-- 상영시간표 날짜 -->
 		<div class="time-table-date">
+	<!-- 	<table>
+				<tr>
+					<td>
+						<div id="disp-date"></div>
+					</td>
+				</tr>
+			</table> -->
 			<table>
 				<tr>
 					<td>
 						<div id="disp-date"></div>
 					</td>
+				</tr>
+				<!-- 임시 상영관 구현 -->
+				<tr>
+					<th>서울</th>
+					<td>강남</td>
+					<td>용산</td>
+					<td>불광</td>	
+				</tr>
+				<tr>
+					<th>대전</th>
+					<td>대전</td>
+					<td>용인</td>
+					<td>수원</td>
+					<td>이천</td>
+				</tr>
+				<tr>
+					<th>광주</th>
+					<td>쌍팔</td>
+					<td>이연</td>
+					<td>지연</td>
+					<td>희주</td>	
 				</tr>
 			</table>
 		</div>
