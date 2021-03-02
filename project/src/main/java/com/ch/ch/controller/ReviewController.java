@@ -48,7 +48,7 @@ public class ReviewController {
 		return "movie/reviewList";
 	}
 
-	// 한줄평 작성
+	// 한`줄평 작성
 	@RequestMapping("rInsert")
 	public String rInsert(Review rv) {
 		rvs.insert(rv);

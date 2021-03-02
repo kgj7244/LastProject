@@ -90,11 +90,11 @@ create table movieTheater(
 	t_num number references theater(t_num)  --극장번호
 );
 create sequence mt_num increment by 1 start with 1;
-insert into movieTheater values(1, '1관',150,1);
-insert into movieTheater values(2, '2관',170,1);
-insert into movieTheater values(3, '3관',185,1);
-insert into movieTheater values(4, '4관',115,1);
-insert into movieTheater values(5, '5관',120,1);
+insert into movieTheater values(1, '1관',50,1);
+insert into movieTheater values(2, '2관',70,1);
+insert into movieTheater values(3, '3관',80,1);
+insert into movieTheater values(4, '4관',90,1);
+insert into movieTheater values(5, '5관',100,1);
 
 select * from movieTheater;
 
@@ -175,11 +175,11 @@ create table screen(
 	m_num number references movie(m_num)          --영화번호 
 );
 create sequence sc_num increment by 1 start with 1;
-insert into screen values(1, '2021-02-24','13:00','15:00',1,1,1);
-insert into screen values(2, '2021-02-24','15:00','17:00',1,1,1);
-insert into screen values(3, '2021-02-24','17:00','19:00',1,2,1);
-insert into screen values(4, '2021-02-24','19:00','21:00',1,2,1);
-insert into screen values(5, '2021-02-24','21:00','23:00',1,3,1);
+insert into screen values(1, '2021-03-01','13:00','15:00',1,1,1);
+insert into screen values(2, '2021-03-01','15:00','17:00',1,1,1);
+insert into screen values(3, '2021-03-01','17:00','19:00',1,2,1);
+insert into screen values(4, '2021-03-01','19:00','21:00',1,2,1);
+insert into screen values(5, '2021-03-01','21:00','23:00',1,3,1);
 select * from screen;
 
 
@@ -215,7 +215,6 @@ insert into seat values('a1', 'n',2);
 insert into seat values('a2', 'n',2);
 insert into seat values('a3', 'n',2);
 insert into seat values('a4', 'n',2);
-
 
 
 --------------------------------------관리자계좌
