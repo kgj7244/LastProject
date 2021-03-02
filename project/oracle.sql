@@ -135,8 +135,7 @@ create table review (
 	re_date date default sysdate not null,                         --업로드 시간
 	re_update date default sysdate not null,					   --수정시간
 	member_id nvarchar2(50) references member(member_id) not null, --회원아이디
-	m_num number references movie(m_num),						   --영화번호
-	re_del char(1) default 'n'									   --삭제여부
+	m_num number references movie(m_num)						   --영화번호
 );
 create sequence re_num increment by 1 start with 1;
 insert into review values(1,'재미있습니다.',5,sysdate,sysdate,'lamslams',1,'n');

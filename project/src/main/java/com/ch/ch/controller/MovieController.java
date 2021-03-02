@@ -81,8 +81,8 @@ public class MovieController {
 		return "movie/movieInsert";
 	}
 	
-	//영화 상세보기
-	@RequestMapping("movieView")
+	//영화 상세보기 + 한줄평 리스트(with. 페이징)
+	@RequestMapping("/movieView")
 	public String movieView(String pageNum, Review review, int m_num, Model model) {
 		Movie movie = ms.select(m_num);
 		
@@ -101,7 +101,7 @@ public class MovieController {
 
 		ReviewPagingBean rpb = new ReviewPagingBean(currentPage, rowPerPage, total);
 
-		List<Review> rvList = rvs.list(m_num);
+		List<Review> rvList = rvs.list(review);
 
 		model.addAttribute("rpb", rpb);
 		model.addAttribute("movie", movie);
@@ -111,12 +111,11 @@ public class MovieController {
 	}
 	
 	// 한줄평 작성
-	@RequestMapping("rInsert.do")
+	@RequestMapping("/rInsert.do")
 	public String rInsert(Review rv) {
 		rvs.insert(rv);
 	
-		return "movie/movieView.do?m_num"+ rv.getM_num();
-		//return "redirect:/reviewList.do?m_num=" + rv.getM_num();
+		return "redirect:/movieView.do?m_num=" + rv.getM_num();
 	}
 
 	// 한줄평 삭제
@@ -124,8 +123,7 @@ public class MovieController {
 	public String rDelete(Review rv) {
 		rvs.delete(rv.getRe_num());
 
-		return "movie/movieView.do?m_num"+ rv.getM_num();
-		//return "redirect:/reviewList.do?m_num=" + rv.getM_num();
+		return "redirect:/movieView.do?m_num=" + rv.getM_num();
 	}
 
 	// 한줄평 수정
@@ -133,7 +131,6 @@ public class MovieController {
 	public String rUpdate(Review rv) {
 		rvs.update(rv);
 
-		return "movie/movieView.do?m_num"+ rv.getM_num();
-		//return "redirect:/reviewList.do?m_num=" + rv.getM_num();
+		return "redirect:/movieView.do?m_num=" + rv.getM_num();
 	}
 }
