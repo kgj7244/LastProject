@@ -147,19 +147,16 @@ select* from review;
 --------------------------------------회원 게시판
 
 create table board(
-	b_num number primary key not null,                             --게시글 번호
-	b_email nvarchar2(50) not null,                                --이메일
-	b_title nvarchar2(50) not null, 	                           --제목
-	b_content nvarchar2(1000) not null,                            --내용
-	b_password nvarchar2(50) not null,                             --비밀번호	
-	b_view number not null, 	                                   --조회수
-	b_ip nvarchar2(50) not null, 	                               --아이피
-	b_ref number not null, 		                                   --참조번호
-	b_level number not null, 	                                   --참조레벨	
-	b_date date default sysdate not null,                          --작성일	
-	b_ans char(1) default 'n', 		                               --답변여부
-	b_del char(1) default 'n',		                               --삭제여부
-	member_id nvarchar2(50) references member(member_id) not null --아이디
+	b_num number primary key not null,                              --게시글 번호
+	b_title nvarchar2(100) not null, 	                            --제목
+	b_content nvarchar2(1000) not null,                             --내용
+	b_lock nvarchar2(50) not null,         		 					--비밀글여부
+	b_password nvarchar2(50),                             			--비밀번호	
+	b_readcount number not null, 	                                --조회수
+	b_date date default sysdate not null,                           --작성일	
+	b_del char(1) default 'n',		                    		    --삭제여부
+ 	b_code nvarchar2(40),                                           --카테고리(회원/예매/스토어/기타)
+	member_id nvarchar2(50) references member(member_id) not null   --아이디
 );
 
 -----------------------------------상영
