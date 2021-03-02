@@ -10,10 +10,10 @@
 <script type="text/javascript">
 	$(function() {
 		//$('#gradedisp').load('${path}/grade/m_num/${movie.m_num}'); 통계부분
-		$('#rvListDisp').load('${path}/reviewList.do?m_num=${movie.m_num}');
+		//$('#rvListDisp').load('${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${pageNum}');
 		$('#rInsert').click(function() {
 			var sendData = $('#frm').serialize();
-			$.post('${path}/rInsert.do', sendData, function(data) {
+			$.post('rInsert.do', sendData, function(data) {
 				alert('댓글이 작성되었습니다');
 				$('#rvListDisp').html(data);
 				frm.re_con.value = "";
@@ -21,13 +21,12 @@
 		});
 	});
 	
-	// 추가한 부분
 	function rDelete(m_num, re_num) {
 		var sendData = 'm_num=' + m_num + '&re_num=' + re_num;
 		var cf = confirm("정말로 삭제하시겠습니까?");
 		
 		if (cf) {
-			$.post('${path}/rDelete.do', sendData, function(data) {
+			$.post('rDelete.do', sendData, function(data) {
 				alert("댓글이 삭제되었습니다");
 				$('#rvListDisp').html(data);
 			});
@@ -51,16 +50,15 @@
 		var sendData = 're_con=' + $('#rt').val() +
 			'&m_num=' + m_num + '&re_num=' + re_num;
 		
-		$.post('${path}/rUpdate.do', sendData, function(data) {
+		$.post('rUpdate.do', sendData, function(data) {
 			alert('수정 되었습니다');
 			$('#rvListDisp').html(data);
 		});
 	}
 
 	function lst(m_num) {
-		$('#rvListDisp').load('${path}/reviewList.do?m_num=${movie.m_num}');
+		history.go(-1);
 	}
-	
 </script>
 </head>
 <body>
@@ -95,57 +93,51 @@
 			</table>
 		</div>
 		<div id="gradedisp"><!-- 통계 --></div>
-		<!-- <div id="rvListDisp">한줄평 리스트</div> -->
 		<!-- 추가한 부분 -->
-		<div class="container" align="center">
-		<c:if test="${empty rvList}">
-			<table class="table table-striped">
-				<tr>
-					<td colspan="5" align="center">아직 리뷰가 없습니다. 리뷰를 남겨주세요.</td>
-				</tr>
-			</table>
-		</c:if>
-		<c:if test="${not empty rvList}">
-			<table class="table table-striped">
-				<c:forEach var="rv" items="${rvList}">
-					<%-- <c:if test="${rv.re_del == 'y'}">
-						<tr>
-							<td colspan="4" align="center">삭제된 댓글입니다</td>
-						</tr>
-					</c:if> --%>
-					<c:if test="${rv.re_del != 'y'}">
-						<tr>
-							<!-- 작성자 -->
-							<td>${rv.member_id}</td>
-							<!-- 평점 -->
-							<td> 
-								<%-- <c:if test="${rv.re_grade.equals('0')}">☆☆☆☆☆</c:if>
-								<c:if test="${rv.re_grade.equals('1')}">★☆☆☆☆</c:if>
-								<c:if test="${rv.re_grade.equals('2')}">★★☆☆☆</c:if>
-								<c:if test="${rv.re_grade.equals('3')}">★★★☆☆</c:if>
-								<c:if test="${rv.re_grade.equals('4')}">★★★★☆</c:if>
-								<c:if test="${rv.re_grade.equals('5')}">★★★★★</c:if> --%>
-								(${rv.re_grade} / 5)
-							</td>
-							<td>${rv.re_grade}점</td>
-							<!-- 댓글 -->
-							<td id="td_${rv.re_num}">${rv.re_con}</td>
-							<!-- 작성일 -->
-							<td>${rv.re_update}</td>
-							<%-- <c:if test="${rv.member_id == sessionScope.member.id}"> --%>
-								<td id="btn_${rv.re_num}">
-									<button class="btn btn-warning btn-sm" 
-										onclick="rUpdate(${rv.m_num}, ${rv.re_num})">수정</button>
-									<button class="btn btn-danger btn-sm" 
-										onclick="rDelete(${rv.m_num}, ${rv.re_num})">삭제</button>
+		<div class="container" align="center" id="rvListDisp">
+			<c:if test="${empty rvList}">
+				<table class="table table-striped">
+					<tr>
+						<td colspan="5" align="center">아직 리뷰가 없습니다. 리뷰를 남겨주세요.</td>
+					</tr>
+				</table>
+			</c:if>
+			<c:if test="${not empty rvList}">
+				<table class="table table-striped">
+					<c:forEach var="rv" items="${rvList}">
+						<c:if test="${rv.re_del != 'y'}">
+							<tr>
+								<!-- 작성자 -->
+								<td>${rv.member_id}</td>
+								<!-- 평점 -->
+								<td> 
+									<c:if test="${rv.re_grade.equals('0')}">☆☆☆☆☆</c:if>
+									<c:if test="${rv.re_grade.equals('1')}">★☆☆☆☆</c:if>
+									<c:if test="${rv.re_grade.equals('2')}">★★☆☆☆</c:if>
+									<c:if test="${rv.re_grade.equals('3')}">★★★☆☆</c:if>
+									<c:if test="${rv.re_grade.equals('4')}">★★★★☆</c:if>
+									<c:if test="${rv.re_grade.equals('5')}">★★★★★</c:if>
+									(${rv.re_grade} / 5)
 								</td>
-							<%-- </c:if> --%>
-						</tr>
-					</c:if>
-				</c:forEach>
-			</table>
-		</c:if>
-	</div>
+								<td>${rv.re_grade}점</td>
+								<!-- 댓글 -->
+								<td id="td_${rv.re_num}">${rv.re_con}</td>
+								<!-- 작성일 -->
+								<td>${rv.re_update}</td>
+								<%-- <c:if test="${rv.member_id == sessionScope.member.id}"> --%>
+									<td id="btn_${rv.re_num}">
+										<button class="btn btn-warning btn-sm" 
+											onclick="rUpdate(${rv.m_num}, ${rv.re_num})">수정</button>
+										<button class="btn btn-danger btn-sm" 
+											onclick="rDelete(${rv.m_num}, ${rv.re_num})">삭제</button>
+									</td>
+								<%-- </c:if> --%>
+							</tr>
+						</c:if>
+					</c:forEach>
+				</table>
+			</c:if>
+		</div>
 		<div class="review" align="center">
 			<input type="hidden" name="member_id" value="${member_id}">
 			<c:if test="${member_id != null}">
@@ -179,12 +171,12 @@
 			<ul class="pagination">
 				<c:if test="${rpb.startPage > rpb.pagePerBlock}">
 					<li>
-						<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=1">
+						<a href="movieView.do?m_num=${movie.m_num}&pageNum=1">
 						<span class="glyphicon glyphicon-backward"></span>
 						</a>
 					</li>
 					<li>
-						<a href="${path}/reviewList.do.do?m_num=${movie.m_num}&pageNum=${rpb.startPage - 1}">
+						<a href="movieView.do.do?m_num=${movie.m_num}&pageNum=${rpb.startPage - 1}">
 							<span class="glyphicon glyphicon-triangle-left"></span>
 						</a>
 					</li>
@@ -192,23 +184,23 @@
 				<c:forEach var="i" begin="${rpb.startPage}" end="${rpb.endPage}">
 					<c:if test="${rpb.currentPage == i}">
 						<li class="active">
-							<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${i}">${i}</a>
+							<a href="movieView.do?m_num=${movie.m_num}&pageNum=${i}">${i}</a>
 						</li>
 					</c:if>
 					<c:if test="${rpb.currentPage != i}">
 						<li>
-							<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${i}">${i}</a>
+							<a href="movieView.do?m_num=${movie.m_num}&pageNum=${i}">${i}</a>
 						</li>
 					</c:if>
 				</c:forEach>
 				<c:if test="${rpb.endPage < rpb.totalPage}">
 					<li>
-						<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${rpb.endPage+1}">
+						<a href="movieView.do?m_num=${movie.m_num}&pageNum=${rpb.endPage+1}">
 							<span class="glyphicon glyphicon-triangle-right"></span>
 						</a>
 					</li>
 					<li>
-						<a href="${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${rpb.totalPage}">
+						<a href="movieView.do?m_num=${movie.m_num}&pageNum=${rpb.totalPage}">
 							<span class="glyphicon glyphicon-forward"></span>
 						</a>
 					</li>
