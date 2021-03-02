@@ -68,9 +68,10 @@ public class StoreController {
 	
  //카테고리별 리스트
 	@RequestMapping("i_snack")
-	public String i_snack(int s_Pclass,  Model model){
-     List<Store> storeList = ss.pclist(s_Pclass);
-		model.addAttribute("s_Pclass", s_Pclass);				
+	public String i_snack(int s_Pclass, Model model){	
+		List<Store> storeList = ss.pclist(s_Pclass);
+		model.addAttribute("s_Pclass", s_Pclass);
+		model.addAttribute("storeList", storeList);		
 		return "store/i_snack";
 	}
 	

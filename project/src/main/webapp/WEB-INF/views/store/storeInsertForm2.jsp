@@ -23,9 +23,6 @@
 <tr><td>상품 분류</td>
 <td>
  <select name="s_Pclass">
-   <option value="1">관람권</option>
-   <option value="2">콤보</option>
-   <option value="3">팝콘/음료</option>
    <option value="4">이벤트</option>
  </select>
 </td></tr>
@@ -40,19 +37,24 @@ required="required"></td></tr>
 <tr><td>상품 이미지</td><td><input type="file" name="s_Pimage"
 required="required"></td></tr>
 
+
+
+<tr><td>판매기간</td><td><input type="date" name="s_per" value="9999-12-31"
+required="required"></td></tr>
+
+<tr><td>상품 유효기간</td><td><input type="date" name="s_validity" 
+value="sysdate" required="required"></td></tr>
+
+<tr><td>총 판매수량</td><td><input type="number" name="s_total" value="9999"
+required="required"></td></tr>
+
 <tr><td>가격</td><td><input type="number" name="s_prive"
 required="required"></td></tr>
 
+<tr><td>할인율</td><td><input type="number" name="s_sale"
+required="required"></td></tr>
 
-<!--
-<tr><td>판매기간</td>
-<td><input type="date" name="s_per"></td>
-<td><input type="date" name="s_pernd"></td></tr>
 
-<tr><td>총 판매수량</td><td><input type="number" name="s_total"></td></tr>
-
-<tr><td>할인율</td><td><input type="number" name="s_sale"></td></tr>
-  -->
 
 <tr><td colspan="2" align="center">
 <input type="submit" value="확인" class="btn btn-warning"></td></tr>
