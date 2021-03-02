@@ -11,48 +11,46 @@
 <body>
  <%@include file="../mainTop.jsp" %>
  <%@include file="../mainNav.jsp" %>
-
 <div class="container" align="center">
 
-<h2>스토어</h2>
-
+<h2 class="text-primary">스토어</h2>
  <%@include file="storecategory.jsp" %>
-
-
-<table class="table table-striped">
-
- <tr>
- <td>상품이름</td>
- <td>상품구성</td>
- <td>상품 이미지</td>
- <td>가격</td>
- </tr>
  
 <!-- ====================================== -->
-
+<div>
  <c:if test="${empty storeList }">
- <tr><td colspan="4">상품정보가 없습니다</td></tr>
+   <div>상품정보가 없습니다</div>
  </c:if>
-
+</div>
 <!-- ====================================== --> 
+<div>
  <c:if test="${not empty storeList }">
  <c:forEach var="store" items="${storeList }">
  
-  <tr>
-  <td><a class="btn btn-success btn-sm"
-  href="storeContent.do?s_num=${store.s_num }"> ${store.s_Pname }</a></td>
+ <div class="image">
+ <a href="storeContent.do?s_num=${store.s_num }">
+<span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="100"></span>
+
+  <div class="name"><h4>${store.s_Pname }</h4></div>  
+  </a>
  
-  <td>${store.s_Pconfig }</td>
-  <td><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="100"></td>
-  <td>${store.s_prive }</td>
-  </tr>
-  
- </c:forEach></c:if></table>
+  <div>${store.s_Pconfig }</div>
+ 
+  <div>${store.s_prive }원</div>
+
+ 
+ </c:forEach></c:if>
+ </div>
+</div>
 <!-- ====================================== -->  
 
+
+
 <div align="center">
+<!-- 관리자 확인 아직 -->
  <a href="storeInsertForm.do">상품 추가</a>
 </div>
-</div>
+
+<div><%@include file="../mainFloor.jsp" %></div>
 </body>
 </html>

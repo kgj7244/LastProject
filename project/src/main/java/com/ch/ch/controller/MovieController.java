@@ -83,24 +83,18 @@ public class MovieController {
 	
 	//영화 상세보기
 	@RequestMapping("movieView")
-	public String movieView(String pageNum, Review review,int m_num, Model model) {
+	public String movieView(String pageNum, Review review, int m_num, Model model) {
 		Movie movie = ms.select(m_num);
 		
-		System.out.println("pageNum1 : " + pageNum);
 		if (pageNum == null || pageNum.equals("") || pageNum == "0") {
-			System.out.println("pageNum2 : " + pageNum);
 			pageNum = "1";
-			System.out.println("pageNum3 : " + pageNum);
 		}
 
 		int currentPage = Integer.parseInt(pageNum);
-		System.out.println("currentPage : " + currentPage);
 		int rowPerPage = 10;
 		int total = rvs.getTotal(review);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		System.out.println("startRow : " + startRow);
-		System.out.println("endRow : " + endRow);
 
 		review.setStartRow(startRow);
 		review.setEndRow(endRow);
@@ -113,9 +107,33 @@ public class MovieController {
 		model.addAttribute("movie", movie);
 		model.addAttribute("rvList", rvList);
 		
-		
-		model.addAttribute("movie", movie);
-		
 		return "movie/movieView";
+	}
+	
+	// 한줄평 작성
+	@RequestMapping("rInsert.do")
+	public String rInsert(Review rv) {
+		rvs.insert(rv);
+	
+		return "movie/movieView.do?m_num"+ rv.getM_num();
+		//return "redirect:/reviewList.do?m_num=" + rv.getM_num();
+	}
+
+	// 한줄평 삭제
+	@RequestMapping("rDelete.do")
+	public String rDelete(Review rv) {
+		rvs.delete(rv.getRe_num());
+
+		return "movie/movieView.do?m_num"+ rv.getM_num();
+		//return "redirect:/reviewList.do?m_num=" + rv.getM_num();
+	}
+
+	// 한줄평 수정
+	@RequestMapping("rUpdate.do")
+	public String rUpdate(Review rv) {
+		rvs.update(rv);
+
+		return "movie/movieView.do?m_num"+ rv.getM_num();
+		//return "redirect:/reviewList.do?m_num=" + rv.getM_num();
 	}
 }

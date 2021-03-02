@@ -15,11 +15,11 @@
 <c:forEach var ="i" items="${screen}">
 		<tr>
 			<td> <!-- 시간 -->
-				<input type="text" value="${i.sc_start}"><br>
-				~<input type="text" value="${i.sc_end}">
+				<span><input type="text" value="${i.sc_start}"></span><br>
+				~<span><input type="text" value="${i.sc_end}"><span>
 			</td>
 			<td> <!-- 제목 movie/theater -->
-				<input type="text" value="${movie.m_title}">
+				<input type="text" value="${movie.m_title}" size="50">
 			</td>
 			<td>
 				<input type="text" value="${theater.t_title}"> 

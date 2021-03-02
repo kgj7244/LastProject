@@ -90,11 +90,11 @@ create table movieTheater(
 	t_num number references theater(t_num)  --극장번호
 );
 create sequence mt_num increment by 1 start with 1;
-insert into movieTheater values(1, '1관',150,1);
-insert into movieTheater values(2, '2관',170,1);
-insert into movieTheater values(3, '3관',185,1);
-insert into movieTheater values(4, '4관',115,1);
-insert into movieTheater values(5, '5관',120,1);
+insert into movieTheater values(1, '1관',50,1);
+insert into movieTheater values(2, '2관',70,1);
+insert into movieTheater values(3, '3관',80,1);
+insert into movieTheater values(4, '4관',90,1);
+insert into movieTheater values(5, '5관',100,1);
 
 select * from movieTheater;
 
@@ -175,11 +175,11 @@ create table screen(
 	m_num number references movie(m_num)          --영화번호 
 );
 create sequence sc_num increment by 1 start with 1;
-insert into screen values(1, '2021-02-24','13:00','15:00',1,1,1);
-insert into screen values(2, '2021-02-24','15:00','17:00',1,1,1);
-insert into screen values(3, '2021-02-24','17:00','19:00',1,2,1);
-insert into screen values(4, '2021-02-24','19:00','21:00',1,2,1);
-insert into screen values(5, '2021-02-24','21:00','23:00',1,3,1);
+insert into screen values(1, '2021-03-01','13:00','15:00',1,1,1);
+insert into screen values(2, '2021-03-01','15:00','17:00',1,1,1);
+insert into screen values(3, '2021-03-01','17:00','19:00',1,2,1);
+insert into screen values(4, '2021-03-01','19:00','21:00',1,2,1);
+insert into screen values(5, '2021-03-01','21:00','23:00',1,3,1);
 select * from screen;
 
 
@@ -217,7 +217,6 @@ insert into seat values('a3', 'n',2);
 insert into seat values('a4', 'n',2);
 
 
-
 --------------------------------------관리자계좌
 
 create table aam_bank(
@@ -240,7 +239,11 @@ create table bank(
 
 --------------------------------------스토어
 insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg','9999-12-31',sysdate+730,9999,0,2500,0,'n');
+insert into store values(2,'n','2','스위트 콤보','오리지널L+탄산음료 M2','스위트콤보.jpg','9999-12-31',sysdate+730,9999,0,9000,0,'n');
+insert into store values(3,'n','4','이벤트권','이벤트 1장','이벤트1.jpg','2021-03-02',sysdate+730,100,0,10000,0,'n');
 
+--이벤트시작,이벤트끝날짜. +/판매기간 판매수량 구매수량
+--스토어 테이블을 받아서 이벤트스토어를 추가
 
 select * from store;
 drop table store CASCADE CONSTRAINTS;
@@ -253,15 +256,15 @@ create table store(
 	s_Pconfig varchar2(50) not null, 	--상품 구성
 	s_Pimage varchar2(100) not null, 	--상품 이미지
 	
-	s_per date not null, 			--판매기간 #  날짜+숫자=날짜
+	s_per date not null, 			--판매기간   날짜+숫자=날짜
 	s_validity date not null, 		--유효기간 #
 	s_total number(10) not null, 	--총 판매수량 #
 	s_purchase number(10) default 0 not null, --구매수량  (이벤트 한정 상품)
 	s_prive number(10) not null,	--금액
 	s_sale number(10) not null,		--할인율 
-	del char(1) default 'n'		--구매 취소 여부
+	del char(1) default 'n'		--환불 여부
 );	
-  , t_account varchar2(50) references bank(t_account) not null --입금번호
+--  , t_account varchar2(50) references bank(t_account) not null --입금번호
 	--잠깐 제외시킴. 
 
 

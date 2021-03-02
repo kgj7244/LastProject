@@ -6,7 +6,7 @@
 		select * from review where m_num=#{m_num} order by re_num
 	</select>
 	<select id="getTotal" parameterType="rv" resultType="integer">
-		select count(*) from review
+		select count(*) from review where m_num=#{m_num}
 	</select>
 	<insert id="insert" parameterType="rv">
 		<selectKey keyProperty="re_num" order="BEFORE" resultType="integer">
