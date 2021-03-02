@@ -72,7 +72,7 @@
 			<!-- 전체 영화 제목만 보여주기 -->
 			<div id="disp-all-movie"></div>
 		</div>
-		<!-- 상영시간표 날짜 -->
+		<!-- 상영시간표 날짜  -->
 		<div class="time-table-date">
 	<!-- 	<table>
 				<tr>
