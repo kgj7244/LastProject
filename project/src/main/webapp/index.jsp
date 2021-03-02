@@ -9,11 +9,6 @@
 <body>
 <script type="text/javascript">
 	location.href="mainForm.do";
-<<<<<<< HEAD
-//	location.href="theaterMainForm.do";
-=======
-	//location.href="theaterMainForm.do";
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 </script>
 </body>
 </html>

@@ -74,4 +74,12 @@ public class StoreController {
 		return "store/i_snack";
 	}
 	
+ //상품 상세
+	@RequestMapping("storeContent")
+	public String storeContent(int s_num,  Model model){
+		Store store = ss.select(s_num);
+		model.addAttribute("store", store);				
+		return "store/storeContent";
+	}
+	
 }

@@ -237,7 +237,11 @@ create table bank(
 
 --------------------------------------스토어
 insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg','9999-12-31',sysdate+730,9999,0,2500,0,'n');
+insert into store values(2,'n','2','스위트 콤보','오리지널L+탄산음료 M2','스위트콤보.jpg','9999-12-31',sysdate+730,9999,0,9000,0,'n');
+insert into store values(3,'n','4','이벤트권','이벤트 1장','이벤트1.jpg','2021-03-02',sysdate+730,100,0,10000,0,'n');
 
+--이벤트시작,이벤트끝날짜. +/판매기간 판매수량 구매수량
+--스토어 테이블을 받아서 이벤트스토어를 추가
 
 select * from store;
 drop table store CASCADE CONSTRAINTS;
@@ -250,15 +254,15 @@ create table store(
 	s_Pconfig varchar2(50) not null, 	--상품 구성
 	s_Pimage varchar2(100) not null, 	--상품 이미지
 	
-	s_per date not null, 			--판매기간 #  날짜+숫자=날짜
+	s_per date not null, 			--판매기간   날짜+숫자=날짜
 	s_validity date not null, 		--유효기간 #
 	s_total number(10) not null, 	--총 판매수량 #
 	s_purchase number(10) default 0 not null, --구매수량  (이벤트 한정 상품)
 	s_prive number(10) not null,	--금액
 	s_sale number(10) not null,		--할인율 
-	del char(1) default 'n'		--구매 취소 여부
+	del char(1) default 'n'		--환불 여부
 );	
-  , t_account varchar2(50) references bank(t_account) not null --입금번호
+--  , t_account varchar2(50) references bank(t_account) not null --입금번호
 	--잠깐 제외시킴. 
 
 
