@@ -26,18 +26,21 @@ public class TheaterController {
 	public String theaterMainForm() {
 		return "theater/theaterMainForm";
 	}
+	//영화 선택
 	@RequestMapping("choiceMovie")
 	public String choiceMovie(Model model) {
 		List<Movie> movieList = ms.list(); //영화 제목 나열
 		model.addAttribute("movieList",movieList);
 		return "theater/choiceMovie";
 	}
+	//극장 선택
 	@RequestMapping("choiceTheater")
 	public String choiceTheater(Model model) {
 		List<Theater> list = tts.List(); // 극장 이름 나열
 		model.addAttribute("list", list);
 		return "theater/choiceTheater";
 	}
+	//모든 영화 선택
 	@RequestMapping("choiceAllMovie")
 	public String choiceAllMovie(Model model) {
 		List<Movie> movieList = ms.list(); //영화 제목 나열

@@ -11,25 +11,38 @@
 	var selectList = new Array();
 	var type;
 	var $count;
-	var count_val;
 	var $count1;
-	var count1_val;
+	var count_val; // 성인
+	var count1_val; // 어린이
+	var sum;
+	var a=0;
+	var b=0;
+	var total=0;
+	
 	$(document).ready(function() {
 		$('#count_adult input[count_adult]').click(function(e) {
 			e.preventDefault();
 			type = $(this).attr('count_adult');
 			$count = $(this).parent().children('input.count');
 			count_val = $count.val(); // min 1
-			if (type == 'm') {
-				if (count_val < 1) {
-					return;
+			if(total < 8){
+				if (type == 'm') {
+					if (count_val < 1) {
+						return;
+					}
+					$count.val(parseInt(count_val) - 1);
+					a=parseInt(count_val)-1;
+					
+				} else if (type == 'p') {
+					if (count_val < 8) {
+					$count.val(parseInt(count_val) + 1);
+					a = parseInt(count_val) + 1;
+					}
 				}
-				$count.val(parseInt(count_val) - 1);
-			} else if (type == 'p') {
-				if (count_val < 8) {
-				$count.val(parseInt(count_val) + 1);
-				}
+			}else{
+				return;
 			}
+			test();
 		});
 	});
 	
@@ -44,14 +57,29 @@
 					return;
 				}
 				$count1.val(parseInt(count1_val) - 1);
+				b=parseInt(count1_val)-1;
 			} else if (type == 'p') {
-				if (count1_val < 8) {
-					$count1.val(parseInt(count1_val) + 1);
+				if(total >= 8){
+					alert('예매는 8장까지');
+					return;
+				}else{
+					
+					if (count1_val < 8) {
+						$count1.val(parseInt(count1_val) + 1);
+						b = parseInt(count1_val) + 1;
+					}
 				}
+					
 			}
-			
+			test();
 		});
 	});
+	
+	function test() {
+		alert(a+b);
+		total = a+b;
+	
+	}
 	
 	// 좌석뷰
 	$(function() {
@@ -67,7 +95,6 @@
 		}
 		$('#rowSelect').html("<input type='text' value="+selectList+">");
 	}
-		
 </script>
 </head>
 <body>
@@ -101,7 +128,7 @@
 							<td><span id="rowSelect"></span></td>
 						</tr>
 						<tr>
-							<td colspan="2">최종 금액</td>
+							<td colspan="2"><input type="text" value="${sum}" id="price"></td>
 						</tr>
 					</table>
 				</td>
@@ -126,7 +153,7 @@
 			</tr>
 			<!-- 좌석선택하는 곳 -->
 			<tr>
-				<td><div id="seatDisp" style="width: 150px;"></div></td>
+				<td><div id="seatDisp" style="width: 100px;"></div></td>
 			</tr>
 		</table>
 	</form>

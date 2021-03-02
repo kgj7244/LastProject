@@ -10,12 +10,11 @@
 <script type="text/javascript">
 	$(function() {
 		//$('#gradedisp').load('${path}/grade/m_num/${movie.m_num}'); 통계부분
-		//$('#rvListDisp').load('${path}/reviewList.do?m_num=${movie.m_num}&pageNum=${pageNum}');
 		$('#rInsert').click(function() {
 			var sendData = $('#frm').serialize();
 			$.post('rInsert.do', sendData, function(data) {
 				alert('댓글이 작성되었습니다');
-				$('#rvListDisp').html(data);
+				location.reload();
 				frm.re_con.value = "";
 			});
 		});
@@ -28,7 +27,7 @@
 		if (cf) {
 			$.post('rDelete.do', sendData, function(data) {
 				alert("댓글이 삭제되었습니다");
-				$('#rvListDisp').html(data);
+				location.reload();
 			});
 		}
 		else alert("삭제가 취소되었습니다.");
@@ -52,12 +51,12 @@
 		
 		$.post('rUpdate.do', sendData, function(data) {
 			alert('수정 되었습니다');
-			$('#rvListDisp').html(data);
+			location.reload();
 		});
 	}
 
 	function lst(m_num) {
-		history.go(-1);
+		location.reload();
 	}
 </script>
 </head>
@@ -111,19 +110,21 @@
 								<td>${rv.member_id}</td>
 								<!-- 평점 -->
 								<td> 
-									<c:if test="${rv.re_grade.equals('0')}">☆☆☆☆☆</c:if>
+									<%-- <c:if test="${rv.re_grade.equals('0')}">☆☆☆☆☆</c:if>
 									<c:if test="${rv.re_grade.equals('1')}">★☆☆☆☆</c:if>
 									<c:if test="${rv.re_grade.equals('2')}">★★☆☆☆</c:if>
 									<c:if test="${rv.re_grade.equals('3')}">★★★☆☆</c:if>
 									<c:if test="${rv.re_grade.equals('4')}">★★★★☆</c:if>
-									<c:if test="${rv.re_grade.equals('5')}">★★★★★</c:if>
+									<c:if test="${rv.re_grade.equals('5')}">★★★★★</c:if> --%>
 									(${rv.re_grade} / 5)
 								</td>
 								<td>${rv.re_grade}점</td>
 								<!-- 댓글 -->
 								<td id="td_${rv.re_num}">${rv.re_con}</td>
 								<!-- 작성일 -->
-								<td>${rv.re_update}</td>
+								<td>
+									<fmt:formatDate value="${rv.re_update}" pattern="yy.MM.dd(E) HH:mm"/>
+								</td>
 								<%-- <c:if test="${rv.member_id == sessionScope.member.id}"> --%>
 									<td id="btn_${rv.re_num}">
 										<button class="btn btn-warning btn-sm" 
