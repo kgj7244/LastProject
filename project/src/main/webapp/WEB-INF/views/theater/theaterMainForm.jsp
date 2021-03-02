@@ -47,10 +47,6 @@
 	});
 </script>
 <style type="text/css">
-	.choice-movie{
-		list-style: none;
-		list-style-type: none;
-	}
 	#disp-date span {
 		height: 100px;
 		float: left;
@@ -61,29 +57,31 @@
 	<!-- 상영하는 영화, 극장 선택 -->
 	<div class="container">
 		<!-- 상영 영화/극장/전체영화 선택  -->
-			<div class="time-table-page">
-				<div class="choice-movie" style="float: left">
-					<ul>
-						<li><a id="movie" class="btn btn-success" title="영화별 선택">영화별</a></li>
-						<li><a id="theater" class="btn btn-warning" title="극장별 선택">극장별</a></li>
-						<li><a id="all-movie" class="btn btn-primary" title="전체 영화">전체 영화</a></li>
-					</ul>
-				</div>
-				<!-- 영화별 선택 -->
-				<div id="disp-choice-movie"></div>
-				<!-- 극장별 선택 -->
-				<div id="disp-movie-theather"></div>
-				<!-- 전체 영화 제목만 보여주기 -->
-				<div id="disp-all-movie"></div>
+		<div class="time-table-page">
+			<div id="choice-movie" class="btn-group-vertical" style="float: left">
+				<ul style="list-style: none;">
+					<li><a id="movie" class="btn btn-success" title="영화별 선택">영화별</a></li>
+					<li><a id="theater" class="btn btn-warning" title="극장별 선택">극장별</a></li>
+					<li><a id="all-movie" class="btn btn-primary" title="전체 영화">전체 영화</a></li>
+				</ul>
 			</div>
+			<!-- 영화별 선택 -->
+			<div id="disp-choice-movie"></div>
+			<!-- 극장별 선택 -->
+			<div id="disp-movie-theather"></div>
+			<!-- 전체 영화 제목만 보여주기 -->
+			<div id="disp-all-movie"></div>
+		</div>
 		<!-- 상영시간표 날짜 -->
-		<table>
-			<tr>
-				<td>
-					<div id="disp-date"></div>
-				</td>
-			</tr>
-		</table>
+		<div class="time-table-date">
+			<table>
+				<tr>
+					<td>
+						<div id="disp-date"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
