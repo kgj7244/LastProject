@@ -74,7 +74,8 @@
 		</div>
 		<!-- 상영시간표 날짜  -->
 		<div class="time-table-date">
-	<!-- 	<table>
+	<!-- 	임시로 막음!!!!!
+			<table>
 				<tr>
 					<td>
 						<div id="disp-date"></div>
