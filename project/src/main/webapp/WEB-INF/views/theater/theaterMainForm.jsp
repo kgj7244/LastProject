@@ -39,11 +39,15 @@
 				$('#disp-movie-theather').html(data);
 			});
 		});
+		$('#all-movie').click(function() {
+			$.post('choiceAllMovie.do', function(data) {
+				$('#disp-all-movie').html(data);
+			});
+		});
 	});
 </script>
 </head>
 <body>
-	<h4>여기는 상영페이지야!</h4>
 	<!-- 상영하는 영화, 극장 선택 -->
 	<div class="container">
 		<div class="inner-wrap">
@@ -55,14 +59,17 @@
 							<li><a id="theater" class="btn btn-warning" title="극장별 선택">극장별</a></li>
 						</ul>
 					</div>
+					<!-- 영화별 선택 -->
 					<div id="disp-choice-movie"></div>
+					<!-- 극장별 선택 -->
 					<div id="disp-movie-theather"></div>
 					<div class="center-choice">
 						<ul>
-							<li id="all-movie"><a href="#" class="btn" title="전체 영화">전체 영화</a></li>
+							<li><a id="all-movie" class="btn btn-primary" title="전체 영화">전체 영화</a></li>
 						</ul>
 					</div>
-					<div id="choice-all-movie"></div>
+					<!-- 전체 영화 제목만 보여주기 -->
+					<div id="disp-all-movie"></div>
 				</div>
 			</div>
 		</div>
