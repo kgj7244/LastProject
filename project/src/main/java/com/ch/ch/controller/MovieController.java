@@ -10,12 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ch.ch.model.Movie;
+import com.ch.ch.model.Review;
 import com.ch.ch.service.MovieService;
+import com.ch.ch.service.ReviewPagingBean;
+import com.ch.ch.service.ReviewService;
 
 @Controller
 public class MovieController {
 	@Autowired
 	private MovieService ms;
+	@Autowired
+	private ReviewService rvs;
 	
 	//영화 메인
 	@RequestMapping("movieMainForm")
@@ -32,7 +37,7 @@ public class MovieController {
 	public String movieInsertForm() {
 		return "movie/movieInsertForm";
 	}
-	
+
 	//영화번호 중복 체크
 	@RequestMapping(value="numChk", produces = "text/html;charset=utf-8")
 	@ResponseBody
@@ -78,11 +83,57 @@ public class MovieController {
 	
 	//영화 상세보기
 	@RequestMapping("movieView")
-	public String movieView(int m_num, Model model) {
+	public String movieView(String pageNum, Review review, int m_num, Model model) {
 		Movie movie = ms.select(m_num);
 		
+		if (pageNum == null || pageNum.equals("") || pageNum == "0") {
+			pageNum = "1";
+		}
+
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;
+		int total = rvs.getTotal(review);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+
+		review.setStartRow(startRow);
+		review.setEndRow(endRow);
+
+		ReviewPagingBean rpb = new ReviewPagingBean(currentPage, rowPerPage, total);
+
+		List<Review> rvList = rvs.list(m_num);
+
+		model.addAttribute("rpb", rpb);
 		model.addAttribute("movie", movie);
+		model.addAttribute("rvList", rvList);
 		
 		return "movie/movieView";
+	}
+	
+	// 한줄평 작성
+	@RequestMapping("rInsert.do")
+	public String rInsert(Review rv) {
+		rvs.insert(rv);
+	
+		return "movie/movieView.do?m_num"+ rv.getM_num();
+		//return "redirect:/reviewList.do?m_num=" + rv.getM_num();
+	}
+
+	// 한줄평 삭제
+	@RequestMapping("rDelete.do")
+	public String rDelete(Review rv) {
+		rvs.delete(rv.getRe_num());
+
+		return "movie/movieView.do?m_num"+ rv.getM_num();
+		//return "redirect:/reviewList.do?m_num=" + rv.getM_num();
+	}
+
+	// 한줄평 수정
+	@RequestMapping("rUpdate.do")
+	public String rUpdate(Review rv) {
+		rvs.update(rv);
+
+		return "movie/movieView.do?m_num"+ rv.getM_num();
+		//return "redirect:/reviewList.do?m_num=" + rv.getM_num();
 	}
 }

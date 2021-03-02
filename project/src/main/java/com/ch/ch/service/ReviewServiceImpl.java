@@ -12,8 +12,8 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	private ReviewDao rvd;
 	
-	public List<Review> list(int m_num) {
-		return rvd.list(m_num);
+	public List<Review> list(int m_num) { 
+		return rvd.list(m_num); 
 	}
 	
 	public void insert(Review rv) {
@@ -27,4 +27,9 @@ public class ReviewServiceImpl implements ReviewService{
 	public void update(Review rv) {
 		rvd.update(rv);
 	}
+	
+	 public int getTotal(Review review) {
+		 return rvd.getTotal(review); 
+	}
+	
 }

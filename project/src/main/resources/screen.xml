@@ -6,9 +6,11 @@
 <mapper namespace="screenns">
 	<select id="selectTitleList" parameterType="hashmap" resultType="screen">
 		select * from screen where t_num = #{theater_num} and m_num = #{movie_num} and sc_date = #{sc_date}
-		<!-- select * from screen where t_num = TO_NUMBER(#{theater_num}) and m_num = TO_NUMBER(#{movie_num}) and sc_date = #{sc_date}; -->
 	</select>
 	<select id="selectCnt" parameterType="integer">
 		select mt_count from screen s, movieTheater m where s.t_num = m.t_num
+	</select>
+	<select id="select" parameterType="integer" resultType="screen">
+		select * from screen where sc_num = #{sc_num}
 	</select>
 </mapper>

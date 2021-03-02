@@ -12,7 +12,7 @@
 <%@ include file="../mainNav.jsp" %>
 <script type="text/javascript">
 	alert("로그아웃 되었습니다");
-	location.href="loginForm.do";
+	location.href="memberLoginForm.do";
 </script>
 <%@ include file="../mainFloor.jsp" %>
 </body>
