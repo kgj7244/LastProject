@@ -74,7 +74,7 @@ public class StoreController {
 	
 	@RequestMapping("storeUpload")
 	public String storeUpload(Store store,Model model,HttpSession session) throws IOException {
-	
+	System.out.println("1");
 		String s_Pimage = store.getFile().getOriginalFilename();
 		
 		if (s_Pimage != null && !s_Pimage.equals("")) {			
