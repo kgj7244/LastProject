@@ -15,7 +15,7 @@
 			<td><a href="theaterMainForm.do">극장</a></td>
 			<td><a href="ticketMainForm.do">예매 </a></td>
 			<td><a href="storeMainForm.do">스토어 </a></td>
-			<td><a href="#">고객센터 </a></td>
+			<td><a href="boardList.do">고객센터 </a></td>
 		</tr>
 	</table>
 </div>

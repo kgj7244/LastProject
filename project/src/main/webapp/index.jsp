@@ -8,7 +8,18 @@
 </head>
 <body>
 <script type="text/javascript">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 	location.href="mainForm.do";
+<<<<<<< HEAD
+=======
+
+=======
+	location.href="mainForm.do";
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 </script>
 </body>
 </html>

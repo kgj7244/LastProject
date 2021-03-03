@@ -13,4 +13,6 @@ public interface ScreenService {
 
 	Screen select(int sc_num);
 
+	MovieTheater selectMovieTheater(int mt_num);
+
 }

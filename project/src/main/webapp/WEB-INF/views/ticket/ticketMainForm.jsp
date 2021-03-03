@@ -43,10 +43,10 @@
 			});
 		}
 	}
-	function AllSelectChk(mt_num, sc_num){
+	function AllSelectChk(mt_num, sc_num, mt_name){
 		mt_num1 = mt_num;
 		sc_num1 = sc_num;
-		$('#mt_title').html("<input type='text' name='mt_num' value='"+mt_num+"관' disabled='disabled' id='mt_num'>");
+		$('#mt_name').html("<input type='text' name='mt_name' value='"+mt_name+"' disabled='disabled' id='mt_name'>");
 	}
 	function Chk1() {
 		if(frm1.m_title2.value==""||frm2.t_title2.value==""||frm3.sc_date2.value==""){
@@ -177,7 +177,7 @@
 								<td><span id="sc_date"></span></td>
 							</tr>
 							<tr>
-								<td><span id="mt_title"></span></td>
+								<td><span id="mt_name"></span></td>
 							</tr>
 						</table>
 					</td>

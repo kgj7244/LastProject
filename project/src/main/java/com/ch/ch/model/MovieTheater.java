@@ -1,5 +1,8 @@
 package com.ch.ch.model;
 
+import lombok.Data;
+
+@Data
 public class MovieTheater {
 	private int mt_num; //상영관번호
 	private String mt_name; //상영관이름

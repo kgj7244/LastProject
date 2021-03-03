@@ -25,13 +25,16 @@
 	<beans:bean id="sc" class="com.ch.ch.service.SessionChk"></beans:bean>
 	<interceptors>
 		<interceptor>
+			<!-- 로그인이 필요한 경우 페이지 입력하시면 로그인 페이지로 이동합니다. -->
 			<mapping path="/mypage.do"/>
 			<mapping path="/memberView.do"/>
 			<mapping path="/memberUpdateForm.do"/>
 			<mapping path="/memberTicket.do"/>
 			<mapping path="/memberStore.do"/>
 			<mapping path="/memberDelete.do"/>
-			
+			<mapping path="/ticketMainForm.do"/>
+			<mapping path="/payment.do"/>
+			<mapping path="/paymentForm.do"/>			
 			<beans:ref bean="sc"/>
 		</interceptor>
 	</interceptors>
