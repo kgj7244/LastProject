@@ -25,12 +25,15 @@ public class MovieDaoImpl implements MovieDao{
 	public int insert(Movie movie) {
 		return sst.insert("moviens.insert", movie);
 	}
+	
 	public Movie selectTitle(String m_title) {
 		return sst.selectOne("moviens.selectTitle", m_title);
 	}
+	
 	public int getTotal(Review review) {
 		return sst.selectOne("moviens.getTotal", review);
 	}
+	
 	public List<Review> list1(int m_num) {
 		return sst.selectList("moviens.list1", m_num);
 	}

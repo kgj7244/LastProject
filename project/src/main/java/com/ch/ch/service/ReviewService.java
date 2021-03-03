@@ -4,7 +4,7 @@ import java.util.List;
 import com.ch.ch.model.Review;
 
 public interface ReviewService {
- 	List<Review> list(int m_num);
+ 	List<Review> list(Review review);
 
 	void insert(Review rv);
 

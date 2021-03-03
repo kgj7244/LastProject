@@ -135,8 +135,7 @@ create table review (
 	re_date date default sysdate not null,                         --업로드 시간
 	re_update date default sysdate not null,					   --수정시간
 	member_id nvarchar2(50) references member(member_id) not null, --회원아이디
-	m_num number references movie(m_num),						   --영화번호
-	re_del char(1) default 'n'									   --삭제여부
+	m_num number references movie(m_num)						   --영화번호
 );
 create sequence re_num increment by 1 start with 1;
 insert into review values(1,'재미있습니다.',5,sysdate,sysdate,'lamslams',1,'n');
@@ -148,19 +147,16 @@ select* from review;
 --------------------------------------회원 게시판
 
 create table board(
-	b_num number primary key not null,                             --게시글 번호
-	b_email nvarchar2(50) not null,                                --이메일
-	b_title nvarchar2(50) not null, 	                           --제목
-	b_content nvarchar2(1000) not null,                            --내용
-	b_password nvarchar2(50) not null,                             --비밀번호	
-	b_view number not null, 	                                   --조회수
-	b_ip nvarchar2(50) not null, 	                               --아이피
-	b_ref number not null, 		                                   --참조번호
-	b_level number not null, 	                                   --참조레벨	
-	b_date date default sysdate not null,                          --작성일	
-	b_ans char(1) default 'n', 		                               --답변여부
-	b_del char(1) default 'n',		                               --삭제여부
-	member_id nvarchar2(50) references member(member_id) not null --아이디
+	b_num number primary key not null,                              --게시글 번호
+	b_title nvarchar2(100) not null, 	                            --제목
+	b_content nvarchar2(1000) not null,                             --내용
+	b_lock nvarchar2(50) not null,         		 					--비밀글여부
+	b_password nvarchar2(50),                             			--비밀번호	
+	b_readcount number not null, 	                                --조회수
+	b_date date default sysdate not null,                           --작성일	
+	b_del char(1) default 'n',		                    		    --삭제여부
+ 	b_code nvarchar2(40),                                           --카테고리(회원/예매/스토어/기타)
+	member_id nvarchar2(50) references member(member_id) not null   --아이디
 );
 
 -----------------------------------상영
@@ -238,12 +234,8 @@ create table bank(
 );
 
 --------------------------------------스토어
-insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg','9999-12-31',sysdate+730,9999,0,2500,0,'n');
-insert into store values(2,'n','2','스위트 콤보','오리지널L+탄산음료 M2','스위트콤보.jpg','9999-12-31',sysdate+730,9999,0,9000,0,'n');
-insert into store values(3,'n','4','이벤트권','이벤트 1장','이벤트1.jpg','2021-03-02',sysdate+730,100,0,10000,0,'n');
-
---이벤트시작,이벤트끝날짜. +/판매기간 판매수량 구매수량
---스토어 테이블을 받아서 이벤트스토어를 추가
+insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg',0,2500,'n');
+insert into store values(2,'n','2','스위트 콤보','오리지널L+탄산음료 M2','스위트콤보.jpg',0,9000,'n');
 
 select * from store;
 drop table store CASCADE CONSTRAINTS;
@@ -254,22 +246,46 @@ create table store(
 	s_Pclass number(10) not null, 	--상품 분류(관람권,스낵)
 	s_Pname varchar2(50) not null, 		--상품 이름
 	s_Pconfig varchar2(50) not null, 	--상품 구성
-	s_Pimage varchar2(100) not null, 	--상품 이미지
-	
-	s_per date not null, 			--판매기간   날짜+숫자=날짜
-	s_validity date not null, 		--유효기간 #
-	s_total number(10) not null, 	--총 판매수량 #
-	s_purchase number(10) default 0 not null, --구매수량  (이벤트 한정 상품)
-	s_prive number(10) not null,	--금액
-	s_sale number(10) not null,		--할인율 
+	s_Pimage varchar2(100) not null, 	--상품 이미지	
+	s_purchase number(10) default 0 not null, --구매수량 
+	s_prive number(10) not null,	--가격
 	del char(1) default 'n'		--환불 여부
 );	
+
+insert into store_event values(3,'n','4','이벤트권','이벤트 1장','이벤트1.jpg',0,10000,'n','2021-03-02',sysdate+730,100,0);
+
+create table store_event(
+	s_num number(10) primary key references store(s_num) not null,  --스토어 게시글 번호
+	s_del char(1) default 'n', 			--게시글 삭제여부
+	s_Pclass number(10) not null, 	--상품 분류(관람권,스낵)
+	s_Pname varchar2(50) not null, 		--상품 이름
+	s_Pconfig varchar2(50) not null, 	--상품 구성
+	s_Pimage varchar2(100) not null, 	--상품 이미지	
+	s_purchase number(10) default 0 not null, --구매수량
+	s_prive number(10) not null,	--가격
+	del char(1) default 'n',		--환불 여부
+	
+	s_per date not null, 			--판매기간  시작
+	s_pernd date not null, 			--판매기간   끝 #
+	s_total number(10) not null, 	--총 판매수량 #
+	s_sale number(10) not null		--할인율 
+	
+);
+
+--	s_validity date not null, 		--유효기간 # cart로 이동
 --  , t_account varchar2(50) references bank(t_account) not null --입금번호
 	--잠깐 제외시킴. 
 
 
 create sequence s_num increment by 1 start with 1;
-
+------------------------------- cart (미완성)
+create table cart (
+	cart_id number(10) primary key,
+	member_id varchar2(12) not null REFERENCES member(member_id), 
+	s_num number(10) not null REFERENCES store(s_num),
+	
+	s_purchase number(5) default '1' --주문수량--
+	);
 
 -----------------------------------------고객센터(미완성)
 create table service(

@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rvns">
-	<select id="list" parameterType="integer" resultType="rv">
-		select * from review where m_num=#{m_num} order by re_num
+	<select id="list" parameterType="rv" resultType="rv"> <!-- 댓글을 찾는다는 의미가 리스트를 불러오냐는 말이세요? 네넹 네 -->
+		select * from(select a.*, rownum rn from (select *  from review order by re_num desc)a)
+		 where  rn between #{startRow} and #{endRow} and m_num=#{m_num}
 	</select>
 	<select id="getTotal" parameterType="rv" resultType="integer">
 		select count(*) from review where m_num=#{m_num}
@@ -13,13 +14,16 @@
 			select nvl(max(re_num), 0) + 1 from review
 		</selectKey>
 		insert into review values (#{re_num}, #{re_con},
-			#{re_grade}, sysdate, sysdate, #{member_id}, #{m_num}, 'n')
+			#{re_grade}, sysdate, sysdate, #{member_id}, #{m_num})
 	</insert>
-	<update id="delete" parameterType="integer">
-		update review set re_del='y' where re_num=#{re_num}
-	</update>
+	<delete id="delete" parameterType="integer">
+		delete from review where re_num=#{re_num}
+	</delete>
 	<update id="update" parameterType="rv">
+		update review set re_con=#{re_con},	re_update=sysdate where re_num=#{re_num}
+	</update>
+	<!-- <update id="update" parameterType="rv">
 		update review set re_con=#{re_con}, re_grade=#{re_grade}, 
 			re_update=sysdate where re_num=#{re_num}
-	</update>
+	</update> --><!-- 평점 수정 구현하면 바꿀 예정 -->
 </mapper>

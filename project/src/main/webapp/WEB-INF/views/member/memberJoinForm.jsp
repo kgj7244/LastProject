@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	function chk() {
 		if(frm.member_password.value != frm.member_password2.value) {
-			alert("암호와 암화확인이 다릅니다");
+			alert("암호와 암호확인이 다릅니다");
 			frm.member_password.focus();
 			frm.member_password.value("");
 			return false;

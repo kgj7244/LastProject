@@ -11,27 +11,23 @@ public class ReviewDaoImpl implements ReviewDao{
 	@Autowired
 	private SqlSessionTemplate sst;
 	
-	
-	public List<Review> list(int m_num) {
-		 return sst.selectList("rvns.list",	 m_num); 
+	public List<Review> list(Review review) {
+		 return sst.selectList("rvns.list",	 review); 
 	}
-	
 	
 	public void insert(Review rv) {
 		sst.insert("rvns.insert", rv);
 	}
 	
 	public void delete(int re_num) {
-		sst.update("rvns.delete", re_num);
+		sst.delete("rvns.delete", re_num);
 	}
 	
 	public void update(Review rv) {
 		sst.update("rvns.update", rv);
 	}
 	
-	
 	public int getTotal(Review review) { 
 		return sst.selectOne("rvns.getTotal", review); 
 	}
-	
 }

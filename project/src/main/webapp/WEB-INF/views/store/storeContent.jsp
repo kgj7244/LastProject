@@ -32,7 +32,7 @@
 </tr>
 
 <tr>
-<th >유효기간</th>
+<th>유효기간</th>
 <td>구매일로부터 12개월</td>
 </tr>
 
@@ -44,13 +44,12 @@ class="input-text" readonly="readonly" value="1">
 </td>
 </tr>
 
-<tr><td>
-
-
-					</td></tr>
-
 <tr><td>구매 수량</td><td>${store.s_purchase }</td></tr>
-<tr><td>총 상품금액</td><td>${total+(s_prive*s_purchase)}</td></tr>
+
+<tr>
+<th>총 상품금액</th>
+<td>${total+(s_prive*s_purchase)}원</td>
+</tr>
 
 
 
@@ -59,7 +58,7 @@ class="input-text" readonly="readonly" value="1">
 
 <!-- ====================================== -->  
 <tr>
-<td><input type="button" value="장바구니" onclick="cartList()"></td> 
+<td><input type="submit" value="장바구니" onclick="location.href='cartList.do?s_num=${store.s_num}"></td> 
 <td><input type="submit" value="구매하기" onclick="order()"></td>
 </tr>
 
