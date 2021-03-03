@@ -43,9 +43,10 @@
 			});
 		}
 	}
-	function AllSelectChk(mt_num, sc_num, mt_name){
+	function AllSelectChk(mt_num, sc_num, mt_name, sc_start){
 		mt_num1 = mt_num;
 		sc_num1 = sc_num;
+		frm9.sc_start.value=sc_start;
 		$('#mt_name').html("<input type='text' name='mt_name' value='"+mt_name+"' disabled='disabled' id='mt_name'>");
 	}
 	function Chk1() {
@@ -165,6 +166,7 @@
 		<input type="hidden" name="sc_date2">
 		<input type="hidden" name="mt_num2">
 		<input type="hidden" name="sc_num2">
+		<input type="hidden" name="sc_start">
 			<table class="table table-bordered">
 				<tr>
 					<td><span id="img"></span><span id="m_title"></span></td>

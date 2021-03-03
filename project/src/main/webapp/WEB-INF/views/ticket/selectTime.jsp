@@ -25,7 +25,7 @@
 				${theater.t_title} 
 			</td>
 			<td>
-				<input type="button" value="${i.mt_name}" onclick="AllSelectChk(${i.mt_num},${i.sc_num},'${i.mt_name}','${movie.m_title}','${theater.t_title}',${i.t_num})">
+				<input type="button" value="${i.mt_name}" onclick="AllSelectChk(${i.mt_num},${i.sc_num},'${i.mt_name}','${i.sc_start}','${movie.m_title}','${theater.t_title}',${i.t_num})">
 			</td>
 		</tr>
 </c:forEach>

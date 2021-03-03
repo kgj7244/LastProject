@@ -22,7 +22,10 @@ public class ScreenServiceImpl implements ScreenService{
 	public Screen select(int sc_num) {
 		return sd.select(sc_num);
 	}
-	public MovieTheater selectMovieTheater(int mt_num) {
-		return sd.selectMovieTheater(mt_num);
+	public MovieTheater selectMovieTheater(int mt_num, String sc_start, String sc_date) {
+		return sd.selectMovieTheater(mt_num, sc_start, sc_date);
+	}
+	public MovieTheater selectMovieTheaterFind(int mt_num) {
+		return sd.selectMovieTheaterFind(mt_num);
 	}
 }

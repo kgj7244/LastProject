@@ -48,29 +48,26 @@ public class TicketController {
 		Theater theater = tts.selectTitle(t_title); // theater.getT_num() 극장번호 가져옴
 		int theater_num = theater.getT_num();
 		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date); // 영화번호, 극장번호, 날짜를 가지고와서 그 해당하는 시간대를 출력하기 위함		
-		 //int movieTheaterCnt = ss.selectCnt(theater.getT_num());
-		 //System.out.println("movieTheaterCnt : " + movieTheaterCnt);
-		System.out.println("screen : " + screen);
+		
 		model.addAttribute("movie",movie);
 		model.addAttribute("theater",theater);
 		model.addAttribute("screen",screen);
 		return "ticket/selectTime";
 	}
 	@RequestMapping("paymentForm")
-	public String paymentForm(Model model, String m_title2, String t_title2, String sc_date2, String mt_num2 ,String sc_num2) {
+	public String paymentForm(Model model, String m_title2, String t_title2, String sc_date2, String mt_num2 ,String sc_num2) { // 오케이 일단 여기 못들어온다 여기 에러다 희주야 여기 찾아라 제발 여기다 sc_num만 받고 넘기면 된다 코드 다시 짜라 제발 희주야 집에가서 롤 하지마라
 		//m_title2 : 영화제목, t_title2 : 지점이름(신촌), sc_date2 : 날짜, mt_num2 : 상영관
 		String m_title = m_title2;
 		String t_title = t_title2;
 		String sc_date = sc_date2;
 		int mt_num = Integer.parseInt(mt_num2);
-		MovieTheater movieTheater = ss.selectMovieTheater(mt_num);
+		MovieTheater movieTheater = ss.selectMovieTheaterFind(mt_num);
 		int sc_num = Integer.parseInt(sc_num2);
 		Movie movie = ms.selectTitle(m_title); // 영화제목으로 검색해서 하나 가져옴
 		Theater theater = tts.selectTitle(t_title); //지점으로 검색해서 극장의 정보 하나 가져옴
 		Screen screen = ss.select(sc_num); // 해당 상영지점 구하기
+		System.out.println("sc_num : " + sc_num); 
 		
-		
-	
 		model.addAttribute("sc_num", sc_num);
 		model.addAttribute("movieTheater", movieTheater);
 		model.addAttribute("movie", movie);
@@ -84,13 +81,14 @@ public class TicketController {
 		return "ticket/movieTheater50";
 	}
 	@RequestMapping("payment")
-	public String payment(Model model, String totalPrice, String selectList , String m_title, String t_title, String mt_num2, String sc_num2, String adult_ticket, String youth_ticket) {
+	public String payment(Model model, String totalPrice, String selectList , String m_title, String t_title, String mt_num2, String sc_num2, String adult_ticket, String youth_ticket, String sc_date2, String sc_start) {
 		//m_title:영화제목, t_loc:극장주소, t_title:극장명, mt_num:상영관번호, sc_date:상영날짜, sc_start:상영시간, sc_end:상영종료, m_poster:영화포스터, selectList:구매할 좌석, totalPrice:구매할 금액 ,sc_num:상영번호
 		Movie movie = ms.selectTitle(m_title);
 		Theater theater = tts.selectTitle(t_title);
 		int mt_num = Integer.parseInt(mt_num2);
-		MovieTheater movieTheater = ss.selectMovieTheater(mt_num);
 		int sc_num = Integer.parseInt(sc_num2);
+		String sc_date = sc_date2;
+		MovieTheater movieTheater = ss.selectMovieTheater(mt_num, sc_start, sc_date);
 		Screen screen = ss.select(sc_num);
 		
 		model.addAttribute("movie", movie);

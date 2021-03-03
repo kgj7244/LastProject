@@ -13,6 +13,8 @@ public interface ScreenDao {
 
 	Screen select(int sc_num);
 
-	MovieTheater selectMovieTheater(int mt_num);
+	MovieTheater selectMovieTheater(int mt_num, String sc_start, String sc_date);
+
+	MovieTheater selectMovieTheaterFind(int mt_num);
 
 }

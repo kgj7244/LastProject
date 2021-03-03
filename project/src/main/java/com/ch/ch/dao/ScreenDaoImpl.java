@@ -31,7 +31,14 @@ public class ScreenDaoImpl implements ScreenDao{
 	public Screen select(int sc_num) {
 		return sst.selectOne("screenns.select", sc_num);
 	}
-	public MovieTheater selectMovieTheater(int mt_num) {
-		return sst.selectOne("screenns.selectMovieTheater", mt_num);
+	public MovieTheater selectMovieTheater(int mt_num, String sc_start, String sc_date) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mt_num", mt_num);
+		map.put("sc_start", sc_start);
+		map.put("sc_date", sc_date);
+		return sst.selectOne("screenns.selectMovieTheater", map);
+	}
+	public MovieTheater selectMovieTheaterFind(int mt_num) {
+		return sst.selectOne("screenns.selectMovieTheaterFind", mt_num);
 	}
 }
