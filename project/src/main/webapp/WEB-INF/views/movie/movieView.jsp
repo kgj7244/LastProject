@@ -63,6 +63,13 @@
 <body>
 	<div><%@include file="../mainTop.jsp" %></div>
 	<div><%@include file="../mainNav.jsp" %></div>
+	<div align="center">
+    		<!-- 나중에 관리자 적용되면 그때 master_id == 'master'로 변경 -->
+    		<input type="hidden" name="member_id" value="${member_id}">
+			<c:if test="${member_id == 'master'}">
+				<a href="movieUpdateForm.do?m_num=${movie.m_num}">영화 수정</a>
+			</c:if>
+		</div>
 	<div class="container" align="center">
 		<h2 class="text-primary">${movie.m_title}</h2>
 		<div>
@@ -93,6 +100,7 @@
 		</div>
 		<div id="gradedisp"><!-- 통계 --></div>
 		<!-- 추가한 부분 -->
+		<h2 class="text-primary">리뷰</h2>
 		<div class="container" align="center" id="rvListDisp">
 			<c:if test="${empty rvList}">
 				<table class="table table-striped">

@@ -24,6 +24,12 @@
 <div style="width:50%; float:right;">
 <table>
 
+<c:if test="${store.s_Pclass==4}">
+<tr><th>판매기간</th>
+<td>${store.s_per } ~ ${store.s_pernd }</td>
+</tr>
+</c:if>
+
 <tr><th><h3>${store.s_prive }원</h3></th></tr>
 
 <tr>
@@ -36,6 +42,10 @@
 <td>구매일로부터 12개월</td>
 </tr>
 
+<c:if test="${store.s_Pclass==4}">
+<tr><th>한정 판매 </th><td>남은 수량 ${store.s_total }개 </td></tr>
+</c:if>
+
 <tr>
 <th>금액/수량</th>
 <td>
@@ -43,6 +53,7 @@
 class="input-text" readonly="readonly" value="1">
 </td>
 </tr>
+
 
 <tr><td>구매 수량</td><td>${store.s_purchase }</td></tr>
 
@@ -58,8 +69,8 @@ class="input-text" readonly="readonly" value="1">
 
 <!-- ====================================== -->  
 <tr>
-<td><input type="submit" value="장바구니" onclick="location.href='cartList.do?s_num=${store.s_num}"></td> 
-<td><input type="submit" value="구매하기" onclick="order()"></td>
+<td><input type="submit" value="장바구니" onclick="location.href='cartInsert.do?s_num=${store.s_num}'"></td>
+<td><input type="submit" value="구매하기" onclick="location.href='cartInsert.do?s_num=${store.s_num}'"></td>
 </tr>
 
 </table>

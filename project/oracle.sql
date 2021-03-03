@@ -103,17 +103,16 @@ select * from movieTheater;
 create table movie (
 	m_num number primary key not null, 	--영화번호
 	m_title nvarchar2(50) not null,		--제목
-	m_content nvarchar2(1000) not null,	--줄거리
+	m_director nvarchar2(50) not null,	--감독
+	m_actor nvarchar2(100) not null,	--출연진
+	m_content nvarchar2(2000) not null,	--줄거리
 	m_rank nvarchar2(50) not null,		--관람등급	
 	m_opendate date not null,			--개봉일
 	m_state nvarchar2(50) not null,     --상태(상영 중, 상영 예정)
 	m_time number not null,		     	--상영시간
-	m_grade number(10,1) not null,		--평균 평점 
-	m_poster nvarchar2(100) not null,  	--포스터
-	m_director nvarchar2(50) not null,	--감독
-	m_actor nvarchar2(100) not null,	--출연진
 	m_genre  nvarchar2(50) not null,	--장르
-	m_del char(1) default 'n'	        --삭제여부 		
+	m_grade number(10,1) not null,		--평균 평점 
+	m_poster nvarchar2(100) not null  	--포스터 		
 );
 create sequence m_num increment by 1 start with 1;
 
@@ -216,7 +215,7 @@ insert into seat values('a4', 'n',2);
 --------------------------------------관리자계좌
 
 create table aam_bank(
-	aam_account nvarchar2(50) primary key not null,       --계좌번호
+	aam_account nvarchar2(50) primary key default '111-1111-111111' not null,       --계좌번호
 	bank_name nvarchar2(50) default '카카오뱅크' not null,   --은행이름
 	aam_name nvarchar2(50) default 'AAM' not null         --이름
 );
@@ -234,10 +233,10 @@ create table bank(
 );
 
 --------------------------------------스토어
-insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg',0,2500,'n');
-insert into store values(2,'n','2','스위트 콤보','오리지널L+탄산음료 M2','스위트콤보.jpg',0,9000,'n');
+insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg',0,2500,'n','1111-03-02','9999-12-02',99999,0);
+insert into store values(2,'n','2','스위트 콤보','오리지널L+탄산음료 M2','스위트콤보.jpg',0,9000,'n','1111-03-02','9999-12-02',99999,0);
 
-select * from store;
+select * from store;s
 drop table store CASCADE CONSTRAINTS;
 
 create table store(
@@ -249,44 +248,40 @@ create table store(
 	s_Pimage varchar2(100) not null, 	--상품 이미지	
 	s_purchase number(10) default 0 not null, --구매수량 
 	s_prive number(10) not null,	--가격
-	del char(1) default 'n'		--환불 여부
-);	
-
-insert into store_event values(3,'n','4','이벤트권','이벤트 1장','이벤트1.jpg',0,10000,'n','2021-03-02',sysdate+730,100,0);
-
-create table store_event(
-	s_num number(10) primary key references store(s_num) not null,  --스토어 게시글 번호
-	s_del char(1) default 'n', 			--게시글 삭제여부
-	s_Pclass number(10) not null, 	--상품 분류(관람권,스낵)
-	s_Pname varchar2(50) not null, 		--상품 이름
-	s_Pconfig varchar2(50) not null, 	--상품 구성
-	s_Pimage varchar2(100) not null, 	--상품 이미지	
-	s_purchase number(10) default 0 not null, --구매수량
-	s_prive number(10) not null,	--가격
 	del char(1) default 'n',		--환불 여부
 	
-	s_per date not null, 			--판매기간  시작
-	s_pernd date not null, 			--판매기간   끝 #
-	s_total number(10) not null, 	--총 판매수량 #
-	s_sale number(10) not null		--할인율 
-	
-);
-
---	s_validity date not null, 		--유효기간 # cart로 이동
---  , t_account varchar2(50) references bank(t_account) not null --입금번호
-	--잠깐 제외시킴. 
-
+	s_per date, 			--판매기간  시작
+	s_pernd date, 			--판매기간   끝 #
+	s_total number(10), 	--총 판매수량 #
+	s_sale number(10)		--할인율 /제거하도록 하자
+);	
 
 create sequence s_num increment by 1 start with 1;
-------------------------------- cart (미완성)
-create table cart (
-	cart_id number(10) primary key,
+------------------------------- cart 장바구니(미완성)
+create table cart1 (
+	cart_num number(10) primary key,
 	member_id varchar2(12) not null REFERENCES member(member_id), 
 	s_num number(10) not null REFERENCES store(s_num),
 	
-	s_purchase number(5) default '1' --주문수량--
+	all_purchase number(10) not null, --구매 물품 총 수량
+	fl_prive number(10) not null --총 금액
+	
 	);
-
+	
+------------------------------- order 구매 데이터(미완성)
+	create table orde (
+	orde_num number(10) primary key,
+	member_id varchar2(12) not null REFERENCES member(member_id), 
+	s_num number(10) not null REFERENCES store(s_num),
+	cart_num number(10) REFERENCES cart(cart_num), --바로구매일 경우 불필
+	
+	buy_date date not null, --구매 날짜
+	s_validity date not null, --유통기한 sysdate+365
+	del char(1) default 'n',	--환불 여부 구매날짜-sysdate 
+	t_account varchar2(50) references bank(t_account) not null --입금번호
+	
+	
+	);
 -----------------------------------------고객센터(미완성)
 create table service(
 	sv_num number primary key not null,  --고객센터번호

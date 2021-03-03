@@ -29,7 +29,7 @@
  
  <div class="image">
  <a href="storeContent.do?s_num=${store.s_num }">
-<span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="100"></span>
+<span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150"></span>
 
   <div class="name"><h4>${store.s_Pname }</h4></div>  
   </a>
@@ -38,7 +38,7 @@
  
   <div>${store.s_prive }원</div>
 
- 
+ </div>
  </c:forEach></c:if>
  </div>
 </div>

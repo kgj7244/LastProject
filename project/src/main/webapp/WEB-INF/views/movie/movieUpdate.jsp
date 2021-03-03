@@ -5,24 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화 추가 결과</title>
+<title>영화 정보 수정 결과</title>
 </head>
 <body>
 	<c:if test="${result > 0}">
 		<script type="text/javascript">
-			alert("입력 성공했습니다.");
-			location.href="movieMainForm.do";
+			alert("수정 성공했습니다.");
+			location.href="movieView.do?m_num=${movie.m_num}";
 		</script>
 	</c:if>
 	<c:if test="${result == 0}">
 		<script type="text/javascript">
-			alert("입력 실패했습니다. 다시 시도해주세요.");
-			history.go(-1);
-		</script>
-	</c:if>
-	<c:if test="${result == -1}">
-		<script type="text/javascript">
-			alert("이미 있는 영화 번호입니다. 다른 번호로 적어주세요");
+			alert("수정 실패했습니다. 다시 시도해주세요.");
 			history.go(-1);
 		</script>
 	</c:if>

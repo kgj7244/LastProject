@@ -37,4 +37,8 @@ public class MovieDaoImpl implements MovieDao{
 	public List<Review> list1(int m_num) {
 		return sst.selectList("moviens.list1", m_num);
 	}
+	
+	public int update(Movie movie) {
+		return sst.update("moviens.update", movie);
+	}
 }

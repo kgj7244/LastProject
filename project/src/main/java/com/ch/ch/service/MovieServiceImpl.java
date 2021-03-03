@@ -29,14 +29,15 @@ public class MovieServiceImpl implements MovieService{
 		return md.selectTitle(m_title);
 	}
 
-	@Override
 	public int getTotal(Review review) {
-		// TODO Auto-generated method stub
 		return md.getTotal(review);
 	}
 
-	@Override
 	public List<Review> list1(int m_num) {
 		return md.list1(m_num);
+	}
+	
+	public int update(Movie movie) {
+		return md.update(movie);
 	}
 }

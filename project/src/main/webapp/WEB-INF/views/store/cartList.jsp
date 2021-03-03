@@ -11,7 +11,7 @@
 
 <form  action="order.do" method="post" name=order>
 <input type ="hidden" name = "s_num" value = "${cart.s_num }">
-<input type ="hidden" name = "s_Pname" value = "${cart.s_Pname }">
+<input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
 <input type ="hidden" name = "s_Pimage" value = "${cart.s_Pimage }">
 <input type ="hidden" name = "s_prive" value = "${cart.s_prive }">
 

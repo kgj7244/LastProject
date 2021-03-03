@@ -15,12 +15,12 @@
 		<result column="s_prive" property="s_prive"/>		
 		<result column="del" property="del"/>
 		
-					
-		<result column="s_validity" property="s_validity"/>		
+							
 		<result column="s_per" property="s_per"/>	
+		<result column="s_pernd" property="s_pernd"/>	
 		<result column="s_total" property="s_total"/>
 		<result column="s_sale" property="s_sale"/>
-		<result column="t_account" property="t_account"/>
+		
 	</resultMap>
 	
 	
@@ -35,36 +35,29 @@
 	<select id="pclist" parameterType="integer" resultMap="storeResult" >
 	select * from store where s_Pclass=#{s_Pclass}  
 	</select>
-		
-	<delete id="delete" parameterType="integer">
-	 delete from store where s_num=#{s_num} 
-	</delete>
-<!-- sql 미수정 -->	
 
 	<insert id="insert" parameterType="store">
-	insert into store values (#{s_num} , 'n', #{s_Pclass}, #{s_Pname}, 
-	#{s_Pconfig}, #{s_Pimage},#{s_prive}, 0 , #{s_sale}, 'n'
+	insert into store values (s_num.nextval , 'n', #{s_Pclass}, #{s_Pname}, 
+	#{s_Pconfig}, #{s_Pimage}, #{s_purchase}, #{s_prive}, 'n',
+	#{s_per},#{s_pernd},#{s_total},#{s_sale}
 	)
 	</insert>
 	
-	<!-- 디볼트 값들 -->
+	<delete id="delete" parameterType="integer">
+	 delete from store where s_num=#{s_num}
+	</delete>
+	
 	<update id="update" parameterType="store">
 	 update store set 
 	 s_del=#{s_del}, s_Pclass=#{s_Pclass}, s_Pname=#{s_Pname}, 
-	 s_Pconfig=#{s_Pconfig},s_Pimage=#{s_Pimage},s_per=#{s_per},s_validity=#{s_validity}, 
-	 s_total=#{s_total},s_purchase=#{s_purchase}, s_prive=#{s_prive}, 
-	 s_sale=#{s_sale},del=#{del}
+	 s_Pconfig=#{s_Pconfig}
+	 <!-- <if test="s_Pimage!=null"> -->	
+			,  s_Pimage=#{s_Pimage}
+		
+	 ,s_purchase=#{s_purchase},s_prive=#{s_prive},del=#{del},
+	 s_per=#{s_per}, s_pernd=#{s_pernd},s_total=#{s_total},s_sale=#{s_sale}
+	 
 	 where s_num=#{s_num} 
 	</update>
-	
-
-	
-	<!-- <insert id="insert" parameterType="store">
-	insert into store values (#{s_num} , 'n', #{s_Pclass}, #{s_Pname}, 
-	#{s_Pconfig}, #{s_Pimage},
-	 #{s_per}, #{s_validity},
-	#{s_total}, 0, #{s_prive}, #{s_sale}, 'n'
-	)
-	</insert> -->
 	
 </mapper>

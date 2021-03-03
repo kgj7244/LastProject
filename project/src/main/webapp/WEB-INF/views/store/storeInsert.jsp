@@ -23,5 +23,11 @@
  </script>
 </c:if>
 
+<c:if test="${result ==-1 }">
+ <script type="text/javascript">
+ alert("이미 있는 번호입니다. 확인해주세요");
+ history.go(-1);
+ </script>
+</c:if>
 </body>
 </html>
