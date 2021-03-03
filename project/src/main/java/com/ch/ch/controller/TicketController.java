@@ -50,7 +50,7 @@ public class TicketController {
 		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date); // 영화번호, 극장번호, 날짜를 가지고와서 그 해당하는 시간대를 출력하기 위함		
 		 //int movieTheaterCnt = ss.selectCnt(theater.getT_num());
 		 //System.out.println("movieTheaterCnt : " + movieTheaterCnt);
-		 
+		System.out.println("screen : " + screen);
 		model.addAttribute("movie",movie);
 		model.addAttribute("theater",theater);
 		model.addAttribute("screen",screen);
@@ -62,14 +62,17 @@ public class TicketController {
 		String m_title = m_title2;
 		String t_title = t_title2;
 		String sc_date = sc_date2;
-		String mt_num = mt_num2;
+		int mt_num = Integer.parseInt(mt_num2);
+		MovieTheater movieTheater = ss.selectMovieTheater(mt_num);
 		int sc_num = Integer.parseInt(sc_num2);
 		Movie movie = ms.selectTitle(m_title); // 영화제목으로 검색해서 하나 가져옴
 		Theater theater = tts.selectTitle(t_title); //지점으로 검색해서 극장의 정보 하나 가져옴
 		Screen screen = ss.select(sc_num); // 해당 상영지점 구하기
 		
+		
 	
-		model.addAttribute("mt_num", mt_num);
+		model.addAttribute("sc_num", sc_num);
+		model.addAttribute("movieTheater", movieTheater);
 		model.addAttribute("movie", movie);
 		model.addAttribute("theater", theater);
 		model.addAttribute("screen", screen);
@@ -79,5 +82,25 @@ public class TicketController {
 	@RequestMapping("movieTheater50")
 	public String movieTheater50() {
 		return "ticket/movieTheater50";
+	}
+	@RequestMapping("payment")
+	public String payment(Model model, String totalPrice, String selectList , String m_title, String t_title, String mt_num2, String sc_num2, String adult_ticket, String youth_ticket) {
+		//m_title:영화제목, t_loc:극장주소, t_title:극장명, mt_num:상영관번호, sc_date:상영날짜, sc_start:상영시간, sc_end:상영종료, m_poster:영화포스터, selectList:구매할 좌석, totalPrice:구매할 금액 ,sc_num:상영번호
+		Movie movie = ms.selectTitle(m_title);
+		Theater theater = tts.selectTitle(t_title);
+		int mt_num = Integer.parseInt(mt_num2);
+		MovieTheater movieTheater = ss.selectMovieTheater(mt_num);
+		int sc_num = Integer.parseInt(sc_num2);
+		Screen screen = ss.select(sc_num);
+		
+		model.addAttribute("movie", movie);
+		model.addAttribute("theater", theater);
+		model.addAttribute("movieTheater", movieTheater);
+		model.addAttribute("screen", screen);
+		model.addAttribute("selectList", selectList);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("adult_ticket", adult_ticket);
+		model.addAttribute("youth_ticket", youth_ticket);
+		return "ticket/payment";
 	}
 }

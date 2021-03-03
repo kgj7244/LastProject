@@ -13,4 +13,6 @@ public class Screen {
 	private int t_num; //극장번호
 	private int mt_num; //상영관번호
 	private int m_num; //영화번호 
+	
+	private String mt_name;//상영관이름
 }

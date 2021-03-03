@@ -12,6 +12,7 @@
 		<typeAlias alias="ticket" type="com.ch.ch.model.Ticket" />
 		<typeAlias alias="screen" type="com.ch.ch.model.Screen" />
 		<typeAlias alias="board" type="com.ch.ch.model.Board" />
+		<typeAlias alias="movieTheater" type="com.ch.ch.model.MovieTheater" />
 	</typeAliases>
 	<mappers>   <!-- 어디로 연결할지 --> 
 		<mapper resource="member.xml" />
