@@ -303,3 +303,5 @@ create sequence sv_num increment by 1 start with 1;
 
 select * from screen where t_num = 1 and m_num = 1 and sc_date = '2021-02-24' and mt_num = 1;
 select * from screen where sc_num = 1;
+select s.*, m.mt_name from screen s, movietheater m where s.mt_num = m.mt_num and m.mt_num = 1;
+select s.*, m.mt_name from screen s, movietheater m where s.mt_num = m.mt_num and s.t_num = 1 and s.m_num = 1 and s.sc_date = '2021-03-01' order by s.sc_start;

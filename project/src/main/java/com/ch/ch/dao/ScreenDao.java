@@ -13,4 +13,6 @@ public interface ScreenDao {
 
 	Screen select(int sc_num);
 
+	MovieTheater selectMovieTheater(int mt_num);
+
 }

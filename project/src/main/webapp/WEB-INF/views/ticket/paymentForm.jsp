@@ -14,10 +14,10 @@
 	var $count1;
 	var count_val; // 성인
 	var count1_val; // 어린이
-	var sum;
-	var a=0;
-	var b=0;
-	var total=0;
+	var adult=0; //성인표 갯수
+	var youth=0; //청소년 표 갯수
+	var total=0; //표 토탈 갯수
+	var totalPrice = 0;
 	
 	$(document).ready(function() {
 		$('#count_adult input[count_adult]').click(function(e) {
@@ -25,24 +25,32 @@
 			type = $(this).attr('count_adult');
 			$count = $(this).parent().children('input.count');
 			count_val = $count.val(); // min 1
-			if(total < 8){
+			if(total < 9){
 				if (type == 'm') {
 					if (count_val < 1) {
 						return;
 					}
 					$count.val(parseInt(count_val) - 1);
-					a=parseInt(count_val)-1;
+					adult=parseInt(count_val)-1;
+					frm20.adult_ticket.value=adult;
 					
 				} else if (type == 'p') {
-					if (count_val < 8) {
-					$count.val(parseInt(count_val) + 1);
-					a = parseInt(count_val) + 1;
+					if(total >= 8){
+						alert('예매는 8장까지');
+						return;
+					}else{
+						if (count_val < 8) {
+						$count.val(parseInt(count_val) + 1);
+						adult = parseInt(count_val) + 1;
+						frm20.adult_ticket.value=adult;
+						}	
 					}
 				}
 			}else{
 				return;
 			}
-			test();
+			MpTotal();
+			PriceTotal();
 		});
 	});
 	
@@ -52,33 +60,47 @@
 			type = $(this).attr('count_youth');
 			$count1 = $(this).parent().children('input.count1');
 			count1_val = $count1.val(); // min 1
-			if (type == 'm') {
-				if (count1_val < 1) {
-					return;
-				}
-				$count1.val(parseInt(count1_val) - 1);
-				b=parseInt(count1_val)-1;
-			} else if (type == 'p') {
-				if(total >= 8){
-					alert('예매는 8장까지');
-					return;
-				}else{
-					
-					if (count1_val < 8) {
+			if(total < 9){
+				if (type == 'm') {
+					if (count1_val < 1) {
+						return;
+					}else{
+					$count1.val(parseInt(count1_val) - 1);
+					youth=parseInt(count1_val)-1;
+					frm20.youth_ticket.value=youth;
+					}
+				}else if (type == 'p') {
+					if(total >= 8){
+						alert('예매는 8장까지');
+						return;
+					}else{
+						if (count1_val < 8) {
 						$count1.val(parseInt(count1_val) + 1);
-						b = parseInt(count1_val) + 1;
+						youth = parseInt(count1_val) + 1;
+						frm20.youth_ticket.value=youth;
+						}
 					}
 				}
-					
+			}else{
+				return;
 			}
-			test();
+			MpTotal();
+			PriceTotal();
 		});
 	});
 	
-	function test() {
-		alert(a+b);
-		total = a+b;
-	
+	function MpTotal() {
+		total = adult+youth; // total 합: 성인 + 어린이
+		var Aprice = adult * 11000;
+		var Yprice = youth * 8000;
+		totalPrice = Aprice + Yprice;
+	}
+	function PriceTotal() {
+		$('#adult').html("<input type='text' name='adult' value='성인 "+adult+"'명 disabled='disabled' id='adult'>");
+		$('#youth').html("<input type='text' name='youth' value='청소년 "+youth+"'명 disabled='disabled' id='youth'>");
+		$('#totalPrice').html("<input type='text' value='최종결제금액 "+totalPrice+"원' disabled='disabled' >");
+		frm20.totalPrice.value=totalPrice;
+		
 	}
 	
 	// 좌석뷰
@@ -87,13 +109,29 @@
 	});
 	
 	function row(selectSeat) {
-		var select = selectSeat;
-		if(selectList.indexOf(select) == -1){
-			selectList.push(select);
-		}else{
-			selectList.splice(selectList.indexOf(select),1);
+		if(total==0){
+			alert('최소 한장 이상 구매를 하셔야 합니다.');
+			return;
 		}
-		$('#rowSelect').html("<input type='text' value="+selectList+">");
+		if(selectList.length <= total){ 
+			var select = selectSeat;
+			if(selectList.indexOf(select) == -1){ 
+				if(selectList.length < total){ // 값이 total 보다 작을때만  리스트에 추가하고  
+					selectList.push(select); 	// 리스트에 추가
+				}else{ // total 값이 같거나 많을때 
+					alert('구입하려는 수보다 많은 좌석을 클릭하셨습니다.');
+					return;
+				}
+			}else{  
+				selectList.splice(selectList.indexOf(select),1); // 리스트에서 삭제함
+			}
+			$('#rowSelect').html("<input type='text' value="+selectList+">");
+			frm20.selectList.value=selectList;
+		}
+		else{
+			alert('구입하려는 수보다 많은 좌석을 클릭하셨습니다.');
+			return;
+		}
 	}
 </script>
 </head>
@@ -104,7 +142,16 @@
 <div class="container" align="center">
 	<h2>빠른 예매</h2>
 	<hr>
-	<form action="" name="frm10">
+	<form action="payment.do" name="frm20" method="post">
+		<input type="hidden" name="totalPrice">
+		<input type="hidden" name="selectList">
+		<input type="hidden" name="adult_ticket">
+		<input type="hidden" name="youth_ticket">
+		<input type="hidden" name="m_title" value="${movie.m_title}">
+		<input type="hidden" name="t_title" value="${theater.t_title}">
+		<input type="hidden" name="mt_num2" value="${mt_num}">
+		<input type="hidden" name="sc_num2" value="${sc_num}">
+
 		<table class="table table-bordered">
 			<tr>
 				<td>관람인원 선택</td>
@@ -128,7 +175,14 @@
 							<td><span id="rowSelect"></span></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input type="text" value="${sum}" id="price"></td>
+							<td colspan="2">
+								<span id="adult"></span>
+								<span id="youth"></span><p>
+								<span id="totalPrice">최종결제금액 0원</span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><input type="submit" value="결제하기"></td>
 						</tr>
 					</table>
 				</td>
