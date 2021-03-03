@@ -19,7 +19,6 @@
 
 <table class="table table-bordered">
 
-
 <tr><td>상품 분류</td>
 <td>
  <select name="s_Pclass">
@@ -37,22 +36,22 @@ required="required"></td></tr>
 <tr><td>상품 구성</td><td><input type="text" name="s_Pconfig"
 required="required"></td></tr>
 
-<tr><td>상품 이미지</td><td><input type="file" name="s_Pimage"
+<tr><td>상품 이미지</td><td><input type="file" name="file"
 required="required"></td></tr>
 
 <tr><td>가격</td><td><input type="number" name="s_prive"
 required="required"></td></tr>
 
 
-<!--
 <tr><td>판매기간</td>
-<td><input type="date" name="s_per"></td>
-<td><input type="date" name="s_pernd"></td></tr>
+<td>
+<input type="date" name="s_per" value="1111-01-01">
+<input type="date" name="s_pernd" value="9999-12-31">
+</td></tr>
 
-<tr><td>총 판매수량</td><td><input type="number" name="s_total"></td></tr>
+<tr><td>총 판매수량</td><td><input type="number" name="s_total"  value="99999"></td></tr>
 
-<tr><td>할인율</td><td><input type="number" name="s_sale"></td></tr>
-  -->
+<tr><td>할인율</td><td><input type="number" name="s_sale"  value="0"></td></tr>
 
 <tr><td colspan="2" align="center">
 <input type="submit" value="확인" class="btn btn-warning"></td></tr>

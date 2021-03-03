@@ -3,6 +3,8 @@ package com.ch.ch.model;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -13,12 +15,12 @@ public class Store {
 	private int s_Pclass;  	//상품 분류
 	private String s_Pname;	  //상품 이름
 	private String s_Pconfig; //상품구성
-	private String s_Pimage;
+	private String s_Pimage; //이미지 이름
 	private int s_purchase; //구매수량
 	private int s_prive;	//가격
 	private String del; 	//환불여부
 	
-	
+
 	
 	private Date s_per;		//판매기간 시작
 	private Date s_pernd;	//판매기간 끝
@@ -27,6 +29,8 @@ public class Store {
 	
 	private String t_account; //입금 (거래번호
 	
+	private MultipartFile file; //이미지 파일
+
 	
 
 }
