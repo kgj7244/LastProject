@@ -103,17 +103,16 @@ select * from movieTheater;
 create table movie (
 	m_num number primary key not null, 	--영화번호
 	m_title nvarchar2(50) not null,		--제목
-	m_content nvarchar2(1000) not null,	--줄거리
+	m_director nvarchar2(50) not null,	--감독
+	m_actor nvarchar2(100) not null,	--출연진
+	m_content nvarchar2(2000) not null,	--줄거리
 	m_rank nvarchar2(50) not null,		--관람등급	
 	m_opendate date not null,			--개봉일
 	m_state nvarchar2(50) not null,     --상태(상영 중, 상영 예정)
 	m_time number not null,		     	--상영시간
-	m_grade number(10,1) not null,		--평균 평점 
-	m_poster nvarchar2(100) not null,  	--포스터
-	m_director nvarchar2(50) not null,	--감독
-	m_actor nvarchar2(100) not null,	--출연진
 	m_genre  nvarchar2(50) not null,	--장르
-	m_del char(1) default 'n'	        --삭제여부 		
+	m_grade number(10,1) not null,		--평균 평점 
+	m_poster nvarchar2(100) not null  	--포스터 		
 );
 create sequence m_num increment by 1 start with 1;
 

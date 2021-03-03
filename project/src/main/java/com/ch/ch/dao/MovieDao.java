@@ -16,4 +16,6 @@ public interface MovieDao {
 	int getTotal(Review review);
 
 	List<Review> list1(int m_num);
+
+	int update(Movie movie);
 }

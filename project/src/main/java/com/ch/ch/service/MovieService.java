@@ -16,4 +16,6 @@ public interface MovieService {
 	int getTotal(Review review); // 실험 리뷰
 
 	List<Review> list1(int m_num); // 실험 리스트
+
+	int update(Movie movie);
 }

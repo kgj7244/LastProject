@@ -19,6 +19,7 @@ import com.ch.ch.service.ReviewService;
 public class MovieController {
 	@Autowired
 	private MovieService ms;
+	
 	@Autowired
 	private ReviewService rvs;
 	
@@ -60,15 +61,12 @@ public class MovieController {
 			String real = request.getSession().getServletContext().getRealPath("/resources/images/m_poster");
 			String path = real + "/" + m_poster;
 			
-			System.out.println("path :" + path);
-			
 			FileOutputStream fos = new FileOutputStream(path);
 			fos.write(movie.getFile().getBytes());
 			fos.close();
 			
 			movie.setM_poster(m_poster);	
 		}
-		System.out.println(movie);
 		
 		Movie mv = ms.select(movie.getM_num());
 		int result = 0;
@@ -133,4 +131,43 @@ public class MovieController {
 
 		return "redirect:/movieView.do?m_num=" + rv.getM_num();
 	}
+	
+	//영화 수정 작성 폼
+	@RequestMapping("movieUpdateForm")
+	public String movieUpdateForm(int m_num, Model model) {
+		Movie movie = ms.select(m_num);
+		  
+		List<Movie> movieList = ms.list();
+		
+		model.addAttribute("movie", movie);
+		model.addAttribute("movieList",movieList);
+		 
+		return "movie/movieUpdateForm";
+	}
+	
+	//영화 수정 결과 (글 + 이미지 수정)
+	 @RequestMapping("movieUpdate") 
+	 public String movieUpdate(Movie movie, Model model, HttpServletRequest request) throws IOException { 
+		 int result = 0;
+		 
+		 String m_poster = movie.getFile().getOriginalFilename();
+	 
+		 if(m_poster != null && !m_poster.equals("")) { 
+			 movie.setM_poster(m_poster);
+	 
+			 String real = request.getSession().getServletContext().getRealPath("/resources/images/m_poster");
+			 String path = real + "/" + m_poster;
+	
+			 FileOutputStream fos = new FileOutputStream(path);
+			 fos.write(movie.getFile().getBytes());
+			 fos.close();
+	  
+		 } else result = -1;
+	 
+		 result = ms.update(movie);
+		 
+		 model.addAttribute("result", result);
+		
+		 return "movie/movieUpdate";
+	 }
 }
