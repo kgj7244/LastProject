@@ -31,6 +31,7 @@ public class TicketController {
 	public String ticketMainForm(Model model, Theater theater) {
 		List<Movie> movie = ms.list(); // 영화 리스트
 		List<Theater> theater1 = tts.locList(theater); // 극장 지역 리스트
+		
 		model.addAttribute("movie", movie);
 		model.addAttribute("theater1", theater1);
 		return "ticket/ticketMainForm";
@@ -38,6 +39,7 @@ public class TicketController {
 	@RequestMapping(value = "selectTheater") // 극장주소을 클릭시 옆에 극장명 나오기
 	public String selectTheater(String id, Model model) {
 		List<Theater> selectTheater = tts.selectTheater(id);
+		
 		model.addAttribute("selectTheater", selectTheater);
 		return "ticket/selectTheater";
 	}
@@ -61,13 +63,13 @@ public class TicketController {
 		String t_title = t_title2;
 		String sc_date = sc_date2;
 		int mt_num = Integer.parseInt(mt_num2);
-		MovieTheater movieTheater = ss.selectMovieTheaterFind(mt_num);
 		int sc_num = Integer.parseInt(sc_num2);
+		MovieTheater movieTheater = ss.selectMovieTheaterFind(mt_num, sc_num);
 		Movie movie = ms.selectTitle(m_title); // 영화제목으로 검색해서 하나 가져옴
 		Theater theater = tts.selectTitle(t_title); //지점으로 검색해서 극장의 정보 하나 가져옴
-		Screen screen = ss.select(sc_num); // 해당 상영지점 구하기
-		System.out.println("sc_num : " + sc_num); 
-		
+		Screen screen = ss.select(sc_num, mt_num); // 해당 상영지점 구하기
+		 
+		model.addAttribute("mt_num", mt_num);
 		model.addAttribute("sc_num", sc_num);
 		model.addAttribute("movieTheater", movieTheater);
 		model.addAttribute("movie", movie);
@@ -88,8 +90,8 @@ public class TicketController {
 		int mt_num = Integer.parseInt(mt_num2);
 		int sc_num = Integer.parseInt(sc_num2);
 		String sc_date = sc_date2;
-		MovieTheater movieTheater = ss.selectMovieTheater(mt_num, sc_start, sc_date);
-		Screen screen = ss.select(sc_num);
+		MovieTheater movieTheater = ss.selectMovieTheaterFind(mt_num, sc_num);
+		Screen screen = ss.select(sc_num, mt_num);
 		
 		model.addAttribute("movie", movie);
 		model.addAttribute("theater", theater);

@@ -19,13 +19,13 @@ public class ScreenServiceImpl implements ScreenService{
 	public int selectCnt(int t_num) {
 		return sd.selectCnt(t_num);
 	}
-	public Screen select(int sc_num) {
-		return sd.select(sc_num);
+	public Screen select(int sc_num, int mt_num) {
+		return sd.select(sc_num, mt_num);
 	}
 	public MovieTheater selectMovieTheater(int mt_num, String sc_start, String sc_date) {
 		return sd.selectMovieTheater(mt_num, sc_start, sc_date);
 	}
-	public MovieTheater selectMovieTheaterFind(int mt_num) {
-		return sd.selectMovieTheaterFind(mt_num);
+	public MovieTheater selectMovieTheaterFind(int mt_num, int sc_num) {
+		return sd.selectMovieTheaterFind(mt_num, sc_num);
 	}
 }

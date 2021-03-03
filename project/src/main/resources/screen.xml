@@ -7,19 +7,19 @@
 	
 	<select id="selectTitleList" parameterType="hashmap" resultType="screen">
 		<!-- select * from screen where t_num = #{theater_num} and m_num = #{movie_num} and sc_date = #{sc_date} -->
-		select s.*, m.mt_name from screen s, movieTheater m where s.mt_num = m.mt_num and s.t_num = #{theater_num} and s.m_num = #{movie_num} and s.sc_date = #{sc_date} order by s.sc_start
+		select s.*, m.mt_name from screen s, movieTheater m where s.mt_num = m.mt_num and s.t_num = #{theater_num} and s.m_num = #{movie_num} and s.sc_date = #{sc_date} and s.sc_del = 'n' order by s.sc_start
 	</select>
 	<select id="selectCnt" parameterType="integer">
 		select mt_count from screen s, movieTheater m where s.t_num = m.t_num
 	</select>
-	<select id="select" parameterType="integer" resultType="screen">
-		select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and sc_num = #{sc_num}
+	<select id="select" parameterType="hashmap" resultType="screen">
+		select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and s.sc_num = #{sc_num} and m.mt_num =#{mt_num} and s.sc_del = 'n'
 	</select>
 	<select id="selectMovieTheater" parameterType="hashmap" resultType="movieTheater">
 	<!-- mt_num,sc_start,sc_date -->
-		select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num=#{mt_num} and s.sc_start =#{sc_start} and sc_date = #{sc_date}
+		select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num=#{mt_num} and s.sc_start =#{sc_start} and sc_date = #{sc_date} and s.sc_del = 'n'
 	</select>
-	<select id="selectMovieTheaterFind" parameterType="integer" resultType="movieTheater">
-		select * from screen where mt_num = #{mt_num}
+	<select id="selectMovieTheaterFind" parameterType="hashmap" resultType="movieTheater">
+		select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num = #{mt_num} and s.sc_num =#{sc_num} and s.sc_del = 'n'
 	</select>
 </mapper>

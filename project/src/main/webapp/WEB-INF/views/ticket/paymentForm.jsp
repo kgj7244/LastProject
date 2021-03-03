@@ -133,6 +133,12 @@
 			return;
 		}
 	}
+	function CountChk() {
+		if(total != selectList.length){
+			alert('선택한 수만큼 좌석을 선택해주세요.');
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
@@ -142,7 +148,7 @@
 <div class="container" align="center">
 	<h2>빠른 예매</h2>
 	<hr>
-	<form action="payment.do" name="frm20" method="post">
+	<form action="payment.do" name="frm20" method="post" onsubmit="return CountChk()">
 		<input type="hidden" name="totalPrice">
 		<input type="hidden" name="selectList">
 		<input type="hidden" name="adult_ticket">

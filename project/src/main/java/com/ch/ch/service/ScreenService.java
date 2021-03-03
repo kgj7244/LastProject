@@ -11,10 +11,10 @@ public interface ScreenService {
 
 	int selectCnt(int t_num);
 
-	Screen select(int sc_num);
+	Screen select(int sc_num, int mt_num);
 
 	MovieTheater selectMovieTheater(int mt_num, String sc_start, String sc_date);
 
-	MovieTheater selectMovieTheaterFind(int mt_num);
+	MovieTheater selectMovieTheaterFind(int mt_num, int sc_num);
 
 }

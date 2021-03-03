@@ -165,16 +165,17 @@ create table screen(
 	sc_date date not null,                         --상영일
 	sc_start nvarchar2(50) not null,               --시작시간
 	sc_end nvarchar2(50) not null,                 --종료시간
+	sc_del char(1) default 'n',                    --삭제여부
 	t_num number references theater(t_num),        --극장번호
 	mt_num number references movieTheater(mt_num), --상영관번호
 	m_num number references movie(m_num)          --영화번호 
 );
 create sequence sc_num increment by 1 start with 1;
-insert into screen values(1, '2021-03-01','13:00','15:00',1,1,1);
-insert into screen values(2, '2021-03-01','15:00','17:00',1,1,1);
-insert into screen values(3, '2021-03-01','17:00','19:00',1,2,1);
-insert into screen values(4, '2021-03-01','19:00','21:00',1,2,1);
-insert into screen values(5, '2021-03-01','21:00','23:00',1,3,1);
+insert into screen values(1, '2021-03-01','13:00','15:00','n',1,1,1);
+insert into screen values(2, '2021-03-01','15:00','17:00','n',1,1,1);
+insert into screen values(3, '2021-03-01','17:00','19:00','n',1,2,1);
+insert into screen values(4, '2021-03-01','19:00','21:00','n',1,2,1);
+insert into screen values(5, '2021-03-01','21:00','23:00','n',1,3,1);
 select * from screen;
 
 
@@ -295,10 +296,3 @@ create table service(
 );
 
 create sequence sv_num increment by 1 start with 1;
-
-select * from screen where t_num = 1 and m_num = 1 and sc_date = '2021-02-24' and mt_num = 1;
-select * from screen where sc_num = 1;
-select s.*, m.mt_name from screen s, movietheater m where s.mt_num = m.mt_num and m.mt_num = 1;
-select s.*, m.mt_name from screen s, movietheater m where s.mt_num = m.mt_num and s.t_num = 1 and s.m_num = 1 and s.sc_date = '2021-03-01' order by s.sc_start;
-select * from screen where mt_num = 2;
-select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num=3 and s.sc_start ='17:00' and sc_date = '2021-03-01';

@@ -28,8 +28,11 @@ public class ScreenDaoImpl implements ScreenDao{
 	public int selectCnt(int t_num) {
 		return sst.selectOne("screenns.selectCnt", t_num);
 	}
-	public Screen select(int sc_num) {
-		return sst.selectOne("screenns.select", sc_num);
+	public Screen select(int sc_num, int mt_num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sc_num", sc_num);
+		map.put("mt_num", mt_num);
+		return sst.selectOne("screenns.select", map);
 	}
 	public MovieTheater selectMovieTheater(int mt_num, String sc_start, String sc_date) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -38,7 +41,10 @@ public class ScreenDaoImpl implements ScreenDao{
 		map.put("sc_date", sc_date);
 		return sst.selectOne("screenns.selectMovieTheater", map);
 	}
-	public MovieTheater selectMovieTheaterFind(int mt_num) {
-		return sst.selectOne("screenns.selectMovieTheaterFind", mt_num);
+	public MovieTheater selectMovieTheaterFind(int mt_num, int sc_num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sc_num", sc_num);
+		map.put("mt_num", mt_num);
+		return sst.selectOne("screenns.selectMovieTheaterFind",map);
 	}
 }
