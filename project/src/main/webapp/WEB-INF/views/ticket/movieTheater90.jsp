@@ -12,10 +12,10 @@
 	<div class="container">
 		<form name="frm12">
 			<table>
-				<!-- 50석 -->
+				<!-- 90석 -->
 					<tr>
 						<td>
-							<c:forTokens var="i" items="A,B,C,D,E" delims=",">
+							<c:forTokens var="i" items="A,B,C,D,E,F,G,H,I" delims=",">
 								<span>${i}열</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;						
 								<c:forEach var="y" begin="1" end="10">
 									<c:if test="${y==3 || y==7}">

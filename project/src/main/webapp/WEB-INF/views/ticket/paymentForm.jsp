@@ -18,6 +18,7 @@
 	var youth=0; //청소년 표 갯수
 	var total=0; //표 토탈 갯수
 	var totalPrice = 0;
+	var mt_num = "${mt_num}";
 	
 	$(document).ready(function() {
 		$('#count_adult input[count_adult]').click(function(e) {
@@ -105,7 +106,17 @@
 	
 	// 좌석뷰
 	$(function() {
-		$('#seatDisp').load('${path}/movieTheater50.do');
+		if(mt_num==1){
+			$('#seatDisp').load('${path}/movieTheater50.do');
+		}else if(mt_num ==2){
+			$('#seatDisp').load('${path}/movieTheater70.do');
+		}else if(mt_num ==3){
+			$('#seatDisp').load('${path}/movieTheater80.do');
+		}else if(mt_num ==4){
+			$('#seatDisp').load('${path}/movieTheater90.do');
+		}else if(mt_num ==5){
+			$('#seatDisp').load('${path}/movieTheater100.do');
+		}
 	});
 	
 	function row(selectSeat) {
@@ -134,7 +145,10 @@
 		}
 	}
 	function CountChk() {
-		if(total != selectList.length){
+		if(total==0){
+			alert('최소 한장 이상 구매를 하셔야 합니다.');
+			return false;
+		}else if(total != selectList.length){
 			alert('선택한 수만큼 좌석을 선택해주세요.');
 			return false;
 		}

@@ -12,7 +12,7 @@
 	<div class="container">
 		<form name="frm12">
 			<table>
-				
+				<!-- 70석 -->
 					<tr>
 						<td>
 							<c:forTokens var="i" items="A,B,C,D,E,F,G" delims=",">

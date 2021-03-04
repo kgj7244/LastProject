@@ -28,4 +28,14 @@ public class ScreenServiceImpl implements ScreenService{
 	public MovieTheater selectMovieTheaterFind(int mt_num, int sc_num) {
 		return sd.selectMovieTheaterFind(mt_num, sc_num);
 	}
+	public List<MovieTheater> list() {
+		return sd.list();
+	}
+	public MovieTheater selectTitle(String mt_name) {
+		return sd.selectTitle(mt_name);
+	}
+	public int screenInsert(int m_num, int t_num, int mt_num, String sc_date, String sc_start, String sc_end) {
+		return sd.screenInsert(m_num, t_num, mt_num, sc_date, sc_start, sc_end);
+	}
+	
 }

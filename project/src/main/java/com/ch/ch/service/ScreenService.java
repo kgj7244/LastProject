@@ -17,4 +17,10 @@ public interface ScreenService {
 
 	MovieTheater selectMovieTheaterFind(int mt_num, int sc_num);
 
+	List<MovieTheater> list();
+
+	MovieTheater selectTitle(String mt_name);
+
+	int screenInsert(int m_num, int t_num, int mt_num, String sc_date, String sc_start, String sc_end);
+
 }

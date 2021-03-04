@@ -24,5 +24,8 @@ public class TheaterDaoImpl implements TheaterDao{
 	public List<Theater> list() {
 		return sst.selectList("theaterns.list");
 	}
+	public List<Theater> listT_loc() {
+		return sst.selectList("theaterns.listT_loc");
+	}
 
 }
