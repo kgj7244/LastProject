@@ -13,22 +13,24 @@
 		<form name="frm12">
 			<table>
 				<!-- 90석 -->
-					<tr>
-						<td>
-							<c:forTokens var="i" items="A,B,C,D,E,F,G,H,I" delims=",">
-								<span>${i}열</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;						
+				<c:forTokens var="i" items="A,B,C,D,E,F,G,H,I" delims=",">
+					<tr height="30px;">
+							<td align="right" style="b">
+								<span>${i}열</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<td>
+							<td>						
 								<c:forEach var="y" begin="1" end="10">
 									<c:if test="${y==3 || y==7}">
-										<input type="button" id="rowNumber" value="${i}${y}" onclick="row(this.value)">&nbsp;&nbsp;
+										<input type="button" name="${i}${y}" id="rowNumber" value="${y}" onclick="row(this.name)">&nbsp;&nbsp;
 									</c:if>
 									<c:if test="${y!=3 && y!=7}">
-										<input type="button" id="rowNumber" value="${i}${y}" onclick="row(this.value)">
+										<input type="button" name="${i}${y}" id="rowNumber" value="${y}" onclick="row(this.name)">
 									</c:if>
 								</c:forEach>
-								<br>
-							</c:forTokens>
-						</td>
+								<br>	
+							</td>
 					</tr>
+					</c:forTokens>
 			</table>
 		</form>
 	</div>
