@@ -157,23 +157,28 @@ public class TicketController {
 	}
 	@RequestMapping("ticketInsert")
 	public String ticketInsert(Model model, String m_title, String sc_num, String mt_num, String t_title, String adult_ticket, String youth_ticket, String t_sale, String totalPrice, String selectList, HttpSession session) {
+		System.out.println("m_title : " + m_title);
+		
+		
 		String member_id = (String)session.getAttribute("member_id"); // session에 저장된 id를 가져오기
+		System.out.println("sc_num : " + sc_num);
+		System.out.println("mt_num : " + mt_num);
 		int ticket=0;
 		int result=0;
+		int t_sale1=0;
 		String st_name ="";
-		int t_sale1 = Integer.parseInt(t_sale);
-		if(t_sale == null || t_sale.equals("")) {
-			t_sale1 = 0;
-		}
+		/* int t_sale1 = Integer.parseInt(t_sale); */
+		
+		/*
+		 * if(t_sale == null || t_sale.equals("")) { t_sale1 = 0; }
+		 */
 		if(adult_ticket =="null" || adult_ticket.equals("") || adult_ticket=="0") {
 			adult_ticket ="0";
 		}
 		if(youth_ticket =="null" || youth_ticket.equals("") || youth_ticket=="0") {
 			youth_ticket ="0";
 		}
-		System.out.println("m_title : " + m_title);
-		System.out.println("sc_num : " + sc_num);
-		System.out.println("mt_num : " + mt_num);
+
 		System.out.println("adult_ticket : " + adult_ticket);
 		System.out.println("youth_ticket : " + youth_ticket);
 		System.out.println("t_sale1 : " + t_sale1);
@@ -185,7 +190,7 @@ public class TicketController {
 		MovieTheater movieTheater = ss.selectMovieTheaterFind(Integer.parseInt(mt_num), Integer.parseInt(sc_num));
 		Screen screen = ss.select(Integer.parseInt(sc_num), Integer.parseInt(mt_num));
 		// String[] listSeat = selectList.split(","); // 넘겨온 좌석을 배열에 바로 담음 ("A1,A2,A3") 을 ["A1","A2","A3"]로 담음 그냥 바로 담자
-		if(screenSeat.getSt_num().equals("") || screenSeat.getSt_num() == null) { // 좌석에 하나도 없을때
+		if(screenSeat.getSt_num().equals("") || screenSeat.getSt_num() == null){ // 좌석에 하나도 없을때
 			st_name = selectList;
 			result = ss.insertSeat(st_name, Integer.parseInt(sc_num)); // 사실상 업데이트임(잘들어가면 1)
 		}else { // 좌석에 하나라도 뭐가 들어가 있으면

@@ -33,7 +33,7 @@
 								<br>	
 							</td>
 					</tr>
-					</c:forTokens>
+				</c:forTokens>
 			</table>
 		</form>
 	</div>
