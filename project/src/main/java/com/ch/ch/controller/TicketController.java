@@ -2,6 +2,8 @@ package com.ch.ch.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -106,45 +108,103 @@ public class TicketController {
 		
 		return "ticket/paymentForm";
 	}
-	@RequestMapping("movieTheater50")
+	@RequestMapping("movieTheater50") // 상영관 1관
 	public String movieTheater50() {
-		return "ticket/movieTheater50";
+		return "ticket/movieTheater50"; 
 	}
-	@RequestMapping("movieTheater70")
+	@RequestMapping("movieTheater70") // 상영관 2관
 	public String movieTheater70() {
 		return "ticket/movieTheater70";
 	}
-	@RequestMapping("movieTheater80")
+	@RequestMapping("movieTheater80") // 상영관 3관
 	public String movieTheater80() {
 		return "ticket/movieTheater80";
 	}
-	@RequestMapping("movieTheater90")
+	@RequestMapping("movieTheater90") // 상영관 4관
 	public String movieTheater90() {
 		return "ticket/movieTheater90";
 	}
-	@RequestMapping("movieTheater100")
+	@RequestMapping("movieTheater100") // 상영관 5관
 	public String movieTheater100() {
 		return "ticket/movieTheater100";
 	}
 	@RequestMapping("payment")
-	public String payment(Model model, String totalPrice, String selectList , String m_title, String t_title, String mt_num2, String sc_num2, String adult_ticket, String youth_ticket, String sc_date2, String sc_start) {
+	public String payment(Model model, String totalPrice, String selectList , String m_title, String t_title, String mt_num2, String sc_num2, String adult_ticket, String youth_ticket, String selectList1) {
 		//m_title:영화제목, t_loc:극장주소, t_title:극장명, mt_num:상영관번호, sc_date:상영날짜, sc_start:상영시간, sc_end:상영종료, m_poster:영화포스터, selectList:구매할 좌석, totalPrice:구매할 금액 ,sc_num:상영번호
 		Movie movie = ms.selectTitle(m_title);
 		Theater theater = tts.selectTitle(t_title);
 		int mt_num = Integer.parseInt(mt_num2);
 		int sc_num = Integer.parseInt(sc_num2);
-		String sc_date = sc_date2;
 		MovieTheater movieTheater = ss.selectMovieTheaterFind(mt_num, sc_num);
 		Screen screen = ss.select(sc_num, mt_num);
+		
+		if(adult_ticket =="null" || adult_ticket.equals("") || adult_ticket=="0") {
+			adult_ticket ="0";
+		}
+		if(youth_ticket =="null" || youth_ticket.equals("") || youth_ticket=="0") {
+			youth_ticket ="0";
+		}
 		
 		model.addAttribute("movie", movie);
 		model.addAttribute("theater", theater);
 		model.addAttribute("movieTheater", movieTheater);
 		model.addAttribute("screen", screen);
-		model.addAttribute("selectList", selectList);
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("adult_ticket", adult_ticket);
 		model.addAttribute("youth_ticket", youth_ticket);
+		model.addAttribute("selectList1", selectList1);
 		return "ticket/payment";
+	}
+	@RequestMapping("ticketInsert")
+	public String ticketInsert(Model model, String m_title, String sc_num, String mt_num, String t_title, String adult_ticket, String youth_ticket, String t_sale, String totalPrice, String selectList, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id"); // session에 저장된 id를 가져오기
+		int ticket=0;
+		int result=0;
+		String st_name ="";
+		int t_sale1 = Integer.parseInt(t_sale);
+		if(t_sale == null || t_sale.equals("")) {
+			t_sale1 = 0;
+		}
+		if(adult_ticket =="null" || adult_ticket.equals("") || adult_ticket=="0") {
+			adult_ticket ="0";
+		}
+		if(youth_ticket =="null" || youth_ticket.equals("") || youth_ticket=="0") {
+			youth_ticket ="0";
+		}
+		System.out.println("m_title : " + m_title);
+		System.out.println("sc_num : " + sc_num);
+		System.out.println("mt_num : " + mt_num);
+		System.out.println("adult_ticket : " + adult_ticket);
+		System.out.println("youth_ticket : " + youth_ticket);
+		System.out.println("t_sale1 : " + t_sale1);
+		System.out.println("totalPrice : " + totalPrice);
+		System.out.println("selectList : " + selectList);
+		Screen screenSeat = ss.selectSeat(Integer.parseInt(sc_num));
+		Movie movie = ms.selectTitle(m_title);
+		Theater theater = tts.selectTitle(t_title);
+		MovieTheater movieTheater = ss.selectMovieTheaterFind(Integer.parseInt(mt_num), Integer.parseInt(sc_num));
+		Screen screen = ss.select(Integer.parseInt(sc_num), Integer.parseInt(mt_num));
+		// String[] listSeat = selectList.split(","); // 넘겨온 좌석을 배열에 바로 담음 ("A1,A2,A3") 을 ["A1","A2","A3"]로 담음 그냥 바로 담자
+		if(screenSeat.getSt_num().equals("") || screenSeat.getSt_num() == null) { // 좌석에 하나도 없을때
+			st_name = selectList;
+			result = ss.insertSeat(st_name, Integer.parseInt(sc_num)); // 사실상 업데이트임(잘들어가면 1)
+		}else { // 좌석에 하나라도 뭐가 들어가 있으면
+			st_name = screen.getSt_num()+","+selectList; // 기존에 있던 좌석 + 입력한 좌석이 합쳐진게 넘어감
+			result = ss.insertSeat(st_name, Integer.parseInt(sc_num));
+		}
+		if(result >0) {
+			ticket = ts.insertTicket(adult_ticket, youth_ticket, t_sale1, member_id, screen.getSc_date(), Integer.parseInt(sc_num)); // 예매가 되면 1이됨
+		}
+		
+		model.addAttribute("movie", movie);
+		model.addAttribute("theater", theater);
+		model.addAttribute("movieTheater", movieTheater);
+		model.addAttribute("screen", screen);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("adult_ticket", adult_ticket);
+		model.addAttribute("youth_ticket", youth_ticket);
+		model.addAttribute("ticket", ticket);
+		
+		return "ticket/ticketInsert";
 	}
 }

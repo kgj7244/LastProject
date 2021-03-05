@@ -11,7 +11,15 @@
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
-	<form>
+	<form action="ticketInsert.do" method="post">
+		<input type="hidden" name="m_title" value="${movie.m_title}">
+		<input type="hidden" name="sc_num" value="${screen.sc_num}">
+		<input type="hidden" name="t_title" value="${theater.t_title}">
+		<input type="hidden" name="mt_num" value="${movieTheater.mt_num}">
+		<input type="hidden" name="adult_ticket" value="${adult_ticket}">
+		<input type="hidden" name="youth_ticket" value="${youth_ticket}">
+		<input type="hidden" name="totalPrice" value="${totalPrice}">
+		<input type="hidden" name="selectList" value="${selectList1}"> 
 		<table class="table table-bordered">
 			<tr>
 				<td>관람권 및 할인 적용</td>
@@ -47,13 +55,26 @@
 							<td colspan="2">
 								<table>
 									<tr>
-										
 										<td>성인(${adult_ticket}개)</td>
-										<td><fmt:formatNumber value="${adult_ticket * 11000}" pattern="#,000"></fmt:formatNumber>원</td>
+										<td>
+											<c:if test="${adult_ticket>0}">
+												<fmt:formatNumber value="${adult_ticket * 11000}" pattern="#,000"></fmt:formatNumber>원
+											</c:if>
+											<c:if test="${adult_ticket==0}">
+												0원
+											</c:if>
+										</td>
 									</tr>
 									<tr>
 										<td>청소년(${youth_ticket}개)</td>
-										<td><fmt:formatNumber value="${youth_ticket * 8000}" pattern="#,000"></fmt:formatNumber>원</td>
+										<td>
+											<c:if test="${youth_ticket>0}">
+												<fmt:formatNumber value="${youth_ticket * 8000}" pattern="#,000"></fmt:formatNumber>원
+											</c:if>
+											<c:if test="${youth_ticket==0}">
+												0원
+											</c:if>
+										</td>
 									</tr>
 									<tr>
 										<td>금액</td>

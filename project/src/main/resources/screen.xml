@@ -30,4 +30,10 @@
 	<insert id="screenInsert" parameterType="hashmap">
 		insert into screen values(sc_num.nextval, #{sc_date},#{sc_start},#{sc_end},'n',#{t_num},#{mt_num},#{m_num})
 	</insert>
+	<select id="selectSeat" parameterType="Integer" resultType="screen">
+		select * from screen where sc_num =#{sc_num}
+	</select>
+	<update id="insertSeat" parameterType="hashmap">
+		update screen set st_num =#{st_name} where sc_num = #{sc_num}
+	</update>
 </mapper>

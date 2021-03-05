@@ -7,4 +7,7 @@
 	<select id="select" resultType="ticket">
 		select * from movie m ,ticket t where m.m_num = t.m_num
 	</select>
+	<insert id="insertTicket" parameterType="hashmap">
+		insert into ticket values(t_ordernum.nextval, #{adult_ticket},#{youth_ticket},#{t_sale1},#{member_id},#{sc_date},'n',#{sc_num})
+	</insert>
 </mapper>

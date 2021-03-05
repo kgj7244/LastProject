@@ -300,4 +300,5 @@ create sequence sv_num increment by 1 start with 1;
 select * from movieTheater;
 select * from theater where t_title ='희주';
 select distinct t_loc from theater;
+select * from screen where sc_num = 5;
 

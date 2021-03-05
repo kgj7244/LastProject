@@ -2,6 +2,7 @@ package com.ch.ch.dao;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,5 +63,14 @@ public class ScreenDaoImpl implements ScreenDao{
 		map.put("sc_start", sc_start);
 		map.put("sc_end", sc_end);
 		return sst.insert("screenns.screenInsert", map);
+	}
+	public Screen selectSeat(int sc_num) {
+		return sst.selectOne("screenns.selectSeat", sc_num);
+	}
+	public int insertSeat(String st_name, int sc_num) { // 기존에 있는 상영에다가 st_num에 좌석으로 추가하는거여서 update로 함
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("st_name", st_name);
+		map.put("sc_num", sc_num);
+		return sst.update("screenns.insertSeat", map);
 	}
 }

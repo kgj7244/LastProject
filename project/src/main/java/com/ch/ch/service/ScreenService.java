@@ -1,5 +1,6 @@
 package com.ch.ch.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.ch.ch.model.MovieTheater;
@@ -23,4 +24,7 @@ public interface ScreenService {
 
 	int screenInsert(int m_num, int t_num, int mt_num, String sc_date, String sc_start, String sc_end);
 
+	Screen selectSeat(int sc_num);
+
+	int insertSeat(String st_name, int sc_num);
 }

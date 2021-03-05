@@ -159,7 +159,6 @@
 				
 			}
 			Seat()
-			frm20.selectList.value=selectList;
 		}
 		else{
 			alert('구입하려는 수보다 많은 좌석을 클릭하셨습니다.');
@@ -183,10 +182,12 @@
     		for(var i=0; i<selectList.length; i++){
     			$("#rowSelect"+i).text(selectList[i]);
     		}
+    		frm20.selectList1.value=selectList;
     	}else  if(selectList.length == temporary.length){
     		for(var i=0; i<temporary.length; i++){
     			$("#rowSelect"+i).text(selectList[i]);
     		}
+    		frm20.selectList1.value=temporary;
     	}
 	} 
 </script>
@@ -207,6 +208,7 @@
 		<input type="hidden" name="t_title" value="${theater.t_title}">
 		<input type="hidden" name="mt_num2" value="${mt_num}">
 		<input type="hidden" name="sc_num2" value="${sc_num}">
+		<input type="hidden" name="selectList1">
 
 		<table border="1" >
 			<tr height="30px;">
