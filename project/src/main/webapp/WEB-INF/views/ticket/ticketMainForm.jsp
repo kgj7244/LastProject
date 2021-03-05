@@ -15,7 +15,7 @@
 	var Mchk =0; var Tchk =0; var Dchk =0; 
 	var m_title1=""; var t_title1=""; var sc_date1=""; var mt_num1="";	var sc_num1="";
 	function movieChk(m_title, m_poster) {
-		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_poster/"+m_poster+"' height='100px;' width='80px;'>");
+		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_poster/"+m_poster+"' height='100px;' width='80px;' style='border:1px solid #eaeaea;'>");
 		/* $('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>"); */
 		$('#m_title').text(m_title);
 		/* $('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>"); */
@@ -79,8 +79,10 @@
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
-	<a href="screenInsertForm.do">상영 추가하기</a>
-	<div style="margin-top: 50px;"> <!-- 선택창 -->
+	<div align="left"><h2>빠른 예매</h2></div>
+	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
+	<!-- <a href="screenInsertForm.do">상영 추가하기</a> --> <!-- 나중에 마이페이지에 링크만 넣을것!  --> 
+	<div style="margin-top: 20px;"> <!-- 선택창 -->
 		<table class="table table-bordered" style="width: 1200px; height: 500px;">
 			<tr height="40px;"><!-- 제목 -->
 				<td style="background-color: #333333; color: #e9e9e9; font-weight: bold; vertical-align:middle;" align="center" height="35px;" width="30%" >영화</td>
@@ -188,17 +190,17 @@
 			<table class="table" style="width: 1200px; height: 140px; background-color: #1d1d1c;"><!--background-color: #1d1d1c;  -->
 				<tr>
 					<td width="20%"></td>
-					<td align="center" width="20%" style="vertical-align:middle; color: #cccccc"><span id="img" style="color: #cccccc; font-size: 30px;">영화선택</span><br><span id="m_title"></span></td>
+					<td align="center" width="20%" style="vertical-align:middle; color: #e6e6e6"><span id="img" style="color: #e6e6e6; font-size: 30px; font-weight: bold;" >영화선택</span><br><span id="m_title" style="color:white; font-weight: bold;"></span></td>
 					<td align="center" width="20%" style="vertical-align:middle;">
 						<table>
 							<tr>
-								<td><span id="t_title" style="font-size:20px; color: #cccccc;"><span style="color: #cccccc; font-size: 30px;">극장선택</span></span></td>
+								<td><span id="t_title" style="font-size:20px; color: #e6e6e6; font-weight: bold;"><span style="color: #e6e6e6; font-size: 30px;">극장선택</span></span></td>
 							</tr>
 							<tr>
-								<td><span id="sc_date" style="font-size:20px; color: #cccccc;"></span></td>
+								<td><span id="sc_date" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>
 							</tr>
 							<tr>
-								<td><span id="mt_name" style="font-size:20px; color: #cccccc"></span></td>
+								<td><span id="mt_name" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>
 							</tr>
 						</table>
 					</td>
