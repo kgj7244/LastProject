@@ -36,12 +36,40 @@ public class TicketController {
 		model.addAttribute("theater1", theater1);
 		return "ticket/ticketMainForm";
 	}
+	@RequestMapping("screenInsertForm") // 상영 추가하기
+	public String screenInsertForm(Model model) {
+		List<Movie> movie = ms.list(); 
+		List<Theater> theater = tts.listT_loc();
+		List<MovieTheater> movieTheater = ss.list();
+		
+		model.addAttribute("movie", movie);
+		model.addAttribute("theater", theater);
+		model.addAttribute("movieTheater", movieTheater);
+		return "ticket/screenInsertForm";
+	}
+	@RequestMapping("screenInsert")
+	public String screenInsert(Model model, String m_title, String t_title, String mt_name, String sc_date, String sc_start, String sc_end) {
+		Movie movie = ms.selectTitle(m_title);
+		Theater theater = tts.selectTitle(t_title);
+		MovieTheater movieTheater = ss.selectTitle(mt_name);
+		
+		int result = ss.screenInsert(movie.getM_num(), theater.getT_num(), movieTheater.getMt_num(), sc_date, sc_start, sc_end);
+		model.addAttribute("result", result);
+		return "ticket/screenInsert";
+	}
 	@RequestMapping(value = "selectTheater") // 극장주소을 클릭시 옆에 극장명 나오기
 	public String selectTheater(String id, Model model) {
 		List<Theater> selectTheater = tts.selectTheater(id);
 		
 		model.addAttribute("selectTheater", selectTheater);
 		return "ticket/selectTheater";
+	}
+	@RequestMapping(value = "selectTheater1") // insert시 화면때문에 하나 더 만듬...
+	public String selectTheater1(String id, Model model) {
+		List<Theater> selectTheater1 = tts.selectTheater(id);
+		
+		model.addAttribute("selectTheater1", selectTheater1);
+		return "ticket/selectTheater1";
 	}
 	@RequestMapping(value = "selectTime") 
 	public String selectTime(String m_title, String t_title, String sc_date, Model model) {
@@ -57,7 +85,7 @@ public class TicketController {
 		return "ticket/selectTime";
 	}
 	@RequestMapping("paymentForm")
-	public String paymentForm(Model model, String m_title2, String t_title2, String sc_date2, String mt_num2 ,String sc_num2) { // 오케이 일단 여기 못들어온다 여기 에러다 희주야 여기 찾아라 제발 여기다 sc_num만 받고 넘기면 된다 코드 다시 짜라 제발 희주야 집에가서 롤 하지마라
+	public String paymentForm(Model model, String m_title2, String t_title2, String sc_date2, String mt_num2 ,String sc_num2) {
 		//m_title2 : 영화제목, t_title2 : 지점이름(신촌), sc_date2 : 날짜, mt_num2 : 상영관
 		String m_title = m_title2;
 		String t_title = t_title2;
@@ -81,6 +109,22 @@ public class TicketController {
 	@RequestMapping("movieTheater50")
 	public String movieTheater50() {
 		return "ticket/movieTheater50";
+	}
+	@RequestMapping("movieTheater70")
+	public String movieTheater70() {
+		return "ticket/movieTheater70";
+	}
+	@RequestMapping("movieTheater80")
+	public String movieTheater80() {
+		return "ticket/movieTheater80";
+	}
+	@RequestMapping("movieTheater90")
+	public String movieTheater90() {
+		return "ticket/movieTheater90";
+	}
+	@RequestMapping("movieTheater100")
+	public String movieTheater100() {
+		return "ticket/movieTheater100";
 	}
 	@RequestMapping("payment")
 	public String payment(Model model, String totalPrice, String selectList , String m_title, String t_title, String mt_num2, String sc_num2, String adult_ticket, String youth_ticket, String sc_date2, String sc_start) {

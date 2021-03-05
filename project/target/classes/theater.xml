@@ -17,4 +17,7 @@
 	<select id="list" resultType="theater">
 		select * from theater order by t_title
 	</select>
+	<select id="listT_loc" resultType="theater">
+		select distinct t_loc from theater order by t_loc
+	</select>
 </mapper>

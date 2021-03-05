@@ -24,5 +24,8 @@ public class TheaterServiceImpl implements TheaterService{
 	public java.util.List<Theater> List() {
 		return td.list();
 	}
+	public List<Theater> listT_loc() {
+		return td.listT_loc();
+	}
 	
 }

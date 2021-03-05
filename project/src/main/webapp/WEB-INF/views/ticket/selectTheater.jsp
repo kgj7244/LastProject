@@ -3,10 +3,10 @@
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>Insert title here</title></head><body>
-<table>
+<table class="table table-hover">
 <c:forEach var ="i" items="${selectTheater}">
 		<tr>
-			<td><input type="button" value="${i.t_title}" onclick="theaterSelectChk('${i.t_title}')" id="select1"></td>
+			<td align="center"><input type="button" value="${i.t_title}" onclick="theaterSelectChk('${i.t_title}')" id="select1" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none;"></td>
 		</tr>
 </c:forEach>
 </table>

@@ -304,3 +304,8 @@ create table service(
 );
 
 create sequence sv_num increment by 1 start with 1;
+
+select * from movieTheater;
+select * from theater where t_title ='희주';
+select distinct t_loc from theater;
+

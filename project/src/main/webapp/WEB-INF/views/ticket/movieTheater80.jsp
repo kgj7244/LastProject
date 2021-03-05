@@ -16,7 +16,7 @@
 		</div>
 			<table>
 				<!-- 90석 -->
-				<c:forTokens var="i" items="A,B,C,D,E" delims=",">
+				<c:forTokens var="i" items="A,B,C,D,E,F,G,H" delims=",">
 					<tr height="30px;">
 							<td align="right" style="b">
 								<span style="font-weight: bold;">${i}열</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
