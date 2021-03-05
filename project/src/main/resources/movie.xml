@@ -28,7 +28,7 @@
 	<insert id="insert" parameterType="movie">
 		insert into movie values (#{m_num}, #{m_title}, #{m_director}, #{m_actor},
 			#{m_content}, #{m_rank}, #{m_opendate}, #{m_state}, 
-			#{m_time}, #{m_genre}, 0, #{m_poster})
+			#{m_time}, #{m_genre}, 0, #{m_poster}, #{m_stillcut})
 	</insert>
 	<select id="selectTitle" parameterType="string" resultType="movie">
 		select * from movie where m_title=#{m_title}
@@ -42,4 +42,10 @@
 			</if>
 			where m_num=#{m_num}
 	</update>
+	<insert id="insertPh" parameterType="stillcut">
+		insert into stillcut values (st_num.nextval, #{m_num}, #{m_stillcut})
+	</insert>
+	<select id="listPhoto" parameterType="string" resultType="stillcut">
+		select * from stillcut where m_num=#{m_num} order by st_num
+	</select>
 </mapper>

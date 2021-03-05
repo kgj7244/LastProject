@@ -60,7 +60,7 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="3">
-						<textarea rows="20" cols="120" required="required" name="m_content">
+						<textarea rows="20" cols="120" required="required" name="m_content" >
 							${movie.m_content}</textarea>
 					</td>
 				</tr>
@@ -124,6 +124,18 @@
 					<td colspan="3">
 						<input type="file" name="file" value="${movie.m_poster}">
 						${movie.m_poster}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						포스터
+						<span class="glyphicon glyphicon-picture"></span>
+					</th>
+					<td colspan="3">
+						<c:forEach var="st" items="${list}">
+							<input type="file" name="file1" value="${st.m_stillcut}">
+					 		${st.m_stillcut}
+						</c:forEach>
 					</td>
 				</tr>
 				<tr>

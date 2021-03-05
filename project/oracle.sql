@@ -1,6 +1,6 @@
 --삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
 drop sequence t_num; 
-drop sequence m_num; 
+drop sequence st_num; 
 drop sequence re_num; 
 drop sequence s_num; 
 drop sequence t_ordernum; 
@@ -19,6 +19,7 @@ drop table ticket CASCADE CONSTRAINTS;
 drop table screen CASCADE CONSTRAINTS;
 drop table board CASCADE CONSTRAINTS;
 drop table review CASCADE CONSTRAINTS;
+drop table stillcut CASCADE CONSTRAINTS;
 drop table movie CASCADE CONSTRAINTS;
 drop table movieTheater CASCADE CONSTRAINTS;
 drop table theater CASCADE CONSTRAINTS;
@@ -112,9 +113,16 @@ create table movie (
 	m_time number not null,		     	--상영시간
 	m_genre  nvarchar2(50) not null,	--장르
 	m_grade number(10,1) not null,		--평균 평점 
-	m_poster nvarchar2(100) not null  	--포스터 		
+	m_poster nvarchar2(100) not null,  	--포스터
+	m_stillcut nvarchar2(500) not null	--스틸컷
 );
-create sequence m_num increment by 1 start with 1;
+
+create table stillcut (
+	st_num number primary key not null,		--스틸컷번호
+	m_num number references movie(m_num),	--영화번호
+	m_stillcut nvarchar2(500) not null		--스틸컷
+);
+create sequence st_num increment by 1 start with 1;
 
 --insert into movie values(1, '극장판귀멸의칼날-무한열차편','벽력일섬','15','2021-02-03','상영중',120,0,'001.jpg','소토자키 하루오','하나에 나츠키, 시모노 히로, 마츠오카 요시츠구, 키토 아카리','애니메이션','n');
 --insert into movie values(2, '소울','피아노 위를 걷는다','전체','2021-01-20','상영중',107,0,'002.jpg','피트 닥터','제이미 폭스, 티나 페이, 다비드 딕스','애니메이션','n');
@@ -124,6 +132,7 @@ create sequence m_num increment by 1 start with 1;
 --insert into movie values(6, '2046 리마스터링 ','ㅗㅜㅑ','19','2021-02-11','상영중',128,0,'006.jpg','왕가위','장쯔이, 장첸, 기무라 타쿠야, 유가령, 양조위, 왕페이, 베이 로건, 장만옥, 공리, 둥제, 소병림, 통차이 맥킨타이어, 오정엽','드라마','n');
 --insert into movie values(7, '마리오네트 ','인형인가봐','12','2021-02-17','상영중',112,0,'007.jpg','엘버트 반 스트리엔','테크라 레우텐, 피터 뮬란, 엘리야 울프','미스터리, 스릴러','n');
 select * from movie;
+select * from stillcut;
 
 --------------------------------------한줄평
 
