@@ -120,6 +120,15 @@ public class StoreController {
 		return "store/storeContent";
 	}
 	
+	//주문페이지로
+	@RequestMapping("orderList")
+	public String order(int s_num,Model model) {
+		
+		Store store = ss.select(s_num);
+		model.addAttribute("store", store);	
+		return "store/orderList";
+	}
+	
 	//장바구니 넣기
 //	@RequestMapping("cartInsert")
 //	public String cartInsert(Cart cart, int s_num,Model model,HttpSession session)throws IOException  {
