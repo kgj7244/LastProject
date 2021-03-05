@@ -6,6 +6,7 @@
 	<typeAliases>        <!-- 별칭 -->          <!-- 주소 -->
 		<typeAlias alias="member" type="com.ch.ch.model.Member" />
 		<typeAlias alias="movie" type="com.ch.ch.model.Movie" />
+		<typeAlias alias="stillcut" type="com.ch.ch.model.Stillcut" />
 		<typeAlias alias="rv" type="com.ch.ch.model.Review" />
 		<typeAlias alias="store" type="com.ch.ch.model.Store" />
 		<typeAlias alias="theater" type="com.ch.ch.model.Theater" />

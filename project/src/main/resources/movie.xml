@@ -28,7 +28,7 @@
 	<insert id="insert" parameterType="movie">
 		insert into movie values (#{m_num}, #{m_title}, #{m_director}, #{m_actor},
 			#{m_content}, #{m_rank}, #{m_opendate}, #{m_state}, 
-			#{m_time}, #{m_genre}, 0, #{m_poster})
+			#{m_time}, #{m_genre}, 0, #{m_poster}, #{m_stillcut})
 	</insert>
 	<select id="selectTitle" parameterType="string" resultType="movie">
 		select * from movie where m_title=#{m_title}
@@ -42,4 +42,17 @@
 			</if>
 			where m_num=#{m_num}
 	</update>
+	<insert id="insertPh" parameterType="stillcut">
+		insert into stillcut values (sc_num.nextval, #{m_num}, #{m_stillcut})
+	</insert>
+	<!-- <insert id="insertPh" parameterType="java.util.List">
+		insert all
+		<foreach collection="list" item="item">
+			into stillcut (sc_num, m_num, m_stillcut) 
+				values (sc_num.nextval, #{item.m_num}, #{item.m_stillcut})
+		</foreach>
+	</insert> -->
+	<select id="listPhoto" parameterType="string" resultType="stillcut">
+		select * from stillcut where m_num=#{m_num} order by sc_num
+	</select>
 </mapper>
