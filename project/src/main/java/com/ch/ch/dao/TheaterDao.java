@@ -13,5 +13,7 @@ public interface TheaterDao {
 	Theater selectTitle(String t_title);
 
 	List<Theater> list();
+
+	List<Theater> listT_loc();
 	
 }
