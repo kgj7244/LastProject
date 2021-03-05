@@ -33,7 +33,7 @@
 	</select>
 			
 	<select id="pclist" parameterType="integer" resultMap="storeResult" >
-	select * from store where s_Pclass=#{s_Pclass}  
+	select * from store where s_Pclass=#{s_Pclass} order by s_num
 	</select>
 
 	<insert id="insert" parameterType="store">

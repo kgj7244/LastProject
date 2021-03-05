@@ -38,9 +38,15 @@
  		  <div>${store.s_Pconfig }</div> 
  		  <div>${store.s_prive }원</div>
  		  
+ 		  
+ 		  
+ 		  
  		  <div>
- 		  <a href="storeUploadForm.do?s_num=${store.s_num }">상품 수정</a>
- 		  <a href="storeDelete.do?s_num=${store.s_num }">상품 삭제</a>
+ 		  <input type="hidden" name="member_id" value="${member_id}">
+			<c:if test="${member_id == 'master'}">
+ 			  <a href="storeUploadForm.do?s_num=${store.s_num }">상품 수정</a>
+ 		 	  <a href="storeDelete.do?s_num=${store.s_num }">상품 삭제</a>
+ 		  	</c:if>
  		  </div>
  		  
  		  
@@ -56,8 +62,10 @@
 
 <br>
 <div align="center">
-<!-- 관리자 확인 아직 -->
- <a href="storeInsertForm.do">상품 추가</a>
+<input type="hidden" name="member_id" value="${member_id}">
+	<c:if test="${member_id == 'master'}">
+ 		<a href="storeInsertForm.do">상품 추가</a>
+	</c:if>
 </div>
 
 <div style="clea: "><%@include file="../mainFloor.jsp" %></div>
