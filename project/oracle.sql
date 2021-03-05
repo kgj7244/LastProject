@@ -1,6 +1,6 @@
 --삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
 drop sequence t_num; 
-drop sequence sc_num; 
+drop sequence st_num; 
 drop sequence re_num; 
 drop sequence s_num; 
 drop sequence t_ordernum; 
@@ -118,11 +118,11 @@ create table movie (
 );
 
 create table stillcut (
-	sc_num number primary key not null,		--스틸컷번호
+	st_num number primary key not null,		--스틸컷번호
 	m_num number references movie(m_num),	--영화번호
 	m_stillcut nvarchar2(500) not null		--스틸컷
 );
-create sequence sc_num increment by 1 start with 1;
+create sequence st_num increment by 1 start with 1;
 
 --insert into movie values(1, '극장판귀멸의칼날-무한열차편','벽력일섬','15','2021-02-03','상영중',120,0,'001.jpg','소토자키 하루오','하나에 나츠키, 시모노 히로, 마츠오카 요시츠구, 키토 아카리','애니메이션','n');
 --insert into movie values(2, '소울','피아노 위를 걷는다','전체','2021-01-20','상영중',107,0,'002.jpg','피트 닥터','제이미 폭스, 티나 페이, 다비드 딕스','애니메이션','n');

@@ -132,9 +132,9 @@
 						<span class="glyphicon glyphicon-picture"></span>
 					</th>
 					<td colspan="3">
-						<c:forEach var="sc" items="${list}">
-							<input type="file" name="file1" value="${sc.m_stillcut}">
-					 		${sc.m_stillcut}
+						<c:forEach var="st" items="${list}">
+							<input type="file" name="file1" value="${st.m_stillcut}">
+					 		${st.m_stillcut}
 						</c:forEach>
 					</td>
 				</tr>

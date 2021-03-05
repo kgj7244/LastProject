@@ -114,8 +114,8 @@
 		</div>
 		<a name="stillcut"><h2 class="text-primary">스틸컷</h2></a>
 		<div class="container" align="center">
-			<c:forEach var="sc" items="${list}">
-		 		<img alt="" src="resources/images/stillcut/${sc.m_stillcut}" width="200">
+			<c:forEach var="st" items="${list}">
+		 		<img alt="" src="resources/images/stillcut/${st.m_stillcut}" width="200">
 			</c:forEach>
 		</div>
 		<a name="review"><h2 class="text-primary">리뷰</h2></a>

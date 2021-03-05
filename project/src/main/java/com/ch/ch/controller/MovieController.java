@@ -88,14 +88,14 @@ public class MovieController {
 			List<Stillcut> photos = new ArrayList<Stillcut>();
 			
 			for (MultipartFile mf : list) {
-				Stillcut sc = new Stillcut();
+				Stillcut st = new Stillcut();
 				
 				String m_stillcut = mf.getOriginalFilename();
 				
-				sc.setM_stillcut(m_stillcut);
-				sc.setM_num(movie.getM_num());
+				st.setM_stillcut(m_stillcut);
+				st.setM_num(movie.getM_num());
 				
-				photos.add(sc);
+				photos.add(st);
 				
 				FileOutputStream fos = new FileOutputStream(new File(real1 + "/" + m_stillcut));
 				fos.write(mf.getBytes());
