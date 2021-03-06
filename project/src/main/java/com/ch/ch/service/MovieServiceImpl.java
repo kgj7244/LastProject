@@ -47,4 +47,7 @@ public class MovieServiceImpl implements MovieService{
 	public List<Stillcut> listPhoto(int m_num) {
 		return md.listPhoto(m_num);
 	}
+	public List<Movie> movieMainList() { // 희주 추가
+		return md.movieMainList();
+	}
 }

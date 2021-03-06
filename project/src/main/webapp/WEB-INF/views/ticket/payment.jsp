@@ -12,14 +12,14 @@
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
 	<form action="ticketInsert.do" method="post">
-		<input type="text" name="m_title" value="${movie.m_title}">
-		<input type="text" name="sc_num" value="${screen.sc_num}">
-		<input type="text" name="t_title" value="${theater.t_title}">
-		<input type="text" name="mt_num" value="${movieTheater.mt_num}">
-		<input type="text" name="adult_ticket" value="${adult_ticket}">
-		<input type="text" name="youth_ticket" value="${youth_ticket}">
-		<input type="text" name="totalPrice" value="${totalPrice}">
-		<input type="text" name="selectList" value="${selectList1}"> 
+		<input type="hidden" name="m_title" value="${movie.m_title}">
+		<input type="hidden" name="sc_num" value="${screen.sc_num}">
+		<input type="hidden" name="t_title" value="${theater.t_title}">
+		<input type="hidden" name="mt_num" value="${movieTheater.mt_num}">
+		<input type="hidden" name="adult_ticket" value="${adult_ticket}">
+		<input type="hidden" name="youth_ticket" value="${youth_ticket}">
+		<input type="hidden" name="totalPrice" value="${totalPrice}">
+		<input type="hidden" name="selectList" value="${selectList1}"> 
 		<table class="table table-bordered">
 			<tr>
 				<td>관람권 및 할인 적용</td>
@@ -31,7 +31,7 @@
 							</td>
 							<td>${movie.m_title}
 								<c:choose>
-									<c:when test="${movie.m_rank == '전체'}">
+									<c:when test="${movie.m_rank == '전 연령'}">
 										<img alt="안보여" src="resources/images/m_rank/전체.png" height="30px" width="30px" >
 									</c:when>								
 									<c:when test="${movie.m_rank == '12세'}">

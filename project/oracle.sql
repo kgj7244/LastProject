@@ -76,9 +76,9 @@ insert into theater values(6, '용인','대전','주소가 6번이다','1544-112
 insert into theater values(7, '수원','대전','주소가 7번이다','1544-1122','건물에 음료 무료가능!');
 insert into theater values(8, '이천','대전','주소가 8번이다','1544-1122','건물에 음료 무료가능!');
 insert into theater values(9, '쌍팔','광주','주소가 9번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(10, '이연','광주','주소가 10번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(11, '지연','광주','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(12, '희주','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
+insert into theater values(10, '용역','광주','주소가 10번이다','1544-1122','건물에 음료 무료가능!');
+insert into theater values(11, '구리','광주','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
+insert into theater values(12, '미영','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
 
 select * from theater;
 
@@ -123,7 +123,6 @@ create table stillcut (
 	m_stillcut nvarchar2(500) not null		--스틸컷
 );
 create sequence st_num increment by 1 start with 1;
-
 --insert into movie values(1, '극장판귀멸의칼날-무한열차편','벽력일섬','15','2021-02-03','상영중',120,0,'001.jpg','소토자키 하루오','하나에 나츠키, 시모노 히로, 마츠오카 요시츠구, 키토 아카리','애니메이션','n');
 --insert into movie values(2, '소울','피아노 위를 걷는다','전체','2021-01-20','상영중',107,0,'002.jpg','피트 닥터','제이미 폭스, 티나 페이, 다비드 딕스','애니메이션','n');
 --insert into movie values(3, '미션 파서블','미션 임파서블이 아니네???','15','2021-02-17','상영중',105,0,'003.jpg','김형주','김영광, 이선빈','코미디, 액션','n');
@@ -306,10 +305,4 @@ create table service(
 
 create sequence sv_num increment by 1 start with 1;
 
-select * from movieTheater;
-select * from theater where t_title ='희주';
-select distinct t_loc from theater;
-select * from screen where sc_num = 5;
-select * from screen s, seat a where s.sc_num= a.sc_num and s.sc_num = 1;
-select * from seat;
-
+select * from movie order by m_genre desc;

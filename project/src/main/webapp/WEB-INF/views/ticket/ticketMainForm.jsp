@@ -102,7 +102,7 @@
 									<tr>
 										<td align="left">
 											<c:choose>
-												<c:when test="${i.m_rank == '전체'}">
+												<c:when test="${i.m_rank == '전 연령'}">
 													<img src="resources/images/m_rank/전체.png" height="25px" width="25px" >
 												</c:when>								
 												<c:when test="${i.m_rank == '12세'}">

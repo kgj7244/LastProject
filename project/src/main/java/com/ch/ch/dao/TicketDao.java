@@ -9,6 +9,6 @@ public interface TicketDao {
 
 	List<Movie> select();
 
-	int insertTicket(String adult_ticket, String youth_ticket, int t_sale1, String member_id, Date sc_date, int sc_num);
+	int insertTicket(int adult_ticket, int youth_ticket, int t_sale1, String member_id, Date sc_date, int sc_num);
 
 }

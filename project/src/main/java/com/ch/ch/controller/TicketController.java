@@ -88,7 +88,6 @@ public class TicketController {
 	}
 	@RequestMapping("paymentForm")
 	public String paymentForm(Model model, String m_title2, String t_title2, String sc_date2, String mt_num2 ,String sc_num2) {
-		//m_title2 : 영화제목, t_title2 : 지점이름(신촌), sc_date2 : 날짜, mt_num2 : 상영관
 		String m_title = m_title2;
 		String t_title = t_title2;
 		String sc_date = sc_date2;
@@ -98,7 +97,7 @@ public class TicketController {
 		Movie movie = ms.selectTitle(m_title); // 영화제목으로 검색해서 하나 가져옴
 		Theater theater = tts.selectTitle(t_title); //지점으로 검색해서 극장의 정보 하나 가져옴
 		Screen screen = ss.select(sc_num, mt_num); // 해당 상영지점 구하기
-		 
+
 		model.addAttribute("mt_num", mt_num);
 		model.addAttribute("sc_num", sc_num);
 		model.addAttribute("movieTheater", movieTheater);
@@ -156,58 +155,53 @@ public class TicketController {
 		return "ticket/payment";
 	}
 	@RequestMapping("ticketInsert")
-	public String ticketInsert(Model model, String m_title, String sc_num, String mt_num, String t_title, String adult_ticket, String youth_ticket, String t_sale, String totalPrice, String selectList, HttpSession session) {
-		System.out.println("m_title : " + m_title);
-		
-		
+	public String ticketInsert(Model model, String m_title, String sc_num, String mt_num, String t_title, String adult_ticket, String youth_ticket, String t_sale, String totalPrice, String selectList, HttpSession session) {	
 		String member_id = (String)session.getAttribute("member_id"); // session에 저장된 id를 가져오기
-		System.out.println("sc_num : " + sc_num);
-		System.out.println("mt_num : " + mt_num);
 		int ticket=0;
 		int result=0;
 		int t_sale1=0;
 		String st_name ="";
+		int adult_ticket1 = 0;
+		int youth_ticket1 = 0;
 		/* int t_sale1 = Integer.parseInt(t_sale); */
 		
 		/*
 		 * if(t_sale == null || t_sale.equals("")) { t_sale1 = 0; }
 		 */
 		if(adult_ticket =="null" || adult_ticket.equals("") || adult_ticket=="0") {
-			adult_ticket ="0";
+			adult_ticket1 =0;
+		}else {
+			adult_ticket1 = Integer.parseInt(adult_ticket);
 		}
 		if(youth_ticket =="null" || youth_ticket.equals("") || youth_ticket=="0") {
-			youth_ticket ="0";
+			youth_ticket1 =0;
+		}else {
+			youth_ticket1 = Integer.parseInt(youth_ticket);
 		}
-
-		System.out.println("adult_ticket : " + adult_ticket);
-		System.out.println("youth_ticket : " + youth_ticket);
-		System.out.println("t_sale1 : " + t_sale1);
-		System.out.println("totalPrice : " + totalPrice);
-		System.out.println("selectList : " + selectList);
+	
 		Screen screenSeat = ss.selectSeat(Integer.parseInt(sc_num));
 		Movie movie = ms.selectTitle(m_title);
 		Theater theater = tts.selectTitle(t_title);
 		MovieTheater movieTheater = ss.selectMovieTheaterFind(Integer.parseInt(mt_num), Integer.parseInt(sc_num));
 		Screen screen = ss.select(Integer.parseInt(sc_num), Integer.parseInt(mt_num));
-		// String[] listSeat = selectList.split(","); // 넘겨온 좌석을 배열에 바로 담음 ("A1,A2,A3") 을 ["A1","A2","A3"]로 담음 그냥 바로 담자
-		if(screenSeat.getSt_num().equals("") || screenSeat.getSt_num() == null){ // 좌석에 하나도 없을때
+		
+		if(screenSeat.getSt_name().equals("x")){ // 초기에 x가 들어가서 x가 들어갔다는건 좌석이 하나도 없다는거
 			st_name = selectList;
-			result = ss.insertSeat(st_name, Integer.parseInt(sc_num)); // 사실상 업데이트임(잘들어가면 1)
-		}else { // 좌석에 하나라도 뭐가 들어가 있으면
-			st_name = screen.getSt_num()+","+selectList; // 기존에 있던 좌석 + 입력한 좌석이 합쳐진게 넘어감
+			result = ss.insertSeat(st_name, Integer.parseInt(sc_num));
+		}else{ // 좌석에 하나라도 있을때  / 지금 여기 안들어오네
+			st_name = screen.getSt_name()+","+selectList; // 기존에 있던 좌석 + 입력한 좌석이 합쳐진게 넘어감
 			result = ss.insertSeat(st_name, Integer.parseInt(sc_num));
 		}
 		if(result >0) {
-			ticket = ts.insertTicket(adult_ticket, youth_ticket, t_sale1, member_id, screen.getSc_date(), Integer.parseInt(sc_num)); // 예매가 되면 1이됨
+			ticket = ts.insertTicket(adult_ticket1, youth_ticket1, t_sale1, member_id, screen.getSc_date(), Integer.parseInt(sc_num)); // 예매가 되면 1이됨
 		}
-		
 		model.addAttribute("movie", movie);
 		model.addAttribute("theater", theater);
 		model.addAttribute("movieTheater", movieTheater);
 		model.addAttribute("screen", screen);
 		model.addAttribute("totalPrice", totalPrice);
-		model.addAttribute("adult_ticket", adult_ticket);
-		model.addAttribute("youth_ticket", youth_ticket);
+		model.addAttribute("adult_ticket", adult_ticket1);
+		model.addAttribute("youth_ticket", youth_ticket1);
 		model.addAttribute("ticket", ticket);
 		
 		return "ticket/ticketInsert";

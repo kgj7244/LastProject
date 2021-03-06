@@ -23,4 +23,6 @@ public interface MovieService {
 	void insertPhoto(List<Stillcut> photos);
 
 	List<Stillcut> listPhoto(int m_num);
+
+	List<Movie> movieMainList(); //희주추가
 }

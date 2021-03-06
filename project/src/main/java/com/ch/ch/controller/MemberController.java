@@ -1,5 +1,7 @@
 package com.ch.ch.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.ch.model.Member;
+import com.ch.ch.model.Movie;
 import com.ch.ch.service.MemberService;
+import com.ch.ch.service.MovieService;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private MovieService mvs;
+	
 	// 메인 폼 이동
 	@RequestMapping("mainForm")
-	public String mainForm() {
+	public String mainForm(Model model, Movie movie) { // 다혜씨 조금 수정합니다~ 나중에 주석만 지워주세요 
+		List<Movie> movieList = mvs.movieMainList(); // 메인 홈페이지 영화부분 평점 기준으로 순서대로 출력
+		
+		model.addAttribute("movieList", movieList);
 		return "mainForm";
 	}
 	

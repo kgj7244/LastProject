@@ -24,7 +24,7 @@
 				<td>제목</td>
 				<td>${movie.m_title}
 					<c:choose>
-						<c:when test="${movie.m_rank == '전체'}">
+						<c:when test="${movie.m_rank == '전 연령'}">
 							<img alt="안보여" src="resources/images/m_rank/전체.png" height="30px" width="30px" >
 						</c:when>								
 						<c:when test="${movie.m_rank == '12세'}">

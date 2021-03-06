@@ -28,12 +28,13 @@
 		select * from movieTheater where mt_name =#{mt_name}
 	</select>
 	<insert id="screenInsert" parameterType="hashmap">
-		insert into screen values(sc_num.nextval, #{sc_date},#{sc_start},#{sc_end},'n',#{t_num},#{mt_num},#{m_num})
+		insert into screen values(sc_num.nextval, #{sc_date},#{sc_start},#{sc_end},'n','x',#{t_num},#{mt_num},#{m_num})
 	</insert>
 	<select id="selectSeat" parameterType="Integer" resultType="screen">
-		select * from screen s, seat ss where s.sc_num= ss.sc_num and sc_num = #{sc_num}
+		select * from screen where sc_num = #{sc_num}
+		<!-- select sc_num, sc_date, sc_start, sc_end, nvl(st_name, 'x'), sc_del, t_num, mt_num, m_num from screen where sc_num = #{sc_num} -->
 	</select>
 	<update id="insertSeat" parameterType="hashmap">
-		update screen set st_num =#{st_name} where sc_num = #{sc_num}
+		update screen set st_name =#{st_name} where sc_num = #{sc_num}
 	</update>
 </mapper>

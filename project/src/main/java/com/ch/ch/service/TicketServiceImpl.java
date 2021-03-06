@@ -16,7 +16,7 @@ public class TicketServiceImpl implements TicketService{
 	public List<Movie> select() {
 		return td.select();
 	}
-	public int insertTicket(String adult_ticket, String youth_ticket, int t_sale1, String member_id, Date sc_date,
+	public int insertTicket(int adult_ticket, int youth_ticket, int t_sale1, String member_id, Date sc_date,
 			int sc_num) {
 		return td.insertTicket(adult_ticket, youth_ticket, t_sale1, member_id, sc_date, sc_num);
 	}

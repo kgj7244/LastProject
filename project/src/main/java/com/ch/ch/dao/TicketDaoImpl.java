@@ -18,7 +18,7 @@ public class TicketDaoImpl implements TicketDao{
 	public List<Movie> select() {
 		return sst.selectList("ticketns.select");
 	}
-	public int insertTicket(String adult_ticket, String youth_ticket, int t_sale1, String member_id, Date sc_date,
+	public int insertTicket(int adult_ticket, int youth_ticket, int t_sale1, String member_id, Date sc_date,
 			int sc_num) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("adult_ticket", adult_ticket);
