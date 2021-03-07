@@ -1,10 +1,18 @@
 package com.ch.ch.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ch.ch.model.Member;
+import com.ch.ch.model.Movie;
+import com.ch.ch.model.MovieTheater;
+import com.ch.ch.model.Theater;
+import com.ch.ch.model.Ticket;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{

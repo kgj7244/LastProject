@@ -13,4 +13,8 @@ public interface ReviewDao {
 	void update(Review rv);
 
 	int getTotal(Review review);
+
+	int count(Review review);
+
+	int sum(Review review);
 }

@@ -71,7 +71,7 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="3">
-						<textarea rows="20" cols="120" required="required" name="m_content"></textarea>
+						<textarea rows="20" cols="120" required="required" name="m_content" wrap="physical"></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -119,6 +119,15 @@
 					</th>
 					<td colspan="3">
 						<input type="file" name="file" required="required">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						스틸컷
+						<span class="glyphicon glyphicon-picture"></span>
+					</th>
+					<td colspan="3">
+						<input type="file" name="file1" required="required" multiple="multiple">
 					</td>
 				</tr>
 				<tr><td colspan="4" align="center"><input type="submit"></td></tr>

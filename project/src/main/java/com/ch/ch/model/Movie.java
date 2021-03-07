@@ -20,7 +20,7 @@ public class Movie {
 	private String m_director;
 	private String m_actor;
 	private String m_genre;
-	private String m_del;
+	private String m_stillcut;
 	
 	//포스터 upload용
 	private MultipartFile file;

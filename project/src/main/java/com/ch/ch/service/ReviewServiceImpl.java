@@ -32,4 +32,11 @@ public class ReviewServiceImpl implements ReviewService{
 		 return rvd.getTotal(review); 
 	}
 	
+	public int count(Review review) {
+		return rvd.count(review);
+	}
+	
+	public int sum(Review review) {
+		return rvd.sum(review);
+	}
 }
