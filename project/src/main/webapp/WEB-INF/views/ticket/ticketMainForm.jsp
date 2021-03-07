@@ -212,7 +212,6 @@
 		</form>
 	</div>
 </div>
-
 <%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

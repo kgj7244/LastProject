@@ -12,8 +12,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.ch.model.Member;
 import com.ch.ch.model.Movie;
+import com.ch.ch.model.MovieTheater;
+import com.ch.ch.model.Screen;
+import com.ch.ch.model.Theater;
+import com.ch.ch.model.Ticket;
 import com.ch.ch.service.MemberService;
 import com.ch.ch.service.MovieService;
+import com.ch.ch.service.ScreenService;
 
 @Controller
 public class MemberController {
@@ -21,6 +26,8 @@ public class MemberController {
 	private MemberService ms;
 	@Autowired
 	private MovieService mvs;
+	@Autowired
+	private ScreenService ss; // 상영
 	
 	// 메인 폼 이동
 	@RequestMapping("mainForm")
@@ -145,5 +152,4 @@ public class MemberController {
 		model.addAttribute("result", result);
 		return "/member/memberDelete";
 	}
-	
 }

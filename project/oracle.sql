@@ -199,8 +199,8 @@ create table ticket(
 	t_sale number not null, 	                      --사용포인트
 	t_id nvarchar2(50) not null,                      --예매ID
 	t_date date default sysdate not null,             --예매일
-	t_state nvarchar2(50) not null,                   --예매상태
-	sc_num number references screen(sc_num) not null --상영시간번호		
+	t_state nvarchar2(50) not null,                   --좌석번호 (그대로 이름은 그대로 사용함)
+	sc_num number references screen(sc_num) not null  --상영시간번호		
 );
 create sequence t_ordernum increment by 1 start with 1;
 
@@ -310,3 +310,5 @@ create sequence sv_num increment by 1 start with 1;
 
 select * from movie order by m_genre desc;
 select * from bank;
+select * from screen;
+select * from ticket where t_id = 'master';

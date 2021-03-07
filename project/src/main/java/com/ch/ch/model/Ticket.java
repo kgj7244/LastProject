@@ -13,4 +13,5 @@ public class Ticket {
 	private String t_id;    //예매ID
 	private Date t_date;    //예매일
 	private String t_state; //예매상태	
+	private int sc_num;     //?? 상영번호
 }
