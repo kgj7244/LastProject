@@ -7,6 +7,7 @@ drop sequence t_ordernum;
 drop sequence sc_num; 
 drop sequence mt_num;
 drop sequence sv_num;
+drop sequence t_account;
 
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
@@ -216,10 +217,11 @@ create sequence t_ordernum increment by 1 start with 1;
 --------------------------------------관리자계좌
 
 create table aam_bank(
-	aam_account nvarchar2(50) primary key default '111-1111-111111' not null,       --계좌번호
-	bank_name nvarchar2(50) default '카카오뱅크' not null,   --은행이름
-	aam_name nvarchar2(50) default 'AAM' not null         --이름
+	aam_account nvarchar2(50) primary key not null,     --계좌번호
+	bank_name nvarchar2(50) not null,   				--은행이름
+	aam_name nvarchar2(50) not null     				--이름
 );
+insert into aam_bank values('565-278311-02-001','우리은행','김희주');
 
 --------------------------------------입금금액
 
@@ -232,6 +234,7 @@ create table bank(
 	aam_account nvarchar2(50) references aam_bank(aam_account), --관리자계좌
 	t_ordernum number references ticket(t_ordernum)             --예매번호
 );
+create sequence t_account increment by 1 start with 1;
 
 --------------------------------------스토어
 select * from store;
@@ -306,3 +309,4 @@ create table service(
 create sequence sv_num increment by 1 start with 1;
 
 select * from movie order by m_genre desc;
+select * from bank;

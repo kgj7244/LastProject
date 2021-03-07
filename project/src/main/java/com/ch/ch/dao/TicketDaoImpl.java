@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ch.ch.model.Movie;
+import com.ch.ch.model.Ticket;
 
 @Repository
 public class TicketDaoImpl implements TicketDao{
@@ -28,5 +29,19 @@ public class TicketDaoImpl implements TicketDao{
 		map.put("sc_date", sc_date);
 		map.put("sc_num", sc_num);
 		return sst.insert("ticketns.insertTicket", map);
+	}
+	public Ticket selectBank(String member_id, int sc_num) {
+		Map<String, Object> map= new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("sc_num", sc_num);		
+		return sst.selectOne("ticketns.selectBank", map);
+	}
+	public int insertBank(int totalPrice1, String t_deal, String member_id, int t_ordernum) {
+		Map<String, Object> map= new HashMap<String, Object>();
+		map.put("totalPrice1", totalPrice1);
+		map.put("t_deal", t_deal);
+		map.put("member_id", member_id);
+		map.put("t_ordernum", t_ordernum);
+		return sst.insert("ticketns.insertBank",map);
 	}
 }

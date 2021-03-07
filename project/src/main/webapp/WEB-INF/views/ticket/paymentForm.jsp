@@ -270,7 +270,7 @@
 							<td colspan="2"></td>
 							<td colspan="2" align="center" style="color:white; font-weight: bold;">[선택하신좌석]</td>
 						</tr>
-						<tr height="25%">
+						<tr height="30%">
 							<td colspan="2" width="40%" style="color:white; vertical-align:middle; font-weight: bold;" align="center">좌석 설명 이미지로</td>
 							<td colspan="2">
 								<table class="table table-bordered" style="margin: 0px; padding: 0px; width: 210px;">

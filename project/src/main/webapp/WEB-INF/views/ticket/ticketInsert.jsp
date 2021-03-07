@@ -70,8 +70,11 @@
 				</td>
 			</tr>
 			<tr>
+				<td>뭐 대충 할인금액</td>
+			</tr>
+			<tr>
 				<td>최종결제금액</td>
-				<td>${totalPrice}</td>
+				<td>${totalPrice1}</td>
 			</tr>
 			<tr>
 				<td colspan="2"><a href="mainForm.do" class="btn btn-success btn-sm">메인으로</a></td>

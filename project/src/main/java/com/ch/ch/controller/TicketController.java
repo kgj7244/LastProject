@@ -14,6 +14,7 @@ import com.ch.ch.model.Movie;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Theater;
+import com.ch.ch.model.Ticket;
 import com.ch.ch.service.MovieService;
 import com.ch.ch.service.ScreenService;
 import com.ch.ch.service.TheaterService;
@@ -129,7 +130,7 @@ public class TicketController {
 	}
 	@RequestMapping("payment")
 	public String payment(Model model, String totalPrice, String selectList , String m_title, String t_title, String mt_num2, String sc_num2, String adult_ticket, String youth_ticket, String selectList1) {
-		//m_title:영화제목, t_loc:극장주소, t_title:극장명, mt_num:상영관번호, sc_date:상영날짜, sc_start:상영시간, sc_end:상영종료, m_poster:영화포스터, selectList:구매할 좌석, totalPrice:구매할 금액 ,sc_num:상영번호
+		// 나중에 회원에서 사용가능하는 쿠폰 있는지 확인 하기
 		Movie movie = ms.selectTitle(m_title);
 		Theater theater = tts.selectTitle(t_title);
 		int mt_num = Integer.parseInt(mt_num2);
@@ -157,13 +158,9 @@ public class TicketController {
 	@RequestMapping("ticketInsert")
 	public String ticketInsert(Model model, String m_title, String sc_num, String mt_num, String t_title, String adult_ticket, String youth_ticket, String t_sale, String totalPrice, String selectList, HttpSession session) {	
 		String member_id = (String)session.getAttribute("member_id"); // session에 저장된 id를 가져오기
-		int ticket=0;
-		int result=0;
-		int t_sale1=0;
-		String st_name ="";
-		int adult_ticket1 = 0;
-		int youth_ticket1 = 0;
-		/* int t_sale1 = Integer.parseInt(t_sale); */
+		int ticket=0; int result=0; int t_sale1=0; String st_name =""; int adult_ticket1 = 0; int youth_ticket1 = 0; int totalPrice1 = Integer.parseInt(totalPrice);
+		String t_deal = "계좌"; // 추후에 바꿀것 
+		/* int t_sale1 = Integer.parseInt(t_sale); */ // 추후에 바꿀것
 		
 		/*
 		 * if(t_sale == null || t_sale.equals("")) { t_sale1 = 0; }
@@ -194,12 +191,15 @@ public class TicketController {
 		}
 		if(result >0) {
 			ticket = ts.insertTicket(adult_ticket1, youth_ticket1, t_sale1, member_id, screen.getSc_date(), Integer.parseInt(sc_num)); // 예매가 되면 1이됨
+			Ticket ticket1 = ts.selectBank(member_id, Integer.parseInt(sc_num)); // 자리가 잘 들어가면
+			int bank = ts.insertBank(totalPrice1,t_deal,member_id,ticket1.getT_ordernum()); // bank 테이블에 돈을 넣음
 		}
+		
 		model.addAttribute("movie", movie);
 		model.addAttribute("theater", theater);
 		model.addAttribute("movieTheater", movieTheater);
 		model.addAttribute("screen", screen);
-		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("totalPrice1", totalPrice1);
 		model.addAttribute("adult_ticket", adult_ticket1);
 		model.addAttribute("youth_ticket", youth_ticket1);
 		model.addAttribute("ticket", ticket);
