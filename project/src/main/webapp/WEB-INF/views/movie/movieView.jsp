@@ -88,7 +88,7 @@
 				<c:otherwise>아직 평점이 없습니다. 평점을 등록해주세요</c:otherwise>
 			</c:choose>
 			<br>
-			<a class="link-reservation" href="">예매</a>
+			<a href="ticketMainForm.do">예매</a>
 		</div>
 		<div>
 			<table class="table table-bordered">

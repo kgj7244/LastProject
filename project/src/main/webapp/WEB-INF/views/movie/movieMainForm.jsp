@@ -81,7 +81,7 @@
 				    	</div>
 				    	<div class="box-footer">
 				    		<hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
-				    		<a href="#">예매</a>
+				    		<a href="ticketMainForm.do">예매</a>
 				    	</div>
 					</div>
 				</c:forEach>
