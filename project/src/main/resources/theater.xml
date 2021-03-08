@@ -20,4 +20,14 @@
 	<select id="listT_loc" resultType="theater">
 		select distinct t_loc from theater order by t_loc
 	</select>
+	<insert id="insert" parameterType="theater">
+		insert into values (#{t_num}, #{t_title}, #{t_loc}, #{t_addr}, 
+			#{t_number}, #{t_gui})
+	</insert>
+	<select id="select" parameterType="integer" resultType="theater">
+		select * from theater where t_num=#{t_num}
+	</select>
+	<select id="titleList" resultType="theater">
+		select * from theater
+	</select>
 </mapper>

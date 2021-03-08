@@ -126,7 +126,7 @@
 									<td>보여줄 영화가 없습니다</td>
 								</tr>
 							</c:if>
-						</table>
+						</table>.,
 					</form>
 				</td>
 				

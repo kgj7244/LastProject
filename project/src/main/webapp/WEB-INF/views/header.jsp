@@ -25,6 +25,7 @@
 	src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <style>
 	.err{color:red; font-weight: bold;}
+	.data{color:red; font-weight: bold;}
 </style>
 
 

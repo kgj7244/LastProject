@@ -27,5 +27,13 @@ public class TheaterServiceImpl implements TheaterService{
 	public List<Theater> listT_loc() {
 		return td.listT_loc();
 	}
-	
+	public int insert(Theater theater) {
+		return td.insert(theater);
+	}
+	public Theater select(int t_num) {
+		return td.select(t_num);
+	}
+	public List<Theater> titleList() {
+		return td.titleList();
+	}
 }
