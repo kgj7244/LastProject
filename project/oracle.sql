@@ -280,14 +280,15 @@ select * from ord;
 
 	create table ord (
 	ord_num number(10) primary key,
-	member_id nvarchar2(50) not null REFERENCES member(member_id), 
+	member_id nvarchar2(50) not null REFERENCES member(member_id), --로그인 여부
 	s_num number(10) not null REFERENCES store(s_num),
+	
 	s_purchase number(10) not null, 	--#구매수량 
-	all_purchase number(10) not null, 	--구매 물품 총 수량
 	full_price number(10) not null, 	--총 금액
-	buy_date date, 	--구매 날짜
+	buy_date date, 				--구매 날짜
 	s_validity date not null, 	--유통기한 sysdate+365
-	del char(1) default 'n'	--환불 여부 (구매날짜-sysdate)
+	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
+	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
 	);
 --	, t_account varchar2(50) references bank(t_account) not null --입금번호
 	
