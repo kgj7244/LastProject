@@ -57,62 +57,41 @@
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 	<!-- 상영하는 영화, 극장 선택 -->
-	<div class="container">
-		<table>
-		
-		</table>
+	<div class="container">	
+		<!-- 상영관 추가, master만 가능  -->
 		<input type="hidden" name="member_id" value="${member_id}">
 			<c:if test="${member_id == 'master'}">
 				<a href="theaterInsertForm.do">상영관 추가</a>
 			</c:if>
-		<!-- 상영 영화/극장/전체영화 선택  -->
-		<div class="time-table-page">
-			<div id="choice-movie" class="btn-group-vertical" style="float: left">
-				<ul style="list-style: none;">
-					<li><a id="movie" class="btn btn-success" title="영화별 선택">영화별</a></li>
-					<li><a id="theater" class="btn btn-warning" title="극장별 선택">극장별</a></li>
-					<li><a id="all-movie" class="btn btn-primary" title="전체 영화">전체 영화</a></li>
-				</ul>
-			</div>
-			<!-- 영화별 선택 -->
-			<div id="disp-choice-movie"></div>
-			<!-- 극장별 선택 -->
-			<div id="disp-movie-theather"></div>
-			<!-- 전체 영화 제목만 보여주기 -->
-			<div id="disp-all-movie"></div>
-		</div>
-		<!-- <hr style="border: 0px; height: 3px; background-color: #cccccc;"> -->
+			
+			
+		<table class="table table-bordered"  style="border-color:black; width: 1200px; height: 500px; align-items: center;">
+			<tr>
+				<td id="movie" title="영화별 선택" width="30%">영화별</td>
+				<td rowspan="2" width="50%" id="disp-choice-movie"></td>
+				<td rowspan="2" width="20%">${movie.m_poster}</td>
+			</tr>
+			<tr>
+				<td id="theater" title="극장별 선택">극장별</td>
+				<!-- <td id="disp-movie-theather"></td> -->
+			</tr>
+		</table>
+		
+		
+		
 		<!-- 상영시간표 날짜  -->
-		<div class="time-table-date">
-			<table>
-				<tr>
-					<td>
-						<div id="disp-date"></div>
-					</td>
-				</tr>
-				<!-- 임시 상영관 구현 -->
-				<tr>
-					<th>서울</th>
-					<td>강남</td>
-					<td>용산</td>
-					<td>불광</td>	
-				</tr>
-				<tr>
-					<th>대전</th>
-					<td>대전</td>
-					<td>용인</td>
-					<td>수원</td>
-					<td>이천</td>
-				</tr>
-				<tr>
-					<th>광주</th>
-					<td>쌍팔</td>
-					<td>이연</td>
-					<td>지연</td>
-					<td>희주</td>	
-				</tr>
-			</table>
-		</div>
+		<table class="table table-bordered">
+			<tr>
+				<td><div id="disp-date"></div></td>
+			</tr>
+		</table>
+			<!-- <div class="time-table-date">
+					<tr>
+						<td>
+							<div id="disp-date"></div>
+						</td>
+					</tr>
+			</div> -->
 	</div>
 	<%@ include file="../mainFloor.jsp" %>
 </body>

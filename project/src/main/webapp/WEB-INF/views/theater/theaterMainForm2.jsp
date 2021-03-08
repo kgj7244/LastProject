@@ -1,0 +1,100 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>showtime</title>
+<script type="text/javascript">
+	window.onload = function() {
+		var doc = "";
+		var today = new Date();
+		var year = today.getFullYear();
+		var month = today.getMonth() + 1;
+		var date = today.getDate();
+		doc = year+"년"+"\n";
+		doc += month +"월" + "<br>"+ "<br>";
+		//doc += "일 : " + date + "<br>";
+		/* 현재를 기준으로 10일 표시 */
+		for (var i = 0; i < 10; i++) {
+			today.setDate(today.getDate() + 1);
+			var year2 = today.getFullYear();
+			var month2 = today.getMonth() + 1;
+			var date2 = today.getDate();
+			//doc += "<span>" + year2 + "<br>";
+			//doc += "<span>월 : " + month2 + "<br>";
+			doc += "<span>" + date2 +"일" +"</span>";
+		}
+		$("#disp-date").html(doc);
+	}
+	$(function() {
+		$('#movie').click(function() {
+			$.post('choiceMovie.do', function(data) {
+				$('#disp-choice-movie').html(data);
+			});
+		});
+		$('#theater').click(function() {
+			$.post('choiceTheater.do', function(data) {
+				$('#disp-choice-movie').html(data);
+			});
+		});
+		$('#all-movie').click(function() {
+			$.post('choiceAllMovie.do', function(data) {
+				$('#disp-choice-movie').html(data);
+			});
+		});
+	});
+</script>
+<style type="text/css">
+	#disp-date span {
+		height: 100px;
+		float: left;
+	}
+</style> 
+</head>
+<body>
+<%@include file="../mainTop.jsp" %>
+<%@include file="../mainNav.jsp" %>
+	<!-- 상영하는 영화, 극장 선택 -->
+	<div class="container">
+		<input type="hidden" name="member_id" value="${member_id}">
+			<c:if test="${member_id == 'master'}">
+				<a href="theaterInsertForm.do">상영관 추가</a>
+			</c:if>
+		 <div id="timeTable">
+		 	<div id="movie">
+		 		영화별
+		 	</div>
+		 	<div id="theater">
+		 		극장별
+		 	</div>		  
+		 </div>	
+	
+		<!-- 상영 영화/극장/전체영화 선택  -->
+		<div class="time-table-page">
+			<div id="choice-movie" class="btn-group-vertical" style="float: left">
+				<ul style="list-style: none;">
+					<li><a id="movie" class="btn btn-success" title="영화별 선택">영화별</a></li>
+					<li><a id="theater" class="btn btn-warning" title="극장별 선택">극장별</a></li>
+				</ul>
+			</div>
+			<!-- 영화별 선택 -->
+			<div id="disp-choice-movie"></div>
+			<!-- 극장별 선택 -->
+			<div id="disp-movie-theather"></div>
+		</div>
+		<!-- 상영시간표 날짜  -->
+		<div class="time-table-date">
+			<table>
+				<tr>
+					<td>
+						<div id="disp-date"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<%@ include file="../mainFloor.jsp" %>
+</body>
+</html>
