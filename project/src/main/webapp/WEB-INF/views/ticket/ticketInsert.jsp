@@ -24,7 +24,7 @@
 				<td>제목</td>
 				<td>${movie.m_title}
 					<c:choose>
-						<c:when test="${movie.m_rank == '전체'}">
+						<c:when test="${movie.m_rank == '전 연령'}">
 							<img alt="안보여" src="resources/images/m_rank/전체.png" height="30px" width="30px" >
 						</c:when>								
 						<c:when test="${movie.m_rank == '12세'}">
@@ -70,8 +70,11 @@
 				</td>
 			</tr>
 			<tr>
+				<td>뭐 대충 할인금액</td>
+			</tr>
+			<tr>
 				<td>최종결제금액</td>
-				<td>${totalPrice}</td>
+				<td>${totalPrice1}</td>
 			</tr>
 			<tr>
 				<td colspan="2"><a href="mainForm.do" class="btn btn-success btn-sm">메인으로</a></td>

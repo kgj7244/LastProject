@@ -50,4 +50,8 @@ public class MovieDaoImpl implements MovieDao{
 	public List<Stillcut> listPhoto(int m_num) {
 		return sst.selectList("moviens.listPhoto", m_num);
 	}
+
+	public List<Movie> movieMainList() { // 희주 추가
+		return sst.selectList("moviens.movieMainList");
+	}
 }

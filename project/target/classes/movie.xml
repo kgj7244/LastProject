@@ -48,4 +48,7 @@
 	<select id="listPhoto" parameterType="string" resultType="stillcut">
 		select * from stillcut where m_num=#{m_num} order by st_num
 	</select>
+	<select id="movieMainList" resultType="movie"> <!-- 희주 추가 메인 홈페이지 평점 기준으로 순서대로 출력 예정 -->
+		select * from movie order by m_genre desc
+	</select>
 </mapper>

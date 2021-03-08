@@ -7,6 +7,7 @@ drop sequence t_ordernum;
 drop sequence sc_num; 
 drop sequence mt_num;
 drop sequence sv_num;
+drop sequence t_account;
 
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
@@ -76,9 +77,9 @@ insert into theater values(6, '용인','대전','주소가 6번이다','1544-112
 insert into theater values(7, '수원','대전','주소가 7번이다','1544-1122','건물에 음료 무료가능!');
 insert into theater values(8, '이천','대전','주소가 8번이다','1544-1122','건물에 음료 무료가능!');
 insert into theater values(9, '쌍팔','광주','주소가 9번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(10, '이연','광주','주소가 10번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(11, '지연','광주','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(12, '희주','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
+insert into theater values(10, '용역','광주','주소가 10번이다','1544-1122','건물에 음료 무료가능!');
+insert into theater values(11, '구리','광주','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
+insert into theater values(12, '미영','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
 
 select * from theater;
 
@@ -123,7 +124,6 @@ create table stillcut (
 	m_stillcut nvarchar2(500) not null		--스틸컷
 );
 create sequence st_num increment by 1 start with 1;
-
 --insert into movie values(1, '극장판귀멸의칼날-무한열차편','벽력일섬','15','2021-02-03','상영중',120,0,'001.jpg','소토자키 하루오','하나에 나츠키, 시모노 히로, 마츠오카 요시츠구, 키토 아카리','애니메이션','n');
 --insert into movie values(2, '소울','피아노 위를 걷는다','전체','2021-01-20','상영중',107,0,'002.jpg','피트 닥터','제이미 폭스, 티나 페이, 다비드 딕스','애니메이션','n');
 --insert into movie values(3, '미션 파서블','미션 임파서블이 아니네???','15','2021-02-17','상영중',105,0,'003.jpg','김형주','김영광, 이선빈','코미디, 액션','n');
@@ -146,10 +146,10 @@ create table review (
 	m_num number references movie(m_num)						   --영화번호
 );
 create sequence re_num increment by 1 start with 1;
-insert into review values(1,'재미있습니다.',5,sysdate,sysdate,'lamslams',1,'n');
-insert into review values(2,'재미있습니다1111.',5,sysdate,sysdate,'lamslams',1,'n');
-insert into review values(3,'재미있습니다.22',5,sysdate,sysdate,'lamslams',1,'n');
-insert into review values(4,'재미있습니다22222.',5,sysdate,sysdate,'lamslams',1,'n');
+insert into review values(1,'재미있습니다.',5,sysdate,sysdate,'lamslams',1);
+insert into review values(2,'재미있습니다1111.',5,sysdate,sysdate,'lamslams',1);
+insert into review values(3,'재미있습니다.22',5,sysdate,sysdate,'lamslams',1);
+insert into review values(4,'재미있습니다22222.',5,sysdate,sysdate,'lamslams',1);
 
 select* from review;
 --------------------------------------회원 게시판
@@ -175,16 +175,17 @@ create table screen(
 	sc_start nvarchar2(50) not null,               --시작시간
 	sc_end nvarchar2(50) not null,                 --종료시간
 	sc_del char(1) default 'n',                    --삭제여부
+	st_name nvarchar2(1000),                        --좌석이름
 	t_num number references theater(t_num),        --극장번호
 	mt_num number references movieTheater(mt_num), --상영관번호
 	m_num number references movie(m_num)          --영화번호 
 );
 create sequence sc_num increment by 1 start with 1;
-insert into screen values(1, '2021-03-01','13:00','15:00','n',1,1,1);
-insert into screen values(2, '2021-03-01','15:00','17:00','n',1,1,1);
-insert into screen values(3, '2021-03-01','17:00','19:00','n',1,2,1);
-insert into screen values(4, '2021-03-01','19:00','21:00','n',1,2,1);
-insert into screen values(5, '2021-03-01','21:00','23:00','n',1,3,1);
+-- insert into screen values(1, '2021-03-01','13:00','15:00','n',1,1,1);
+-- insert into screen values(2, '2021-03-01','15:00','17:00','n',1,1,1);
+-- insert into screen values(3, '2021-03-01','17:00','19:00','n',1,2,1);
+-- insert into screen values(4, '2021-03-01','19:00','21:00','n',1,2,1);
+-- insert into screen values(5, '2021-03-01','21:00','23:00','n',1,3,1);
 select * from screen;
 
 
@@ -198,37 +199,29 @@ create table ticket(
 	t_sale number not null, 	                      --사용포인트
 	t_id nvarchar2(50) not null,                      --예매ID
 	t_date date default sysdate not null,             --예매일
-	t_state nvarchar2(50) not null,                   --예매상태
-	sc_num number references screen(sc_num) not null --상영시간번호		
+	t_state nvarchar2(50) not null,                   --좌석번호 (그대로 이름은 그대로 사용함)
+	sc_num number references screen(sc_num) not null  --상영시간번호		
 );
 create sequence t_ordernum increment by 1 start with 1;
 
 -------------------------------------- 좌석
 
-create table seat(
-	st_num nvarchar2(50),                   --좌석번호
-	st_state nvarchar2(50),                 --사용가능여부 
-	sc_num number references screen(sc_num) --상영번호
-);
+--create table seat(
+--	st_num nvarchar2(50),                   --좌석번호
+--	st_state nvarchar2(50),                 --사용가능여부 
+--	sc_num number references screen(sc_num) --상영번호
+--);
 
-insert into seat values('a1', 'n',1);
-insert into seat values('a2', 'n',1);
-insert into seat values('a3', 'n',1);
-insert into seat values('a4', 'n',1);
-insert into seat values('a5', 'n',1);
-insert into seat values('a1', 'n',2);
-insert into seat values('a2', 'n',2);
-insert into seat values('a3', 'n',2);
-insert into seat values('a4', 'n',2);
 
 
 --------------------------------------관리자계좌
 
 create table aam_bank(
-	aam_account nvarchar2(50) primary key default '111-1111-111111' not null,       --계좌번호
-	bank_name nvarchar2(50) default '카카오뱅크' not null,   --은행이름
-	aam_name nvarchar2(50) default 'AAM' not null         --이름
+	aam_account nvarchar2(50) primary key not null,     --계좌번호
+	bank_name nvarchar2(50) not null,   				--은행이름
+	aam_name nvarchar2(50) not null     				--이름
 );
+insert into aam_bank values('565-278311-02-001','우리은행','김희주');
 
 --------------------------------------입금금액
 
@@ -241,6 +234,7 @@ create table bank(
 	aam_account nvarchar2(50) references aam_bank(aam_account), --관리자계좌
 	t_ordernum number references ticket(t_ordernum)             --예매번호
 );
+create sequence t_account increment by 1 start with 1;
 
 --------------------------------------스토어
 select * from store;
@@ -314,8 +308,7 @@ create table service(
 
 create sequence sv_num increment by 1 start with 1;
 
-select * from movieTheater;
-select * from theater where t_title ='희주';
-select distinct t_loc from theater;
-select * from screen where sc_num = 5;
-
+select * from movie order by m_genre desc;
+select * from bank;
+select * from screen;
+select * from ticket where t_id = 'master';

@@ -23,4 +23,6 @@ public interface MovieDao {
 	void insertPhoto(List<Stillcut> photos);
 
 	List<Stillcut> listPhoto(int m_num);
+
+	List<Movie> movieMainList(); //희주 추가
 }

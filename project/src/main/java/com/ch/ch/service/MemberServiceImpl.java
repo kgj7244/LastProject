@@ -1,10 +1,16 @@
 package com.ch.ch.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.ch.dao.MemberDao;
 import com.ch.ch.model.Member;
+import com.ch.ch.model.Movie;
+import com.ch.ch.model.MovieTheater;
+import com.ch.ch.model.Theater;
+import com.ch.ch.model.Ticket;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -22,5 +28,5 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int delete(String member_id) {
 		return md.delete(member_id);
-	} 
+	}
 }

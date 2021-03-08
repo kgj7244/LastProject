@@ -81,7 +81,8 @@
 <div class="container" align="center">
 	<div align="left"><h2>빠른 예매</h2></div>
 	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
-	<!-- <a href="screenInsertForm.do">상영 추가하기</a> --> <!-- 나중에 마이페이지에 링크만 넣을것!  --> 
+	<a href="screenInsertForm.do">상영 추가하기</a> <!-- 나중에 마이페이지에 링크만 넣을것!  --> 
+	<a href="refund">환불시스템</a>
 	<div style="margin-top: 20px;"> <!-- 선택창 -->
 		<table class="table table-bordered" style="width: 1200px; height: 500px;">
 			<tr height="40px;"><!-- 제목 -->
@@ -102,7 +103,7 @@
 									<tr>
 										<td align="left">
 											<c:choose>
-												<c:when test="${i.m_rank == '전체'}">
+												<c:when test="${i.m_rank == '전 연령'}">
 													<img src="resources/images/m_rank/전체.png" height="25px" width="25px" >
 												</c:when>								
 												<c:when test="${i.m_rank == '12세'}">
@@ -211,7 +212,6 @@
 		</form>
 	</div>
 </div>
-
 <%@ include file="../mainFloor.jsp" %>
 </body>
 </html>
