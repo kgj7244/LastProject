@@ -14,7 +14,7 @@ public interface TicketDao {
 
 	int insertTicket(int adult_ticket, int youth_ticket, int t_sale1, String member_id, Date sc_date, String selectList, int sc_num);
 
-	Ticket selectBank(String member_id, int sc_num);
+	Ticket selectBank(String selectList,String member_id, int sc_num);
 
 	int insertBank(int totalPrice1, String t_deal, String member_id, int t_ordernum);
 	
@@ -25,4 +25,5 @@ public interface TicketDao {
 	Theater selectTheater(int t_num); //희주 추가
 
 	Movie selectMovie(int m_num); // 희주추가
+
 }

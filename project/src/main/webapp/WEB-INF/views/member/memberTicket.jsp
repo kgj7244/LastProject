@@ -28,8 +28,8 @@
 				<td colspan="7">현재 예매한 티켓이 없습니다.</td>
 			</c:if>
 			<c:if test="${not empty ticket}"> <!-- 예매가 있으면 -->
-				<tr>
-					<c:forEach var="t" items="${ticket}">
+				<c:forEach var="t" items="${ticket}">
+					<tr>
 						<td>${t.t_ordernum}</td>
 						<td>${t.t_adult}</td>
 						<td>${t.t_teen}</td>
@@ -37,8 +37,8 @@
 						<td>${t.t_date}</td>
 						<td>${t.t_id}</td>
 						<td><input type="button" value="보기" onclick='location.href="memberTicketView.do?sc_num=${t.sc_num}&t_state=${t.t_state}&t_ordernum=${t.t_ordernum}"'></td>
-					</c:forEach>
-				</tr>
+					</tr>
+				</c:forEach>
 			</c:if>
 		</tr>
 	</table>

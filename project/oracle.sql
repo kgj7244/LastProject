@@ -15,7 +15,7 @@ drop table service CASCADE CONSTRAINTS;
 drop table store CASCADE CONSTRAINTS;
 drop table bank CASCADE CONSTRAINTS;
 drop table aam_bank CASCADE CONSTRAINTS;
-drop table seat CASCADE CONSTRAINTS;
+--drop table seat CASCADE CONSTRAINTS;
 drop table ticket CASCADE CONSTRAINTS;
 drop table screen CASCADE CONSTRAINTS;
 drop table board CASCADE CONSTRAINTS;
@@ -309,6 +309,14 @@ create table service(
 create sequence sv_num increment by 1 start with 1;
 
 select * from movie order by m_genre desc;
-select * from bank;
-select * from screen;
+select * from stillcut;
+select * from 
 select * from ticket where t_id = 'master';
+select * from ticket;
+select * from screen;
+select * from movie where m_title='극장판 귀멸의 칼날-무한열차편';
+select * from theater where t_title ='신촌';
+select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num = 5 and s.sc_num =23 and s.sc_del = 'n'
+select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and s.sc_num = 23 and m.mt_num =5 and s.sc_del = 'n'
+select * from ticket where t_id='lamslams' and sc_num = 23;
+
