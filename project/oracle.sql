@@ -319,4 +319,3 @@ select * from theater where t_title ='신촌';
 select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num = 5 and s.sc_num =23 and s.sc_del = 'n'
 select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and s.sc_num = 23 and m.mt_num =5 and s.sc_del = 'n'
 select * from ticket where t_id='lamslams' and sc_num = 23;
-

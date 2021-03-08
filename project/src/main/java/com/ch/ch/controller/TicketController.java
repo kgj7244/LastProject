@@ -86,7 +86,9 @@ public class TicketController {
 		int movie_num = movie.getM_num();
 		Theater theater = tts.selectTitle(t_title); // theater.getT_num() 극장번호 가져옴
 		int theater_num = theater.getT_num();
-		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date); // 영화번호, 극장번호, 날짜를 가지고와서 그 해당하는 시간대를 출력하기 위함		
+		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date); // 영화번호, 극장번호, 날짜를 가지고와서 그 해당하는 시간대를 출력하기 위함
+		
+		
 		
 		model.addAttribute("movie",movie);
 		model.addAttribute("theater",theater);
