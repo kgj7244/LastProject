@@ -24,6 +24,12 @@
 <div style="width:50%; float:right;">
 <table>
 
+<c:if test="${store.s_Pclass==4}">
+<tr><th>판매기간</th>
+<td>${store.s_per } ~ ${store.s_pernd }</td>
+</tr>
+</c:if>
+
 <tr><th><h3>${store.s_prive }원</h3></th></tr>
 
 <tr>
@@ -32,37 +38,42 @@
 </tr>
 
 <tr>
-<th >유효기간</th>
+<th>유효기간</th>
 <td>구매일로부터 12개월</td>
 </tr>
 
+<c:if test="${store.s_Pclass==4}">
+<tr><th>한정 판매 </th><td>남은 수량 ${store.s_total }개 </td></tr>
+</c:if>
+
+<!-- <tr><th>수량</th>
+<td><input type="number" name="s_purchase" value="1"></td></tr>
+ -->
+
 <tr>
-<th>금액/수량</th>
-<td>
-<input type="text" title="수량 입력" 
-class="input-text" readonly="readonly" value="1">
-</td>
+<th>총 상품금액</th>
+<td>${total+(s_prive*s_purchase)}원</td>
 </tr>
-
-<tr><td>
-
-
-					</td></tr>
-
-<tr><td>구매 수량</td><td>${store.s_purchase }</td></tr>
-<tr><td>총 상품금액</td><td>${total+(s_prive*s_purchase)}</td></tr>
-
-
-
-
-
 
 <!-- ====================================== -->  
-<tr>
-<td><input type="button" value="장바구니" onclick="cartList()"></td> 
-<td><input type="submit" value="구매하기" onclick="order()"></td>
-</tr>
+<%-- <tr>
+<td><input type="submit" value="구매하기" onclick="location.href='order.do?s_num=${store.s_num}'"></td>
+</tr> --%>
 
+<tr><td>
+	<form name="order" method="post" action="orderList.do?s_num=${store.s_num}">
+		<input type="hidden" name="s_num" value="${store.s_num}">
+		
+		
+		<select name="s_purchase">
+			<c:forEach begin="1" end="10" var="i">
+				<option value="${i}">${i}</option> </c:forEach>
+		</select>&nbsp;개 <input type="submit" value="구매하기">
+		
+	</form></td></tr>
+	
+	
+	
 </table>
 </div>
 

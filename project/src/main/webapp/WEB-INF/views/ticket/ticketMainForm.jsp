@@ -6,12 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+	@import url("${path}/resources/bootstrap/css/reset.css");
+</style>
+
 <script type="text/javascript">
 	var Mchk =0; var Tchk =0; var Dchk =0; 
 	var m_title1=""; var t_title1=""; var sc_date1=""; var mt_num1="";	var sc_num1="";
 	function movieChk(m_title, m_poster) {
-		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_poster/"+m_poster+"' height='100px;' width='80px;'>");
-		$('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>");
+		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_poster/"+m_poster+"' height='100px;' width='80px;' style='border:1px solid #eaeaea;'>");
+		/* $('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>"); */
+		$('#m_title').text(m_title);
+		/* $('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>"); */
 		Mchk = 1;
 		m_title1=m_title;
 		frm1.m_title2.value=m_title1;
@@ -23,14 +30,16 @@
 		});
 	}
 	function theaterSelectChk(t_title) {
-		$('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>");
+		$('#t_title').text("극장 : "+t_title+"점");
+		/* $('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>"); */
 		Tchk =1;
 		t_title1=t_title;
 		frm2.t_title2.value=t_title1;
 		ThreeSelect(t_title1);
 	}
 	function date_pick() {
-		$('#sc_date').html("<input type='text' name='sc_date' value='"+cal1.value+"' disabled='disabled' id='sc_date'>");
+		$('#sc_date').text("날짜 : "+cal1.value);
+		/* $('#sc_date').html("<input type='text' name='sc_date' value='"+cal1.value+"' disabled='disabled' id='sc_date'>"); */
 		Dchk =1;
 		sc_date1 = cal1.value;
 		frm3.sc_date2.value=sc_date1;
@@ -43,10 +52,12 @@
 			});
 		}
 	}
-	function AllSelectChk(mt_num, sc_num){
+	function AllSelectChk(mt_num, sc_num, mt_name, sc_start){
 		mt_num1 = mt_num;
 		sc_num1 = sc_num;
-		$('#mt_title').html("<input type='text' name='mt_num' value='"+mt_num+"관' disabled='disabled' id='mt_num'>");
+		frm9.sc_start.value=sc_start;
+		$('#mt_name').html("상영관 : "+mt_name);
+		/* $('#mt_name').html("<input type='text' name='mt_name' value='"+mt_name+"' disabled='disabled' id='mt_name'>"); */
 	}
 	function Chk1() {
 		if(frm1.m_title2.value==""||frm2.t_title2.value==""||frm3.sc_date2.value==""){
@@ -68,38 +79,45 @@
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
-	<h2>빠른 예매</h2>
-	<div> <!-- 선택창 -->
-		<table class="table table-bordered">
-			<tr><!-- 제목 -->
-				<td>영화</td>
-				<td colspan="2">극장</td>
-				<td>날짜</td>
-				<td>시간</td>
+	<div align="left"><h2>빠른 예매</h2></div>
+	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
+	<a href="screenInsertForm.do">상영 추가하기</a> <!-- 나중에 마이페이지에 링크만 넣을것!  --> 
+	<a href="refund">환불시스템</a>
+	<div style="margin-top: 20px;"> <!-- 선택창 -->
+		<table class="table table-bordered" style="width: 1200px; height: 500px;">
+			<tr height="40px;"><!-- 제목 -->
+				<td style="background-color: #333333; color: #e9e9e9; font-weight: bold; vertical-align:middle;" align="center" height="35px;" width="30%" >영화</td>
+				<td colspan="2" style="background-color: #333333; color: #e9e9e9; font-weight: bold;" align="center" width="20%">극장</td>
+				<td style="background-color: #333333; color: #e9e9e9; font-weight: bold;" align="center" width="10%">날짜</td>
+				<td style="background-color: #333333; color: #e9e9e9; font-weight: bold;" align="center" width="40%">시간</td>
 			</tr>
-			<tr>
-				<td> <!-- 안에 내용 -->
+			<tr height="auto;">
+				
+				<!-- 영화 -->
+				<td style="overflow:auto;"> <!-- 안에 내용 -->
 					<form action="selectMovie.do" method="post" name="frm1">
 						<input type="hidden" name="m_title2">
-						<table class="table table-bordered"> 
+						<table class="table table-hover" >
 							<c:if test="${not empty movie}"> <!-- 값이 있으면 -->
 								<c:forEach var="i" items="${movie}">
 									<tr>
-										<c:choose>
-											<c:when test="${i.m_rank == '전체'}">
-												<td><img src="resources/images/m_rank/전체.png" height="30px" width="30px" ></td>
-											</c:when>								
-											<c:when test="${i.m_rank == '12'}">
-												<td><img src="resources/images/m_rank/12세.png" height="30px" width="30px"></td>
-											</c:when>									
-											<c:when test="${i.m_rank == '15'}">
-												<td><img src="resources/images/m_rank/15세.png" height="30px" width="30px"></td>
-											</c:when>									
-											<c:when test="${i.m_rank == '19'}">
-												<td><img src="resources/images/m_rank/청불.png" height="30px" width="30px"></td>
-											</c:when>							
-										</c:choose>
-										<td><input type="button" value="${i.m_title}" onclick="movieChk('${i.m_title}','${i.m_poster}')"></td>
+										<td align="left">
+											<c:choose>
+												<c:when test="${i.m_rank == '전 연령'}">
+													<img src="resources/images/m_rank/전체.png" height="25px" width="25px" >
+												</c:when>								
+												<c:when test="${i.m_rank == '12세'}">
+													<img src="resources/images/m_rank/12세.png" height="25px" width="25px">
+												</c:when>									
+												<c:when test="${i.m_rank == '15세'}">
+													<img src="resources/images/m_rank/15세.png" height="25px" width="25px">
+												</c:when>									
+												<c:when test="${i.m_rank == '청불'}">
+													<img src="resources/images/m_rank/청불.png" height="25px" width="25px">
+												</c:when>							
+											</c:choose>
+											<input type="button" value="${i.m_title}" onclick="movieChk('${i.m_title}','${i.m_poster}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 10px;">
+										</td>
 									</tr>
 								</c:forEach>
 							</c:if>
@@ -111,44 +129,48 @@
 						</table>
 					</form>
 				</td>
+				
 				<!-- 극장 -->
-				<td>
-					<table class="table table-bordered"> 
+				<td style="overflow:auto;">
+					<table class="table table-hover"> 
 						<c:if test="${not empty theater1}">
 							<c:forEach var="i" items="${theater1}">
 								<tr>
-									<td><input type="button" value="${i.t_loc}" onclick="theaterChk('${i.t_loc}')"></td>
+									<td width="100px;" align="center"><input type="button" value="${i.t_loc}" onclick="theaterChk('${i.t_loc}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 7px;"></td>
 								</tr>
 							</c:forEach> 	
 						</c:if>
 					</table>
 				</td>
-				<td>
+				
+				<!-- 극장명 -->
+				<td style="overflow:auto;">
 					<form method="post" name="frm2">
 						<input type="hidden" name="t_title2">
-						<table>
+						<table class="table">
 							<tr>
-								<td><span id="theaterSelect"></span></td><!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
+								<td width="170px;" align="center"><span id="theaterSelect"></span></td><!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
 							</tr>
 						</table>
 					</form>
 				</td>
+				
+				<!-- 날짜 -->
 				<td>
-					<table class="table table-bordered">
+					<table class="table">
 						<tr>
 							<td>
-								<input type="date" name="calendar" id = "cal1" onchange="date_pick(); " value="">
-								<!-- <form id="frm" name="form1">
-									<input type="date" name="calendar" id = "cal1" onchange="date_pick(); " value=""> <br>
-								</form> -->
+								<input type="date" name="calendar" id = "cal1" onchange="date_pick(); " value="" style="border: none;" value="날짜를 입력해주세요">
 							</td>
 						</tr>
 					</table>
 				</td>
-				<td>
+				
+				<!-- 시간 -->
+				<td style="overflow:auto;">
 					<form method="post" name="frm3">
 						<input type="hidden" name="sc_date2">
-						<table class="table table-bordered">
+						<table class="table">
 							<tr>
 								<td><span id="selectTime"></span></td>
 							</tr>
@@ -165,29 +187,31 @@
 		<input type="hidden" name="sc_date2">
 		<input type="hidden" name="mt_num2">
 		<input type="hidden" name="sc_num2">
-			<table class="table table-bordered">
+		<input type="hidden" name="sc_start">
+			<table class="table" style="width: 1200px; height: 140px; background-color: #1d1d1c;"><!--background-color: #1d1d1c;  -->
 				<tr>
-					<td><span id="img"></span><span id="m_title"></span></td>
-					<td>
+					<td width="20%"></td>
+					<td align="center" width="20%" style="vertical-align:middle; color: #e6e6e6"><span id="img" style="color: #e6e6e6; font-size: 30px; font-weight: bold;" >영화선택</span><br><span id="m_title" style="color:white; font-weight: bold;"></span></td>
+					<td align="center" width="20%" style="vertical-align:middle;">
 						<table>
 							<tr>
-								<td><span id="t_title"></span></td>
+								<td><span id="t_title" style="font-size:20px; color: #e6e6e6; font-weight: bold;"><span style="color: #e6e6e6; font-size: 30px;">극장선택</span></span></td>
 							</tr>
 							<tr>
-								<td><span id="sc_date"></span></td>
+								<td><span id="sc_date" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>
 							</tr>
 							<tr>
-								<td><span id="mt_title"></span></td>
+								<td><span id="mt_name" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>
 							</tr>
 						</table>
 					</td>
-					<td><input type="submit" value="결제" class="btn btn-info"></td>
+					<td width="20%" align="center" style="vertical-align:middle;"><input type="submit" value="결제" class="btn btn-info" style="padding :30px; 30px; font-size: 30px;"></td>
+					<td width="20%"></td>
 				</tr>
 			</table>
 		</form>
 	</div>
 </div>
-
 <%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

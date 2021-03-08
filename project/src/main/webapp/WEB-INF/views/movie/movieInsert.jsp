@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화 목록 추가 결과</title>
+<title>영화 추가 결과</title>
 </head>
 <body>
 	<c:if test="${result > 0}">

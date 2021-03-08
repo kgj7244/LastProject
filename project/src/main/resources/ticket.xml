@@ -7,4 +7,25 @@
 	<select id="select" resultType="ticket">
 		select * from movie m ,ticket t where m.m_num = t.m_num
 	</select>
+	<insert id="insertTicket" parameterType="hashmap">
+		insert into ticket values(t_ordernum.nextval, #{adult_ticket},#{youth_ticket},#{t_sale1},#{member_id},#{sc_date},#{selectList},#{sc_num})
+	</insert>
+	<select id="selectBank" parameterType="hashmap" resultType="ticket">
+		select * from ticket where t_id=#{member_id} and sc_num = #{sc_num}
+	</select>
+	<insert id="insertBank" parameterType="hashmap">
+		insert into bank values(t_account.nextval, sysdate, #{totalPrice1}, #{t_deal}, #{member_id},'565-278311-02-001',#{t_ordernum})
+	</insert>
+	<select id="memberTicketList" parameterType="string" resultType="ticket"> <!-- 희주 추가 -->
+		select * from ticket where t_id = #{member_id}
+	</select>
+	<select id="selectMovieTheater" parameterType="hashmap" resultType="movieTheater"> <!-- 희주 추가 -->
+		select * from movieTheater where mt_num =#{mt_num} and t_num = #{t_num} 
+	</select>
+	<select id="selectTheater" parameterType="integer" resultType="theater"> <!-- 희주 추가 -->
+		select * from theater where t_num =#{t_num}
+	</select>
+	<select id="selectMovie" parameterType="integer" resultType="movie"> <!-- 희주 -->
+		select * from movie where m_num =#{m_num}
+	</select>
 </mapper>

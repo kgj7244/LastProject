@@ -14,4 +14,6 @@ public interface TheaterService {
 
 	List<Theater> List();
 
+	List<Theater> listT_loc();
+
 }

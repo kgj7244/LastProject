@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardns">
+	<select id="getTotal" parameterType="board" resultType="integer">
+		select count(*) from board
+		<where>	
+			<if test="keyword!=null and keyword!=''">
+				<if test="search=='subcon'">
+					b_title like '%'||#{keyword}||'%' or 
+					b_content like '%'||#{keyword}||'%'
+				</if>
+				<if test="search!='subcon'">
+					${search} like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</where>
+	</select>
+	<select id="list" parameterType="board" resultType="board">
+		select * from (select a.*, rownum rn from (select * from board
+		<where>	
+			<if test="keyword!=null and keyword!=''">
+				<if test="search=='subcon'">
+					b_title like '%'||#{keyword}||'%' or 
+					b_content like '%'||#{keyword}||'%'
+				</if>
+				<if test="search!='subcon'">
+					${search} like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</where>
+		order by b_num) a) where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getTotalBcode" parameterType="board" resultType="integer">
+		select count(*) from board where b_code=#{b_code}
+	</select>
+	<select id="listCode" parameterType="board" resultType="board">
+		select * from (select rownum rn, a.* from (select * from board where b_code=#{b_code} order by b_num) a) where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="select" parameterType="integer" resultType="board">
+		select * from board where b_num=#{b_num}
+	</select>
+	<insert id="insert" parameterType="board">
+		<selectKey keyProperty="b_num" resultType="Integer" 
+				order="BEFORE">
+			SELECT NVL(max(b_num),0) + 1 from board
+		</selectKey>
+		insert into board values(#{b_num},#{b_title},#{b_content},#{b_lock},#{b_password},0,sysdate,'n',#{b_code},#{member_id})
+	</insert>
+	<update id="updateReadCount" parameterType="integer">
+		update board set b_readcount=b_readcount+1 where b_num=#{b_num}
+	</update>
+	<update id="update" parameterType="board">
+		update board set member_id=#{member_id},b_code=#{b_code},b_title=#{b_title},b_content=#{b_content},b_lock=#{b_lock},b_password=#{b_password} where b_num=#{b_num}
+	</update>
+</mapper>

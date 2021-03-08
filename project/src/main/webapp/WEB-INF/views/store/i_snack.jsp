@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.a1 {float:left; width:200px;}
+
+</style>
 </head>
 <body>
  <%@include file="../mainTop.jsp" %>
@@ -28,8 +32,9 @@
  <c:forEach var="store" items="${storeList }">
  
  <div class="image">
+ <div class="a1">
  <a href="storeContent.do?s_num=${store.s_num }">
-<span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="100"></span>
+<span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150"></span>
 
   <div class="name"><h4>${store.s_Pname }</h4></div>  
   </a>
@@ -38,10 +43,11 @@
  
   <div>${store.s_prive }원</div>
 
- 
+ </div></div>
  </c:forEach></c:if>
  </div>
 </div>
+
 <!-- ====================================== -->  
 
 

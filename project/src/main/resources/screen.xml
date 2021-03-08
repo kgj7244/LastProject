@@ -3,14 +3,38 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace xml을 구별하기 위한 이름 -->
 <!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
-<mapper namespace="screenns">
+<mapper namespace="screenns">	
 	<select id="selectTitleList" parameterType="hashmap" resultType="screen">
-		select * from screen where t_num = #{theater_num} and m_num = #{movie_num} and sc_date = #{sc_date}
+		<!-- select * from screen where t_num = #{theater_num} and m_num = #{movie_num} and sc_date = #{sc_date} -->
+		select s.*, m.mt_name from screen s, movieTheater m where s.mt_num = m.mt_num and s.t_num = #{theater_num} and s.m_num = #{movie_num} and s.sc_date = #{sc_date} and s.sc_del = 'n' order by s.sc_start
 	</select>
 	<select id="selectCnt" parameterType="integer">
 		select mt_count from screen s, movieTheater m where s.t_num = m.t_num
 	</select>
-	<select id="select" parameterType="integer" resultType="screen">
-		select * from screen where sc_num = #{sc_num}
+	<select id="select" parameterType="hashmap" resultType="screen">
+		select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and s.sc_num = #{sc_num} and m.mt_num =#{mt_num} and s.sc_del = 'n'
 	</select>
+	<select id="selectMovieTheater" parameterType="hashmap" resultType="movieTheater">
+	<!-- mt_num,sc_start,sc_date -->
+		select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num=#{mt_num} and s.sc_start =#{sc_start} and sc_date = #{sc_date} and s.sc_del = 'n'
+	</select>
+	<select id="selectMovieTheaterFind" parameterType="hashmap" resultType="movieTheater">
+		select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num = #{mt_num} and s.sc_num =#{sc_num} and s.sc_del = 'n'
+	</select>
+	<select id="list" resultType="movieTheater">
+		select * from movieTheater
+	</select>
+	<select id="selectTitle" parameterType="String" resultType="movieTheater">
+		select * from movieTheater where mt_name =#{mt_name}
+	</select>
+	<insert id="screenInsert" parameterType="hashmap">
+		insert into screen values(sc_num.nextval, #{sc_date},#{sc_start},#{sc_end},'n','x',#{t_num},#{mt_num},#{m_num})
+	</insert>
+	<select id="selectSeat" parameterType="Integer" resultType="screen">
+		select * from screen where sc_num = #{sc_num}
+		<!-- select sc_num, sc_date, sc_start, sc_end, nvl(st_name, 'x'), sc_del, t_num, mt_num, m_num from screen where sc_num = #{sc_num} -->
+	</select>
+	<update id="insertSeat" parameterType="hashmap">
+		update screen set st_name =#{st_name} where sc_num = #{sc_num}
+	</update>
 </mapper>
