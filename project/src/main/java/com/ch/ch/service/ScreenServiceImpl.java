@@ -44,5 +44,14 @@ public class ScreenServiceImpl implements ScreenService{
 	public int insertSeat(String st_name, int sc_num) {
 		return sd.insertSeat(st_name, sc_num);
 	}
+	public int screenReFund(int sc_num, String seat) {
+		return sd.screenReFund(sc_num, seat);
+	}
+	public int bankReFund(int t_ordernum, String member_id) {
+		return sd.bankReFund(t_ordernum, member_id);
+	}
+	public int ticketReFund(int t_ordernum, int sc_num) {
+		return sd.ticketReFund(t_ordernum, sc_num);
+	}
 	
 }

@@ -37,4 +37,13 @@
 	<update id="insertSeat" parameterType="hashmap">
 		update screen set st_name =#{st_name} where sc_num = #{sc_num}
 	</update>
+	<update id="screenReFund" parameterType="hashmap">
+		update screen set st_name= #{seat} where sc_num = #{sc_num}
+	</update>
+	<delete id="bankReFund" parameterType="hashmap">
+		delete from bank where t_ordernum = #{t_ordernum} and member_id =#{member_id}
+	</delete>
+	<delete id="ticketReFund" parameterType="hashmap">
+		delete from ticket where t_ordernum = #{t_ordernum} and sc_num = #{sc_num}
+	</delete>
 </mapper>

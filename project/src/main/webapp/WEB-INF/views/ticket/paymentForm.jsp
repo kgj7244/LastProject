@@ -20,20 +20,9 @@
 	var total=0; //표 토탈 갯수
 	var totalPrice = 0;
 	var mt_num = "${mt_num}";
-	var listSeat2 = new Array(); //임시저장소
+	var listSeat2  = new Array(); //임시저장소
 	var listSeat = "${screen.st_name}";
 	
-	
-	$(function() {  // 들어오기전에 좌석이 있는지 확인후 좌석 막아놓기
-		listSeat2 = listSeat.split(",");
-		if(listSeat2.length > 0){
-			for(var i=0; i<listSeat2.length; i++){
-				$("input[name='"+listSeat2[i]+"']").attr("background-color", red);
-				/* $("input[name='"+listSeat2[i]+"']").css("background-color","#000000"); 
-				$("input[name='"+listSeat2[i]+"']").attr("disabled", "disabled"); */ 
-			}
-		}
-	});
 	
 	
 	$(document).ready(function() {
@@ -180,6 +169,8 @@
 			return;
 		}
 	}
+	
+
 	function CountChk() {
 		if(total==0){
 			alert('최소 한장 이상 구매를 하셔야 합니다.');
@@ -271,7 +262,22 @@
 							<td colspan="2" align="center" style="color:white; font-weight: bold;">[선택하신좌석]</td>
 						</tr>
 						<tr height="30%">
-							<td colspan="2" width="40%" style="color:white; vertical-align:middle; font-weight: bold;" align="center">좌석 설명 이미지로</td>
+							<td colspan="2" width="40%" style="color:white; vertical-align:middle; font-weight: bold;" align="center">
+								<table>
+									<tr>
+										<td><img src="${path}/resources/images/home/좌석선택한거.png" width="20px;" height="20px;"></td>
+										<td style="color:white;">&nbsp;&nbsp;선택</td>
+									</tr>
+									<tr>
+										<td><img src="${path}/resources/images/home/좌석예매불가.png" width="20px;" height="20px;"></td>
+										<td style="color:white;">&nbsp;&nbsp;선택불가</td>
+									</tr>
+									<tr>
+										<td><img src="${path}/resources/images/home/좌석예매가능.png" width="20px;" height="20px;"></td>
+										<td style="color:white;">&nbsp;&nbsp;일반</td>
+									</tr>
+								</table>
+							</td>
 							<td colspan="2">
 								<table class="table table-bordered" style="margin: 0px; padding: 0px; width: 210px;">
 									<c:forEach var="i" begin="0" end="7" step="2">
