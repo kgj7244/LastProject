@@ -1,5 +1,6 @@
 package com.ch.ch.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,21 @@ public class ScreenServiceImpl implements ScreenService{
 	}
 	public int screenInsert(int m_num, int t_num, int mt_num, String sc_date, String sc_start, String sc_end) {
 		return sd.screenInsert(m_num, t_num, mt_num, sc_date, sc_start, sc_end);
+	}
+	public Screen selectSeat(int sc_num) {
+		return sd.selectSeat(sc_num);
+	}
+	public int insertSeat(String st_name, int sc_num) {
+		return sd.insertSeat(st_name, sc_num);
+	}
+	public int screenReFund(int sc_num, String seat) {
+		return sd.screenReFund(sc_num, seat);
+	}
+	public int bankReFund(int t_ordernum, String member_id) {
+		return sd.bankReFund(t_ordernum, member_id);
+	}
+	public int ticketReFund(int t_ordernum, int sc_num) {
+		return sd.ticketReFund(t_ordernum, sc_num);
 	}
 	
 }

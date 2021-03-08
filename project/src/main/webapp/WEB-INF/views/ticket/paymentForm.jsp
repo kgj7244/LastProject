@@ -20,6 +20,10 @@
 	var total=0; //표 토탈 갯수
 	var totalPrice = 0;
 	var mt_num = "${mt_num}";
+	var listSeat2  = new Array(); //임시저장소
+	var listSeat = "${screen.st_name}";
+	
+	
 	
 	$(document).ready(function() {
 		$('#count_adult input[count_adult]').click(function(e) {
@@ -159,13 +163,14 @@
 				
 			}
 			Seat()
-			frm20.selectList.value=selectList;
 		}
 		else{
 			alert('구입하려는 수보다 많은 좌석을 클릭하셨습니다.');
 			return;
 		}
 	}
+	
+
 	function CountChk() {
 		if(total==0){
 			alert('최소 한장 이상 구매를 하셔야 합니다.');
@@ -183,10 +188,12 @@
     		for(var i=0; i<selectList.length; i++){
     			$("#rowSelect"+i).text(selectList[i]);
     		}
+    		frm20.selectList1.value=selectList;
     	}else  if(selectList.length == temporary.length){
     		for(var i=0; i<temporary.length; i++){
     			$("#rowSelect"+i).text(selectList[i]);
     		}
+    		frm20.selectList1.value=temporary;
     	}
 	} 
 </script>
@@ -207,17 +214,21 @@
 		<input type="hidden" name="t_title" value="${theater.t_title}">
 		<input type="hidden" name="mt_num2" value="${mt_num}">
 		<input type="hidden" name="sc_num2" value="${sc_num}">
+		<input type="hidden" name="selectList1">
+		<input type="hidden" name="seat12" value="${screen.st_name}">
 
-		<table border="1" >
+		
+
+		<table>
 			<tr height="30px;">
-				<td colspan="2" align="center" width="700px;" style="font-size: 20px; font-weight: bold;">관람인원 선택</td>
+				<td colspan="2" align="center" width="700px;" style="font-size: 20px; font-weight: bold; background-color: #F8F8F8; margin-top: 3px;">관람인원 선택</td>
 				<!-- 오른쪽 정보 제공 창 -->
-				<td rowspan="3" width="350px;" height="420px;" style="background-color: #505050;"> <!-- 오른쪽 창 3개 합친거 -->
+				<td rowspan="3" width="350px;" height="420px;" style="background-color: #333333;"> <!-- 오른쪽 창 3개 합친거 -->
 					<table style="width:350px; height:420px;">
 						<tr height="5%">
 							<td rowspan="2" width="10%" align="center" style="border-bottom: 1px; solid; red;">
 								<c:choose>	
-									<c:when test="${movie.m_rank == '전체'}">
+									<c:when test="${movie.m_rank == '전 연령'}">
 										<img src="resources/images/m_rank/전체.png" height="25px" width="25px" >
 									</c:when>								
 								<c:when test="${movie.m_rank == '12세'}">
@@ -231,14 +242,14 @@
 								</c:when>							
 								</c:choose>
 							</td>
-							<td colspan="3" width="90%" style="color:white;">${movie.m_title}</td>			
+							<td colspan="3" width="90%" style="color:white; font-weight: bold;">${movie.m_title}</td>			
 						</tr>
 						
 						<tr height="5%">
 							<td colspan="3" style="font-size: 12px; font-weight: 400; border-bottom:2px; color:white;">(${movie.m_genre})</td>
 						</tr>
 						<tr height="20%">
-							<td colspan="2" width="40%" align="left" style="vertical-align:middle; color:white;">
+							<td colspan="2" width="40%" align="left" style="vertical-align:middle; color:white; font-weight: bold;">
 								${theater.t_loc}(${theater.t_title}점)<br>
 								${mt_num}관<br>
 								${screen.sc_date}<br>
@@ -246,11 +257,29 @@
 							</td>
 							<td colspan="2" width="60%" align="center"><img alt="보여줄 이미지가 없습니다." src="${path}/resources/images/m_poster/${movie.m_poster}" height="100px;" width="80px;"></td>
 						</tr>
-
+						<tr>
+							<td colspan="2"></td>
+							<td colspan="2" align="center" style="color:white; font-weight: bold;">[선택하신좌석]</td>
+						</tr>
 						<tr height="30%">
-							<td colspan="2" width="40%" style="color:white; vertical-align:middle;" align="center">좌석 설명 이미지로</td>
+							<td colspan="2" width="40%" style="color:white; vertical-align:middle; font-weight: bold;" align="center">
+								<table>
+									<tr>
+										<td><img src="${path}/resources/images/home/좌석선택한거.png" width="20px;" height="20px;"></td>
+										<td style="color:white;">&nbsp;&nbsp;선택</td>
+									</tr>
+									<tr>
+										<td><img src="${path}/resources/images/home/좌석예매불가.png" width="20px;" height="20px;"></td>
+										<td style="color:white;">&nbsp;&nbsp;선택불가</td>
+									</tr>
+									<tr>
+										<td><img src="${path}/resources/images/home/좌석예매가능.png" width="20px;" height="20px;"></td>
+										<td style="color:white;">&nbsp;&nbsp;일반</td>
+									</tr>
+								</table>
+							</td>
 							<td colspan="2">
-								<table class="table table-bordered" style="margin: 0px; padding: 0px;">
+								<table class="table table-bordered" style="margin: 0px; padding: 0px; width: 210px;">
 									<c:forEach var="i" begin="0" end="7" step="2">
 										<tr height="40px;" style="vertical-align:middle;">
 											<td width="50%" align="center"><span id="rowSelect${i}" style="vertical-align:middle; color:white;"></span></td>
@@ -267,13 +296,13 @@
 							</td>
 						</tr>
 						<tr height="10%">
-							<td colspan="2" width="40%" style="color:white;">
+							<td colspan="2" width="40%" style="color:white; font-weight: bold;">
 								최종결제금액
 							</td>
 							<td align="right" width="30%">
-								<span id="totalPrice" style="color:#329eb1; font-size: 25px;"></span>
+								<span id="totalPrice" style="color:#329eb1; font-size: 25px; font-weight: bold;"></span>
 							</td>
-							<td width="30%" style="color:white;">
+							<td width="30%" style="color:white; font-weight: bold;">
 								<span id="totalPrice1"></span>
 							</td>
 						</tr>
