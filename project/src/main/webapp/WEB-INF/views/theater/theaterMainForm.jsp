@@ -54,8 +54,17 @@
 </style> 
 </head>
 <body>
+<%@include file="../mainTop.jsp" %>
+<%@include file="../mainNav.jsp" %>
 	<!-- 상영하는 영화, 극장 선택 -->
 	<div class="container">
+		<table>
+		
+		</table>
+		<input type="hidden" name="member_id" value="${member_id}">
+			<c:if test="${member_id == 'master'}">
+				<a href="theaterInsertForm.do">상영관 추가</a>
+			</c:if>
 		<!-- 상영 영화/극장/전체영화 선택  -->
 		<div class="time-table-page">
 			<div id="choice-movie" class="btn-group-vertical" style="float: left">
@@ -72,16 +81,9 @@
 			<!-- 전체 영화 제목만 보여주기 -->
 			<div id="disp-all-movie"></div>
 		</div>
+		<!-- <hr style="border: 0px; height: 3px; background-color: #cccccc;"> -->
 		<!-- 상영시간표 날짜  -->
 		<div class="time-table-date">
-	<!-- 	임시로 막음!!!!!
-			<table>
-				<tr>
-					<td>
-						<div id="disp-date"></div>
-					</td>
-				</tr>
-			</table> -->
 			<table>
 				<tr>
 					<td>
@@ -112,5 +114,6 @@
 			</table>
 		</div>
 	</div>
+	<%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

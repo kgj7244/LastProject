@@ -166,6 +166,7 @@ create table board(
  	b_code nvarchar2(40),                                           --카테고리(회원/예매/스토어/기타)
 	member_id nvarchar2(50) references member(member_id) not null   --아이디
 );
+select * from board;
 
 -----------------------------------상영
 
@@ -312,3 +313,4 @@ select * from movie order by m_genre desc;
 select * from bank;
 select * from screen;
 select * from ticket where t_id = 'master';
+select * from theater;
