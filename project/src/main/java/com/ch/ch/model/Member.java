@@ -17,5 +17,11 @@ public class Member {
 	private String member_number; //휴대전화
 	private String member_addr; //주소
 	private Date member_date; //가입일
-	private String member_del; //탈퇴여부		
+	private String member_del; //탈퇴여부
+	// paging용
+	private int startRow;
+	private int endRow;
+	// search용
+	private String search;
+	private String keyword;
 }

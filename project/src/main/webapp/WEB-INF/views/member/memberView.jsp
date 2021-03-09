@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../mainTop.jsp" %>
+<%@ include file="../mainNav.jsp" %>
 	<div class="container" align="center">
 		<h3>회원 정보</h3>
 		<table class="table table-bordered">
@@ -42,5 +44,6 @@
 		</table>
 		<a href="mypage.do" class="btn btn-success btn-sm">마이페이지</a> <a href="mainForm.do" class="btn btn-info btn-sm">HOME</a>
 	</div>
+<%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

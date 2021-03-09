@@ -18,5 +18,8 @@ public interface MemberService {
 
 	int delete(String member_id);
 
+	int getTotal(Member member);
+
+	List<Member> list(Member member);
 
 }

@@ -17,6 +17,7 @@
 		<typeAlias alias="seat" type="com.ch.ch.model.Seat" />
 		<typeAlias alias="ord" type="com.ch.ch.model.Ord" />
 
+		<typeAlias alias="reBoard" type="com.ch.ch.model.ReBoard" />
 	</typeAliases>
 	<mappers>   <!-- 어디로 연결할지 --> 
 		<mapper resource="member.xml" />
@@ -28,5 +29,6 @@
 		<mapper resource="screen.xml" />
 		<mapper resource="board.xml" />
 		<mapper resource="ord.xml" />
+		<mapper resource="reBoard.xml" />
 	</mappers>
 </configuration>

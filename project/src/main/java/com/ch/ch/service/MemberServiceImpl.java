@@ -29,4 +29,10 @@ public class MemberServiceImpl implements MemberService{
 	public int delete(String member_id) {
 		return md.delete(member_id);
 	}
+	public int getTotal(Member member) {
+		return md.getTotal(member);
+	}
+	public List<Member> list(Member member) {
+		return md.list(member);
+	} 
 }

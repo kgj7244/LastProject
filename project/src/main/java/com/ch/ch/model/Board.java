@@ -21,4 +21,6 @@ public class Board {
 	// search용
 	private String search;
 	private String keyword;
+	//
+	private int r_count;
 }
