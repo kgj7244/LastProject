@@ -24,4 +24,6 @@ public interface MovieDao {
 	List<Movie> movieMainList(); //희주 추가
 
 	List<Movie> moviePage(Movie movie);
+
+	List<Movie> allMovieList();
 }

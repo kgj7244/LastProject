@@ -24,4 +24,6 @@ public interface MovieService {
 	List<Movie> movieMainList(); //희주추가
 
 	List<Movie> moviePage(Movie movie);
+
+	List<Movie> allMovieList();
 }

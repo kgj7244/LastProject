@@ -86,7 +86,9 @@ public class TicketController {
 		int movie_num = movie.getM_num();
 		Theater theater = tts.selectTitle(t_title); // theater.getT_num() 극장번호 가져옴
 		int theater_num = theater.getT_num();
-		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date); // 영화번호, 극장번호, 날짜를 가지고와서 그 해당하는 시간대를 출력하기 위함		
+		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date); // 영화번호, 극장번호, 날짜를 가지고와서 그 해당하는 시간대를 출력하기 위함
+		
+		
 		
 		model.addAttribute("movie",movie);
 		model.addAttribute("theater",theater);
@@ -94,10 +96,9 @@ public class TicketController {
 		return "ticket/selectTime";
 	}
 	@RequestMapping("paymentForm")
-	public String paymentForm(Model model, String m_title2, String t_title2, String sc_date2, String mt_num2 ,String sc_num2) {
+	public String paymentForm(Model model, String m_title2, String t_title2,String mt_num2 ,String sc_num2) {
 		String m_title = m_title2;
 		String t_title = t_title2;
-		String sc_date = sc_date2;
 		int mt_num = Integer.parseInt(mt_num2);
 		int sc_num = Integer.parseInt(sc_num2);
 		MovieTheater movieTheater = ss.selectMovieTheaterFind(mt_num, sc_num);
@@ -197,7 +198,7 @@ public class TicketController {
 		}
 		if(result >0) {
 			ticket = ts.insertTicket(adult_ticket1, youth_ticket1, t_sale1, member_id, screen.getSc_date(),selectList, Integer.parseInt(sc_num)); // 예매가 되면 1이됨
-			Ticket ticket1 = ts.selectBank(member_id, Integer.parseInt(sc_num)); // 자리가 잘 들어가면
+			Ticket ticket1 = ts.selectBank(selectList, member_id, Integer.parseInt(sc_num)); // 자리가 잘 들어가면
 			int bank = ts.insertBank(totalPrice1,t_deal,member_id,ticket1.getT_ordernum()); // bank 테이블에 돈을 넣음
 		}
 		
@@ -242,25 +243,31 @@ public class TicketController {
 	}
 	//희주(추가) 환불
 	@RequestMapping("memberTicketRefund")
-	public String memberTicketRefund(Model model, int t_ordernum, int sc_num, String t_state) {
-//		String seat ="";
-//		Screen screen = ss.selectSeat(sc_num); // 일단 찾고
-//		List<String> screenSeat = new ArrayList<String>(); // 배열을 만들고
-//		Collections.addAll(screenSeat, screen.getSt_name().split(","));  // 만든 배열에 screen의 좌석들을 ,로 잘라서 배열에 담고
-//		String[] t_stateSeat = t_state.split(","); //환분할려는 좌석을 배열에 담는다
-//		for(int i =0; i<t_stateSeat.length; i++) {  // 배열은 길이
-//			screenSeat.remove(t_stateSeat[i]); // 배열에 remove로 통해 삭제한다
-//		}
-//		System.out.println(t_stateSeat);
-//		System.out.println(screenSeat);
-//		for(int i =0; i<screenSeat.size(); i++) {// 리스트는 사이즈?
-//			if(i==screenSeat.size()-1) {
-//				seat += screenSeat[i]+"";
-//			}
-//			seat += screenSeat+""+",";
-//		}
-//		System.out.println(seat);
-//		int screenRefund = ss.screenReFund(screen.getSc_num()); //좌석 환불
+	public String memberTicketRefund(Model model, int t_ordernum, int sc_num, String t_state, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id");
+		String seat ="";
+		Screen screen = ss.selectSeat(sc_num); // 일단 찾고
+		List<String> screenSeat = new ArrayList<String>(); // 배열을 만들고
+		Collections.addAll(screenSeat, screen.getSt_name().split(","));  // 만든 배열에 screen의 좌석들을 ,로 잘라서 배열에 담고
+		String[] t_stateSeat = t_state.split(","); //환분할려는 좌석을 배열에 담는다
+		for(int i =0; i<t_stateSeat.length; i++) {  // 배열은 길이
+			screenSeat.remove(t_stateSeat[i]); // 배열에 remove로 통해 삭제한다
+		}
+		for(int i =0; i<screenSeat.size(); i++) {// 리스트는 사이즈?
+			if(i==screenSeat.size()-1) { 
+				seat += screenSeat.get(i);  // 마지막은 그냥 넣고
+			}else {
+				seat += screenSeat.get(i)+","; // 마지막이 아닌 것은 뒤에 , 붙임
+			}
+		}
+		if(seat==null || seat.equals("")) {
+			seat = "x";
+		}
+		int screenRefund = ss.screenReFund(screen.getSc_num(), seat); //좌석 환불
+		int bankRefund = ss.bankReFund(t_ordernum, member_id);
+		int ticket = ss.ticketReFund(t_ordernum, screen.getSc_num());
+		
+		model.addAttribute("screenRefund", screenRefund);
 		return "member/memberTicketRefund";
 	}
 }

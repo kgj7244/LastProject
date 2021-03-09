@@ -73,4 +73,22 @@ public class ScreenDaoImpl implements ScreenDao{
 		map.put("sc_num", sc_num);
 		return sst.update("screenns.insertSeat", map);
 	}
+	public int screenReFund(int sc_num, String seat) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sc_num", sc_num);
+		map.put("seat", seat);		
+		return sst.update("screenns.screenReFund", map);
+	}
+	public int bankReFund(int t_ordernum, String member_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("t_ordernum", t_ordernum);
+		map.put("member_id", member_id);
+		return sst.delete("screenns.bankReFund", map);
+	}
+	public int ticketReFund(int t_ordernum, int sc_num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("t_ordernum", t_ordernum);
+		map.put("sc_num", sc_num);
+		return sst.delete("screenns.ticketReFund", map);
+	}
 }

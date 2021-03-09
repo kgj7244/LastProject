@@ -38,6 +38,7 @@
 							<option value="판타지">판타지</option>
 							<option value="공포/스릴러">공포/스릴러</option>
 							<option value="로맨스">로맨스</option>
+							<option value="코미디">코미디</option>
 							<option value="액션">액션</option>
 							<option value="드라마">드라마</option>
 							<option value="애니메이션">애니메이션</option>

@@ -15,5 +15,11 @@ public interface TheaterDao {
 	List<Theater> list();
 
 	List<Theater> listT_loc();
+
+	int insert(Theater theater);
+
+	Theater select(int t_num);
+
+	List<Theater> titleList();
 	
 }

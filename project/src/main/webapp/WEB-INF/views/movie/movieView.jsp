@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -7,12 +7,21 @@
 <meta charset="UTF-8">
 <title>${movie.m_title} | 영화 상세 보기</title>
 <style type="text/css">
-	th {
-    position: sticky;
-    top: 0px;
-    background-color: gray !important;
+	div.header {
+		position: -webkit-sticky;
+		position:sticky;
+		top:0;
+		background-color: white;
+	}
+	.carousel-control { 
+		background: maroon !important;
+        filter: none !important; 
+        progid:none !important;
+	}
+	.navbar-fixed-top  {
+     -webkit-backface-visibility: hidden;
 }
-</style>
+</style> 
 <script type="text/javascript">
 	$(function() {
 		$('#rInsert').click(function() {
@@ -69,12 +78,11 @@
 	<div><%@include file="../mainTop.jsp" %></div>
 	<div><%@include file="../mainNav.jsp" %></div>
 	<div align="center">
-    		<!-- 나중에 관리자 적용되면 그때 master_id == 'master'로 변경 -->
-    		<input type="hidden" name="member_id" value="${member_id}">
-			<c:if test="${member_id == 'master'}">
-				<a href="movieUpdateForm.do?m_num=${movie.m_num}">영화 수정</a>
-			</c:if>
-		</div>
+		<c:if test="${sessionScope.member_id == 'master'}">
+			<a href="movieUpdateForm.do?m_num=${movie.m_num}">영화 수정</a>
+			<a href="allMovieList.do">영화 전체 목록</a>
+		</c:if>
+	</div>
 	<div class="container" align="center">
 		<h2 class="text-primary">${movie.m_title}</h2>
 		<c:set var="tot" value="${tot}"></c:set>
@@ -90,15 +98,20 @@
 			<br>
 			<a href="ticketMainForm.do">예매</a>
 		</div>
+		<div class="header navbar navbar-fixed-top" role="navigation">
+			<table class="table table-bordered">
+				<tr>
+					<th><a href="#content" style="text-decoration: none; color: black">주요정보</a></th>
+					<th><a href="#stillcut" style="text-decoration: none; color: black">스틸컷</a></th>
+					<th><a href="#review" style="text-decoration: none; color: black">한줄평</a></th>
+				</tr>
+			</table>
+		</div>
 		<div>
 			<table class="table table-bordered">
 				<tr>
-					<th><a href="#content">주요정보</a></th>
-					<th><a href="#stillcut">스틸컷</a></th>
-					<th><a href="#review">한줄평</a></th>
-				</tr>
-				<tr>
-					<a name="content"><h2 class="text-primary"></h2></a>
+					<a name="content" style="text-decoration: none;">
+						<h2 class="text-primary" style="color: black;">줄거리</h2></a>
 					<td colspan="3" style="white-space:pre;">${movie.m_content}</td>
 				</tr>
 				<tr>
@@ -112,13 +125,32 @@
 				</tr>
 			</table>
 		</div>
-		<a name="stillcut"><h2 class="text-primary">스틸컷</h2></a>
-		<div class="container" align="center">
-			<c:forEach var="st" items="${list}">
-		 		<img alt="" src="resources/images/stillcut/${st.m_stillcut}" width="200">
-			</c:forEach>
+		<a name="stillcut" style="text-decoration: none;">
+		<h2 class="text-primary" style="color: black;">스틸컷</h2></a>
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+		    <div class="carousel-inner">
+				<c:forEach var="st" items="${list}" begin="0" end="0">
+			        <div class="item active">	
+						<img alt="" src="resources/images/stillcut/${st.m_stillcut}">
+					 </div>
+				</c:forEach>
+				<c:forEach var="st" items="${list}" begin="1">
+			        <div class="item">
+						<img alt="" src="resources/images/stillcut/${st.m_stillcut}">
+					 </div>
+				</c:forEach>
+			    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			      <span class="glyphicon glyphicon-chevron-left"></span>
+			      <span class="sr-only">Previous</span>
+			    </a>
+			    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+			      <span class="glyphicon glyphicon-chevron-right"></span>
+			      <span class="sr-only">Next</span>
+				</a>
+			</div>
 		</div>
-		<a name="review"><h2 class="text-primary">리뷰</h2></a>
+		<a name="review" style="text-decoration: none;">
+			<h2 class="text-primary" style="color: black;">한줄평</h2></a>
 		<p>${movie.m_title}에 대한 ${tot}개의 이야기가 있어요!</p>
 		<div class="container" align="center" id="rvListDisp">
 			<c:if test="${empty rvList}">

@@ -51,4 +51,8 @@ public class MovieServiceImpl implements MovieService{
 	public List<Movie> moviePage(Movie movie) {
 		return md.moviePage(movie);
 	}
+	
+	public List<Movie> allMovieList() {
+		return md.allMovieList();
+	}
 }

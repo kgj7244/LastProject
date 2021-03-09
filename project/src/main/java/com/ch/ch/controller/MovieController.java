@@ -233,4 +233,13 @@ public class MovieController {
 		
 		 return "movie/movieUpdate";
 	 }
+	 
+	 @RequestMapping("allMovieList")
+	 public String allMovieList(Model model) {
+		 List<Movie> list = ms.allMovieList();
+		 
+		 model.addAttribute("list", list);
+		 
+		 return "movie/allMovieList";
+	 }
 }

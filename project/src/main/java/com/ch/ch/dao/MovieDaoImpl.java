@@ -53,4 +53,8 @@ public class MovieDaoImpl implements MovieDao{
 	public List<Movie> moviePage(Movie movie) {
 		return sst.selectList("moviens.moviePage", movie);
 	}
+	
+	public List<Movie> allMovieList() {
+		return sst.selectList("moviens.allMovieList");
+	}
 }

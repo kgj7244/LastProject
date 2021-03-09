@@ -27,4 +27,10 @@ public interface ScreenService {
 	Screen selectSeat(int sc_num);
 
 	int insertSeat(String st_name, int sc_num);
+
+	int screenReFund(int sc_num, String seat);
+
+	int bankReFund(int t_ordernum, String member_id);
+
+	int ticketReFund(int t_ordernum, int sc_num);
 }

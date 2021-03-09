@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 <table class="table table-hover">
@@ -22,7 +23,22 @@
 					<span style="padding-top: 30px; padding-bottom: 30px;"  onclick="AllSelectChk(${i.mt_num},${i.sc_num},'${i.mt_name}','${i.sc_start}','${movie.m_title}','${theater.t_title}',${i.t_num})">${movie.m_title}</span>
 				</td>
 				<td width="15%" align="center" style="vertical-align:middle;">
-					<span style="padding-top: 30px; padding-bottom: 30px;" onclick="AllSelectChk(${i.mt_num},${i.sc_num},'${i.mt_name}','${i.sc_start}','${movie.m_title}','${theater.t_title}',${i.t_num})">${theater.t_title}</span> 
+					<span style="padding-top: 30px; padding-bottom: 30px;" onclick="AllSelectChk(${i.mt_num},${i.sc_num},'${i.mt_name}','${i.sc_start}','${movie.m_title}','${theater.t_title}',${i.t_num})">${theater.t_title}</span><p> 
+					<%-- <span>(${i.st_name}/100)</span> --%>
+					<span>
+						(
+						<span id="test">
+							<script type="text/javascript">
+								var listSeat3  = new Array(); //임시저장소
+								var listSeat = "${screen.st_name}"; // A1,B1
+								var cnt = 0;
+								for(var i=0; i<listSeat.length; i++){
+									cnt +=1;
+								}
+								$('#test').text(cnt);
+							</script></span>
+						/100)
+						</span>
 				</td>
 				<td width="15%" align="center" style="vertical-align:middle;">
 					<input type="button" id="btnChk" value="${i.mt_name}" onclick="AllSelectChk(${i.mt_num},${i.sc_num},'${i.mt_name}','${i.sc_start}','${movie.m_title}','${theater.t_title}',${i.t_num})" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding-top: 30px; padding-bottom: 30px;">

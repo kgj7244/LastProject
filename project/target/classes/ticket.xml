@@ -11,7 +11,7 @@
 		insert into ticket values(t_ordernum.nextval, #{adult_ticket},#{youth_ticket},#{t_sale1},#{member_id},#{sc_date},#{selectList},#{sc_num})
 	</insert>
 	<select id="selectBank" parameterType="hashmap" resultType="ticket">
-		select * from ticket where t_id=#{member_id} and sc_num = #{sc_num}
+		select * from ticket where t_state = #{selectList} and t_id=#{member_id} and sc_num = #{sc_num} 
 	</select>
 	<insert id="insertBank" parameterType="hashmap">
 		insert into bank values(t_account.nextval, sysdate, #{totalPrice1}, #{t_deal}, #{member_id},'565-278311-02-001',#{t_ordernum})

@@ -33,8 +33,9 @@ public class TicketDaoImpl implements TicketDao{
 		map.put("sc_num", sc_num);
 		return sst.insert("ticketns.insertTicket", map);
 	}
-	public Ticket selectBank(String member_id, int sc_num) {
+	public Ticket selectBank(String selectList, String member_id, int sc_num) {
 		Map<String, Object> map= new HashMap<String, Object>();
+		map.put("selectList", selectList);
 		map.put("member_id", member_id);
 		map.put("sc_num", sc_num);		
 		return sst.selectOne("ticketns.selectBank", map);
@@ -64,4 +65,5 @@ public class TicketDaoImpl implements TicketDao{
 	public Movie selectMovie(int m_num) {
 		return sst.selectOne("ticketns.selectMovie", m_num);
 	}
+	
 }
