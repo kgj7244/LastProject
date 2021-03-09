@@ -10,6 +10,7 @@ import com.ch.ch.dao.ScreenDao;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
+import com.ch.ch.model.Theater;
 
 @Service
 public class ScreenServiceImpl implements ScreenService{
@@ -33,8 +34,8 @@ public class ScreenServiceImpl implements ScreenService{
 	public List<MovieTheater> list() {
 		return sd.list();
 	}
-	public MovieTheater selectTitle(String mt_name) {
-		return sd.selectTitle(mt_name);
+	public MovieTheater selectTitle(String mt_name, int t_num) {
+		return sd.selectTitle(mt_name, t_num);
 	}
 	public int screenInsert(int m_num, int t_num, int mt_num, String sc_date, String sc_start, String sc_end) {
 		return sd.screenInsert(m_num, t_num, mt_num, sc_date, sc_start, sc_end);
@@ -66,4 +67,11 @@ public class ScreenServiceImpl implements ScreenService{
 	public void deleteSeatReFund(String st_num, int sc_num) {
 		sd.deleteSeatReFund(st_num, sc_num);	
 	}
+	public Theater selectTheater(String t_title) {
+		return sd.selectTheater(t_title);
+	}
+	public List<MovieTheater> mTheater(int t_num) {
+		return sd.mTheater(t_num);
+	}
+
 }

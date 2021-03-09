@@ -7,16 +7,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+	var cnt = 0;
 	var loc = "";
 	function theaterChk(t_loc) {
 		$.post("selectTheater1.do","id="+t_loc, function(data) {
 			$('#theaterSelect').html(data);
 			loc = t_loc;
+			cnt +=1;
+			movieTheater();
 		});
 	}
 	function theaterSelectChk(t_title) {
 		$('#theaterSelectChk').text(t_title+"("+loc+")점 선택하셨습니다.");
 		frm17.t_title.value=t_title;
+		cnt +=1;
+		movieTheater();
+	}
+	
+	function movieTheater(t_title){
+		if(cnt>=2){
+			$.post("movieTheaterChk.do","t_title="+frm17.t_title.value, function(data) {
+				var mt_name2  = new Array();
+				var mt_name = text(data);
+				mt_name2 = mt_name.split(",");
+				for(var i=0; i<mt_name2.length; i++){
+					if(mt_name2[i]!=$("#mt_name").val()){
+						$("#mt_name").val().prop("disabled",trun);
+					};
+				}
+			});
+		}
 	}
 </script>
 </head>
@@ -34,7 +54,7 @@
 				<td>
 					<select name="m_title">
 						<c:forEach var="m" items="${movie}">
-							<option>${m.m_title}</option>
+							<option value="${m.m_title}">${m.m_title}</option>
 						</c:forEach>
 					</select>
 				</td>
@@ -61,10 +81,15 @@
 			<tr>
 				<td>상영관</td>
 				<td>
-					<select name="mt_name">
-						<c:forEach var="mt" items="${movieTheater}">
+					<select name="mt_name" id="mt_name">
+						<option value="1관">1관</option>
+						<option value="2관">2관</option>
+						<option value="3관">3관</option>
+						<option value="4관">4관</option>
+						<option value="5관">5관</option>
+						<%-- <c:forEach var="mt" items="${movieTheater}">
 							<option>${mt.mt_name}</option>
-						</c:forEach>								
+						</c:forEach> --%>								
 					</select>
 				</td>
 			</tr>
