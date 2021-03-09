@@ -26,26 +26,26 @@
 	<h2>상영관 추가</h2>
 	<form action="theaterInsert.do" method="post" name="frm">
 		<table class="table table-bordered">
-			<tr>
+			<!-- <tr>
 				<th>상영관 번호</th>
 				<td>
 					<input type="number" name="t_num" required="required" autofocus="autofocus">
 					<input type="button" onclick="TnumChk()" class="btn btn-warning" value="중복 확인">
 					<div id="disp" style="color: red;"></div>
 				</td>
-			</tr>
+			</tr> -->
 			<tr>
 				<th>이름</th>
 				<td>
-					<input type="text" name="t_title" required="required">
+					<input type="text" name="t_title" required="required" autofocus="autofocus">
 				</td>
 			</tr>
 			<tr>
 				<th>지역</th>
 				<td>
 					<select name="t_loc">
-					<c:forEach var="titleList" items="${titleList}">
-						<option>${titleList.t_title}(${titleList.t_loc})</option>
+					<c:forEach var="title" items="${titleList}">
+						<option>${title.t_title}(${title.t_loc})</option>
 					</c:forEach>
 					</select>
 				</td>

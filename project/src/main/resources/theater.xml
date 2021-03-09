@@ -21,7 +21,7 @@
 		select distinct t_loc from theater order by t_loc
 	</select>
 	<insert id="insert" parameterType="theater">
-		insert into values (#{t_num}, #{t_title}, #{t_loc}, #{t_addr}, 
+		insert into theater values (theater_t_num_seq.nextval, #{t_title}, #{t_loc}, #{t_addr}, 
 			#{t_number}, #{t_gui})
 	</insert>
 	<select id="select" parameterType="integer" resultType="theater">

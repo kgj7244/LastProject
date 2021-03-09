@@ -63,7 +63,7 @@ public class TheaterController {
 		int result = tts.insert(theater);
 		model.addAttribute("result", result);
 		
-		return "theater/theaterInsertForm";
+		return "theater/theaterInsert";
 	}
 	//상영관 번호 중복체크
 	@RequestMapping(value = "TnumChk", produces = "text/html;charset=utf-8")
