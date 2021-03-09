@@ -11,12 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.ch.model.Member;
 import com.ch.ch.model.Movie;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
 import com.ch.ch.model.Theater;
 import com.ch.ch.model.Ticket;
+import com.ch.ch.service.MemberService;
 import com.ch.ch.service.MovieService;
 import com.ch.ch.service.ScreenService;
 import com.ch.ch.service.TheaterService;
@@ -32,6 +34,8 @@ public class TicketController {
 	private TheaterService tts; // 극장
 	@Autowired
 	private ScreenService ss; // 상영
+	@Autowired
+	private MemberService mms; // 회원
 	@RequestMapping("ticketMainForm")
 	public String ticketMainForm(Model model, Theater theater) {
 		List<Movie> movie = ms.list(); // 영화 리스트
@@ -257,5 +261,12 @@ public class TicketController {
 		int ticket = ss.ticketReFund(t_ordernum, sc_num);
 		model.addAttribute("ticket", ticket);
 		return "member/memberTicketRefund";
+	}
+	
+	//이벤트 페이지
+	@RequestMapping("eventForm")
+	public String eventForm(Model model) {
+		// List<Member> member = mms.select();
+		return "ticket/eventForm";
 	}
 }

@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 --삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
 drop sequence theater_t_num_seq; 
-=======
---삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
-<<<<<<< HEAD
-=======
-drop sequence theater_t_num_seq; 
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 drop sequence st_num; 
 drop sequence re_num; 
 drop sequence s_num; 
@@ -66,11 +58,19 @@ select * from member;
 
 -------------------------------------- 이벤트(추가)
 create table event(
-	event_num nvarchar(10) primary key not null,  -- 이벤트번호
-	event_title nvarchar(50) not null,            -- 이벤트제목
-	event_state nvarchar(50) not null,            -- 이벤트종류
-	event_sale nvarchar(50) not null,             -- 이벤트금액
-	member_id references member(member_id)        -- 회원아이디
+	e_num nvarchar2(10) primary key,  -- 이벤트번호
+	e_title nvarchar2(50) not null,            -- 이벤트제목
+	e_state nvarchar2(50) not null,            -- 이벤트종류
+	e_sale nvarchar2(50) not null,             -- 이벤트금액
+	member_id nvarchar2(50) references member(member_id)        -- 회원아이디
+);
+
+create sequence event_num increment by 1 start with 1;
+
+---------------------------------------이벤트 중복체크
+create table event_over(
+	member_id nvarchar2(50),
+	e_num nvarchar2(10) references event(e_num)
 );
 
 --------------------------------------극장
@@ -83,21 +83,14 @@ create table theater(
 	t_number nvarchar2(50) not null,   --전화번호
 	t_gui nvarchar2(1000) not null        --시설 안내
 );
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+
 select * from theater;
-<<<<<<< HEAD
+
 
 create sequence theater_t_num_seq increment by 1 start with 13;
-=======
+
 drop sequence theater_t_num_seq;
-create sequence theater_t_num_seq increment by 1 start with 13;
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 insert into theater values(1, '신촌','서울','서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)','1544-1122','주자요금 영화 관람시 3시간, 4000원입니다.');
 insert into theater values(2, '강남','서울','서울특별시 강남구 강남대로 438 (역삼동, 스타플렉스)','1544-1122','건물 지하2F ~ 지하4F# 주차요금- CGV 영화 관람 시 주차 3시간 6,000원');
 insert into theater values(3, '용산','서울','서울특별시 용산구 한강대로23길 55 현대아이파크몰 6층','1544-1122','주자요금- 영화 관람시 4시간, 5000원입니다.');
@@ -157,13 +150,7 @@ create table stillcut (
 	m_stillcut nvarchar2(500) not null		--스틸컷
 );
 create sequence st_num increment by 1 start with 1;
---insert into movie values(1, '극장판귀멸의칼날-무한열차편','벽력일섬','15','2021-02-03','상영중',120,0,'001.jpg','소토자키 하루오','하나에 나츠키, 시모노 히로, 마츠오카 요시츠구, 키토 아카리','애니메이션','n');
---insert into movie values(2, '소울','피아노 위를 걷는다','전체','2021-01-20','상영중',107,0,'002.jpg','피트 닥터','제이미 폭스, 티나 페이, 다비드 딕스','애니메이션','n');
---insert into movie values(3, '미션 파서블','미션 임파서블이 아니네???','15','2021-02-17','상영중',105,0,'003.jpg','김형주','김영광, 이선빈','코미디, 액션','n');
---insert into movie values(4, '해리포터와 불의 잔','아브라카타브라','12','2021-02-10','상영중',156,0,'004.jpg','마이크 뉴웰','다니엘 래드클리프, 엠마 왓슨, 루퍼트 그린트','환타지','n');
---insert into movie values(5, '해피 투게더 리마스터링 ','유재석?','15','2021-02-04','상영중',97,0,'005.jpg','왕가위','장국영, 양조위, 장첸','드라마, 로맨스, 멜로','n');
---insert into movie values(6, '2046 리마스터링 ','ㅗㅜㅑ','19','2021-02-11','상영중',128,0,'006.jpg','왕가위','장쯔이, 장첸, 기무라 타쿠야, 유가령, 양조위, 왕페이, 베이 로건, 장만옥, 공리, 둥제, 소병림, 통차이 맥킨타이어, 오정엽','드라마','n');
---insert into movie values(7, '마리오네트 ','인형인가봐','12','2021-02-17','상영중',112,0,'007.jpg','엘버트 반 스트리엔','테크라 레우텐, 피터 뮬란, 엘리야 울프','미스터리, 스릴러','n');
+
 select * from movie;
 select * from stillcut;
 
