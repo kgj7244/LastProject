@@ -30,7 +30,8 @@
 </tr>
 </c:if>
 
-<tr><th><h3>${store.s_prive }원</h3></th></tr>
+<tr><th>
+<h3><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</h3></th></tr>
 
 <tr>
 <th>구성품</th>
@@ -46,29 +47,27 @@
 <tr><th>한정 판매 </th><td>남은 수량 ${store.s_total }개 </td></tr>
 </c:if>
 
-<!-- <tr><th>수량</th>
-<td><input type="number" name="s_purchase" value="1"></td></tr>
- -->
-
 <tr>
 <th>총 상품금액</th>
 <td>${total+(s_prive*s_purchase)}원</td>
 </tr>
 
 <!-- ====================================== -->  
-<%-- <tr>
-<td><input type="submit" value="구매하기" onclick="location.href='order.do?s_num=${store.s_num}'"></td>
-</tr> --%>
 
 <tr><td>
-	<form name="order" method="post" action="orderList.do?s_num=${store.s_num}">
-		<input type="hidden" name="s_num" value="${store.s_num}">
+<%-- 	<form name="order" method="post" action="orderList.do?s_num=${store.s_num}"> --%>
+		 <form action="<c:url value='orderList.do' />" method="post">
 		
 		
 		<select name="s_purchase">
 			<c:forEach begin="1" end="10" var="i">
 				<option value="${i}">${i}</option> </c:forEach>
-		</select>&nbsp;개 <input type="submit" value="구매하기">
+		</select>&nbsp;개 
+	
+		
+		
+		<input type="hidden" name="s_num" value="${store.s_num}">
+		<button type="submit" class="btn btn-primary">구매하기</button>
 		
 	</form></td></tr>
 	

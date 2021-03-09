@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.ch.model.Store;
+import com.ch.ch.model.Ord;
 import com.ch.ch.service.StoreService;
 
 
@@ -62,13 +63,15 @@ public class StoreController {
 		return "/store/storeInsert";	
 		} 
 
-//======================================
-	
+	//스토어 수정
 	@RequestMapping("storeUploadForm")
-	public String storeUploadForm(Model model, HttpSession session,int s_num) {
+	public String storeUploadForm(Model model,int s_num) {
 		
-		Store store=ss.select(s_num);
+		Store store=ss.select(s_num);	
+		List<Store> storeList = ss.list();
+	
 		model.addAttribute("store",store);
+		model.addAttribute("storeList",storeList);
 		return "/store/storeUploadForm";	
 	}
 	
@@ -95,7 +98,7 @@ public class StoreController {
 		model.addAttribute("result",result);
 		return "/store/storeUpload";	
 	}
-	
+	//삭제
 	@RequestMapping("storeDelete")
 	public String storeDelete(int s_num,Model model) {
 		int result = ss.delete(s_num);
@@ -103,7 +106,7 @@ public class StoreController {
 		return "/store/storeDelete";	
 	}
 	
- //카테고리별 리스트
+	//카테고리별 리스트
 	@RequestMapping("i_snack")
 	public String i_snack(int s_Pclass, Model model){	
 		List<Store> storeList = ss.pclist(s_Pclass);
@@ -112,9 +115,12 @@ public class StoreController {
 		return "store/i_snack";
 	}
 	
+//====================================================
+	
+	
  //상품 상세
 	@RequestMapping("storeContent")
-	public String storeContent(int s_num,  Model model){
+	public String storeContent(int s_num,Model model){
 		Store store = ss.select(s_num);
 		model.addAttribute("store", store);				
 		return "store/storeContent";
@@ -123,40 +129,10 @@ public class StoreController {
 	//주문페이지로
 	@RequestMapping("orderList")
 	public String order(int s_num,Model model) {
-		
 		Store store = ss.select(s_num);
 		model.addAttribute("store", store);	
 		return "store/orderList";
 	}
-	
-	//장바구니 넣기
-//	@RequestMapping("cartInsert")
-//	public String cartInsert(Cart cart, int s_num,Model model,HttpSession session)throws IOException  {
-//		if(!cart.getFile().isEmpty()) {
-//			
-//			String s_Pimage = cart.getFile().getOriginalFilename();
-//			
-//			String real = session.getServletContext().getRealPath("/resources/images/s_pop");
-//			String path = real + "/" + s_Pimage; 
-//			
-//			
-//			FileOutputStream fos = new FileOutputStream(path);
-//			fos.write(cart.getFile().getBytes());
-//			fos.close();
-//			
-//			cart.setS_Pimage(s_Pimage);
-//	
-//		} 
-//		int result = ss.insert(cart);
-//		model.addAttribute("store", cart);				
-//		return "store/cartInsert";
-//	}
-	//장바구니 목록
-	@RequestMapping("cartList")
-	public String cartList(Model model, int cart_num) {
-//        List<Store> cartList = ss.list(cart_num);
-//		model.addAttribute("cartList", cartList);			
-		return "store/cartList";
+		
 	}
-	
-}
+

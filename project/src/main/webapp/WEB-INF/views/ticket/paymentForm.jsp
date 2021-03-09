@@ -21,7 +21,7 @@
 	var totalPrice = 0;
 	var mt_num = "${mt_num}";
 	var listSeat2  = new Array(); //임시저장소
-	var listSeat = "${screen.st_name}";
+	var listSeat = "${st_name}";
 	
 	
 	
@@ -215,7 +215,7 @@
 		<input type="hidden" name="mt_num2" value="${mt_num}">
 		<input type="hidden" name="sc_num2" value="${sc_num}">
 		<input type="hidden" name="selectList1">
-		<input type="hidden" name="seat12" value="${screen.st_name}">
+		<input type="hidden" name="seat12" value="${st_name}">
 
 		
 

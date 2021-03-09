@@ -23,5 +23,13 @@
  </script>
 </c:if>
 
+
+<c:if test="${result ==-1 }">
+ <script type="text/javascript">
+ alert("뭔가 잘 못 됐습니다. 확인해주세요");
+ history.go(-1);
+ </script>
+</c:if>
+
 </body>
 </html>
