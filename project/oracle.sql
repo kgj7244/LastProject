@@ -15,7 +15,7 @@ drop table service CASCADE CONSTRAINTS;
 drop table store CASCADE CONSTRAINTS;
 drop table bank CASCADE CONSTRAINTS;
 drop table aam_bank CASCADE CONSTRAINTS;
---drop table seat CASCADE CONSTRAINTS;
+drop table seat CASCADE CONSTRAINTS;
 drop table ticket CASCADE CONSTRAINTS;
 drop table screen CASCADE CONSTRAINTS;
 drop table board CASCADE CONSTRAINTS;
@@ -176,18 +176,22 @@ create table screen(
 	sc_start nvarchar2(50) not null,               --시작시간
 	sc_end nvarchar2(50) not null,                 --종료시간
 	sc_del char(1) default 'n',                    --삭제여부
-	st_name nvarchar2(1000),                        --좌석이름
+--	st_name nvarchar2(1000),                        --좌석이름
 	t_num number references theater(t_num),        --극장번호
 	mt_num number references movieTheater(mt_num), --상영관번호
 	m_num number references movie(m_num)          --영화번호 
 );
 create sequence sc_num increment by 1 start with 1;
--- insert into screen values(1, '2021-03-01','13:00','15:00','n',1,1,1);
--- insert into screen values(2, '2021-03-01','15:00','17:00','n',1,1,1);
--- insert into screen values(3, '2021-03-01','17:00','19:00','n',1,2,1);
--- insert into screen values(4, '2021-03-01','19:00','21:00','n',1,2,1);
--- insert into screen values(5, '2021-03-01','21:00','23:00','n',1,3,1);
+
 select * from screen;
+
+-------------------------------------- 좌석
+
+create table seat(
+	st_num nvarchar2(10),                   --좌석번호 
+	sc_num number references screen(sc_num) --상영번호
+);
+
 
 
 
@@ -204,15 +208,6 @@ create table ticket(
 	sc_num number references screen(sc_num) not null  --상영시간번호		
 );
 create sequence t_ordernum increment by 1 start with 1;
-
--------------------------------------- 좌석
-
---create table seat(
---	st_num nvarchar2(50),                   --좌석번호
---	st_state nvarchar2(50),                 --사용가능여부 
---	sc_num number references screen(sc_num) --상영번호
---);
-
 
 
 --------------------------------------관리자계좌
@@ -310,22 +305,8 @@ create table service(
 create sequence sv_num increment by 1 start with 1;
 
 select * from movie order by m_genre desc;
-select * from stillcut;
-select * from 
-select * from ticket where t_id = 'master';
-<<<<<<< HEAD
-select * from theater;
-=======
-select * from ticket;
+select * from seat;
 select * from screen;
-select * from movie where m_title='극장판 귀멸의 칼날-무한열차편';
-select * from theater where t_title ='신촌';
-select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num = 5 and s.sc_num =23 and s.sc_del = 'n'
-select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and s.sc_num = 23 and m.mt_num =5 and s.sc_del = 'n'
-<<<<<<< HEAD
-select * from ticket where t_id='lamslams' and sc_num = 23;
-=======
-select * from ticket where t_id='lamslams' and sc_num = 23;
+select * from ticket;
+select * from bank;
 
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git

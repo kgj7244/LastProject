@@ -1,7 +1,6 @@
 package com.ch.ch.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,14 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.ch.model.Movie;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
+import com.ch.ch.model.Seat;
 import com.ch.ch.model.Theater;
 import com.ch.ch.model.Ticket;
-import com.ch.ch.service.MemberService;
 import com.ch.ch.service.MovieService;
 import com.ch.ch.service.ScreenService;
 import com.ch.ch.service.TheaterService;
@@ -34,8 +32,6 @@ public class TicketController {
 	private TheaterService tts; // 극장
 	@Autowired
 	private ScreenService ss; // 상영
-	@Autowired
-	private MemberService mms; // 맴버
 	@RequestMapping("ticketMainForm")
 	public String ticketMainForm(Model model, Theater theater) {
 		List<Movie> movie = ms.list(); // 영화 리스트
@@ -88,8 +84,6 @@ public class TicketController {
 		int theater_num = theater.getT_num();
 		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date); // 영화번호, 극장번호, 날짜를 가지고와서 그 해당하는 시간대를 출력하기 위함
 		
-		
-		
 		model.addAttribute("movie",movie);
 		model.addAttribute("theater",theater);
 		model.addAttribute("screen",screen);
@@ -99,13 +93,24 @@ public class TicketController {
 	public String paymentForm(Model model, String m_title2, String t_title2,String mt_num2 ,String sc_num2) {
 		String m_title = m_title2;
 		String t_title = t_title2;
+		String st_name="";
 		int mt_num = Integer.parseInt(mt_num2);
 		int sc_num = Integer.parseInt(sc_num2);
 		MovieTheater movieTheater = ss.selectMovieTheaterFind(mt_num, sc_num);
 		Movie movie = ms.selectTitle(m_title); // 영화제목으로 검색해서 하나 가져옴
 		Theater theater = tts.selectTitle(t_title); //지점으로 검색해서 극장의 정보 하나 가져옴
 		Screen screen = ss.select(sc_num, mt_num); // 해당 상영지점 구하기
-
+		
+		List<Seat> seat = ss.seatFind(sc_num);
+		for(int i =0; i<seat.size(); i++) {
+			if(i==seat.size()-1) {
+				st_name += seat.get(i).getSt_num();
+			}else {
+				st_name += seat.get(i).getSt_num()+",";
+			}
+		}
+		
+		model.addAttribute("st_name", st_name);
 		model.addAttribute("mt_num", mt_num);
 		model.addAttribute("sc_num", sc_num);
 		model.addAttribute("movieTheater", movieTheater);
@@ -182,26 +187,22 @@ public class TicketController {
 		}else {
 			youth_ticket1 = Integer.parseInt(youth_ticket);
 		}
-	
-		Screen screenSeat = ss.selectSeat(Integer.parseInt(sc_num));
 		Movie movie = ms.selectTitle(m_title);
 		Theater theater = tts.selectTitle(t_title);
 		MovieTheater movieTheater = ss.selectMovieTheaterFind(Integer.parseInt(mt_num), Integer.parseInt(sc_num));
 		Screen screen = ss.select(Integer.parseInt(sc_num), Integer.parseInt(mt_num));
 		
-		if(screenSeat.getSt_name().equals("x")){ // 초기에 x가 들어가서 x가 들어갔다는건 좌석이 하나도 없다는거
-			st_name = selectList;
-			result = ss.insertSeat(st_name, Integer.parseInt(sc_num));
-		}else{ // 좌석에 하나라도 있을때  / 지금 여기 안들어오네
-			st_name = screen.getSt_name()+","+selectList; // 기존에 있던 좌석 + 입력한 좌석이 합쳐진게 넘어감
-			result = ss.insertSeat(st_name, Integer.parseInt(sc_num));
-		}
-		if(result >0) {
-			ticket = ts.insertTicket(adult_ticket1, youth_ticket1, t_sale1, member_id, screen.getSc_date(),selectList, Integer.parseInt(sc_num)); // 예매가 되면 1이됨
-			Ticket ticket1 = ts.selectBank(selectList, member_id, Integer.parseInt(sc_num)); // 자리가 잘 들어가면
-			int bank = ts.insertBank(totalPrice1,t_deal,member_id,ticket1.getT_ordernum()); // bank 테이블에 돈을 넣음
-		}
+		//Screen screenSeat = ss.selectSeat(Integer.parseInt(sc_num)); // 앤 일단 보류
+		String[] selectList1 = selectList.split(","); // 문자열을 배열에 담아서 넘긴다
+ 		for(int i=0; i<selectList1.length; i++) {
+ 			String seat = selectList1[i]; // 좌석을 하나씩 담아서
+ 			ss.newInsertSeat(Integer.parseInt(sc_num), seat); // 하나씩 넣어준다 리턴값음 없음 
+ 		}
+		ticket = ts.insertTicket(adult_ticket1, youth_ticket1, t_sale1, member_id, screen.getSc_date(),selectList, Integer.parseInt(sc_num)); // 예매가 되면 1이됨
+		Ticket ticket1 = ts.selectBank(selectList, member_id, Integer.parseInt(sc_num)); // 자리가 잘 들어가면
+		int bank = ts.insertBank(totalPrice1,t_deal,member_id,ticket1.getT_ordernum()); // bank 테이블에 돈을 넣음
 		
+		model.addAttribute("bank", bank);
 		model.addAttribute("movie", movie);
 		model.addAttribute("theater", theater);
 		model.addAttribute("movieTheater", movieTheater);
@@ -244,30 +245,17 @@ public class TicketController {
 	//희주(추가) 환불
 	@RequestMapping("memberTicketRefund")
 	public String memberTicketRefund(Model model, int t_ordernum, int sc_num, String t_state, HttpSession session) {
+		// t_state = 환불하려는 좌석 
 		String member_id = (String)session.getAttribute("member_id");
-		String seat ="";
-		Screen screen = ss.selectSeat(sc_num); // 일단 찾고
-		List<String> screenSeat = new ArrayList<String>(); // 배열을 만들고
-		Collections.addAll(screenSeat, screen.getSt_name().split(","));  // 만든 배열에 screen의 좌석들을 ,로 잘라서 배열에 담고
-		String[] t_stateSeat = t_state.split(","); //환분할려는 좌석을 배열에 담는다
-		for(int i =0; i<t_stateSeat.length; i++) {  // 배열은 길이
-			screenSeat.remove(t_stateSeat[i]); // 배열에 remove로 통해 삭제한다
-		}
-		for(int i =0; i<screenSeat.size(); i++) {// 리스트는 사이즈?
-			if(i==screenSeat.size()-1) { 
-				seat += screenSeat.get(i);  // 마지막은 그냥 넣고
-			}else {
-				seat += screenSeat.get(i)+","; // 마지막이 아닌 것은 뒤에 , 붙임
-			}
-		}
-		if(seat==null || seat.equals("")) {
-			seat = "x";
-		}
-		int screenRefund = ss.screenReFund(screen.getSc_num(), seat); //좌석 환불
-		int bankRefund = ss.bankReFund(t_ordernum, member_id);
-		int ticket = ss.ticketReFund(t_ordernum, screen.getSc_num());
 		
-		model.addAttribute("screenRefund", screenRefund);
+		//Screen screen = ss.selectSeat(sc_num); // 일단 찾고
+		String[] st_num = t_state.split(","); //"A1, A2" 로 되어있는걸 배열로 담는다
+		for(int i=0; i<st_num.length; i++) {
+			ss.deleteSeatReFund(st_num[i], sc_num); // for문으로 있는 좌석 일단 삭제 됨
+		}		
+		int bankRefund = ss.bankReFund(t_ordernum, member_id);
+		int ticket = ss.ticketReFund(t_ordernum, sc_num);
+		model.addAttribute("ticket", ticket);
 		return "member/memberTicketRefund";
 	}
 }

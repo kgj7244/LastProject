@@ -19,26 +19,31 @@
 					<div>${i.sc_end}</div>
 					</span>
 				</td>
-				<td width="55%" align="center" style="vertical-align:middle;"> <!-- 제목 movie/theater -->
+				<td width="53%" align="center" style="vertical-align:middle;"> <!-- 제목 movie/theater -->
 					<span style="padding-top: 30px; padding-bottom: 30px;"  onclick="AllSelectChk(${i.mt_num},${i.sc_num},'${i.mt_name}','${i.sc_start}','${movie.m_title}','${theater.t_title}',${i.t_num})">${movie.m_title}</span>
 				</td>
-				<td width="15%" align="center" style="vertical-align:middle;">
+				<td width="22%" align="center" style="vertical-align:middle;">
 					<span style="padding-top: 30px; padding-bottom: 30px;" onclick="AllSelectChk(${i.mt_num},${i.sc_num},'${i.mt_name}','${i.sc_start}','${movie.m_title}','${theater.t_title}',${i.t_num})">${theater.t_title}</span><p> 
 					<%-- <span>(${i.st_name}/100)</span> --%>
-					<span>
-						(
-						<span id="test">
-							<script type="text/javascript">
-								var listSeat3  = new Array(); //임시저장소
-								var listSeat = "${screen.st_name}"; // A1,B1
-								var cnt = 0;
-								for(var i=0; i<listSeat.length; i++){
-									cnt +=1;
-								}
-								$('#test').text(cnt);
-							</script></span>
-						/100)
-						</span>
+					<span style="font-size: 13px; font-weight: bold;">
+						<c:choose>
+							<c:when test="${i.mt_num == 1}">
+								(${i.cnt}/50)
+							</c:when>								
+							<c:when test="${i.mt_num == 2}">
+								(${i.cnt}/70)
+							</c:when>									
+							<c:when test="${i.mt_num == 3}">
+								(${i.cnt}/80)
+							</c:when>									
+							<c:when test="${i.mt_num == 4}">
+								(${i.cnt}/90)
+							</c:when>
+							<c:when test="${i.mt_num == 5}">
+								(${i.cnt}/100)
+							</c:when>							
+						</c:choose>
+					</span>
 				</td>
 				<td width="15%" align="center" style="vertical-align:middle;">
 					<input type="button" id="btnChk" value="${i.mt_name}" onclick="AllSelectChk(${i.mt_num},${i.sc_num},'${i.mt_name}','${i.sc_start}','${movie.m_title}','${theater.t_title}',${i.t_num})" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding-top: 30px; padding-bottom: 30px;">
