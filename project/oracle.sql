@@ -83,6 +83,9 @@ insert into theater values(10, '용역','광주','주소가 10번이다','1544-1
 insert into theater values(11, '구리','광주','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
 insert into theater values(12, '미영','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
 
+--삭제
+delete from theater where t_num = 14;
+
 select * from theater;
 
 -----------------------------------상영관
