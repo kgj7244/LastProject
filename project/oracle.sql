@@ -309,23 +309,4 @@ create table service(
 
 create sequence sv_num increment by 1 start with 1;
 
-select * from movie order by m_genre desc;
-select * from stillcut;
-select * from 
-select * from ticket where t_id = 'master';
-<<<<<<< HEAD
-select * from theater;
-=======
-select * from ticket;
-select * from screen;
-select * from movie where m_title='극장판 귀멸의 칼날-무한열차편';
-select * from theater where t_title ='신촌';
-select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num = 5 and s.sc_num =23 and s.sc_del = 'n'
-select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and s.sc_num = 23 and m.mt_num =5 and s.sc_del = 'n'
-<<<<<<< HEAD
-select * from ticket where t_id='lamslams' and sc_num = 23;
-=======
-select * from ticket where t_id='lamslams' and sc_num = 23;
-
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+select * from movie where m_num = 1;
