@@ -198,7 +198,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="movieView.do.do?m_num=${movie.m_num}&pageNum=${rpb.startPage - 1}">
+						<a href="movieView.do?m_num=${movie.m_num}&pageNum=${rpb.startPage - 1}">
 							<span class="glyphicon glyphicon-triangle-left"></span>
 						</a>
 					</li>

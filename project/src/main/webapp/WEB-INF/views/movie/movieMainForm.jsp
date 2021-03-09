@@ -29,6 +29,20 @@
 	    padding: 0 15px;
 	}
 </style>
+<!-- <script type="text/javascript">
+	$(function() {
+		$("#content").slice(0, 9).show();
+		$("#load").click(function(e) {
+			e.prevenDefault();
+			
+			$("#content:hidden").slice(0, 9).show();
+			
+			if($("#content:hidden").length == 0) {
+				alert("더 이상 영화가 없습니다");
+			}
+		});
+	});
+</script> -->
 </head>
 <body>
 	<div><%@include file="../mainTop.jsp" %></div>
@@ -47,7 +61,7 @@
 				<div>아직 영화가 없습니다</div>
 			</c:if>
 		</div>
-		<div>
+		<div id="content">
 			<c:if test="${not empty movieList}">
 				<c:forEach var="movie" items="${movieList}">
 					<div class="box-body">
@@ -86,6 +100,46 @@
 					</div>
 				</c:forEach>
 			</c:if>
+		</div>
+		<div align="center">
+			<ul class="pagination">
+				<c:if test="${pb.startPage > pb.pagePerBlock}">
+					<li>
+						<a href="movieMainForm.do?pageNum=1">
+						<span class="glyphicon glyphicon-backward"></span>
+						</a>
+					</li>
+					<li>
+						<a href="movieMainForm.do?pageNum=${pb.startPage - 1}">
+							<span class="glyphicon glyphicon-triangle-left"></span>
+						</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
+					<c:if test="${pb.currentPage == i}">
+						<li class="active">
+							<a href="movieMainForm.do?pageNum=${i}">${i}</a>
+						</li>
+					</c:if>
+					<c:if test="${pb.currentPage != i}">
+						<li>
+							<a href="movieMainForm.do?pageNum=${i}">${i}</a>
+						</li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pb.endPage < pb.totalPage}">
+					<li>
+						<a href="movieMainForm.do?pageNum=${pb.endPage+1}">
+							<span class="glyphicon glyphicon-triangle-right"></span>
+						</a>
+					</li>
+					<li>
+						<a href="movieMainForm.do?pageNum=${pb.totalPage}">
+							<span class="glyphicon glyphicon-forward"></span>
+						</a>
+					</li>
+				</c:if>
+			</ul>
 		</div>
 	</div>
 	<div><%@include file="../mainFloor.jsp" %></div>
