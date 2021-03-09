@@ -23,7 +23,7 @@
 					</td>
 					<th>장르</th>
 					<td>
-						<select name="m_genre">
+						<select name="m_genre" id="m_genre">						
 							<c:forEach var="mv" items="${movieList}">
 								<c:if test="${mv.m_genre == movie.m_genre}">
 									<option value="${movie.m_genre}" selected="selected">
