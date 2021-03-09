@@ -1,11 +1,14 @@
 package com.ch.ch.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Theater;
 
 @Repository
@@ -30,11 +33,24 @@ public class TheaterDaoImpl implements TheaterDao{
 	public int insert(Theater theater) {
 		return sst.insert("theaterns.insert", theater);
 	}
-	public Theater select(int t_num) {
-		return sst.selectOne("theaterns.select", t_num);
+	public List<Theater> select(String t_loc, String t_title) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("t_loc", t_loc);
+		map.put("t_title", t_title);
+		return sst.selectList("theaterns.select", map);
 	}
-	public List<Theater> titleList() {
+	public List<String> titleList() {
 		return sst.selectList("theaterns.titleList");
+	}
+	public List<MovieTheater> movieTheaterList() {
+		return sst.selectList("theaterns.movieTheaterList");
+	}
+	public int numInsert(String mt_name, int mt_count, int t_num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mt_name", mt_name);
+		map.put("mt_count", mt_count);
+		map.put("t_num", t_num);
+		return sst.insert("theaterns.numInsert",map);
 	}
 
 }
