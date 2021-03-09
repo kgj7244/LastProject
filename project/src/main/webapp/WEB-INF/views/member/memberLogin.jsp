@@ -8,8 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="../mainTop.jsp" %>
-<%@ include file="../mainNav.jsp" %>
 <c:if test="${result > 0}">
 	<script type="text/javascript">
 		alert("로그인 되었습니다");
@@ -28,6 +26,5 @@
 		history.go(-1);
 	</script>
 </c:if>
-<%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

@@ -10,14 +10,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.ch.service.BoardService;
+import com.ch.ch.service.MemberService;
 import com.ch.ch.model.Board;
 import com.ch.ch.model.Member;
 import com.ch.ch.service.PagingBean;
+import com.ch.ch.service.ReBoardService;
 
 @Controller
 public class BoardController {
 	@Autowired
 	private BoardService bs;
+	@Autowired
+	private MemberService ms;
+	@Autowired
+	private ReBoardService rbs;
 	
 	// 게시판 목록
 	@RequestMapping("boardList")
@@ -31,6 +37,11 @@ public class BoardController {
 		board.setStartRow(startRow);
 		board.setEndRow(endRow);
 		List<Board> list = bs.list(board);
+		for (Board bd: list) {
+			int r_count = rbs.select_r_count(bd.getB_num());
+			bd.setR_count(r_count);
+		}
+		// System.out.println("list :"+list);
 		int no = total - startRow + 1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] tit = {"아이디", "제목", "내용", "제목+내용"};
@@ -39,7 +50,7 @@ public class BoardController {
 		model.addAttribute("no", no);
 		model.addAttribute("total", total);
 		model.addAttribute("list", list);
-		return "/board/boardList"; 
+		return "board/boardList"; 
 	}
 	
 	// 게시판 카테고리
@@ -90,10 +101,8 @@ public class BoardController {
 	
 	// 암호있는 게시글 선택시 암호입력 폼
 	@RequestMapping("boardViewForm")
-	public String boardView(Board board, String pageNum, Model model) {
-		/*
-		 * Board board = bs.select(b_num); model.addAttribute("b_num", b_num);
-		 */
+	public String boardView(Board board, int b_num, String pageNum, Model model) {
+		board = bs.select(b_num);
 		model.addAttribute("board", board);
 		model.addAttribute("pageNum", pageNum);
 		return "/board/boradViewForm";
@@ -101,15 +110,18 @@ public class BoardController {
 	
 	// 게시글 보기
 	@RequestMapping("boardView")
-	public String boardView(int b_num, String pageNum, Model model) {
+	public String boardView(int b_num, String pageNum, Model model,HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id"); //세션
+		Member member = ms.select(member_id);
 		bs.updateReadCount(b_num);
 		Board board = bs.select(b_num);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("board", board);
+		model.addAttribute("member", member);
 		return "/board/boardView";
 	}
 	
-	// 게시글 수정 폼
+	// 게시글 수정 폼; 
 	@RequestMapping("boardUpdateForm")
 	public String boardUpdateForm(int b_num, String pageNum, Model model, HttpSession session) {
 		String member_id = (String)session.getAttribute("member_id");
@@ -122,11 +134,21 @@ public class BoardController {
 		return "/board/boardUpdateForm";
 	}
 	
+	// 게시글 수정 ; 에러 - 수정 버튼 누르면 에러남
 	@RequestMapping("boardUpdate")
 	public String boardUpdate(Board board, String pageNum, Model model) {
 		int result = bs.update(board);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "/board/boardUpdate";
+	}
+	
+	// 게시글 삭제; 에러: 삭제가 되긴하는데 작성자가 아니어도 삭제가 됨 
+	@RequestMapping("boardDelete") 
+	public String boardDelete(int b_num, String pageNum, Model model) {
+		int result = bs.delete(b_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum); 
+		return "/board/boardDelete";
 	}
 }
