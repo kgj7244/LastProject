@@ -157,7 +157,14 @@ public class StoreController {
 //	@RequestMapping("orderList")
 //	public String orderList(int s_num,Model model,int s_purchase) {
 //		Store store = ss.select(s_num);
-//		List<Ord> ordlist = ss.ordlist(s_num);
+//		List<Ord> ordlist = ss.ordlist(s_num);	
+//		
+//		int result=0;
+//		
+//		
+//		store.setS_num(s_num);		
+//		
+//		
 //		model.addAttribute("store", store);	
 //		model.addAttribute("ordlist", ordlist);	
 //		
@@ -188,6 +195,19 @@ public class StoreController {
 //		model.addAttribute("ord", ord);	
 //		return "store/OK";
 //	}
+	
+	//주문
+//	@RequestMapping("order")
+//	public String order(Ord ord,Model model,HttpSession session)throws IOException  {
+//
+//		
+//		int result = ss.insertOrd(ord);
+//		
+//		model.addAttribute("ord", ord);	
+//		model.addAttribute("result", result);
+//		return "store/order";
+//	}
+	
 	
 	
 	
