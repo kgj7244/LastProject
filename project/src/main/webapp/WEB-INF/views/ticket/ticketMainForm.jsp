@@ -82,7 +82,7 @@
 	<div align="left"><h2>빠른 예매</h2></div>
 	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
 	<a href="screenInsertForm.do">상영 추가하기</a> <!-- 나중에 마이페이지에 링크만 넣을것!  --> 
-	<a href="refund">환불시스템</a>
+	<a href="theaterInsertForm.do">극장추가</a>
 	<div style="margin-top: 20px;"> <!-- 선택창 -->
 		<table class="table table-bordered" style="width: 1200px; height: 500px;">
 			<tr height="40px;"><!-- 제목 -->
