@@ -2,6 +2,7 @@ package com.ch.ch.dao;
 
 import java.util.List;
 
+import com.ch.ch.model.Ord;
 import com.ch.ch.model.Store;
 
 public interface StoreDao {
@@ -18,5 +19,7 @@ public interface StoreDao {
 
 	List<Store> pclist(int s_Pclass);
 
+	
+	List<Ord> ordlist(int s_num);
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.ch.dao.StoreDao;
+import com.ch.ch.model.Ord;
 import com.ch.ch.model.Store;
 
 @Service
@@ -44,6 +45,11 @@ public class StoreServiceImpl implements StoreService{
 	
 	public List<Store> pclist(int s_Pclass) {
 		return sd.pclist(s_Pclass);
+	}
+
+
+	public List<Ord> ordlist(int s_num) {
+		return sd.ordlist(s_num);
 	}
 
 
