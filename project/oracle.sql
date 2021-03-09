@@ -101,7 +101,6 @@ insert into movieTheater values(5, '5관',100,1);
 select * from movieTheater;
 
 --------------------------------------영화
-
 create table movie (
 	m_num number primary key not null, 	--영화번호
 	m_title nvarchar2(50) not null,		--제목
@@ -242,6 +241,7 @@ select * from store;
 drop table store CASCADE CONSTRAINTS;
 drop sequence s_num; 
 
+
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
 	s_del char(1) default 'n', 			--#게시글 삭제여부
@@ -289,12 +289,14 @@ select * from ord;
 	
 	s_purchase number(10) not null, 	--#구매수량 
 	full_price number(10) not null, 	--총 금액
-	buy_date date, 				--구매 날짜
+	buy_date date, 		--구매 날짜
 	s_validity date not null, 	--유통기한 sysdate+365
 	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
 	);
 --	, t_account varchar2(50) references bank(t_account) not null --입금번호
+	
+insert into ord values(2,'q1','4',3,2000,'2021-03-02','2021-04-02','y','n');
 	
 -----------------------------------------고객센터(미완성)
 create table service(
@@ -325,8 +327,3 @@ select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num = 5 
 select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and s.sc_num = 23 and m.mt_num =5 and s.sc_del = 'n'
 <<<<<<< HEAD
 select * from ticket where t_id='lamslams' and sc_num = 23;
-=======
-select * from ticket where t_id='lamslams' and sc_num = 23;
-
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git

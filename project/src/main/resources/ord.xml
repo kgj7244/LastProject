@@ -47,5 +47,19 @@
 	<select id="listOne" parameterType="map" resultType="ord">
 	select * from ord where ord_num=#{ord_num} and s_num=#{s_num}
 	</select>
+	
+	
+	<select id="memberStore" parameterType="string" resultType="ord">
+		select * from ord where member_id = #{member_id}
+	</select> <!--  -->
+	
+	<insert id="insert" parameterType="ord">
+	insert into ord values(
+	#{ord_num},#{member_id},#{s_num},
+	#{s_purchase},#{full_price},#{buy_date},#{s_validity},
+	#{buy_i},#{del})
+	</insert>
+	
+	
 
 	</mapper>
