@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="row" style="margin-top: 70px;">
-		<c:forEach var="i" begin="0" end="4" items="${movieList}">
+		<c:forEach var="i" begin="1" end="4" items="${movieList}">
 		<div class="col-sm-6 col-md-3">
 			<div class="thumbnail">
 				<img src="${path}/resources/images/m_poster/${i.m_poster}" alt="사진없는거 아니여?" onclick='location.href="movieView.do?m_num=${i.m_num}"'>

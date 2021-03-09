@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.ch.model.Member;
 import com.ch.ch.model.Movie;
@@ -56,11 +57,29 @@ public class TicketController {
 		model.addAttribute("movieTheater", movieTheater);
 		return "ticket/screenInsertForm";
 	}
+	
+	 @RequestMapping(value = "movieTheaterChk", produces = "text/html;charset=utf-8")
+	 @ResponseBody public String movieTheaterChk(String t_title) {
+		 String mt_name ="";
+		 Theater theater = ss.selectTheater(t_title);
+		 List<MovieTheater> mTheater = ss.mTheater(theater.getT_num());
+		 for(int i =0; i<mTheater.size(); i++) {
+			 if(i==mTheater.size()-1) {
+				 mt_name += mTheater.get(i).getMt_name();
+			 }else {
+				 mt_name += mTheater.get(i).getMt_name()+",";
+			 }
+		 }
+		 return mt_name; 
+	 }
+	
+	
+	
 	@RequestMapping("screenInsert")
 	public String screenInsert(Model model, String m_title, String t_title, String mt_name, String sc_date, String sc_start, String sc_end) {
 		Movie movie = ms.selectTitle(m_title);
 		Theater theater = tts.selectTitle(t_title);
-		MovieTheater movieTheater = ss.selectTitle(mt_name);
+		MovieTheater movieTheater = ss.selectTitle(mt_name, theater.getT_num());
 		
 		int result = ss.screenInsert(movie.getM_num(), theater.getT_num(), movieTheater.getMt_num(), sc_date, sc_start, sc_end);
 		model.addAttribute("result", result);
@@ -86,8 +105,10 @@ public class TicketController {
 		int movie_num = movie.getM_num();
 		Theater theater = tts.selectTitle(t_title); // theater.getT_num() 극장번호 가져옴
 		int theater_num = theater.getT_num();
+		System.out.println("movie_num : " + movie_num);
+		System.out.println("sc_date : " + sc_date);
+		System.out.println("theater_num : " + theater_num);
 		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date); // 영화번호, 극장번호, 날짜를 가지고와서 그 해당하는 시간대를 출력하기 위함
-		
 		model.addAttribute("movie",movie);
 		model.addAttribute("theater",theater);
 		model.addAttribute("screen",screen);

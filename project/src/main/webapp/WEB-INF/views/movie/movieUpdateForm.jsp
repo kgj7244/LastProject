@@ -34,19 +34,6 @@
 					</td>
 					<th>장르</th>
 					<td>
-<<<<<<< HEAD
-						<select name="m_genre" id="m_genre">						
-							<c:forEach var="mv" items="${movieList}">
-								<c:if test="${mv.m_genre == movie.m_genre}">
-									<option value="${movie.m_genre}" selected="selected">
-										${mv.m_genre}</option>
-								</c:if>
-								<c:if test="${mv.m_genre != movie.m_genre}">
-									<option value="${movie.m_genre}">
-										${mv.m_genre}</option>
-								</c:if>
-							</c:forEach>
-=======
 						<select name="m_genre" id="m_genre">
 							<option value="판타지">판타지</option>
 							<option value="공포/스릴러">공포/스릴러</option>
@@ -58,7 +45,6 @@
 							<option value="뮤지컬">뮤지컬</option>
 							<option value="SF">SF</option>
 							<option value="에로">에로</option>
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 						</select>
 					</td>
 				</tr>
