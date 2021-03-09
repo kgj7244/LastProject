@@ -35,6 +35,10 @@
 			<mapping path="/ticketMainForm.do"/>
 			<mapping path="/payment.do"/>
 			<mapping path="/paymentForm.do"/>			
+			<mapping path="/boardInsertForm.do"/>
+			<mapping path="/boardUpdateForm.do"/>
+			<mapping path="/boardDelete.do"/>
+			
 			<beans:ref bean="sc"/>
 		</interceptor>
 	</interceptors>

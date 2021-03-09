@@ -12,7 +12,7 @@
 <%@include file="../mainNav.jsp" %>
 
 <div class="container" align="center">
-	<c:if test="${ticket >0}">
+	<c:if test="${bank >0}">
 		<h2>예매성공</h2>
 		<table class="table table-bordered">
 			<tr>
@@ -81,7 +81,7 @@
 			</tr>
 		</table>
 	</c:if>
-	<c:if test="${ticket ==0}">
+	<c:if test="${bank ==0}">
 		<table>
 			<tr>
 				<td>오류</td>
