@@ -1,5 +1,11 @@
 --삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
+<<<<<<< HEAD
 drop sequence theater_t_num_seq; 
+=======
+<<<<<<< HEAD
+drop sequence theater_t_num_seq; 
+
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 drop sequence st_num; 
 drop sequence re_num; 
 drop sequence s_num; 
@@ -56,7 +62,21 @@ create table member(
 insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
 insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
 insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
+<<<<<<< HEAD
 select * from member;
+=======
+<<<<<<< HEAD
+select * from member;
+
+-------------------------------------- 이벤트(추가)
+create table event(
+	e_num nvarchar2(10) primary key,  -- 이벤트번호
+	e_title nvarchar2(50) not null,            -- 이벤트제목
+	e_state nvarchar2(50) not null,            -- 이벤트종류
+	e_sale nvarchar2(50) not null,             -- 이벤트금액
+	member_id nvarchar2(50) references member(member_id)        -- 회원아이디
+);
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 -------------------------------------- 이벤트(추가)
 create table event(
@@ -66,6 +86,10 @@ create table event(
 	event_sale nvarchar(50) not null,             -- 이벤트금액
 	member_id references member(member_id)        -- 회원아이디
 );
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 create sequence event_num increment by 1 start with 1;
 
@@ -85,8 +109,13 @@ create table theater(
 	t_number nvarchar2(50) not null,   --전화번호
 	t_gui nvarchar2(1000) not null        --시설 안내
 );
+<<<<<<< HEAD
 select * from theater;
 
+=======
+
+select * from theater;
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 create sequence theater_t_num_seq increment by 1 start with 13;
 
 drop sequence theater_t_num_seq;
@@ -125,7 +154,6 @@ insert into movieTheater values(5, '5관',100,1);
 select * from movieTheater;
 
 --------------------------------------영화
-
 create table movie (
 	m_num number primary key not null, 	--영화번호
 	m_title nvarchar2(50) not null,		--제목
@@ -184,8 +212,6 @@ create table board(
  	b_code nvarchar2(40),                                           --카테고리(회원/예매/스토어/기타)
 	member_id nvarchar2(50) references member(member_id) not null   --아이디
 );
-select * from board;
-
 select * from board;
 
 --------------------------------------회원 게시판 마스터전용 댓글
@@ -270,6 +296,7 @@ select * from store;
 drop table store CASCADE CONSTRAINTS;
 drop sequence s_num; 
 
+
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
 	s_del char(1) default 'n', 			--#게시글 삭제여부
@@ -317,12 +344,14 @@ select * from ord;
 	
 	s_purchase number(10) not null, 	--#구매수량 
 	full_price number(10) not null, 	--총 금액
-	buy_date date, 				--구매 날짜
+	buy_date date, 		--구매 날짜
 	s_validity date not null, 	--유통기한 sysdate+365
 	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
 	);
 --	, t_account varchar2(50) references bank(t_account) not null --입금번호
+	
+insert into ord values(2,'q1','4',3,2000,'2021-03-02','2021-04-02','y','n');
 	
 -----------------------------------------고객센터(미완성)
 create table service(
@@ -337,11 +366,35 @@ create table service(
 );
 
 create sequence sv_num increment by 1 start with 1;
+<<<<<<< HEAD
+=======
+
+select * from movie where m_num = 1;
+select * from movie order by m_genre desc;
+select * from bank;
+select * from screen;
+select * from ticket where t_id = 'master';
+select * from stillcut;
+select * from theater;
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 select * from movie where m_title='극장판 귀멸의 칼날-무한열차편';
+<<<<<<< HEAD
 select * from theater where t_title = '아수라';
 select * from movieTheater where mt_name = '1관';
 select s.sc_num, s.sc_date, s.sc_start, s.sc_end, s.t_num, s.mt_num, s.m_num, m.mt_name mt_name, nvl(ct.cnt,0) cnt
 		from screen s, movieTheater m, (select sc_num, count(*) cnt from seat group by sc_num) ct 
 		where s.mt_num = m.mt_num and s.t_num = 13 and s.sc_num = ct.sc_num(+) and s.m_num = 5 and s.sc_date = '2021-03-10' and s.sc_del = 'n' 
         order by s.sc_start
+=======
+select * from theater where t_title ='신촌';
+select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num = 5 and s.sc_num =23 and s.sc_del = 'n'
+select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and s.sc_num = 23 and m.mt_num =5 and s.sc_del = 'n'
+
+select * from ticket where t_id='lamslams' and sc_num = 23;
+
+select * from movieTheater order by mt_num;
+select * from theater where t_loc='서울';
+select * from theater where t_loc='서울' and t_title='강릉';
+
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git

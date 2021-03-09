@@ -6,13 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세</title>
+ <script type="text/javascript">
+	var s_prive 
+	var s_purchase 
+
+	</script>
 </head>
 <body> 
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <%@include file="storecategory.jsp" %>
+
+ 
 	
 	<div class="container" align="center">
+	
+	<form action="<c:url value='orderList.do' />" method="post">
 	
 	<div align="left"><h2>${store.s_Pname }</h2> </div>
 	
@@ -52,19 +61,19 @@
 <td>${total+(s_prive*s_purchase)}원</td>
 </tr>
 
+
 <!-- ====================================== -->  
 
 <tr><td>
-<%-- 	<form name="order" method="post" action="orderList.do?s_num=${store.s_num}"> --%>
-		 <form action="<c:url value='orderList.do' />" method="post">
+	<%-- 	<form name="order" method="post" action="orderList.do?s_num=${store.s_num}"> --%>
 		
+	
 		
 		<select name="s_purchase">
 			<c:forEach begin="1" end="10" var="i">
 				<option value="${i}">${i}</option> </c:forEach>
 		</select>&nbsp;개 
 	
-		
 		
 		<input type="hidden" name="s_num" value="${store.s_num}">
 		<button type="submit" class="btn btn-primary">구매하기</button>
