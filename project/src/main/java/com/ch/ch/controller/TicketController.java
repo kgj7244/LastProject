@@ -258,10 +258,4 @@ public class TicketController {
 		model.addAttribute("ticket", ticket);
 		return "member/memberTicketRefund";
 	}
-	
-	//극장 추가
-	@RequestMapping("theaterInsertForm")
-	public String theaterInsertForm(Model model) {
-		return "theater/theaterInsertForm";
-	}
 }

@@ -15,7 +15,7 @@
 		select * from theater where t_title =#{t_title}
 	</select>
 	<select id="list" resultType="theater">
-		select * from theater order by t_title
+		select * from theater order by t_num
 	</select>
 	<select id="listT_loc" resultType="theater">
 		select distinct t_loc from theater order by t_loc
@@ -24,10 +24,16 @@
 		insert into theater values (theater_t_num_seq.nextval, #{t_title}, #{t_loc}, #{t_addr}, 
 			#{t_number}, #{t_gui})
 	</insert>
-	<select id="select" parameterType="integer" resultType="theater">
-		select * from theater where t_num=#{t_num}
+	<select id="select" parameterType="hashmap" resultType="theater">
+		select * from theater where t_loc=#{t_loc} and t_title=#{t_title}
 	</select>
-	<select id="titleList" resultType="theater">
-		select * from theater
+	<select id="titleList" resultType="string">
+		select distinct t_loc from theater
 	</select>
+	<select id="movieTheaterList" resultType="movieTheater">
+		select * from movieTheater order by mt_num
+	</select>
+	<insert id="numInsert" parameterType="hashmap">
+		insert into movieTheater values(mt_num.nextval, #{mt_name}, #{mt_count}, #{t_num})
+	</insert>
 </mapper>

@@ -5,24 +5,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>극장 추가</title>
+<title>상영관 추가</title>
 </head>
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("극장이 등록되었습니다.");
+			alert("상영관이 추가 등록되었습니다.");
 			location.href = "theaterMainForm.do";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("극장 등록이 실패하였습니다.");
+			alert("상영관 추가 등록이 실패하였습니다.");
 			hostory.go(-1);
 		</script>
 	</c:if>
 	<c:if test="${result == -1}">
 		<script type="text/javascript">
-			alert("극장 등록이 실패하였습니다.");
+			alert("상영관 추가 등록이 실패하였습니다.");
 			hostory.go(-1);
 		</script>
 	</c:if>

@@ -1,8 +1,5 @@
 --삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
-<<<<<<< HEAD
-=======
 drop sequence theater_t_num_seq; 
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 drop sequence st_num; 
 drop sequence re_num; 
 drop sequence s_num; 
@@ -70,12 +67,11 @@ create table theater(
 	t_number nvarchar2(50) not null,   --전화번호
 	t_gui nvarchar2(1000) not null        --시설 안내
 );
-<<<<<<< HEAD
-=======
 select * from theater;
 drop sequence theater_t_num_seq;
 create sequence theater_t_num_seq increment by 1 start with 13;
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+
+
 insert into theater values(1, '신촌','서울','서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)','1544-1122','주자요금 영화 관람시 3시간, 4000원입니다.');
 insert into theater values(2, '강남','서울','서울특별시 강남구 강남대로 438 (역삼동, 스타플렉스)','1544-1122','건물 지하2F ~ 지하4F# 주차요금- CGV 영화 관람 시 주차 3시간 6,000원');
 insert into theater values(3, '용산','서울','서울특별시 용산구 한강대로23길 55 현대아이파크몰 6층','1544-1122','주자요금- 영화 관람시 4시간, 5000원입니다.');
@@ -90,8 +86,9 @@ insert into theater values(11, '구리','광주','주소가 11번이다','1544-1
 insert into theater values(12, '미영','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
 
 --삭제
-delete from theater where t_num = 14;
-
+delete from theater where t_num = 20;
+--극장 지역 중복제거
+select distinct t_loc from theater;
 select * from theater;
 
 -----------------------------------상영관
@@ -102,12 +99,14 @@ create table movieTheater(
 	mt_count number not null,               --좌석
 	t_num number references theater(t_num)  --극장번호
 );
-create sequence mt_num increment by 1 start with 1;
+create sequence mt_num increment by 1 start with 6;
 insert into movieTheater values(1, '1관',50,1);
 insert into movieTheater values(2, '2관',70,1);
 insert into movieTheater values(3, '3관',80,1);
 insert into movieTheater values(4, '4관',90,1);
 insert into movieTheater values(5, '5관',100,1);
+
+delete from movieTheater where mt_num=5;
 
 select * from movieTheater;
 
@@ -322,3 +321,6 @@ select * from screen;
 select * from ticket;
 select * from bank;
 
+select * from movieTheater order by mt_num;
+select * from theater where t_loc='서울';
+select * from theater where t_loc='서울' and t_title='강릉';

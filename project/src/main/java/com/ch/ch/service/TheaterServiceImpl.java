@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.ch.dao.TheaterDao;
+import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Theater;
 
 @Service
@@ -30,10 +31,16 @@ public class TheaterServiceImpl implements TheaterService{
 	public int insert(Theater theater) {
 		return td.insert(theater);
 	}
-	public Theater select(int t_num) {
-		return td.select(t_num);
-	}
-	public List<Theater> titleList() {
+	public List<String> titleList() {
 		return td.titleList();
+	}
+	public List<MovieTheater> movieTheaterList() {
+		return td.movieTheaterList();
+	}
+	public int numInsert(String mt_name, int mt_count, int t_num) {
+		return td.numInsert(mt_name, mt_count, t_num);
+	}
+	public List<Theater> select(String t_loc, String t_title) {
+		return td.select(t_loc, t_title);
 	}
 }
