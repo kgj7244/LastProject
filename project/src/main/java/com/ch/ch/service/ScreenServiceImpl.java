@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ch.ch.dao.ScreenDao;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
+import com.ch.ch.model.Seat;
 
 @Service
 public class ScreenServiceImpl implements ScreenService{
@@ -53,5 +54,16 @@ public class ScreenServiceImpl implements ScreenService{
 	public int ticketReFund(int t_ordernum, int sc_num) {
 		return sd.ticketReFund(t_ordernum, sc_num);
 	}
+
 	
+	// 새로운거
+	public void newInsertSeat(int sc_num, String seat) {
+		sd.newInsertSeat(sc_num, seat);
+	}
+	public List<Seat> seatFind(int sc_num) {
+		return sd.seatFind(sc_num);
+	}
+	public void deleteSeatReFund(String st_num, int sc_num) {
+		sd.deleteSeatReFund(st_num, sc_num);	
+	}
 }

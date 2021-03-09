@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +19,7 @@ import com.ch.ch.model.Movie;
 import com.ch.ch.model.Review;
 import com.ch.ch.model.Stillcut;
 import com.ch.ch.service.MovieService;
-import com.ch.ch.service.ReviewPagingBean;
+import com.ch.ch.service.PagingBean;
 import com.ch.ch.service.ReviewService;
 
 @Controller
@@ -33,11 +32,27 @@ public class MovieController {
 	
 	//영화 메인
 	@RequestMapping("movieMainForm")
-	public String movieMainForm(Model model){
-		List<Movie> movieList = ms.list();
+	public String movieMainForm(String pageNum, Movie movie, Model model){
+		if (pageNum == null || pageNum.equals("") || pageNum == "0") {
+			pageNum = "1";
+		}
+
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 12;
+		int total = ms.getTotal(movie);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
 		
+		movie.setStartRow(startRow);
+		movie.setEndRow(endRow);
+
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
+		List<Movie> movieList = ms.moviePage(movie);
+		
+		model.addAttribute("pb", pb);
 		model.addAttribute("movieList", movieList);
-		
+
 		return "movie/movieMainForm";
 	}
 	
@@ -133,7 +148,7 @@ public class MovieController {
 		review.setStartRow(startRow);
 		review.setEndRow(endRow);
 
-		ReviewPagingBean rpb = new ReviewPagingBean(currentPage, rowPerPage, total);
+		PagingBean rpb = new PagingBean(currentPage, rowPerPage, total);
 
 		List<Review> rvList = rvs.list(review);
 		
@@ -182,25 +197,23 @@ public class MovieController {
 	@RequestMapping("movieUpdateForm")
 	public String movieUpdateForm(int m_num, Model model) {
 		Movie movie = ms.select(m_num);
-		  
-		List<Movie> movieList = ms.list();
+
 		List<Stillcut> list = ms.listPhoto(m_num);
-		
+
 		model.addAttribute("list", list);
 		model.addAttribute("movie", movie);
-		model.addAttribute("movieList", movieList);
 		 
 		return "movie/movieUpdateForm";
 	}
 	
 	//영화 수정 결과 (글 + 이미지 수정)
 	 @RequestMapping("movieUpdate") 
-	 public String movieUpdate(Movie movie, Stillcut stillcut, 
+	 public String movieUpdate(Movie movie, Stillcut stillcut, String file1,
 			 Model model, HttpServletRequest request) throws IOException { 
+		 
 		 int result = 0;
 		 
 		 String m_poster = movie.getFile().getOriginalFilename();
-//		 String m_stillcut = stillcut.getFile1().getOriginalFilename();
 		 
 		 if (m_poster != null && !m_poster.equals("")) { 
 			 movie.setM_poster(m_poster);
@@ -213,11 +226,20 @@ public class MovieController {
 			 fos.close();
 	  
 		 } else result = -1;
-	 
+		 
 		 result = ms.update(movie);
 		 
 		 model.addAttribute("result", result);
 		
 		 return "movie/movieUpdate";
+	 }
+	 
+	 @RequestMapping("allMovieList")
+	 public String allMovieList(Model model) {
+		 List<Movie> list = ms.allMovieList();
+		 
+		 model.addAttribute("list", list);
+		 
+		 return "movie/allMovieList";
 	 }
 }

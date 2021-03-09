@@ -25,10 +25,10 @@
 <%@ include file="../mainNav.jsp" %>
 	<div class="container" align="center">
 		<h3 class="text-primary">게시글 수정</h3>
-		<form action="boardUpdate.do" method="post" name="frm">
-		<input type="hidden" name="b_num" value="${b_num }">
+	<form action="boardUpdate.do" method="post" name="frm">
+		<input type="hidden" name="b_num" value="${board.b_num }">
 		<input type="hidden" name="pageNum" value="${pageNum }">
-		<input type="hidden" name="member_id" value="${member_id }">
+		<input type="hidden" name="member_id" value="${board.member_id }">
 		<table class="table table-borderd">
 			<tr>
 				<td>아이디</td>
@@ -37,12 +37,13 @@
 			<tr>
 				<td>카테고리</td>
 				<td><select name="b_code" required="required">
-						<option id="b_code" hidden="hidden"></option>  <!--선택안했을시 required호출용 -->
-						<option value='mem' <c:if test="${board.b_code}==mem">selected</c:if>>회원</option>
-						<option value='tk' <c:if test="${board.b_code}==tk">selected</c:if>>예매</option>
-						<option value='st' <c:if test="${board.b_code}==st">selected</c:if>>스토어</option>
-						<option value='etc' <c:if test="${board.b_code}==etc">selected</c:if>>기타</option>
-					</select></td>
+						<option id="b_code" hidden="hidden"></option> <!-- 선택안했을시 required호출용 -->
+						<option value='mem'>회원</option>
+						<option value='tk'>예매</option>
+						<option value='st'>스토어</option>
+						<option value='etc'>기타</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td>제목</td>
@@ -62,7 +63,7 @@
 			</tr>
 			<tr id="act2" style="display:none">
 				<td>비밀번호</td>
-				<td><input type="password" name="b_password" title="비공개 선택시 비번을 입력하세요"></td>
+				<td><input type="password" name="b_password"></td>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="확인" class="btn btn-warning"> &nbsp; <input type="reset" value="취소" class="btn btn-danger"></td>
 			</tr>

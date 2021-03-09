@@ -41,7 +41,7 @@
 						<td>${b_num}</td>
 						<c:set var="b_num" value="${b_num -1}"></c:set>
 						<c:if test="${board.b_del == 'y' }">
-							<th colspan="4">삭제된 글입니다</th>
+							<th colspan="6">삭제된 글입니다</th>
 						</c:if>
 						<c:if test="${board.b_del != 'y' }">
 							<c:if test="${board.b_code == 'mem' }">
@@ -56,16 +56,24 @@
 							<c:if test="${board.b_code == 'etc' }">
 								<td>기타</td>
 							</c:if>
+							
 							<!-- 비밀글 설정시 제목에 자물쇠아이콘 나타내기 -->
 							<c:if test="${board.b_password != null }">
 								<td title="${board.b_content }"><span class="glyphicon glyphicon-lock"></span>
-								<%-- <a href="boardViewForm.do?num=${board.b_num }&pageNum=${pb.currentPage}" class="btn btn-info btn-sm">${board.b_title }</a></td> --%>
-								<a href="boardViewForm.do" class="btn btn-info btn-sm">${board.b_title }</a></td>
+								<a href="boardViewForm.do?b_num=${board.b_num }&pageNum=${pb.currentPage}" class="btn btn-info btn-sm">${board.b_title }</a>
+								<c:if test="${board.r_count > 0 }">
+									<button class="btn btn-warning btn-sm">답변완료</button>
+								</c:if>
+								</td>
 							</c:if>
 							<c:if test="${board.b_password == null }">
 								<td title="${board.b_content }"><a
 									href="boardView.do?b_num=${board.b_num }&pageNum=${pb.currentPage}"
-									class="btn btn-info btn-sm">${board.b_title }</a></td>
+									class="btn btn-info btn-sm">${board.b_title }${board.r_count}</a>
+								<c:if test="${board.r_count > 0 }">
+									<button class="btn btn-warning btn-sm">답변완료</button>
+								</c:if>
+								</td>
 							</c:if>
 							<td>${board.member_id }</td>
 							<td>${board.b_readcount }</td>

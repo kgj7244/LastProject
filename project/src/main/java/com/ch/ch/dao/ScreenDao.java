@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
+import com.ch.ch.model.Seat;
 
 public interface ScreenDao {
 
@@ -33,4 +34,11 @@ public interface ScreenDao {
 	int bankReFund(int t_ordernum, String member_id);
 
 	int ticketReFund(int t_ordernum, int sc_num);
+
+	//새로운
+	void newInsertSeat(int sc_num, String seat);
+
+	List<Seat> seatFind(int sc_num);
+
+	void deleteSeatReFund(String st_num, int sc_num);
 }

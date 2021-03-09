@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
+import com.ch.ch.model.Seat;
 
 @Repository
 public class ScreenDaoImpl implements ScreenDao{
@@ -90,5 +91,23 @@ public class ScreenDaoImpl implements ScreenDao{
 		map.put("t_ordernum", t_ordernum);
 		map.put("sc_num", sc_num);
 		return sst.delete("screenns.ticketReFund", map);
+	}
+
+
+	//새로운
+	public void newInsertSeat(int sc_num, String seat) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sc_num", sc_num);
+		map.put("seat", seat);
+		sst.insert("screenns.newInsertSeat", map);
+	}
+	public List<Seat> seatFind(int sc_num) {
+		return sst.selectList("screenns.seatFind", sc_num);
+	}
+	public void deleteSeatReFund(String st_num, int sc_num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("st_num", st_num);
+		map.put("sc_num", sc_num);
+		sst.delete("screenns.deleteSeatReFund", map);
 	}
 }
