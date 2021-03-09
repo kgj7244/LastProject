@@ -26,7 +26,7 @@
 		<input type="hidden" name="b_password2" value="${board.b_password }">
 		<table class="table table-bordered">
 			<tr>
-				<td>암호 (암호가 다 안맞다고 나옴 -- 에러)</td>
+				<td>암호</td>
 				<td><input type="password" name="b_password" required="required" autofocus="autofocus"></td>
 			</tr>
 			<tr>

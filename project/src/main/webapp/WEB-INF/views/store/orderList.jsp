@@ -11,19 +11,28 @@
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 
-<form  action="order.do" method="post" name=order>
+
+
+
+<div class="container" align="center">
+
+<div align="left"><h3>구매상품 정보</h3> </div>
+
+
+<form action="order.do" method="post" name="frm"
+ enctype="multipart/form-data">
+
 <input type ="hidden" name = "s_num" value = "${store.s_num }">
 <input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
 <input type ="hidden" name = "s_Pimage" value = "${store.s_Pimage }">
 <input type ="hidden" name = "s_prive" value = "${store.s_prive }">
-<input type ="hidden" name = "s_prive" value = "${s_purchase}">
+<input type ="hidden" name = "s_purchase" value = "${s_purchase}">
 
 
-<table>
- <thead>
+<table class="table" style="width: 1000px; height: 150px; ">
+<thead>
 <tr>
-<th>#</th>
-<th>상품명</th>
+<th colspan="2">상품명</th>
 <th>판매금액</th>
 <th>수량</th>
 <th>구매금액</th>
@@ -33,26 +42,32 @@
 
  <tbody>
    
-        <tr>
-  <td><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150"></td>
-            <td>${ store.s_Pname }</td>
+  <tr>
+  <td colspan="2"><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150">
+  ${ store.s_Pname }</td>
+          
             <td>${ store.s_prive }</td>
-            <td>${ store.s_purchase }</td>
+            <td>${s_purchase}</td>
             <td>${ store.s_prive * s_purchase }</td>
         </tr>
 
   </tbody>
   <tfoot>
     <tr>
-        <td colspan="5"></td>
-        <td>${ store.s_prive }</td>
+        <td colspan="4"></td>
+        <td>${total+(s_prive*s_purchase)}</td>
         
     </tr>
   </tfoot>
 </table>
 
 
-
+<!-- ======================================
+    <input name="id" type="hidden" value="${ ord_num }" type="hidden" /> -->  
+    <button type="submit">구매하기</button>
 </form>
+</div>
+
 </body>
 </html>
+

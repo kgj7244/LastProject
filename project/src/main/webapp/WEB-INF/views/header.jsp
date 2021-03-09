@@ -15,10 +15,6 @@
 <!-- 절대 경로로 바뀜 -->
 <link rel="stylesheet" type="text/css" 
 	href="${path}/resources/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" 
-	href="${path}/resources/bootstrap/css/10-10.css">
-<script type="text/javascript" 
-	src="${path}/resources/bootstrap/js/10-10.js"></script>
 <script type="text/javascript"
 	src="${path}/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript" 

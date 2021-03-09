@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.ch.model.Ord;
 import com.ch.ch.model.Store;
 
 @Repository
@@ -51,6 +52,12 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 
+
+	public List<Ord> ordlist(int s_num) {
+		return sst.selectList("ordns.ordlist",s_num);
+	}
+
+	
 
 	
 }

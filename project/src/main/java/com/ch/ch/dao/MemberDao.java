@@ -18,4 +18,8 @@ public interface MemberDao {
 
 	int delete(String member_id);
 
+	int getTotal(Member member);
+
+	List<Member> list(Member member);
+
 }

@@ -61,14 +61,15 @@
 		<!-- 상영관 추가, master만 가능  -->
 		<input type="hidden" name="member_id" value="${member_id}">
 			<c:if test="${member_id == 'master'}">
-				<a href="theaterInsertForm.do">상영관 추가</a>
+				<a href="theaterInsertForm.do">극장 추가</a>
+				<a href="movieTheaterInsertForm.do">상영관 추가</a>
 			</c:if>
 			
 			
 		<table class="table table-bordered"  style="border-color:black; width: 1200px; height: 500px; align-items: center;">
 			<tr>
 				<td id="movie" title="영화별 선택" width="30%">영화별</td>
-				<td rowspan="2" width="50%" id="disp-choice-movie"></td>
+				<td rowspan="2" width="60%" id="disp-choice-movie"></td>
 				<td rowspan="2" width="20%">${movie.m_poster}</td>
 			</tr>
 			<tr>
@@ -85,13 +86,6 @@
 				<td><div id="disp-date"></div></td>
 			</tr>
 		</table>
-			<!-- <div class="time-table-date">
-					<tr>
-						<td>
-							<div id="disp-date"></div>
-						</td>
-					</tr>
-			</div> -->
 	</div>
 	<%@ include file="../mainFloor.jsp" %>
 </body>

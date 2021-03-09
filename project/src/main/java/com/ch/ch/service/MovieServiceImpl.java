@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ch.ch.dao.MovieDao;
 import com.ch.ch.model.Movie;
-import com.ch.ch.model.Review;
 import com.ch.ch.model.Stillcut;
 
 @Service
@@ -24,18 +23,11 @@ public class MovieServiceImpl implements MovieService{
 	public int insert(Movie movie) {
 		return md.insert(movie);
 	}
+	
 	public Movie selectTitle(String m_title) {
 		return md.selectTitle(m_title);
 	}
 
-	public int getTotal(Review review) {
-		return md.getTotal(review);
-	}
-
-	public List<Review> list1(int m_num) {
-		return md.list1(m_num);
-	}
-	
 	public int update(Movie movie) {
 		return md.update(movie);
 	}
@@ -47,7 +39,20 @@ public class MovieServiceImpl implements MovieService{
 	public List<Stillcut> listPhoto(int m_num) {
 		return md.listPhoto(m_num);
 	}
+	
+	public int getTotal(Movie movie) {
+		return md.getTotal(movie);
+	}
+	
 	public List<Movie> movieMainList() { // 희주 추가
 		return md.movieMainList();
+	}
+	
+	public List<Movie> moviePage(Movie movie) {
+		return md.moviePage(movie);
+	}
+	
+	public List<Movie> allMovieList() {
+		return md.allMovieList();
 	}
 }
