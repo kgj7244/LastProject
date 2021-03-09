@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("상영관이 등록되었습니다.");
-			location.href = "theaterMainForm";
+			location.href = "theaterMainForm.do";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
