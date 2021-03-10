@@ -12,6 +12,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.ch.model.Event;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
@@ -119,6 +120,12 @@ public class ScreenDaoImpl implements ScreenDao{
 	}
 	public List<MovieTheater> mTheater(int t_num) {
 		return sst.selectList("screenns.mTheater", t_num);
+	}
+	public int insertEvent(Event event) {
+		return sst.insert("screenns.insertEvent", event);
+	}
+	public List<Event> eventList() {
+		return sst.selectList("screenns.eventList");
 	}
 
 }

@@ -1,22 +1,30 @@
 package com.ch.ch.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.ch.ch.model.Event;
 import com.ch.ch.model.Member;
 import com.ch.ch.model.Movie;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
+import com.ch.ch.model.Store;
 import com.ch.ch.model.Theater;
 import com.ch.ch.model.Ticket;
 import com.ch.ch.service.MemberService;
@@ -111,9 +119,6 @@ public class TicketController {
 		int movie_num = movie.getM_num();
 		Theater theater = tts.selectTitle(t_title); // theater.getT_num() 극장번호 가져옴
 		int theater_num = theater.getT_num();
-		System.out.println("movie_num : " + movie_num);
-		System.out.println("sc_date : " + sc_date);
-		System.out.println("theater_num : " + theater_num);
 		List<Screen> screen = ss.selectTitleList(movie_num, theater_num, sc_date); // 영화번호, 극장번호, 날짜를 가지고와서 그 해당하는 시간대를 출력하기 위함
 		model.addAttribute("movie",movie);
 		model.addAttribute("theater",theater);
@@ -222,8 +227,6 @@ public class TicketController {
 		Theater theater = tts.selectTitle(t_title);
 		MovieTheater movieTheater = ss.selectMovieTheaterFind(Integer.parseInt(mt_num), Integer.parseInt(sc_num));
 		Screen screen = ss.select(Integer.parseInt(sc_num), Integer.parseInt(mt_num));
-		
-		//Screen screenSeat = ss.selectSeat(Integer.parseInt(sc_num)); // 앤 일단 보류
 		String[] selectList1 = selectList.split(","); // 문자열을 배열에 담아서 넘긴다
  		for(int i=0; i<selectList1.length; i++) {
  			String seat = selectList1[i]; // 좌석을 하나씩 담아서
@@ -290,10 +293,53 @@ public class TicketController {
 		return "member/memberTicketRefund";
 	}
 	
+	
 	//이벤트 페이지
 	@RequestMapping("eventForm")
 	public String eventForm(Model model) {
-		// List<Member> member = mms.select();
+		List<Event> eventList = ss.eventList();
+		
+		model.addAttribute("eventList", eventList);
 		return "ticket/eventForm";
+	}
+	//이벤트 추가폼
+	@RequestMapping("eventInsertForm")
+	public String eventInsertForm(Model model) {
+		//값 넘어갈거 없나? ㅇㅋ
+		return "event/eventInsertForm";
+	}
+	
+	//이벤트 추가
+	@RequestMapping("eventInsert")
+	public String eventInsert(Event event,Model model,HttpSession session)throws IOException  {
+		System.out.println("event.getE_title() : " + event.getE_title());
+		System.out.println("event.sale() : " + event.getE_sale());
+		System.out.println("event.getE_state() : " + event.getE_state());
+		System.out.println("event.getE_state() : " + event.getFile());
+		
+		if(!event.getFile().isEmpty()) {
+			String event_poster = event.getFile().getOriginalFilename();
+			
+			String real = session.getServletContext().getRealPath("/resources/images/event");
+			String path = real + "/" + event_poster; 
+			
+			
+			FileOutputStream fos = new FileOutputStream(path);
+			fos.write(event.getFile().getBytes());
+			fos.close();
+			
+			event.setE_poster(event_poster);
+	
+		} 
+		int result = ss.insertEvent(event);
+
+		model.addAttribute("result", result);
+		
+		return "event/eventInsert";
+	}
+	@RequestMapping("eventList")
+	public String eventList(Model model) {
+		
+		return "event/eventList";
 	}
 }

@@ -29,6 +29,9 @@
 					<td><a href="masterMemberList.do" class="btn btn-default">회원관리</a></td>
 				</tr>
 				<tr>
+					<td><a href="eventList.do" class="btn btn-default">이벤트관리</a></td>
+				</tr>
+				<tr>
 					<td><a href="#" class="btn btn-default">영화추가</a></td>
 				</tr>
 				<tr>
@@ -44,7 +47,7 @@
 					<td><a href="#" class="btn btn-default">스토어상품추가</a></td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn btn-default">이벤트추가(미구현)</a></td>
+					<td><a href="eventInsertForm.do" class="btn btn-default">이벤트추가</a></td>
 				</tr>
 			</table>
 		</c:if>

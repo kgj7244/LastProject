@@ -9,6 +9,9 @@ drop sequence mt_num;
 drop sequence sv_num;
 drop sequence t_account;
 drop sequence r_num;
+drop sequence e_num;
+drop sequence eo_num;
+drop sequence p_num;
 
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
@@ -26,6 +29,8 @@ drop table movie CASCADE CONSTRAINTS;
 drop table movieTheater CASCADE CONSTRAINTS;
 drop table theater CASCADE CONSTRAINTS;
 drop table member CASCADE CONSTRAINTS;
+drop table event_over CASCADE CONSTRAINTS;
+drop table event CASCADE CONSTRAINTS;
 drop table master CASCADE CONSTRAINTS;
 drop table reBoard CASCADE CONSTRAINTS;
 
@@ -61,30 +66,24 @@ select * from member;
 
 -------------------------------------- 이벤트(추가)
 create table event(
-	e_num nvarchar2(10) primary key,  -- 이벤트번호
-	e_title nvarchar2(50) not null,            -- 이벤트제목
-	e_state nvarchar2(50) not null,            -- 이벤트종류
-	e_sale nvarchar2(50) not null,             -- 이벤트금액
-	member_id nvarchar2(50) references member(member_id)        -- 회원아이디
-);
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
-
--------------------------------------- 이벤트(추가)
-create table event(
-	event_num nvarchar(10) primary key not null,  -- 이벤트번호
-	event_title nvarchar(50) not null,            -- 이벤트제목
-	event_state nvarchar(50) not null,            -- 이벤트종류
-	event_sale nvarchar(50) not null,             -- 이벤트금액
-	member_id references member(member_id)        -- 회원아이디
+	e_num number(10) primary key, 				 			-- 이벤트번호
+	e_title nvarchar2(50) not null,            		 		-- 이벤트제목
+	e_state nvarchar2(50) not null,           		 		-- 이벤트종류(1: 쿠폰, 2: 상품권)
+	e_sale number(10) not null,             				-- 할인금액
+	e_poster nvarchar2(100),									-- 포스터 사진
+	e_del char(1) default 'n'								-- 삭제여부
 );
 
-create sequence event_num increment by 1 start with 1;
+create sequence e_num increment by 1 start with 1;
 
 ---------------------------------------이벤트 중복체크
 create table event_over(
-	member_id nvarchar2(50),
-	e_num nvarchar2(10) references event(e_num)
+	eo_num number(10) primary key,               -- 중복체크 번호
+	member_id nvarchar2(50) not null,                     -- 아이디
+	eo_state nvarchar2(50) not null,                      -- 상태
+	e_num number(10) references event(e_num)  -- 이벤트번호
 );
+create sequence eo_num increment by 1 start with 1;
 
 --------------------------------------극장
 
@@ -349,3 +348,4 @@ create table service(
 
 create sequence sv_num increment by 1 start with 1;
 
+select * from event order by e_num

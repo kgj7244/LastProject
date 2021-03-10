@@ -16,9 +16,7 @@
 	var m_title1=""; var t_title1=""; var sc_date1=""; var mt_num1="";	var sc_num1="";
 	function movieChk(m_title, m_poster) {
 		$('#img').html("<img alt='"+m_poster+"' src='${path}/resources/images/m_poster/"+m_poster+"' height='100px;' width='80px;' style='border:1px solid #eaeaea;'>");
-		/* $('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>"); */
 		$('#m_title').text(m_title);
-		/* $('#m_title').html("<input type='text' name='m_title' value='"+m_title+"' disabled='disabled' id='m_title'>"); */
 		Mchk = 1;
 		m_title1=m_title;
 		frm1.m_title2.value=m_title1;
@@ -31,7 +29,6 @@
 	}
 	function theaterSelectChk(t_title) {
 		$('#t_title').text("극장 : "+t_title+"점");
-		/* $('#t_title').html("<input type='text' name='t_title' value='"+t_title+"점' disabled='disabled' id='t_title'>"); */
 		Tchk =1;
 		t_title1=t_title;
 		frm2.t_title2.value=t_title1;
@@ -39,7 +36,6 @@
 	}
 	function date_pick() {
 		$('#sc_date').text("날짜 : "+cal1.value);
-		/* $('#sc_date').html("<input type='text' name='sc_date' value='"+cal1.value+"' disabled='disabled' id='sc_date'>"); */
 		Dchk =1;
 		sc_date1 = cal1.value;
 		frm3.sc_date2.value=sc_date1;
@@ -57,7 +53,6 @@
 		sc_num1 = sc_num;
 		frm9.sc_start.value=sc_start;
 		$('#mt_name').html("상영관 : "+mt_name);
-		/* $('#mt_name').html("<input type='text' name='mt_name' value='"+mt_name+"' disabled='disabled' id='mt_name'>"); */
 	}
 	function Chk1() {
 		if(frm1.m_title2.value==""||frm2.t_title2.value==""||frm3.sc_date2.value==""){
@@ -80,9 +75,7 @@
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
 	<div align="left"><h2>빠른 예매</h2></div>
-	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
-	<a href="screenInsertForm.do">상영 추가하기</a> <!-- 나중에 마이페이지에 링크만 넣을것!  --> 
-	<a href="eventForm.do">이벤트 확인하기</a>
+	<hr style="border: 0px; height: 3px; background-color: #cccccc;"> 
 	<div style="margin-top: 20px;"> <!-- 선택창 -->
 		<table class="table table-bordered" style="width: 1200px; height: 500px;">
 			<tr height="40px;"><!-- 제목 -->
