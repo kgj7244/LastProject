@@ -318,6 +318,7 @@ insert into store values(14,'n','4','전용 관람권','전용 관람권 1매','
 ------------------------------- order 구매 데이터(미완성)
 drop table ord;
 select * from ord;
+drop sequence ord_num;
 
 	create table ord (
 	ord_num number(10) primary key,
@@ -333,7 +334,7 @@ select * from ord;
 	);
 --	, t_account varchar2(50) references bank(t_account) not null --입금번호
 
-create sequence ord_num increment by 1 start 3;
+create sequence ord_num increment by 1 start with 1;
 
 insert into ord values(2,'q1','4',3,2000,'2021-03-02','2021-04-02','y','n');
 
@@ -350,4 +351,7 @@ create table service(
 );
 
 create sequence sv_num increment by 1 start with 1;
+
+select * from ord where member_id = 'q1';
+select o.*, s.s_Pname from ord o, store s where o.s_num = s.s_num and member_id = 'q1';
 

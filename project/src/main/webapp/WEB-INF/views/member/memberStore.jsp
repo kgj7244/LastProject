@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>
@@ -13,9 +14,8 @@
 
 
 <div class="container" align="center">
-
-
-<%-- <input type ="hidden" name = "s_num" value = "${ord.s_num }"> --%>
+<input type ="hidden" name = "s_num" value = "${store.s_num }">
+<input type ="hidden" name = "member_id" value = "${member.member_id }">
 
 	<h2>구매 상품 </h2>
 	<table class="table table-bordered">
@@ -24,9 +24,10 @@
 			<td>주문번호</td>
 			<td>상품 이름</td>
 			<td>구매 수량</td>
-			<td>유통기한</td>
 			
-			<td>교환권 상태</td>
+			
+		
+			<td>유통기한</td>
 				
 			<td>자세히 보기</td>
 			<td>환불</td>
@@ -39,22 +40,25 @@
 				<c:forEach var="ord" items="${ord}">
 					<tr>
 						<td>${ord.buy_date}</td>
+						
+						
+						<td>${ord.s_num }</td>
+						
 						<td>${ord.ord_num}</td>
-						<td>-</td>
-						
-			<%-- 			<c:if test="${ord.}" >
-						<td>결제 취소</td>
-						</c:if> --%>
-						<td>${ord.s_purchase}</td>
-						
-						<td>${ord.s_purchase}</td>
+						<td>${ord.s_Pname}</td>												
+						<td>${ord.s_purchase}</td>	
+									
 						<td>${ord.s_validity}</td>
 					
 						
 						
 						
-						<td><input type="button" value="자세히 보기" 
+						<td><input type="button" value="자세히 보기 s_num" 
 						onclick='location.href="memberStoreInfo.jsp.do?s_num=${ord.s_num}"'>
+
+						
+						<td><input type="button" value="건너가세" 
+						onclick='location.href="memberStoreInfo.jsp.do?ord_num=${ord.ord_num}&s_num=${ord.s_num}&s_validity=${ord.s_validity}"'>
 						
 						<td><input type="button" value="구매 취소" onclick=''>
 						

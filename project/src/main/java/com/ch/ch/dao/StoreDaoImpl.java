@@ -65,22 +65,18 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 
-//er
-	@Override
+
 	public int insertOrd(Ord ord) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sst.insert("ordns.insertOrd",ord);
 	}
 
 
 
 	
+	public Ord select_ord(int ord_num) {
+		return sst.selectOne("ordns.select_ord",ord_num);
+	}
 
-
-
-	
-	
-	
 
 	
 }

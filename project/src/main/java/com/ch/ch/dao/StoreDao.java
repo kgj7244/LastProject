@@ -26,6 +26,8 @@ public interface StoreDao {
 
 	int insertOrd(Ord ord);
 
+	Ord select_ord(int ord_num);
+
 
 
 }
