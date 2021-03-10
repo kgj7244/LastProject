@@ -19,6 +19,15 @@
 			</c:if>
 		</div>
 		<div>
+			<table>
+				<tr>
+					<td>
+						<input type="checkbox">
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
 			<c:if test="${empty movieList}">
 				<div>아직 영화가 없습니다</div>
 			</c:if>
