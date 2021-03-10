@@ -9,9 +9,13 @@ drop sequence mt_num;
 drop sequence sv_num;
 drop sequence t_account;
 drop sequence r_num;
+<<<<<<< HEAD
 drop sequence e_num;
 drop sequence eo_num;
 drop sequence p_num;
+=======
+drop sequence n_num;
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
@@ -33,7 +37,7 @@ drop table event_over CASCADE CONSTRAINTS;
 drop table event CASCADE CONSTRAINTS;
 drop table master CASCADE CONSTRAINTS;
 drop table reBoard CASCADE CONSTRAINTS;
-
+drop table notice CASCADE CONSTRAINTS;
 
 
 --------------------------------------관리자
@@ -66,15 +70,38 @@ select * from member;
 
 -------------------------------------- 이벤트(추가)
 create table event(
+<<<<<<< HEAD
 	e_num number(10) primary key, 				 			-- 이벤트번호
 	e_title nvarchar2(50) not null,            		 		-- 이벤트제목
 	e_state nvarchar2(50) not null,           		 		-- 이벤트종류(1: 쿠폰, 2: 상품권)
 	e_sale number(10) not null,             				-- 할인금액
 	e_poster nvarchar2(100),									-- 포스터 사진
 	e_del char(1) default 'n'								-- 삭제여부
+=======
+	e_num nvarchar2(10) primary key,  -- 이벤트번호
+	e_title nvarchar2(50) not null,            -- 이벤트제목
+	e_state nvarchar2(50) not null,            -- 이벤트종류
+	e_sale nvarchar2(50) not null,             -- 이벤트금액
+	member_id nvarchar2(50) references member(member_id)        -- 회원아이디
 );
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+
+-------------------------------------- 이벤트(추가)
+create table event(
+	event_num nvarchar(10) primary key not null,  -- 이벤트번호
+	event_title nvarchar(50) not null,            -- 이벤트제목
+	event_state nvarchar(50) not null,            -- 이벤트종류
+	event_sale nvarchar(50) not null,             -- 이벤트금액
+	member_id references member(member_id)        -- 회원아이디
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+);
+<<<<<<< HEAD
 
 create sequence e_num increment by 1 start with 1;
+=======
+
+create sequence event_num increment by 1 start with 1;
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 ---------------------------------------이벤트 중복체크
 create table event_over(
@@ -95,10 +122,16 @@ create table theater(
 	t_number nvarchar2(50) not null,   --전화번호
 	t_gui nvarchar2(1000) not null        --시설 안내
 );
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 select * from theater;
-
 create sequence theater_t_num_seq increment by 1 start with 13;
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 drop sequence theater_t_num_seq;
 
 insert into theater values(1, '신촌','서울','서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)','1544-1122','주자요금 영화 관람시 3시간, 4000원입니다.');
@@ -209,6 +242,34 @@ create table reBoard (
 create sequence r_num increment by 1 start with 1;
 select * from reBoard;
 
+----------------------------------- 공지 게시판
+
+create table notice (
+	n_num number primary key not null,      -- 공지 번호
+	n_branch nvarchar2(50)                  -- 지점
+	n_title nvarchar2(100) not null,        -- 공지 제목
+	n_content nvarchar2(1000) not null,     -- 공지 내용
+	n_date date default sysdate not null,   -- 공지 등록일
+	n_del char(1) default 'n'               -- 삭제여부
+);
+
+create sequence n_num increment by 1 start with 1;
+
+-- 시연시 보여줄 공지
+insert into notice values(1,'신촌','21년 3월 휴관일 안내','3월 휴관일 : 3/12, 3/19 (금요일)',sysdate,'n');
+insert into notice values(2,'강남','주차창 이용 변경 안내','매점 창구에서 당일 영화 티켓 확인 후 입차 시간 기준 4시간 무료',sysdate,'n');
+insert into notice values(3,'용산','공사로 인한 일부건물 이용불가 안내','21년 3월19일까지 자란공영주차장에서 주차 부탁드립니다',sysdate,'n');
+insert into notice values(4,'전체','개인정보 처리방침 변경 안내','개정내용 : 개인정보처리방침 제 6조(개인정보파기)',sysdate,'n');
+insert into notice values(5,'대전','영화관람 요금 조정 안내','21년 4월부터 요금이 2,000원이 인상됩니다',sysdate,'n');
+insert into notice values(6,'용인','운영일자 임시 조정 안내','내부 사정으로 인하여 부득이하게 극장 운영 일자가 임시 조정됩니다',sysdate,'n');
+insert into notice values(7,'전체','굿즈 구매 제한 안내','카드(인당 4개), 퍼즐(인당 4개) 구매 제한',sysdate,'n');
+insert into notice values(8,'이천','임시 휴점 안내','코로나19 확산으로 인해 메가박스 양산지점의 영업을 21년 3월 10일까지 임시 중단하게 되었습니다. 죄송합니다',sysdate,'n');
+insert into notice values(9,'수원','21년 3월1일 건물운영안내','B1 메인 출입구는 입장이 불가합니다',sysdate,'n');
+insert into notice values(10,'구리','21년 3월 휴관일 안내','3월 휴관일 : 3/10, 3/24 (수요일)',sysdate,'n');
+insert into notice values(11,'전체','21년 3월 시스템 정기점검 안내','작업일시: 2021년 2월 16일(화) 00:00 ~ 05:00',sysdate,'n');
+
+select * from notice;
+
 -----------------------------------상영
 
 create table screen(
@@ -249,7 +310,6 @@ create table ticket(
 );
 create sequence t_ordernum increment by 1 start with 1;
 
-
 --------------------------------------관리자계좌
 
 create table aam_bank(
@@ -272,6 +332,7 @@ create table bank(
 );
 create sequence t_account increment by 1 start with 1;
 
+insert into bank values(1,sysdate,'10000','휴대폰','q1','565-278311-02-001',null);
 --------------------------------------스토어
 select * from store;
 drop table store CASCADE CONSTRAINTS;
@@ -317,6 +378,7 @@ insert into store values(14,'n','4','전용 관람권','전용 관람권 1매','
 ------------------------------- order 구매 데이터(미완성)
 drop table ord;
 select * from ord;
+drop sequence ord_num;
 
 	create table ord (
 	ord_num number(10) primary key,
@@ -331,9 +393,11 @@ select * from ord;
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
 	);
 --	, t_account varchar2(50) references bank(t_account) not null --입금번호
-	
+
+create sequence ord_num increment by 1 start with 1;
+
 insert into ord values(2,'q1','4',3,2000,'2021-03-02','2021-04-02','y','n');
-	
+
 -----------------------------------------고객센터(미완성)
 create table service(
 	sv_num number primary key not null,  --고객센터번호
@@ -348,4 +412,17 @@ create table service(
 
 create sequence sv_num increment by 1 start with 1;
 
+<<<<<<< HEAD
+select * from ord where member_id = 'q1';
+select o.*, s.s_Pname from ord o, store s where o.s_num = s.s_num and member_id = 'q1';
+
+<<<<<<< HEAD
 select * from event order by e_num
+=======
+=======
+
+select * from (select a.*, rownum rn from (select * from movie 
+		order by m_opendate desc)a) 
+			where rn between 1 and 4 and m_state = 1 or m_state =2;
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git

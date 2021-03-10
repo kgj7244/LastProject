@@ -64,7 +64,19 @@ public class StoreDaoImpl implements StoreDao{
 		return sst.selectList("ordns.memberStore",member_id);
 	}
 
+
+
+	public int insertOrd(Ord ord) {
+		return sst.insert("ordns.insertOrd",ord);
+	}
+
+
+
 	
+	public Ord select_ord(int ord_num) {
+		return sst.selectOne("ordns.select_ord",ord_num);
+	}
+
 
 	
 }

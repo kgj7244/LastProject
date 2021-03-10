@@ -36,7 +36,7 @@
 		<result column="s_sale" property="s_sale"/>		
 	</resultMap>
 	
-	<select id="select" parameterType="integer" resultType="ord">
+	<select id="select_ord" parameterType="integer" resultType="ord">
 		select * from ord where ord_num=#{ord_num}
 	</select>
 	
@@ -50,16 +50,20 @@
 	
 	
 	<select id="memberStore" parameterType="string" resultType="ord">
-		select * from ord where member_id = #{member_id}
+		select o.*, s.s_Pname from ord o, store s where o.s_num = s.s_num and member_id = #{member_id}
 	</select> <!--  -->
 	
-	<insert id="insert" parameterType="ord">
-	insert into ord values(
-	#{ord_num},#{member_id},#{s_num},
-	#{s_purchase},#{full_price},#{buy_date},#{s_validity},
-	#{buy_i},#{del})
+	<select id="selectmstore" parameterType="Integer" resultType="screen">
+		select * from  where s_num = #{s_num}
+	</select>
+	
+	<insert id="insertOrd" parameterType="ord">
+	insert into ord values(ord_num.nextval,
+	#{member_id},#{s_num},#{s_purchase},
+	#{full_price},#{buy_date},#{s_validity},
+	'y','n')
 	</insert>
 	
-	
+
 
 	</mapper>

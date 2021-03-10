@@ -38,7 +38,7 @@
 </script>
 </head>
 <body>
-	<c:if test="${not empty rbList && member_id == 'master' }">
+	<c:if test="${not empty rbList}">
 		<table class="table table-striped">
 				<tr>
 					<td>작성자</td>

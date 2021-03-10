@@ -60,6 +60,19 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
+	public int insertOrd(Ord ord) {
+		return sd.insertOrd(ord);
+	}
+
+
+	
+	public Ord select_ord(int ord_num) {
+		return sd.select_ord(ord_num);
+	}
+
+
+	}
+
+
 	
 
-}

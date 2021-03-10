@@ -52,5 +52,8 @@ public class TheaterDaoImpl implements TheaterDao{
 		map.put("t_num", t_num);
 		return sst.insert("theaterns.numInsert",map);
 	}
+	public List<Theater> locList(String t_loc) {
+		return sst.selectList("theaterns.locList2",t_loc);
+	}
 
 }

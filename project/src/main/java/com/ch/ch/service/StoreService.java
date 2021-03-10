@@ -18,8 +18,14 @@ public interface StoreService {
 	int delete(int s_num);
 
 	List<Store> pclist(int s_Pclass);
+	
 	List<Ord> ordlist(int s_num);
-
 	List<Ord> memberStore(String member_id);
+
+	int insertOrd(Ord ord);
+
+	Ord select_ord(int ord_num);
+
+	
 
 }

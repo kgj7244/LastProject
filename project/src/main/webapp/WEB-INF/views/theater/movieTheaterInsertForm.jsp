@@ -36,6 +36,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="등록" >
+				<button><a href="#">목록</a></button>
 			</tr>
 		</table>
 	</form>

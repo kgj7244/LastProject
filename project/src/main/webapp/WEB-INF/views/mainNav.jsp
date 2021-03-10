@@ -32,7 +32,7 @@
 				<li><a href="theaterMainForm.do">극장</a></li>
 				<li><a href="ticketMainForm.do">예매</a></li>
 				<li><a href="storeMainForm.do">스토어</a></li>
-				<li><a href="boardList.do">고객센터</a></li>
+				<li><a href="noticeList.do">고객센터</a></li>
 			</ul>
 			</div>
 			<div class="col-sm-2" align="center">
