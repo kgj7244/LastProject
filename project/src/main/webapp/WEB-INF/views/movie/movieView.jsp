@@ -14,13 +14,20 @@
 		background-color: white;
 	}
 	.carousel-control { 
-		background: maroon !important;
+		background: none !important;
         filter: none !important; 
         progid:none !important;
 	}
+	 .carousel-inner > .item > img {
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 150px;
+  object-fit: cover;
+    } 
 	.navbar-fixed-top  {
      -webkit-backface-visibility: hidden;
-}
+	}
 </style> 
 <script type="text/javascript">
 	$(function() {

@@ -7,39 +7,12 @@
 <meta charset="UTF-8">
 <title>무비리스트 | AAM</title>
 <script type="text/javascript">
-/* 	function fn_bindOnAirEvent() {
-		var movielist = fn_getSortTargetByShow();
-	
-		// 개봉작만보기
-		movielist.find('.btnOnAir').off().on('click', function() {
-			var onairYn = $(this).attr('class').indexOf(' on') == -1 ? 'Y' : 'N';
-			$('#onairYn').val(onairYn);
-			$('#currentPage').val("1");
-			fn_movieSerach(); // 영화목록 조회
-		});
-	};
-	
-	function fn_movieSerach() {
-		
-	}; */
-	/* $('#chk_nowshow').click(function () {
-        if ($("input:checkbox[id='chk_nowshow']").is(":checked")) {
-            location.href = "movieMainForm.do?pageNum=1";
-        }
-        else{
-            location.href = "movieMainForm.do?pageNum=2";
-        }
-    }); */
 	$(document).ready(function(){
 	    $("#chk_nowshow").change(function(){
 	        if($("#chk_nowshow").is(":checked")){
-	        	alert('오??');
-	        	/* location.href="movieMainForm.do?m_state=1"; */
-	        	//location.href = "movieMainForm.do?m_state=1"; 이거 안넘어가져요???네
+	        	alert("체크되어있을 때");
 	        }else{
-	        	alert('잘 알고 계시군요');
-	        	//location.href = "movieInsertForm.do";	//잘 실행되는지 확인용
-	        	//location.href = "movieMainForm.do";	//원래 실행할 주소
+	        	alert("체크 안되어있을 때");
 	        }
 	    });
 	});
@@ -73,7 +46,7 @@
 		<div class="row" style="margin-top: 70px;">
 			<c:if test="${not empty movieList}">
 				<c:forEach var="movie" items="${movieList}">
-					<c:if test="${movie.m_state != '상영종료'}">
+					<c:if test="${movie.m_state != '3'}">
 						<div class="col-sm-6 col-md-3">
 							<div class="thumbnail">
 					            <a href="movieView.do?m_num=${movie.m_num}">

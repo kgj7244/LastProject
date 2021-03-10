@@ -383,4 +383,4 @@ create sequence sv_num increment by 1 start with 1;
 
 select * from (select a.*, rownum rn from (select * from movie 
 		order by m_opendate desc)a) 
-			where rn between 1 and 4 and m_state = 1;
+			where rn between 1 and 4 and m_state = 1 or m_state =2;

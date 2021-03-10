@@ -27,7 +27,7 @@
 			 	</if>
 			 </where>
 	</select>
-	<select id="moviePage" parameterType="hashmap" resultType="movie">
+	<select id="moviePage" parameterType="movie" resultType="movie">
 		select * from (select a.*, rownum rn from (select * from movie 
 			<where>
 			 	<if test="keyword!=null and keyword!=''">
@@ -72,5 +72,4 @@
 	<select id="allMovieList" resultMap="movieResult">
 		select * from movie
 	</select>
-	
 </mapper>
