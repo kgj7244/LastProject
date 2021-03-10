@@ -26,4 +26,6 @@ public interface TheaterService {
 	List<MovieTheater> movieTheaterList();
 
 	int numInsert(String mt_name, int mt_count, int t_num);
+
+	List<Theater> locList(String t_loc);
 }

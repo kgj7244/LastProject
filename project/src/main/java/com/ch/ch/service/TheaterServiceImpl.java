@@ -43,4 +43,7 @@ public class TheaterServiceImpl implements TheaterService{
 	public List<Theater> select(String t_loc, String t_title) {
 		return td.select(t_loc, t_title);
 	}
+	public java.util.List<Theater> locList(String t_loc) {
+		return td.locList(t_loc);
+	}
 }

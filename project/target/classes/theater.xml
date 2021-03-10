@@ -4,6 +4,22 @@
 <!-- namespace xml을 구별하기 위한 이름 -->
 <!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
 <mapper namespace="theaterns">
+	<resultMap type="movieTheater" id="movieTheaterResult">
+		<result property="mt_num"    column="mt_num"/>
+		<result property="mt_name"    column="mt_name"/>
+		<result property="mt_count" 	    column="mt_count"/>
+		<result property="t_num"      column="t_num"/>
+		<!-- 조인용으로 부서 전체 정보 -->
+		<collection property="theater" resultMap="theaterResult"></collection>
+	</resultMap>
+	<resultMap type="theater" id="theaterResult">
+		<result property="t_num"    column="t_num"/>
+		<result property="t_title"    column="t_title"/>
+		<result property="t_loc" 	    column="t_loc"/>
+		<result property="t_addr"      column="t_addr"/>
+		<result property="t_number"  column="t_number"/>
+		<result property="t_gui" column="t_gui"/>
+	</resultMap>
 	<select id="locList" parameterType="theater" resultType="theater">
 		select distinct t_loc from theater order by t_loc
 		<!-- select distinct t_loc, (select count(*) from theater where t_loc = #{t_loc}) as t_total from theater order by t_loc -->
@@ -36,4 +52,9 @@
 	<insert id="numInsert" parameterType="hashmap">
 		insert into movieTheater values(mt_num.nextval, #{mt_name}, #{mt_count}, #{t_num})
 	</insert>
+	<select id="locList2" parameterType="string" resultMap="movieTheaterResult">
+		select m.*, t.* from theater t, movieTheater m 
+			where m.t_num=t.t_num and t.t_loc = #{t_loc}
+			order by t_title
+	</select>
 </mapper>
