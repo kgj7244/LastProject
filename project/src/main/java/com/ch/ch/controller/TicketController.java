@@ -58,22 +58,28 @@ public class TicketController {
 		return "ticket/screenInsertForm";
 	}
 	
-	 @RequestMapping(value = "movieTheaterChk", produces = "text/html;charset=utf-8")
-	 @ResponseBody public String movieTheaterChk(String t_title) {
-		 String mt_name ="";
+	 @RequestMapping(value = "movieTheaterChk")
+	 public String movieTheaterChk(String t_title, Model model) {
 		 Theater theater = ss.selectTheater(t_title);
 		 List<MovieTheater> mTheater = ss.mTheater(theater.getT_num());
-		 for(int i =0; i<mTheater.size(); i++) {
-			 if(i==mTheater.size()-1) {
-				 mt_name += mTheater.get(i).getMt_name();
-			 }else {
-				 mt_name += mTheater.get(i).getMt_name()+",";
-			 }
-		 }
-		 return mt_name; 
+		 model.addAttribute("mTheater", mTheater);
+		 return "ticket/movieTheaterChk"; 
 	 }
 	
-	
+//	 @RequestMapping(value = "movieTheaterChk", produces = "text/html;charset=utf-8")
+//	 @ResponseBody public List<MovieTheater> movieTheaterChk(String t_title) {
+////		 String mt_name ="";
+//		 Theater theater = ss.selectTheater(t_title);
+//		 List<MovieTheater> mTheater = ss.mTheater(theater.getT_num());
+////		 for(int i =0; i<mTheater.size(); i++) {
+////			 if(i==mTheater.size()-1) {
+////				 mt_name += mTheater.get(i).getMt_name();
+////			 }else {
+////				 mt_name += mTheater.get(i).getMt_name()+",";
+////			 }
+////		 }
+//		 return mTheater; 
+//	 }
 	
 	@RequestMapping("screenInsert")
 	public String screenInsert(Model model, String m_title, String t_title, String mt_name, String sc_date, String sc_start, String sc_end) {

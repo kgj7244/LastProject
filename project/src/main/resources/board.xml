@@ -29,7 +29,7 @@
 				</if>
 			</if>
 		</where>
-		order by b_num) a) where rn between #{startRow} and #{endRow}
+		order by b_num desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="getTotalBcode" parameterType="board" resultType="integer">
 		select count(*) from board where b_code=#{b_code}

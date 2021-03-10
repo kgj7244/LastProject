@@ -53,13 +53,17 @@
 		select * from ord where member_id = #{member_id}
 	</select> <!--  -->
 	
-	<insert id="insert" parameterType="ord">
+	<select id="selectmstore" parameterType="Integer" resultType="screen">
+		select * from  where s_num = #{s_num}
+	</select>
+	
+	<insert id="insertOrd" parameterType="ord">
 	insert into ord values(
-	#{ord_num},#{member_id},#{s_num},
+	#{ord_num.nextval},#{member_id},#{s_num},
 	#{s_purchase},#{full_price},#{buy_date},#{s_validity},
 	#{buy_i},#{del})
 	</insert>
 	
-	
+
 
 	</mapper>
