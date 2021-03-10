@@ -13,4 +13,8 @@ public interface ReviewService {
 	void update(Review rv);
 
 	int getTotal(Review review);
+
+	int count(Review review);
+
+	int sum(Review review);
 }

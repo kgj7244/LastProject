@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.a1 {float:left; width:200px;}
+
+</style>
 </head>
 <body>
  <%@include file="../mainTop.jsp" %>
@@ -28,6 +32,7 @@
  <c:forEach var="store" items="${storeList }">
  
  <div class="image">
+ <div class="a1">
  <a href="storeContent.do?s_num=${store.s_num }">
 <span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150"></span>
 
@@ -38,17 +43,20 @@
  
   <div>${store.s_prive }원</div>
 
- </div>
+ </div></div>
  </c:forEach></c:if>
  </div>
 </div>
+
 <!-- ====================================== -->  
 
 
 
 <div align="center">
-<!-- 관리자 확인 아직 -->
+<input type="hidden" name="member_id" value="${member_id}">
+	<c:if test="${member_id == 'master'}">
  <a href="storeInsertForm.do">상품 추가</a>
+ </c:if>
 </div>
 
 <div><%@include file="../mainFloor.jsp" %></div>

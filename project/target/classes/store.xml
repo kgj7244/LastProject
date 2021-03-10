@@ -13,8 +13,7 @@
 		<result column="s_Pimage" property="s_Pimage"/>
 		<result column="s_purchase" property="s_purchase"/>
 		<result column="s_prive" property="s_prive"/>		
-		<result column="del" property="del"/>
-		
+		<result column="del" property="del"/>	
 							
 		<result column="s_per" property="s_per"/>	
 		<result column="s_pernd" property="s_pernd"/>	
@@ -22,6 +21,8 @@
 		<result column="s_sale" property="s_sale"/>
 		
 	</resultMap>
+	
+
 	
 	
 	<select id="list" resultMap="storeResult">
@@ -33,7 +34,7 @@
 	</select>
 			
 	<select id="pclist" parameterType="integer" resultMap="storeResult" >
-	select * from store where s_Pclass=#{s_Pclass}  
+	select * from store where s_Pclass=#{s_Pclass} order by s_num
 	</select>
 
 	<insert id="insert" parameterType="store">
@@ -51,13 +52,17 @@
 	 update store set 
 	 s_del=#{s_del}, s_Pclass=#{s_Pclass}, s_Pname=#{s_Pname}, 
 	 s_Pconfig=#{s_Pconfig}
-	 <!-- <if test="s_Pimage!=null"> -->	
+	<if test="s_Pimage!=null">
 			,  s_Pimage=#{s_Pimage}
-		
+	</if>
 	 ,s_purchase=#{s_purchase},s_prive=#{s_prive},del=#{del},
 	 s_per=#{s_per}, s_pernd=#{s_pernd},s_total=#{s_total},s_sale=#{s_sale}
 	 
 	 where s_num=#{s_num} 
 	</update>
-	
+
+<!-- ================================= -->
+
+
+
 </mapper>

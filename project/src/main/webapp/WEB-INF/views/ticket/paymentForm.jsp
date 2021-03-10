@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
-	var selectList = new Array();
+	var selectList = new Array(); // 좌석 담는곳
+	var temporary = new Array(); //임시저장소
 	var type;
 	var $count;
 	var $count1;
@@ -18,6 +19,11 @@
 	var youth=0; //청소년 표 갯수
 	var total=0; //표 토탈 갯수
 	var totalPrice = 0;
+	var mt_num = "${mt_num}";
+	var listSeat2  = new Array(); //임시저장소
+	var listSeat = "${st_name}";
+	
+	
 	
 	$(document).ready(function() {
 		$('#count_adult input[count_adult]').click(function(e) {
@@ -29,6 +35,13 @@
 				if (type == 'm') {
 					if (count_val < 1) {
 						return;
+					}
+					if(selectList.length > 0){
+						if(confirm("선택하신 좌석을 모두 취소하고 다시 선택 하시겠습니까?")==true){
+							location.reload();	
+						}else{
+							return false;
+						}
 					}
 					$count.val(parseInt(count_val) - 1);
 					adult=parseInt(count_val)-1;
@@ -64,11 +77,18 @@
 				if (type == 'm') {
 					if (count1_val < 1) {
 						return;
-					}else{
+					}
+					if(selectList.length > 0){
+						if(confirm("선택하신 좌석을 모두 취소하고 다시 선택 하시겠습니까?")==true){
+							location.reload();	
+						}else{
+							return false;
+						}
+					}
 					$count1.val(parseInt(count1_val) - 1);
 					youth=parseInt(count1_val)-1;
 					frm20.youth_ticket.value=youth;
-					}
+					
 				}else if (type == 'p') {
 					if(total >= 8){
 						alert('예매는 8장까지');
@@ -96,16 +116,27 @@
 		totalPrice = Aprice + Yprice;
 	}
 	function PriceTotal() {
-		$('#adult').html("<input type='text' name='adult' value='성인 "+adult+"'명 disabled='disabled' id='adult'>");
-		$('#youth').html("<input type='text' name='youth' value='청소년 "+youth+"'명 disabled='disabled' id='youth'>");
-		$('#totalPrice').html("<input type='text' value='최종결제금액 "+totalPrice+"원' disabled='disabled' >");
+		$('#adult').text("성인 "+adult+"명");
+		$('#youth').text(" · 청소년 "+youth+"명");
+		$('#totalPrice').text(totalPrice);
+		$('#totalPrice1').text("원");
 		frm20.totalPrice.value=totalPrice;
 		
 	}
 	
 	// 좌석뷰
 	$(function() {
-		$('#seatDisp').load('${path}/movieTheater50.do');
+		if(mt_num==1){
+			$('#seatDisp').load('${path}/movieTheater50.do');
+		}else if(mt_num ==2){
+			$('#seatDisp').load('${path}/movieTheater70.do');
+		}else if(mt_num ==3){
+			$('#seatDisp').load('${path}/movieTheater80.do');
+		}else if(mt_num ==4){
+			$('#seatDisp').load('${path}/movieTheater90.do');
+		}else if(mt_num ==5){
+			$('#seatDisp').load('${path}/movieTheater100.do');
+		}
 	});
 	
 	function row(selectSeat) {
@@ -114,25 +145,57 @@
 			return;
 		}
 		if(selectList.length <= total){ 
-			var select = selectSeat;
+			var select = selectSeat; // 선택한 좌석
 			if(selectList.indexOf(select) == -1){ 
 				if(selectList.length < total){ // 값이 total 보다 작을때만  리스트에 추가하고  
-					selectList.push(select); 	// 리스트에 추가
+					selectList.push(select); 	// 리스트에 추가 요기
+					temporary.push(select); // 임시에도 추가로 넣어줌
+					$("input[name='"+select+"']").css("background-color","#503396");
+					$("input[name='"+select+"']").css("color","white");
 				}else{ // total 값이 같거나 많을때 
 					alert('구입하려는 수보다 많은 좌석을 클릭하셨습니다.');
 					return;
 				}
 			}else{  
 				selectList.splice(selectList.indexOf(select),1); // 리스트에서 삭제함
+				$("input[name='"+select+"']").css("background-color","rgba(204, 197, 198, 0.9)");
+				$("input[name='"+select+"']").css("color","write");
+				
 			}
-			$('#rowSelect').html("<input type='text' value="+selectList+">");
-			frm20.selectList.value=selectList;
+			Seat()
 		}
 		else{
 			alert('구입하려는 수보다 많은 좌석을 클릭하셨습니다.');
 			return;
 		}
 	}
+	
+
+	function CountChk() {
+		if(total==0){
+			alert('최소 한장 이상 구매를 하셔야 합니다.');
+			return false;
+		}else if(total != selectList.length){
+			alert('선택한 수만큼 좌석을 선택해주세요.');
+			return false;
+		}
+	}
+    function Seat() {
+     	if(selectList.length < temporary.length){
+			for(var i=0; i<temporary.length; i++){
+				$("#rowSelect"+i).text("");
+			}
+    		for(var i=0; i<selectList.length; i++){
+    			$("#rowSelect"+i).text(selectList[i]);
+    		}
+    		frm20.selectList1.value=selectList;
+    	}else  if(selectList.length == temporary.length){
+    		for(var i=0; i<temporary.length; i++){
+    			$("#rowSelect"+i).text(selectList[i]);
+    		}
+    		frm20.selectList1.value=temporary;
+    	}
+	} 
 </script>
 </head>
 <body>
@@ -140,9 +203,9 @@
 <%@include file="../mainNav.jsp" %>
 
 <div class="container" align="center">
-	<h2>빠른 예매</h2>
-	<hr>
-	<form action="payment.do" name="frm20" method="post">
+	<div align="left"><h2>빠른 예매</h2></div>
+	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
+	<form action="payment.do" name="frm20" method="post" onsubmit="return CountChk()">
 		<input type="hidden" name="totalPrice">
 		<input type="hidden" name="selectList">
 		<input type="hidden" name="adult_ticket">
@@ -151,63 +214,126 @@
 		<input type="hidden" name="t_title" value="${theater.t_title}">
 		<input type="hidden" name="mt_num2" value="${mt_num}">
 		<input type="hidden" name="sc_num2" value="${sc_num}">
+		<input type="hidden" name="selectList1">
+		<input type="hidden" name="seat12" value="${st_name}">
 
-		<table class="table table-bordered">
-			<tr>
-				<td>관람인원 선택</td>
+		
+
+		<table>
+			<tr height="30px;">
+				<td colspan="2" align="center" width="700px;" style="font-size: 20px; font-weight: bold; background-color: #F8F8F8; margin-top: 3px;">관람인원 선택</td>
 				<!-- 오른쪽 정보 제공 창 -->
-				<td rowspan="3">
-					<table class="table table-bordered">
-						<tr>
-							<td colspan="2">${movie.m_title}</td>
+				<td rowspan="3" width="350px;" height="420px;" style="background-color: #333333;"> <!-- 오른쪽 창 3개 합친거 -->
+					<table style="width:350px; height:420px;">
+						<tr height="5%">
+							<td rowspan="2" width="10%" align="center" style="border-bottom: 1px; solid; red;">
+								<c:choose>	
+									<c:when test="${movie.m_rank == '전 연령'}">
+										<img src="resources/images/m_rank/전체.png" height="25px" width="25px" >
+									</c:when>								
+								<c:when test="${movie.m_rank == '12세'}">
+									<img src="resources/images/m_rank/12세.png" height="25px" width="25px">
+								</c:when>									
+								<c:when test="${movie.m_rank == '15세'}">
+									<img src="resources/images/m_rank/15세.png" height="25px" width="25px">
+								</c:when>									
+								<c:when test="${movie.m_rank == '청불'}">
+									<img src="resources/images/m_rank/청불.png" height="25px" width="25px">
+								</c:when>							
+								</c:choose>
+							</td>
+							<td colspan="3" width="90%" style="color:white; font-weight: bold;">${movie.m_title}</td>			
 						</tr>
-						<tr>
-							<td>
+						
+						<tr height="5%">
+							<td colspan="3" style="font-size: 12px; font-weight: 400; border-bottom:2px; color:white;">(${movie.m_genre})</td>
+						</tr>
+						<tr height="20%">
+							<td colspan="2" width="40%" align="left" style="vertical-align:middle; color:white; font-weight: bold;">
 								${theater.t_loc}(${theater.t_title}점)<br>
 								${mt_num}관<br>
 								${screen.sc_date}<br>
 								${screen.sc_start} ~ ${screen.sc_end}
 							</td>
-							<td><img alt="보여줄 이미지가 없습니다." src="${path}/resources/images/m_poster/${movie.m_poster}" height="100px;" width="80px;"></td>
+							<td colspan="2" width="60%" align="center"><img alt="보여줄 이미지가 없습니다." src="${path}/resources/images/m_poster/${movie.m_poster}" height="100px;" width="80px;"></td>
 						</tr>
 						<tr>
-							<td>좌석 설명</td>
-							<td><span id="rowSelect"></span></td>
+							<td colspan="2"></td>
+							<td colspan="2" align="center" style="color:white; font-weight: bold;">[선택하신좌석]</td>
 						</tr>
-						<tr>
+						<tr height="30%">
+							<td colspan="2" width="40%" style="color:white; vertical-align:middle; font-weight: bold;" align="center">
+								<table>
+									<tr>
+										<td><img src="${path}/resources/images/home/좌석선택한거.png" width="20px;" height="20px;"></td>
+										<td style="color:white;">&nbsp;&nbsp;선택</td>
+									</tr>
+									<tr>
+										<td><img src="${path}/resources/images/home/좌석예매불가.png" width="20px;" height="20px;"></td>
+										<td style="color:white;">&nbsp;&nbsp;선택불가</td>
+									</tr>
+									<tr>
+										<td><img src="${path}/resources/images/home/좌석예매가능.png" width="20px;" height="20px;"></td>
+										<td style="color:white;">&nbsp;&nbsp;일반</td>
+									</tr>
+								</table>
+							</td>
 							<td colspan="2">
-								<span id="adult"></span>
-								<span id="youth"></span><p>
-								<span id="totalPrice">최종결제금액 0원</span>
+								<table class="table table-bordered" style="margin: 0px; padding: 0px; width: 210px;">
+									<c:forEach var="i" begin="0" end="7" step="2">
+										<tr height="40px;" style="vertical-align:middle;">
+											<td width="50%" align="center"><span id="rowSelect${i}" style="vertical-align:middle; color:white;"></span></td>
+											<td width="50%" align="center"><span id="rowSelect${i+1}" style="vertical-align:middle; color:white;"></span></td>
+										</tr>
+									</c:forEach>
+								</table>
 							</td>
 						</tr>
-						<tr>
-							<td colspan="2"><input type="submit" value="결제하기"></td>
+						<tr height="10%">
+							<td colspan="4" style="vertical-align:middle;" >
+								<span id="adult" style="color:white;"></span>
+								<span id="youth" style="color:white;"></span>
+							</td>
+						</tr>
+						<tr height="10%">
+							<td colspan="2" width="40%" style="color:white; font-weight: bold;">
+								최종결제금액
+							</td>
+							<td align="right" width="30%">
+								<span id="totalPrice" style="color:#329eb1; font-size: 25px; font-weight: bold;"></span>
+							</td>
+							<td width="30%" style="color:white; font-weight: bold;">
+								<span id="totalPrice1"></span>
+							</td>
+						</tr>
+						<tr height="20%">
+							<td colspan="4" align="center"><input type="submit" value="결제하기" class="btn btn-info" width="200px;" height="80px;"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<!-- 인원수 체크 -->
-			<tr>
-				<td>
-					성인&nbsp;&nbsp;&nbsp;&nbsp;			
+			<tr height="55px;">
+				<td align="right" style="background-color: #F8F8F8; font-size: 15px; font-weight: bold;">
+					성인&nbsp;
 					<span id="count_adult">
-  						<input value="-" count_adult="m" type="button">
-  						<input class="count" value="0" readonly="" name="" id="text1" disabled="disabled">
-  						<input value="+" count_adult="p" type="button">
+  						<input value="-" count_adult="m" type="button" style="background-color: rgba(255, 255, 255, 0.0); border:none; border:1px solid #a4a4a4; margin: 0px; padding: 0px; width: 20px;">
+  						<input class="count" value="0" readonly="" name="" id="text1" disabled="disabled" size="5px;" style="margin: 0px; padding: 0px; text-align: center;">
+  						<input value="+" count_adult="p" type="button" style="background-color: rgba(255, 255, 255, 0.0); border:none; border:1px solid #a4a4a4; margin: 0px; padding: 0px; width: 20px;">
 					</span>
-					<p>
-					청소년
+				</td>
+				<td align="left" style="background-color: #F8F8F8; font-size: 15px; font-weight: bold;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;청소년&nbsp;
 					<span id="count_youth">
-  						<input value="-" count_youth="m" type="button">
-  						<input class="count1" value="0" readonly="" name="" disabled="disabled">
-  						<input value="+" count_youth="p" type="button">
+  						<input value="-" count_youth="m" type="button" style="background-color: rgba(255, 255, 255, 0.0); border:none; border:1px solid #a4a4a4; margin: 0px; padding: 0px; width: 20px;">
+  						<input class="count1" value="0" readonly="" name="" disabled="disabled" size="5px;" style="margin: 0px; padding: 0px; text-align: center;">
+  						<input value="+" count_youth="p" type="button" style="background-color: rgba(255, 255, 255, 0.0); border:none; border:1px solid #a4a4a4; margin: 0px; padding: 0px; width: 20px;">
 					</span>
 				</td>
 			</tr>
 			<!-- 좌석선택하는 곳 -->
 			<tr>
-				<td><div id="seatDisp" style="width: 100px;"></div></td>
+				<td colspan="2"><div id="seatDisp" align="center"></div></td>
 			</tr>
 		</table>
 	</form>

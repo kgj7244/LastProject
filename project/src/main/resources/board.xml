@@ -53,4 +53,7 @@
 	<update id="update" parameterType="board">
 		update board set member_id=#{member_id},b_code=#{b_code},b_title=#{b_title},b_content=#{b_content},b_lock=#{b_lock},b_password=#{b_password} where b_num=#{b_num}
 	</update>
+	<update id="delete" parameterType="integer"	>
+		update board set b_del='y' where b_num=#{b_num}
+	</update>
 </mapper>

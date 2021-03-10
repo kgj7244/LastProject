@@ -42,10 +42,19 @@
 				<td><input type="text" name="member_name" required="required" value="${member.member_name }"></td>
 			</tr>
 			<tr>
-				<th>성별</th>
-				<%-- <td>${member.member_gender }</td> --%>
-				<td><input type="radio" name="member_gender" value="남성">남성 <input type="radio" name="member_gender" value="여성">여성</td>
+				<th>성별</th><td>
+				<c:forTokens var="g"  items="남성,여성" delims=",">
+					<c:if test="${g == member.member_gender}">
+						<label for="g1">${g}</label><input type="radio" name="member_gender" 
+						id="g1" value="${g}" checked="checked">
+					</c:if>
+					<c:if test="${g != member.member_gender}">
+						<label for="g1">${g}</label><input type="radio" name="member_gender" 
+						id="g1" value="${g}" >
+					</c:if>
+				</c:forTokens></td>
 			</tr>
+			
 			<tr>
 				<th>생년월일</th>
 				<td><input type="date" name="member_birth" required="required" value="${member.member_birth }"></td>

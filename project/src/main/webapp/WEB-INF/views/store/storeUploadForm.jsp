@@ -15,6 +15,9 @@
  enctype="multipart/form-data">
  
 <input type="hidden" name="s_num" value="${store.s_num }"> 
+<input type="hidden" name="s_purchase" value="${store.s_purchase }"> 
+<input type="hidden" name="del" value="${store.del }"> 
+<input type="hidden" name="s_del" value="${store.s_del }"> 
 
 <h2 class="text-primary">상품 수정</h2>
 
@@ -24,11 +27,16 @@
 
 <tr><td>상품 분류</td>
 <td>
+
  <select name="s_Pclass">
-   <option value="관람권">관람권</option>
-   <option value="콤보">콤보</option>
-   <option value="팝콘/음료">팝콘/음료</option>
-   <option value="이벤트">이벤트</option>
+   <option value="${store.s_Pclass }">
+   ${store.s_Pclass }</option>
+   
+    
+   <option value="1">관람권</option>
+   <option value="2">콤보</option>
+   <option value="3">팝콘/음료</option>
+   <option value="4">이벤트</option>
  </select>
 </td></tr>
 
@@ -39,8 +47,10 @@ required="required" value="${store.s_Pname }"></td></tr>
 <tr><td>상품 구성</td><td><input type="text" name="s_Pconfig"
 required="required" value="${store.s_Pconfig }"></td></tr>
 
-<tr><td>상품 이미지</td><td><input type="file" name="file"
-required="required"></td></tr>
+<tr><td>상품 이미지</td>
+<td><input type="file" name="file" 
+value="${store.s_Pimage}">${store.s_Pimage}</td></tr>
+
 
 <tr><td>가격</td><td><input type="number" name="s_prive"
 required="required" value="${store.s_prive }"></td></tr>

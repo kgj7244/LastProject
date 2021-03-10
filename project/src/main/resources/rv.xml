@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rvns">
-	<select id="list" parameterType="rv" resultType="rv"> <!-- 댓글을 찾는다는 의미가 리스트를 불러오냐는 말이세요? 네넹 네 -->
-		select * from(select a.*, rownum rn from (select *  from review order by re_num desc)a)
-		 where  rn between #{startRow} and #{endRow} and m_num=#{m_num}
+	<select id="list" parameterType="rv" resultType="rv">
+		select * from(select a.*, rownum rn from (select * from review order by re_num desc)a)
+		 where rn between #{startRow} and #{endRow} and m_num=#{m_num}
 	</select>
 	<select id="getTotal" parameterType="rv" resultType="integer">
 		select count(*) from review where m_num=#{m_num}
@@ -26,4 +26,10 @@
 		update review set re_con=#{re_con}, re_grade=#{re_grade}, 
 			re_update=sysdate where re_num=#{re_num}
 	</update> --><!-- 평점 수정 구현하면 바꿀 예정 -->
+	<select id="count" parameterType="rv" resultType="integer">
+		select nvl(count(*), 0) from review where m_num=#{m_num}
+	</select>
+	<select id="sum" parameterType="rv" resultType="integer">
+		select nvl(sum(re_grade), 0) from review where m_num=#{m_num}
+	</select>
 </mapper>

@@ -6,13 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세</title>
+ <script type="text/javascript">
+ 
+
+ 
+ function total(s_prive, s_purchase) {
+	var total = s_prive*s_purchase;
+	
+	 
+ }
+	
+
+	</script>
 </head>
 <body> 
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <%@include file="storecategory.jsp" %>
+
+ 
 	
 	<div class="container" align="center">
+	
+	
 	
 	<div align="left"><h2>${store.s_Pname }</h2> </div>
 	
@@ -30,7 +46,8 @@
 </tr>
 </c:if>
 
-<tr><th><h3>${store.s_prive }원</h3></th></tr>
+<tr><th>
+<h3><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</h3></th></tr>
 
 <tr>
 <th>구성품</th>
@@ -47,32 +64,32 @@
 </c:if>
 
 <tr>
-<th>금액/수량</th>
-<td>
-<input type="text" title="수량 입력" 
-class="input-text" readonly="readonly" value="1">
-</td>
-</tr>
-
-
-<tr><td>구매 수량</td><td>${store.s_purchase }</td></tr>
-
-<tr>
 <th>총 상품금액</th>
-<td>${total+(s_prive*s_purchase)}원</td>
+<td>${total+(store.s_prive*s_purchase)}원</td>
 </tr>
-
-
-
-
 
 
 <!-- ====================================== -->  
-<tr>
-<td><input type="submit" value="장바구니" onclick="location.href='cartInsert.do?s_num=${store.s_num}'"></td>
-<td><input type="submit" value="구매하기" onclick="location.href='cartInsert.do?s_num=${store.s_num}'"></td>
-</tr>
 
+<tr><td>
+<form name="order" method="post" action="orderList.do?s_num=${store.s_num}"> 
+		
+<%-- <form action="<c:url value='orderList.do' />" method="post">	 --%>
+	
+	<c:set var="s_purchase" value="${s_purchase}"></c:set>
+		<select name="s_purchase">
+			<c:forEach begin="1" end="10" var="i">
+				<option value="${i}">${i}</option> </c:forEach>
+		</select>&nbsp;개 
+	
+		
+		<input type="hidden" name="s_num" value="${store.s_num}">
+		<button type="submit" class="btn btn-primary">구매하기</button>
+		
+	</form></td></tr>
+	
+	
+	
 </table>
 </div>
 

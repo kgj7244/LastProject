@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.ch.dao.StoreDao;
+import com.ch.ch.model.Ord;
 import com.ch.ch.model.Store;
 
 @Service
@@ -47,6 +48,26 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
+	public List<Ord> ordlist(int s_num) {
+		return sd.ordlist(s_num);
+	}
+
+
+	
+	public List<Ord> memberStore(String member_id) {
+		return sd.memberStore(member_id);
+		
+	}
+
+
+	@Override
+	public int insertOrd(Ord ord) {
+		return sd.insertOrd(ord);
+	}
+
+
+	}
+
+
 	
 
-}

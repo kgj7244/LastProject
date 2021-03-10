@@ -8,7 +8,6 @@
 </head>
 <body>
 <script type="text/javascript">
-
 	location.href="mainForm.do";
 </script>
 </body>

@@ -42,6 +42,7 @@
 							<option value="판타지">판타지</option>
 							<option value="공포/스릴러">공포/스릴러</option>
 							<option value="로맨스">로맨스</option>
+							<option value="코미디">코미디</option>
 							<option value="액션">액션</option>
 							<option value="드라마">드라마</option>
 							<option value="애니메이션">애니메이션</option>
@@ -71,7 +72,7 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="3">
-						<textarea rows="20" cols="120" required="required" name="m_content"></textarea>
+						<textarea rows="20" cols="120" required="required" name="m_content" wrap="physical"></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -81,10 +82,12 @@
 					</td>
 					<th>상영 상태</th>
 					<td>
-						<input type="radio" name="m_state" value="yet" checked="checked">개봉예정
-						<input type="radio" name="m_state" value="open">개봉
-						<input type="radio" name="m_state" value="reopen">재개봉
-						<input type="radio" name="m_state" value="close">상영종료
+						<select name="m_state">
+							<option value="개봉예정">개봉예정</option>
+							<option value="개봉">개봉</option>
+							<option value="재개봉">재개봉</option>
+							<option value="상영종료">상영종료</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -94,10 +97,12 @@
 					</td>
 					<th>관람 연령 등급</th>
 					<td>
-						<input type="radio" name="m_rank" value="전 연령" checked="checked">전 연령
-						<input type="radio" name="m_rank" value="12세">12세
-						<input type="radio" name="m_rank" value="15세">15세
-						<input type="radio" name="m_rank" value="창불">청불
+						<select name="m_rank">
+							<option value="전 연령">전 연령</option>
+							<option value="12세">12세</option>
+							<option value="15세">15세</option>
+							<option value="청불">청불</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -107,6 +112,15 @@
 					</th>
 					<td colspan="3">
 						<input type="file" name="file" required="required">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						스틸컷
+						<span class="glyphicon glyphicon-picture"></span>
+					</th>
+					<td colspan="3">
+						<input type="file" name="file1" required="required" multiple="multiple">
 					</td>
 				</tr>
 				<tr><td colspan="4" align="center"><input type="submit"></td></tr>

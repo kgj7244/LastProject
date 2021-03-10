@@ -1,6 +1,6 @@
 package com.ch.ch.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 
 import java.util.List;
 
@@ -9,10 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 // 극장
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.ch.model.Movie;
+import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Theater;
 import com.ch.ch.service.MovieService;
+import com.ch.ch.service.ScreenService;
 import com.ch.ch.service.TheaterService;
 @Controller
 public class TheaterController {
@@ -22,6 +25,7 @@ public class TheaterController {
 	private MovieService ms; // 영화
 	@Autowired
 	private TheaterService tts; // 극장
+	
 	@RequestMapping("theaterMainForm")
 	public String theaterMainForm() {
 		return "theater/theaterMainForm";
@@ -47,5 +51,60 @@ public class TheaterController {
 		model.addAttribute("movieList",movieList);
 		return "theater/choiceAllMovie";
 	}
-	
+	//극장 입력 폼
+	@RequestMapping("theaterInsertForm")
+	public String theaterInsertForm(Model model) {
+		List<String> titleList = tts.titleList();
+		
+		model.addAttribute("titleList", titleList);
+		return "theater/theaterInsertForm";
+	}
+	//극장 입력
+	@RequestMapping("theaterInsert")
+	public String theaterInsert(Theater theater, Model model) {		
+		int result = tts.insert(theater);
+		model.addAttribute("result", result);
+		
+		return "theater/theaterInsert";
+	}
+	//상영관 입력 폼
+	@RequestMapping("movieTheaterInsertForm")
+	public String movieTheaterInsertForm(Model model) {
+		List<MovieTheater> movieTheaterList = tts.movieTheaterList();
+		List<Theater> list = tts.List();
+		model.addAttribute("list", list);
+		model.addAttribute("movieTheaterList",movieTheaterList);
+		return "theater/movieTheaterInsertForm";
+	}
+	//상영관 입력
+	@RequestMapping("movieTheaterInsert")
+	public String movieTheaterInsert(int t_num, String mt_name, Model model) {
+		int mt_count = 0;
+		if(mt_name == "1관") {
+			mt_count=50;
+		} else if (mt_name == "2관") {
+			mt_count=70;
+		} else if (mt_name == "3관") {
+			mt_count=80;
+		} else if (mt_name == "4관") {
+			mt_count=90;
+		} else {
+			mt_count=100;
+		}
+		int result = tts.numInsert(mt_name,mt_count,t_num);
+				
+		/* int result = tts.insert(theater); */
+		model.addAttribute("result", result);
+		return "theater/movieTheaterInsert";
+	}
+	//중복체크
+	 @RequestMapping(value = "TLocChk", produces = "text/html;charset=utf-8")
+	 @ResponseBody public String TLocChk(String t_loc, String t_title) { 
+		 String data=""; 
+		/* Theater theater = tts.select(t_loc); */ 
+		 List<Theater> theater = tts.select(t_loc, t_title);
+		 if(theater.size()==0) data = "입력 가능합니다.";
+		 else data = "이미 사용 중입니다. 다시 입력해주세요.";
+		 return data; 
+	 }
 }

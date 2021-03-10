@@ -12,65 +12,89 @@
 	<div><%@include file="../mainNav.jsp" %></div>
 	<div class="container" align="center">
 		<h2 class="text-primary">영화</h2>
-		<div>
-			<c:if test="${empty movieList}">
-				<div>게시글이 없습니다</div>
+		<div align="center">
+			<c:if test="${sessionScope.member_id == 'master'}">
+				<a href="movieInsertForm.do">영화 추가</a>
+				<a href="allMovieList.do">영화 목록</a>
 			</c:if>
 		</div>
 		<div>
+			<c:if test="${empty movieList}">
+				<div>아직 영화가 없습니다</div>
+			</c:if>
+		</div>
+		<div class="row" style="margin-top: 70px;">
 			<c:if test="${not empty movieList}">
 				<c:forEach var="movie" items="${movieList}">
-					<div class="box-image">
-			            <a href="movieView.do?m_num=${movie.m_num}">
-			            	<span class="thumb-image">
-			                	<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="100px">
-			                </span>
-			            </a>
-			            <div class="agerank">
-			            	<c:if test="${movie.m_rank.equals('전 연령')}"><img alt="전 연령" src="resources/images/m_rank/전체.png" height="15px"></c:if>
-			                <c:if test="${movie.m_rank.equals('12세')}"><img alt="12세" src="resources/images/m_rank/12세.png" height="15px"></c:if>
-			                <c:if test="${movie.m_rank.equals('15세')}"><img alt="15세" src="resources/images/m_rank/15세.png" height="15px"></c:if>
-			                <c:if test="${movie.m_rank.equals('청불')}"><img alt="청불" src="resources/images/m_rank/청불.png" height="15px"></c:if>        
-			            </div>
-			        </div>
-			        <div class="box-contents">
-			        	<a href="movieView.do?m_num=${movie.m_num}">
-			            	<strong class="title">${movie.m_title}</strong>
-			            </a>
-			            <div class="score">
-			                <strong class="percent">
-			                	예매율
-			                	<span><!-- 예매율 수치 --></span>
-			                </strong>
-			                <div class='m_grade'>
-								평점
-			                	<span class='percent'><!-- 평점 수치 --></span>
-			            	</div>
-			            </div>
-			            <span class="txt-info">
-			               	<strong>
-			                    ${movie.m_opendate}
-			                	<span>
-			                		<c:if test="${movie.m_state.equals('yet')}">개봉예정</c:if>
-			                		<c:if test="${movie.m_state.equals('open')}">개봉</c:if>
-			                		<c:if test="${movie.m_state.equals('reopen')}">재개봉</c:if>
-			                		<c:if test="${movie.m_state.equals('close')}">상영종료</c:if>
-			                	</span>    
-			                </strong>
-			            </span>
-			            <span class="like"> 
-			            	<a class="link-reservation" href="#">예매</a>
-			        	</span>
-			    	</div> 
+					<c:if test="${movie.m_state != '상영종료'}">
+						<div class="col-sm-6 col-md-3">
+							<div class="thumbnail">
+					            <a href="movieView.do?m_num=${movie.m_num}">
+					                <img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="100px">
+					            </a>
+					            <div class="caption">
+					            	<div align="center">
+						            	<h4 style="font-weight: bold;">
+						            		<c:if test="${movie.m_rank.equals('전 연령')}"><img alt="전 연령" src="resources/images/m_rank/전체.png" height="22px" width="22px"></c:if>
+							                <c:if test="${movie.m_rank.equals('12세')}"><img alt="12세" src="resources/images/m_rank/12세.png" height="22px" width="22px"></c:if>
+							                <c:if test="${movie.m_rank.equals('15세')}"><img alt="15세" src="resources/images/m_rank/15세.png" height="22px" width="22px"></c:if>
+							                <c:if test="${movie.m_rank.equals('청불')}"><img alt="청불" src="resources/images/m_rank/청불.png" height="22px" width="22px"></c:if>        
+							            	<a href="movieView.do?m_num=${movie.m_num}" style="text-decoration: none">
+							            		<strong class="title" style="color: black;">${movie.m_title}</strong>
+							            	</a>
+							            </h4>
+					            	</div>
+					            	<p align="center" style="font-size: 15px;">${movie.m_opendate}(${movie.m_state}) / ${movie.m_grade}</p>
+									<div align="center">
+										<a class="btn btn-danger" style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle;" 
+											href="ticketMainForm.do">예매</a>
+									</div>
+					           	</div>
+					        </div>
+						</div>
+					</c:if>
 				</c:forEach>
 			</c:if>
 		</div>
-    	<div align="center">
-    		<!-- 나중에 관리자 적용되면 그때 master_id == 'master'로 변경 -->
-    		<input type="hidden" name="member_id" value="${member_id}">
-			<c:if test="${member_id == 'master'}">
-				<a href="movieInsertForm.do">영화 추가</a>
-			</c:if>
+		<div align="center">
+			<ul class="pagination">
+				<c:if test="${pb.startPage > pb.pagePerBlock}">
+					<li>
+						<a href="movieMainForm.do?pageNum=1">
+						<span class="glyphicon glyphicon-backward"></span>
+						</a>
+					</li>
+					<li>
+						<a href="movieMainForm.do?pageNum=${pb.startPage - 1}">
+							<span class="glyphicon glyphicon-triangle-left"></span>
+						</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
+					<c:if test="${pb.currentPage == i}">
+						<li class="active">
+							<a href="movieMainForm.do?pageNum=${i}">${i}</a>
+						</li>
+					</c:if>
+					<c:if test="${pb.currentPage != i}">
+						<li>
+							<a href="movieMainForm.do?pageNum=${i}">${i}</a>
+						</li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pb.endPage < pb.totalPage}">
+					<li>
+						<a href="movieMainForm.do?pageNum=${pb.endPage+1}">
+							<span class="glyphicon glyphicon-triangle-right"></span>
+						</a>
+					</li>
+					<li>
+						<a href="movieMainForm.do?pageNum=${pb.totalPage}">
+							<span class="glyphicon glyphicon-forward"></span>
+						</a>
+					</li>
+				</c:if>
+			</ul>
 		</div>
 	</div>
 	<div><%@include file="../mainFloor.jsp" %></div>

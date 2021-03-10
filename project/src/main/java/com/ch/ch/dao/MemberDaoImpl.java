@@ -1,5 +1,7 @@
 package com.ch.ch.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,5 +24,11 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int delete(String member_id) {
 		return sst.update("memberns.delete", member_id);
+	}
+	public int getTotal(Member member) {
+		return sst.selectOne("memberns.getTotal", member);
+	}
+	public List<Member> list(Member member) {
+		return sst.selectList("memberns.list", member);
 	}
 }
