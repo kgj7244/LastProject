@@ -1,21 +1,5 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 --삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
 drop sequence theater_t_num_seq; 
-=======
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
---삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
-<<<<<<< HEAD
-drop sequence theater_t_num_seq; 
-=======
-<<<<<<< HEAD
-drop sequence theater_t_num_seq; 
-=======
-=======
-drop sequence theater_t_num_seq; 
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 drop sequence st_num; 
 drop sequence re_num; 
 drop sequence s_num; 
@@ -72,7 +56,7 @@ create table member(
 insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
 insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
 insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
-<<<<<<< HEAD
+
 select * from member;
 
 -------------------------------------- 이벤트(추가)
@@ -83,8 +67,7 @@ create table event(
 	e_sale nvarchar2(50) not null,             -- 이벤트금액
 	member_id nvarchar2(50) references member(member_id)        -- 회원아이디
 );
-=======
-select * from member;
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 -------------------------------------- 이벤트(추가)
 create table event(
@@ -94,7 +77,6 @@ create table event(
 	event_sale nvarchar(50) not null,             -- 이벤트금액
 	member_id references member(member_id)        -- 회원아이디
 );
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 create sequence event_num increment by 1 start with 1;
 
@@ -114,40 +96,12 @@ create table theater(
 	t_number nvarchar2(50) not null,   --전화번호
 	t_gui nvarchar2(1000) not null        --시설 안내
 );
-<<<<<<< HEAD
-
-
-=======
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
-select * from theater;
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
-
-<<<<<<< HEAD
-create sequence theater_t_num_seq increment by 1 start with 13;
-
-=======
 select * from theater;
 
 create sequence theater_t_num_seq increment by 1 start with 13;
-=======
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+
 drop sequence theater_t_num_seq;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-create sequence theater_t_num_seq increment by 1 start with 13;
 
-
-=======
-create sequence theater_t_num_seq increment by 1 start with 13;
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 insert into theater values(1, '신촌','서울','서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)','1544-1122','주자요금 영화 관람시 3시간, 4000원입니다.');
 insert into theater values(2, '강남','서울','서울특별시 강남구 강남대로 438 (역삼동, 스타플렉스)','1544-1122','건물 지하2F ~ 지하4F# 주차요금- CGV 영화 관람 시 주차 3시간 6,000원');
 insert into theater values(3, '용산','서울','서울특별시 용산구 한강대로23길 55 현대아이파크몰 6층','1544-1122','주자요금- 영화 관람시 4시간, 5000원입니다.');
@@ -161,10 +115,6 @@ insert into theater values(10, '용역','광주','주소가 10번이다','1544-1
 insert into theater values(11, '구리','광주','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
 insert into theater values(12, '미영','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
 
---삭제
-delete from theater where t_num = 20;
---극장 지역 중복제거
-select distinct t_loc from theater;
 select * from theater;
 
 -----------------------------------상영관
@@ -182,12 +132,10 @@ insert into movieTheater values(3, '3관',80,1);
 insert into movieTheater values(4, '4관',90,1);
 insert into movieTheater values(5, '5관',100,1);
 
-delete from movieTheater where mt_num=5;
 
 select * from movieTheater;
 
 --------------------------------------영화
-
 create table movie (
 	m_num number primary key not null, 	--영화번호
 	m_title nvarchar2(50) not null,		--제목
@@ -248,8 +196,6 @@ create table board(
 );
 select * from board;
 
-select * from board;
-
 --------------------------------------회원 게시판 마스터전용 댓글
 
 create table reBoard (
@@ -272,7 +218,6 @@ create table screen(
 	sc_start nvarchar2(50) not null,               --시작시간
 	sc_end nvarchar2(50) not null,                 --종료시간
 	sc_del char(1) default 'n',                    --삭제여부
---	st_name nvarchar2(1000),                        --좌석이름
 	t_num number references theater(t_num),        --극장번호
 	mt_num number references movieTheater(mt_num), --상영관번호
 	m_num number references movie(m_num)          --영화번호 
@@ -333,6 +278,7 @@ select * from store;
 drop table store CASCADE CONSTRAINTS;
 drop sequence s_num; 
 
+
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
 	s_del char(1) default 'n', 			--#게시글 삭제여부
@@ -380,12 +326,14 @@ select * from ord;
 	
 	s_purchase number(10) not null, 	--#구매수량 
 	full_price number(10) not null, 	--총 금액
-	buy_date date, 				--구매 날짜
+	buy_date date, 		--구매 날짜
 	s_validity date not null, 	--유통기한 sysdate+365
 	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
 	);
 --	, t_account varchar2(50) references bank(t_account) not null --입금번호
+	
+insert into ord values(2,'q1','4',3,2000,'2021-03-02','2021-04-02','y','n');
 	
 -----------------------------------------고객센터(미완성)
 create table service(
@@ -401,44 +349,7 @@ create table service(
 
 create sequence sv_num increment by 1 start with 1;
 
-select * from movie order by m_genre desc;
-<<<<<<< HEAD
-<<<<<<< HEAD
-select * from bank;
-select * from screen;
-select * from ticket where t_id = 'master';
-=======
-select * from stillcut;
-select * from 
-select * from ticket where t_id = 'master';
-<<<<<<< HEAD
-select * from theater;
-=======
-select * from ticket;
-=======
-select * from seat;
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
-select * from screen;
-<<<<<<< HEAD
-select * from movie where m_title='극장판 귀멸의 칼날-무한열차편';
-select * from theater where t_title ='신촌';
-select * from screen s, movieTheater m where s.t_num = m.t_num and m.mt_num = 5 and s.sc_num =23 and s.sc_del = 'n'
-select s.*, m.mt_num from screen s, movieTheater m where s.t_num = m.t_num and s.sc_num = 23 and m.mt_num =5 and s.sc_del = 'n'
-<<<<<<< HEAD
-select * from ticket where t_id='lamslams' and sc_num = 23;
-=======
-select * from ticket where t_id='lamslams' and sc_num = 23;
-=======
-select * from ticket;
-select * from bank;
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
-=======
-select * from movieTheater order by mt_num;
-select * from theater where t_loc='서울';
-select * from theater where t_loc='서울' and t_title='강릉';
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+select * from (select a.*, rownum rn from (select * from movie 
+		order by m_opendate desc)a) 
+			where rn between 1 and 4 and m_state = 1;

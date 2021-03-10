@@ -32,13 +32,17 @@ public class MovieController {
 	
 	//영화 메인
 	@RequestMapping("movieMainForm")
-	public String movieMainForm(String pageNum, Movie movie, Model model){
-		if (pageNum == null || pageNum.equals("") || pageNum == "0") {
-			pageNum = "1";
-		}
+	public String movieMainForm(String pageNum, Movie movie, Model model, String m_state){
+//		if(m_state == null || m_state.equals("")) {
+//			m_state ="0";
+//		}
+//		movie.setScreening(m_state);
+//		if (pageNum == null || pageNum.equals("") || pageNum == "0") {
+//			pageNum = "1";
+//		}
 
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 12;
+		int rowPerPage = 4;
 		int total = ms.getTotal(movie);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;

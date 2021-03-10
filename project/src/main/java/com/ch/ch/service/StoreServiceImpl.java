@@ -54,5 +54,12 @@ public class StoreServiceImpl implements StoreService{
 
 
 	
+	public List<Ord> memberStore(String member_id) {
+		return sd.memberStore(member_id);
+		
+	}
+
+
+	
 
 }

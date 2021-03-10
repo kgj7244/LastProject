@@ -6,6 +6,7 @@ import java.util.List;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
+import com.ch.ch.model.Theater;
 
 public interface ScreenDao {
 
@@ -21,7 +22,7 @@ public interface ScreenDao {
 
 	List<MovieTheater> list();
 
-	MovieTheater selectTitle(String mt_name);
+	MovieTheater selectTitle(String mt_name, int t_num);
 
 	int screenInsert(int m_num, int t_num, int mt_num, String sc_date, String sc_start, String sc_end);
 
@@ -41,4 +42,9 @@ public interface ScreenDao {
 	List<Seat> seatFind(int sc_num);
 
 	void deleteSeatReFund(String st_num, int sc_num);
+
+	Theater selectTheater(String t_title);
+
+	List<MovieTheater> mTheater(int t_num);
+
 }

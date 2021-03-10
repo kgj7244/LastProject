@@ -123,16 +123,120 @@ public class StoreController {
 	public String storeContent(int s_num,Model model){
 		Store store = ss.select(s_num);
 		model.addAttribute("store", store);				
+					
 		return "store/storeContent";
 	}
+//	//상품 상세
+//	@RequestMapping("storeContent")
+//	public String storeContent(int s_num,Model model,String s_purchase){
+//		Store store = ss.select(s_num);
+//		int s_purchase1=0;
+//		
+//		List<Store> list = ss.list();
+//		int total = 0;
+//		for(Store store1:list) {
+//			total+=store1.getS_prive()*s_purchase1;
+//		}
+//		
+//		model.addAttribute("store", store);				
+//		model.addAttribute("total", total);				
+//		return "store/storeContent";
+//	}
 	
 	//주문페이지로
 	@RequestMapping("orderList")
-	public String order(int s_num,Model model) {
+	public String orderList(int s_num,Model model,int s_purchase) {
 		Store store = ss.select(s_num);
 		model.addAttribute("store", store);	
+
 		return "store/orderList";
 	}
+	
+	
+	//주문페이지로 
+//	@RequestMapping("orderList")
+//	public String orderList(int s_num,Model model,int s_purchase) {
+//		Store store = ss.select(s_num);
+//		List<Ord> ordlist = ss.ordlist(s_num);	
+//		
+//		int result=0;
+//		
+//		
+//		store.setS_num(s_num);		
+//		
+//		
+//		model.addAttribute("store", store);	
+//		model.addAttribute("ordlist", ordlist);	
+//		
+//		return "store/orderList";
+//	}
+	
+	
+	
+	//결제 진행
+	
+	
+	
+	//구매 리스트에 추가
+//	@RequestMapping("memberStoreInsert")
+//	public String o(Model model,String full_price) {
+//		Store store = ss.select(s_num);
+//			
+//		
+//		model.addAttribute("store", store);	
+//		model.addAttribute("store", store);	
+//		
+//		
+//		model.addAttribute("store", store);	
+//		model.addAttribute("s_purchase", s_purchase);	
+//		model.addAttribute("full_price", full_price);	
+//		
+//		
+//		model.addAttribute("ord", ord);	
+//		return "store/OK";
+//	}
+	
+	//주문
+//	@RequestMapping("order")
+//	public String order(Ord ord,Model model,HttpSession session)throws IOException  {
+//
+//		
+//		int result = ss.insertOrd(ord);
+//		
+//		model.addAttribute("ord", ord);	
+//		model.addAttribute("result", result);
+//		return "store/order";
+//	}
+	
+	
+	
+	
+	//구매 목록 넘겨주기만
+	@RequestMapping("memberStore") 
+	public String memberStore(Model model, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id");
+		List<Ord> ord = ss.memberStore(member_id); 
+		
+		
+		model.addAttribute("ord", ord);	
+		return "/member/memberStore";
+	}
+	
+//	@RequestMapping("memberStore") 
+//	public String memberStore(int s_num,Model model, HttpSession session) {
+//		String member_id = (String)session.getAttribute("member_id");
+//		List<Ord> ord = ss.memberStore(member_id); 
+//		
+//		
+//		Store store=ss.select(s_num);
+//		List<Ord> ordlist = ss.ordlist(s_num); 
+//	
+//		model.addAttribute("store", store);		
+//		model.addAttribute("ord", ord);	
+//		model.addAttribute("ordlist", ordlist);	
+//		return "/member/memberStore";
+//	}
+//	
 		
 	}
 

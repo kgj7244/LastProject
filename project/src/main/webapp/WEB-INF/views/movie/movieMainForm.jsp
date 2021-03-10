@@ -6,11 +6,50 @@
 <head>
 <meta charset="UTF-8">
 <title>무비리스트 | AAM</title>
+<script type="text/javascript">
+/* 	function fn_bindOnAirEvent() {
+		var movielist = fn_getSortTargetByShow();
+	
+		// 개봉작만보기
+		movielist.find('.btnOnAir').off().on('click', function() {
+			var onairYn = $(this).attr('class').indexOf(' on') == -1 ? 'Y' : 'N';
+			$('#onairYn').val(onairYn);
+			$('#currentPage').val("1");
+			fn_movieSerach(); // 영화목록 조회
+		});
+	};
+	
+	function fn_movieSerach() {
+		
+	}; */
+	/* $('#chk_nowshow').click(function () {
+        if ($("input:checkbox[id='chk_nowshow']").is(":checked")) {
+            location.href = "movieMainForm.do?pageNum=1";
+        }
+        else{
+            location.href = "movieMainForm.do?pageNum=2";
+        }
+    }); */
+	$(document).ready(function(){
+	    $("#chk_nowshow").change(function(){
+	        if($("#chk_nowshow").is(":checked")){
+	        	alert('오??');
+	        	/* location.href="movieMainForm.do?m_state=1"; */
+	        	//location.href = "movieMainForm.do?m_state=1"; 이거 안넘어가져요???네
+	        }else{
+	        	alert('잘 알고 계시군요');
+	        	//location.href = "movieInsertForm.do";	//잘 실행되는지 확인용
+	        	//location.href = "movieMainForm.do";	//원래 실행할 주소
+	        }
+	    });
+	});
+</script>
+
 </head>
 <body>
 	<div><%@include file="../mainTop.jsp" %></div>
 	<div><%@include file="../mainNav.jsp" %></div>
-	<div class="container" align="center">
+	<div class="container">
 		<h2 class="text-primary">영화</h2>
 		<div align="center">
 			<c:if test="${sessionScope.member_id == 'master'}">
@@ -18,20 +57,19 @@
 				<a href="allMovieList.do">영화 목록</a>
 			</c:if>
 		</div>
-		<div>
-			<table>
-				<tr>
-					<td>
-						<input type="checkbox">
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div>
-			<c:if test="${empty movieList}">
-				<div>아직 영화가 없습니다</div>
-			</c:if>
-		</div>
+		<div class="nowshow">
+        	<input type="checkbox" id="chk_nowshow"  title="현재 선택됨" checked/>
+            <label for="chk_nowshow">현재 상영작만 보기</label>                
+       	</div>
+       	<div>
+			<form action="movieMainForm.do">
+				<input type="hidden" name="pageNum" value="1">
+				영화 검색
+				<input type="text" name="keyword" value="${moive.keyword}">
+				<input type="submit" value="검색">
+			</form>
+       	</div>
+       	<div id="view"></div>
 		<div class="row" style="margin-top: 70px;">
 			<c:if test="${not empty movieList}">
 				<c:forEach var="movie" items="${movieList}">
@@ -53,7 +91,7 @@
 							            	</a>
 							            </h4>
 					            	</div>
-					            	<p align="center" style="font-size: 15px;">${movie.m_opendate}(${movie.m_state}) / ${movie.m_grade}</p>
+					            	<p align="center" style="font-size: 15px;">${movie.m_opendate} / ${movie.m_grade}</p>
 									<div align="center">
 										<a class="btn btn-danger" style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle;" 
 											href="ticketMainForm.do">예매</a>
@@ -69,12 +107,12 @@
 			<ul class="pagination">
 				<c:if test="${pb.startPage > pb.pagePerBlock}">
 					<li>
-						<a href="movieMainForm.do?pageNum=1">
+						<a href="movieMainForm.do?pageNum=1&keyword=${movie.keyword}">
 						<span class="glyphicon glyphicon-backward"></span>
 						</a>
 					</li>
 					<li>
-						<a href="movieMainForm.do?pageNum=${pb.startPage - 1}">
+						<a href="movieMainForm.do?pageNum=${pb.startPage - 1}&keyword=${movie.keyword}">
 							<span class="glyphicon glyphicon-triangle-left"></span>
 						</a>
 					</li>
@@ -82,23 +120,23 @@
 				<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
 					<c:if test="${pb.currentPage == i}">
 						<li class="active">
-							<a href="movieMainForm.do?pageNum=${i}">${i}</a>
+							<a href="movieMainForm.do?pageNum=${i}&keyword=${movie.keyword}">${i}</a>
 						</li>
 					</c:if>
 					<c:if test="${pb.currentPage != i}">
 						<li>
-							<a href="movieMainForm.do?pageNum=${i}">${i}</a>
+							<a href="movieMainForm.do?pageNum=${i}&keyword=${movie.keyword}">${i}</a>
 						</li>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pb.endPage < pb.totalPage}">
 					<li>
-						<a href="movieMainForm.do?pageNum=${pb.endPage+1}">
+						<a href="movieMainForm.do?pageNum=${pb.endPage + 1}&keyword=${movie.keyword}">
 							<span class="glyphicon glyphicon-triangle-right"></span>
 						</a>
 					</li>
 					<li>
-						<a href="movieMainForm.do?pageNum=${pb.totalPage}">
+						<a href="movieMainForm.do?pageNum=${pb.totalPage}&keyword=${movie.keyword}">
 							<span class="glyphicon glyphicon-forward"></span>
 						</a>
 					</li>

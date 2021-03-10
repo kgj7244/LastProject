@@ -197,7 +197,7 @@
 					<table class="table table-striped">
 						<tr>
 							<td>
-								<input type="text" name="member_id" value="${sessionScope.member_id}">
+								<input type="text" name="member_id" value="${sessionScope.member_id}" disabled="disabled">
 							</td>
 							<td>
 								<select name="re_grade">
