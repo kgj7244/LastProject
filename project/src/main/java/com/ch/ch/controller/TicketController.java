@@ -74,20 +74,6 @@ public class TicketController {
 		 return "ticket/movieTheaterChk"; 
 	 }
 	
-//	 @RequestMapping(value = "movieTheaterChk", produces = "text/html;charset=utf-8")
-//	 @ResponseBody public List<MovieTheater> movieTheaterChk(String t_title) {
-////		 String mt_name ="";
-//		 Theater theater = ss.selectTheater(t_title);
-//		 List<MovieTheater> mTheater = ss.mTheater(theater.getT_num());
-////		 for(int i =0; i<mTheater.size(); i++) {
-////			 if(i==mTheater.size()-1) {
-////				 mt_name += mTheater.get(i).getMt_name();
-////			 }else {
-////				 mt_name += mTheater.get(i).getMt_name()+",";
-////			 }
-////		 }
-//		 return mTheater; 
-//	 }
 	
 	@RequestMapping("screenInsert")
 	public String screenInsert(Model model, String m_title, String t_title, String mt_name, String sc_date, String sc_start, String sc_end) {
@@ -126,7 +112,7 @@ public class TicketController {
 		return "ticket/selectTime";
 	}
 	@RequestMapping("paymentForm")
-	public String paymentForm(Model model, String m_title2, String t_title2,String mt_num2 ,String sc_num2) {
+	public String paymentForm(Model model, String m_title2, String t_title2,String mt_num2 ,String sc_num2, String mt_name) {
 		String m_title = m_title2;
 		String t_title = t_title2;
 		String st_name="";
@@ -146,6 +132,7 @@ public class TicketController {
 			}
 		}
 		
+		model.addAttribute("mt_name", mt_name);
 		model.addAttribute("st_name", st_name);
 		model.addAttribute("mt_num", mt_num);
 		model.addAttribute("sc_num", sc_num);
@@ -296,11 +283,13 @@ public class TicketController {
 	
 	//이벤트 페이지
 	@RequestMapping("eventForm")
-	public String eventForm(Model model) {
+	public String eventForm(Model model, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id");
 		List<Event> eventList = ss.eventList();
 		
+		model.addAttribute("member_id", member_id);
 		model.addAttribute("eventList", eventList);
-		return "ticket/eventForm";
+		return "event/eventForm";
 	}
 	//이벤트 추가폼
 	@RequestMapping("eventInsertForm")

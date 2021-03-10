@@ -19,7 +19,7 @@
 	var youth=0; //청소년 표 갯수
 	var total=0; //표 토탈 갯수
 	var totalPrice = 0;
-	var mt_num = "${mt_num}";
+	var mt_name = "${mt_name}";
 	var listSeat2  = new Array(); //임시저장소
 	var listSeat = "${st_name}";
 	
@@ -126,15 +126,15 @@
 	
 	// 좌석뷰
 	$(function() {
-		if(mt_num==1){
+		if(mt_name=='1관'){
 			$('#seatDisp').load('${path}/movieTheater50.do');
-		}else if(mt_num ==2){
+		}else if(mt_name=='2관'){
 			$('#seatDisp').load('${path}/movieTheater70.do');
-		}else if(mt_num ==3){
+		}else if(mt_name=='3관'){
 			$('#seatDisp').load('${path}/movieTheater80.do');
-		}else if(mt_num ==4){
+		}else if(mt_name=='4관'){
 			$('#seatDisp').load('${path}/movieTheater90.do');
-		}else if(mt_num ==5){
+		}else if(mt_name=='5관'){
 			$('#seatDisp').load('${path}/movieTheater100.do');
 		}
 	});
@@ -213,6 +213,7 @@
 		<input type="hidden" name="m_title" value="${movie.m_title}">
 		<input type="hidden" name="t_title" value="${theater.t_title}">
 		<input type="hidden" name="mt_num2" value="${mt_num}">
+		<input type="text" name="mt_name" value="${mt_name1}">
 		<input type="hidden" name="sc_num2" value="${sc_num}">
 		<input type="hidden" name="selectList1">
 		<input type="hidden" name="seat12" value="${st_name}">
@@ -251,7 +252,7 @@
 						<tr height="20%">
 							<td colspan="2" width="40%" align="left" style="vertical-align:middle; color:white; font-weight: bold;">
 								${theater.t_loc}(${theater.t_title}점)<br>
-								${mt_num}관<br>
+								${mt_name}<br>
 								${screen.sc_date}<br>
 								${screen.sc_start} ~ ${screen.sc_end}
 							</td>

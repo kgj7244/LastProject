@@ -52,6 +52,7 @@
 		mt_num1 = mt_num;
 		sc_num1 = sc_num;
 		frm9.sc_start.value=sc_start;
+		frm9.mt_name.value=mt_name;
 		$('#mt_name').html("상영관 : "+mt_name);
 	}
 	function Chk1() {
@@ -181,6 +182,7 @@
 		<input type="hidden" name="mt_num2">
 		<input type="hidden" name="sc_num2">
 		<input type="hidden" name="sc_start">
+		<input type="hidden" name="mt_name">
 			<table class="table" style="width: 1200px; height: 140px; background-color: #1d1d1c;"><!--background-color: #1d1d1c;  -->
 				<tr>
 					<td width="20%"></td>
