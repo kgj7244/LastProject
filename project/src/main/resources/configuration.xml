@@ -16,8 +16,8 @@
 		<typeAlias alias="movieTheater" type="com.ch.ch.model.MovieTheater" />
 		<typeAlias alias="seat" type="com.ch.ch.model.Seat" />
 		<typeAlias alias="ord" type="com.ch.ch.model.Ord" />
-
 		<typeAlias alias="reBoard" type="com.ch.ch.model.ReBoard" />
+		<typeAlias alias="notice" type="com.ch.ch.model.Notice" />
 	</typeAliases>
 	<mappers>   <!-- 어디로 연결할지 --> 
 		<mapper resource="member.xml" />
@@ -30,5 +30,6 @@
 		<mapper resource="board.xml" />
 		<mapper resource="ord.xml" />
 		<mapper resource="reBoard.xml" />
+		<mapper resource="notice.xml" />
 	</mappers>
 </configuration>

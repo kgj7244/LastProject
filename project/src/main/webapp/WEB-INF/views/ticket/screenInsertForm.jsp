@@ -7,16 +7,29 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+	var cnt = 0;
 	var loc = "";
 	function theaterChk(t_loc) {
 		$.post("selectTheater1.do","id="+t_loc, function(data) {
 			$('#theaterSelect').html(data);
 			loc = t_loc;
+			cnt +=1;
+			movieTheater();
 		});
 	}
 	function theaterSelectChk(t_title) {
 		$('#theaterSelectChk').text(t_title+"("+loc+")점 선택하셨습니다.");
 		frm17.t_title.value=t_title;
+		cnt +=1;
+		movieTheater(frm17.t_title.value);
+	}
+	
+	function movieTheater(t_title){
+		if(cnt>=2){
+			$.post("movieTheaterChk.do","t_title="+frm17.t_title.value, function(data) {
+				$('#movieTheater').html(data);
+			});
+		}
 	}
 </script>
 </head>
@@ -34,7 +47,7 @@
 				<td>
 					<select name="m_title">
 						<c:forEach var="m" items="${movie}">
-							<option>${m.m_title}</option>
+							<option value="${m.m_title}">${m.m_title}</option>
 						</c:forEach>
 					</select>
 				</td>
@@ -61,11 +74,7 @@
 			<tr>
 				<td>상영관</td>
 				<td>
-					<select name="mt_name">
-						<c:forEach var="mt" items="${movieTheater}">
-							<option>${mt.mt_name}</option>
-						</c:forEach>								
-					</select>
+					<div id="movieTheater"></div>
 				</td>
 			</tr>
 			<tr>

@@ -41,7 +41,6 @@ public class BoardController {
 			int r_count = rbs.select_r_count(bd.getB_num());
 			bd.setR_count(r_count);
 		}
-		// System.out.println("list :"+list);
 		int no = total - startRow + 1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] tit = {"아이디", "제목", "내용", "제목+내용"};
@@ -134,7 +133,7 @@ public class BoardController {
 		return "/board/boardUpdateForm";
 	}
 	
-	// 게시글 수정 ; 에러 - 수정 버튼 누르면 에러남
+	// 게시글 수정
 	@RequestMapping("boardUpdate")
 	public String boardUpdate(Board board, String pageNum, Model model) {
 		int result = bs.update(board);
@@ -143,7 +142,7 @@ public class BoardController {
 		return "/board/boardUpdate";
 	}
 	
-	// 게시글 삭제; 에러: 삭제가 되긴하는데 작성자가 아니어도 삭제가 됨 
+	// 게시글 삭제
 	@RequestMapping("boardDelete") 
 	public String boardDelete(int b_num, String pageNum, Model model) {
 		int result = bs.delete(b_num);

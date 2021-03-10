@@ -43,7 +43,7 @@
 		select * from movieTheater
 	</select>
 	<select id="selectTitle" parameterType="String" resultType="movieTheater">
-		select * from movieTheater where mt_name =#{mt_name}
+		select * from movieTheater where mt_name =#{mt_name} and t_num = #{t_num}
 	</select>
 	<insert id="screenInsert" parameterType="hashmap">
 		insert into screen values(sc_num.nextval, #{sc_date},#{sc_start},#{sc_end},'n',#{t_num},#{mt_num},#{m_num})
@@ -75,4 +75,11 @@
 	<delete id="deleteSeatReFund" parameterType="hashmap">
 		delete from seat where sc_num=#{sc_num} and st_num = #{st_num}
 	</delete>
+	<select id="selectTheater" parameterType="string" resultType="theater">
+		select * from theater where t_title = #{t_title}
+	</select>
+	<select id="mTheater" parameterType="integer" resultType="movieTheater">
+	    select * from movieTheater where t_num =#{t_num} order by mt_name
+	</select>
+	
 </mapper>

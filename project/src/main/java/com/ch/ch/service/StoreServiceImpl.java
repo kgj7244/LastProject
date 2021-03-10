@@ -54,5 +54,20 @@ public class StoreServiceImpl implements StoreService{
 
 
 	
+	public List<Ord> memberStore(String member_id) {
+		return sd.memberStore(member_id);
+		
+	}
 
-}
+
+	@Override
+	public int insertOrd(Ord ord) {
+		return sd.insertOrd(ord);
+	}
+
+
+	}
+
+
+	
+

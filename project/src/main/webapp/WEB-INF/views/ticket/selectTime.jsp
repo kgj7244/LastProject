@@ -27,19 +27,19 @@
 					<%-- <span>(${i.st_name}/100)</span> --%>
 					<span style="font-size: 13px; font-weight: bold;">
 						<c:choose>
-							<c:when test="${i.mt_num == 1}">
+							<c:when test="${i.mt_name == '1관'}">
 								(${i.cnt}/50)
 							</c:when>								
-							<c:when test="${i.mt_num == 2}">
+							<c:when test="${i.mt_name == '2관'}">
 								(${i.cnt}/70)
 							</c:when>									
-							<c:when test="${i.mt_num == 3}">
+							<c:when test="${i.mt_name == '3관'}">
 								(${i.cnt}/80)
 							</c:when>									
-							<c:when test="${i.mt_num == 4}">
+							<c:when test="${i.mt_name == '4관'}">
 								(${i.cnt}/90)
 							</c:when>
-							<c:when test="${i.mt_num == 5}">
+							<c:when test="${i.mt_name == '5관'}">
 								(${i.cnt}/100)
 							</c:when>							
 						</c:choose>

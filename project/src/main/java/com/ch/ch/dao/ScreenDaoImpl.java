@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
+import com.ch.ch.model.Theater;
 
 @Repository
 public class ScreenDaoImpl implements ScreenDao{
@@ -52,8 +53,11 @@ public class ScreenDaoImpl implements ScreenDao{
 	public List<MovieTheater> list() {
 		return sst.selectList("screenns.list");
 	}
-	public MovieTheater selectTitle(String mt_name) {
-		return sst.selectOne("screenns.selectTitle", mt_name);
+	public MovieTheater selectTitle(String mt_name ,int t_num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mt_name", mt_name);
+		map.put("t_num", t_num);
+		return sst.selectOne("screenns.selectTitle", map);
 	}
 	public int screenInsert(int m_num, int t_num, int mt_num, String sc_date, String sc_start, String sc_end) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -110,4 +114,11 @@ public class ScreenDaoImpl implements ScreenDao{
 		map.put("sc_num", sc_num);
 		sst.delete("screenns.deleteSeatReFund", map);
 	}
+	public Theater selectTheater(String t_title) {
+		return sst.selectOne("screenns.selectTheater", t_title);
+	}
+	public List<MovieTheater> mTheater(int t_num) {
+		return sst.selectList("screenns.mTheater", t_num);
+	}
+
 }

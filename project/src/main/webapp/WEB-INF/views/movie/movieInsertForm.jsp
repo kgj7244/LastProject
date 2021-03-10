@@ -42,6 +42,7 @@
 							<option value="판타지">판타지</option>
 							<option value="공포/스릴러">공포/스릴러</option>
 							<option value="로맨스">로맨스</option>
+							<option value="코미디">코미디</option>
 							<option value="액션">액션</option>
 							<option value="드라마">드라마</option>
 							<option value="애니메이션">애니메이션</option>
@@ -82,15 +83,11 @@
 					<th>상영 상태</th>
 					<td>
 						<select name="m_state">
-							<option value="개봉예정">개봉예정</option>
-							<option value="개봉">개봉</option>
-							<option value="재개봉">재개봉</option>
-							<option value="상영종료">상영종료</option>
+							<option value="0">개봉예정</option>
+							<option value="1">개봉</option>
+							<option value="2">재개봉</option>
+							<option value="3">상영종료</option>
 						</select>
-						<!-- <input type="radio" name="m_state" value="개봉예정" checked="checked">개봉예정
-						<input type="radio" name="m_state" value="개봉">개봉
-						<input type="radio" name="m_state" value="재개봉">재개봉
-						<input type="radio" name="m_state" value="상영종료">상영종료 -->
 					</td>
 				</tr>
 				<tr>
@@ -106,10 +103,6 @@
 							<option value="15세">15세</option>
 							<option value="청불">청불</option>
 						</select>
-						<!-- <input type="radio" name="m_rank" value="전 연령" checked="checked">전 연령
-						<input type="radio" name="m_rank" value="12세">12세
-						<input type="radio" name="m_rank" value="15세">15세
-						<input type="radio" name="m_rank" value="창불">청불 -->
 					</td>
 				</tr>
 				<tr>

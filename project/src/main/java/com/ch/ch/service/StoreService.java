@@ -20,4 +20,10 @@ public interface StoreService {
 	List<Store> pclist(int s_Pclass);
 	List<Ord> ordlist(int s_num);
 
+	List<Ord> memberStore(String member_id);
+
+	int insertOrd(Ord ord);
+
+	
+
 }

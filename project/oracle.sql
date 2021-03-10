@@ -1,14 +1,5 @@
-<<<<<<< HEAD
 --삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
 drop sequence theater_t_num_seq; 
-=======
---삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
-<<<<<<< HEAD
-drop sequence theater_t_num_seq; 
-=======
-=======
-drop sequence theater_t_num_seq; 
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 drop sequence st_num; 
 drop sequence re_num; 
 drop sequence s_num; 
@@ -18,6 +9,7 @@ drop sequence mt_num;
 drop sequence sv_num;
 drop sequence t_account;
 drop sequence r_num;
+drop sequence n_num;
 
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
@@ -37,7 +29,7 @@ drop table theater CASCADE CONSTRAINTS;
 drop table member CASCADE CONSTRAINTS;
 drop table master CASCADE CONSTRAINTS;
 drop table reBoard CASCADE CONSTRAINTS;
-
+drop table notice CASCADE CONSTRAINTS;
 
 
 --------------------------------------관리자
@@ -65,7 +57,18 @@ create table member(
 insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
 insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
 insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
+
 select * from member;
+
+-------------------------------------- 이벤트(추가)
+create table event(
+	e_num nvarchar2(10) primary key,  -- 이벤트번호
+	e_title nvarchar2(50) not null,            -- 이벤트제목
+	e_state nvarchar2(50) not null,            -- 이벤트종류
+	e_sale nvarchar2(50) not null,             -- 이벤트금액
+	member_id nvarchar2(50) references member(member_id)        -- 회원아이디
+);
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 -------------------------------------- 이벤트(추가)
 create table event(
@@ -74,6 +77,14 @@ create table event(
 	event_state nvarchar(50) not null,            -- 이벤트종류
 	event_sale nvarchar(50) not null,             -- 이벤트금액
 	member_id references member(member_id)        -- 회원아이디
+);
+
+create sequence event_num increment by 1 start with 1;
+
+---------------------------------------이벤트 중복체크
+create table event_over(
+	member_id nvarchar2(50),
+	e_num nvarchar2(10) references event(e_num)
 );
 
 --------------------------------------극장
@@ -86,9 +97,16 @@ create table theater(
 	t_number nvarchar2(50) not null,   --전화번호
 	t_gui nvarchar2(1000) not null        --시설 안내
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 select * from theater;
 create sequence theater_t_num_seq increment by 1 start with 13;
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 drop sequence theater_t_num_seq;
 
 insert into theater values(1, '신촌','서울','서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)','1544-1122','주자요금 영화 관람시 3시간, 4000원입니다.');
@@ -104,10 +122,6 @@ insert into theater values(10, '용역','광주','주소가 10번이다','1544-1
 insert into theater values(11, '구리','광주','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
 insert into theater values(12, '미영','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
 
---삭제
-delete from theater where t_num = 20;
---극장 지역 중복제거
-select distinct t_loc from theater;
 select * from theater;
 
 -----------------------------------상영관
@@ -125,12 +139,10 @@ insert into movieTheater values(3, '3관',80,1);
 insert into movieTheater values(4, '4관',90,1);
 insert into movieTheater values(5, '5관',100,1);
 
-delete from movieTheater where mt_num=5;
 
 select * from movieTheater;
 
 --------------------------------------영화
-
 create table movie (
 	m_num number primary key not null, 	--영화번호
 	m_title nvarchar2(50) not null,		--제목
@@ -153,13 +165,7 @@ create table stillcut (
 	m_stillcut nvarchar2(500) not null		--스틸컷
 );
 create sequence st_num increment by 1 start with 1;
---insert into movie values(1, '극장판귀멸의칼날-무한열차편','벽력일섬','15','2021-02-03','상영중',120,0,'001.jpg','소토자키 하루오','하나에 나츠키, 시모노 히로, 마츠오카 요시츠구, 키토 아카리','애니메이션','n');
---insert into movie values(2, '소울','피아노 위를 걷는다','전체','2021-01-20','상영중',107,0,'002.jpg','피트 닥터','제이미 폭스, 티나 페이, 다비드 딕스','애니메이션','n');
---insert into movie values(3, '미션 파서블','미션 임파서블이 아니네???','15','2021-02-17','상영중',105,0,'003.jpg','김형주','김영광, 이선빈','코미디, 액션','n');
---insert into movie values(4, '해리포터와 불의 잔','아브라카타브라','12','2021-02-10','상영중',156,0,'004.jpg','마이크 뉴웰','다니엘 래드클리프, 엠마 왓슨, 루퍼트 그린트','환타지','n');
---insert into movie values(5, '해피 투게더 리마스터링 ','유재석?','15','2021-02-04','상영중',97,0,'005.jpg','왕가위','장국영, 양조위, 장첸','드라마, 로맨스, 멜로','n');
---insert into movie values(6, '2046 리마스터링 ','ㅗㅜㅑ','19','2021-02-11','상영중',128,0,'006.jpg','왕가위','장쯔이, 장첸, 기무라 타쿠야, 유가령, 양조위, 왕페이, 베이 로건, 장만옥, 공리, 둥제, 소병림, 통차이 맥킨타이어, 오정엽','드라마','n');
---insert into movie values(7, '마리오네트 ','인형인가봐','12','2021-02-17','상영중',112,0,'007.jpg','엘버트 반 스트리엔','테크라 레우텐, 피터 뮬란, 엘리야 울프','미스터리, 스릴러','n');
+
 select * from movie;
 select * from stillcut;
 
@@ -197,8 +203,6 @@ create table board(
 );
 select * from board;
 
-select * from board;
-
 --------------------------------------회원 게시판 마스터전용 댓글
 
 create table reBoard (
@@ -213,6 +217,34 @@ create table reBoard (
 create sequence r_num increment by 1 start with 1;
 select * from reBoard;
 
+----------------------------------- 공지 게시판
+
+create table notice (
+	n_num number primary key not null,      -- 공지 번호
+	n_branch nvarchar2(50)                  -- 지점
+	n_title nvarchar2(100) not null,        -- 공지 제목
+	n_content nvarchar2(1000) not null,     -- 공지 내용
+	n_date date default sysdate not null,   -- 공지 등록일
+	n_del char(1) default 'n'               -- 삭제여부
+);
+
+create sequence n_num increment by 1 start with 1;
+
+-- 시연시 보여줄 공지
+insert into notice values(1,'신촌','21년 3월 휴관일 안내','3월 휴관일 : 3/12, 3/19 (금요일)',sysdate,'n');
+insert into notice values(2,'강남','주차창 이용 변경 안내','매점 창구에서 당일 영화 티켓 확인 후 입차 시간 기준 4시간 무료',sysdate,'n');
+insert into notice values(3,'용산','공사로 인한 일부건물 이용불가 안내','21년 3월19일까지 자란공영주차장에서 주차 부탁드립니다',sysdate,'n');
+insert into notice values(4,'전체','개인정보 처리방침 변경 안내','개정내용 : 개인정보처리방침 제 6조(개인정보파기)',sysdate,'n');
+insert into notice values(5,'대전','영화관람 요금 조정 안내','21년 4월부터 요금이 2,000원이 인상됩니다',sysdate,'n');
+insert into notice values(6,'용인','운영일자 임시 조정 안내','내부 사정으로 인하여 부득이하게 극장 운영 일자가 임시 조정됩니다',sysdate,'n');
+insert into notice values(7,'전체','굿즈 구매 제한 안내','카드(인당 4개), 퍼즐(인당 4개) 구매 제한',sysdate,'n');
+insert into notice values(8,'이천','임시 휴점 안내','코로나19 확산으로 인해 메가박스 양산지점의 영업을 21년 3월 10일까지 임시 중단하게 되었습니다. 죄송합니다',sysdate,'n');
+insert into notice values(9,'수원','21년 3월1일 건물운영안내','B1 메인 출입구는 입장이 불가합니다',sysdate,'n');
+insert into notice values(10,'구리','21년 3월 휴관일 안내','3월 휴관일 : 3/10, 3/24 (수요일)',sysdate,'n');
+insert into notice values(11,'전체','21년 3월 시스템 정기점검 안내','작업일시: 2021년 2월 16일(화) 00:00 ~ 05:00',sysdate,'n');
+
+select * from notice;
+
 -----------------------------------상영
 
 create table screen(
@@ -221,7 +253,6 @@ create table screen(
 	sc_start nvarchar2(50) not null,               --시작시간
 	sc_end nvarchar2(50) not null,                 --종료시간
 	sc_del char(1) default 'n',                    --삭제여부
---	st_name nvarchar2(1000),                        --좌석이름
 	t_num number references theater(t_num),        --극장번호
 	mt_num number references movieTheater(mt_num), --상영관번호
 	m_num number references movie(m_num)          --영화번호 
@@ -254,7 +285,6 @@ create table ticket(
 );
 create sequence t_ordernum increment by 1 start with 1;
 
-
 --------------------------------------관리자계좌
 
 create table aam_bank(
@@ -277,10 +307,12 @@ create table bank(
 );
 create sequence t_account increment by 1 start with 1;
 
+insert into bank values(1,sysdate,'10000','휴대폰','q1','565-278311-02-001',null);
 --------------------------------------스토어
 select * from store;
 drop table store CASCADE CONSTRAINTS;
 drop sequence s_num; 
+
 
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
@@ -329,13 +361,17 @@ select * from ord;
 	
 	s_purchase number(10) not null, 	--#구매수량 
 	full_price number(10) not null, 	--총 금액
-	buy_date date, 				--구매 날짜
+	buy_date date, 		--구매 날짜
 	s_validity date not null, 	--유통기한 sysdate+365
 	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
 	);
 --	, t_account varchar2(50) references bank(t_account) not null --입금번호
-	
+
+create sequence ord_num increment by 1 start 3;
+
+insert into ord values(2,'q1','4',3,2000,'2021-03-02','2021-04-02','y','n');
+
 -----------------------------------------고객센터(미완성)
 create table service(
 	sv_num number primary key not null,  --고객센터번호
@@ -350,12 +386,7 @@ create table service(
 
 create sequence sv_num increment by 1 start with 1;
 
-select * from movie order by m_genre desc;
-select * from seat;
-select * from screen;
-select * from ticket;
-select * from bank;
 
-select * from movieTheater order by mt_num;
-select * from theater where t_loc='서울';
-select * from theater where t_loc='서울' and t_title='강릉';
+select * from (select a.*, rownum rn from (select * from movie 
+		order by m_opendate desc)a) 
+			where rn between 1 and 4 and m_state = 1;

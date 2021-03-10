@@ -35,10 +35,16 @@
 					<td><a href="#" class="btn btn-default">극장추가</a></td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn btn-default">상영추가</a></td>
+					<td><a href="#" class="btn btn-default">상영관추가</a></td>
+				</tr>
+				<tr>
+					<td><a href="screenInsertForm.do" class="btn btn-default">상영추가</a></td>
 				</tr>
 				<tr>
 					<td><a href="#" class="btn btn-default">스토어상품추가</a></td>
+				</tr>
+				<tr>
+					<td><a href="#" class="btn btn-default">이벤트추가(미구현)</a></td>
 				</tr>
 			</table>
 		</c:if>

@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>영화 수정</title>
+<script type="text/javascript">
+	var genre = "${movie.m_genre}";
+	var rank = "${movie.m_rank}";
+	var state = "${movie.m_state}";
+	
+	$(function() {
+		$("#m_genre").val(genre).prop("selected", true);
+		$("#m_rank").val(rank).prop("selected", true);
+		$("#m_state").val(state).prop("selected", true);
+	});
+</script>
 </head>
 <body>
 	<div><%@include file="../mainTop.jsp" %></div>
@@ -23,17 +34,17 @@
 					</td>
 					<th>장르</th>
 					<td>
-						<select name="m_genre">
-							<c:forEach var="mv" items="${movieList}">
-								<c:if test="${mv.m_genre == movie.m_genre}">
-									<option value="${movie.m_genre}" selected="selected">
-										${mv.m_genre}</option>
-								</c:if>
-								<c:if test="${mv.m_genre != movie.m_genre}">
-									<option value="${movie.m_genre}">
-										${mv.m_genre}</option>
-								</c:if>
-							</c:forEach>
+						<select name="m_genre" id="m_genre">
+							<option value="판타지">판타지</option>
+							<option value="공포/스릴러">공포/스릴러</option>
+							<option value="로맨스">로맨스</option>
+							<option value="코미디">코미디</option>
+							<option value="액션">액션</option>
+							<option value="드라마">드라마</option>
+							<option value="애니메이션">애니메이션</option>
+							<option value="뮤지컬">뮤지컬</option>
+							<option value="SF">SF</option>
+							<option value="에로">에로</option>
 						</select>
 					</td>
 				</tr>
@@ -60,8 +71,7 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="3">
-						<textarea rows="20" cols="120" required="required" name="m_content" >
-							${movie.m_content}</textarea>
+						<textarea rows="20" cols="120" required="required" name="m_content" >${movie.m_content}</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -72,22 +82,12 @@
 					</td>
 					<th>상영 상태</th>
 					<td>
-						<select name="m_state">
-							<c:forEach var="mv" items="${movieList}">
-								<c:if test="${mv.m_state == movie.m_state}">
-									<option value="${movie.m_state}" selected="selected">
-										${mv.m_state}</option>
-								</c:if>
-								<c:if test="${mv.m_state != movie.m_state}">
-									<option value="${movie.m_state}">
-										${mv.m_state}</option>
-								</c:if>
-							</c:forEach>
+						<select name="m_state" id="m_state">
+							<option value="0">개봉예정</option>
+							<option value="1">개봉</option>
+							<option value="2">재개봉</option>
+							<option value="3">상영종료</option>
 						</select>
-						<!-- <input type="radio" name="m_state" value="개봉예정">개봉예정
-						<input type="radio" name="m_state" value="개봉">개봉
-						<input type="radio" name="m_state" value="재개봉">재개봉
-						<input type="radio" name="m_state" value="상영종료">상영종료 -->
 					</td>
 				</tr>
 				<tr>
@@ -98,22 +98,12 @@
 					</td>
 					<th>관람 연령 등급</th>
 					<td>
-						<select name="m_rank">
-								<c:forEach var="mv" items="${movieList}">
-									<c:if test="${mv.m_rank == movie.m_rank}">
-										<option value="${movie.m_rank}" selected="selected">
-											${mv.m_rank}</option>
-									</c:if>
-									<c:if test="${mv.m_rank != movie.m_rank}">
-										<option value="${movie.m_rank}">
-											${mv.m_rank}</option>
-									</c:if>
-								</c:forEach>
-							</select>
-						<!-- <input type="radio" name="m_rank" value="전 연령" checked="checked">전 연령
-						<input type="radio" name="m_rank" value="12세">12세
-						<input type="radio" name="m_rank" value="15세">15세
-						<input type="radio" name="m_rank" value="창불">청불 -->
+						<select name="m_rank" id="m_rank">
+							<option value="전 연령">전 연령</option>
+							<option value="12세">12세</option>
+							<option value="15세">15세</option>
+							<option value="청불">청불</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -126,18 +116,20 @@
 						${movie.m_poster}
 					</td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th>
-						포스터
+						스틸컷
 						<span class="glyphicon glyphicon-picture"></span>
 					</th>
 					<td colspan="3">
+							<input type="file" name="file1" value="${st.m_stillcut}" multiple="multiple">
+					 		${st.m_stillcut}
 						<c:forEach var="st" items="${list}">
 							<input type="file" name="file1" value="${st.m_stillcut}">
 					 		${st.m_stillcut}
 						</c:forEach>
 					</td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<td colspan="4" align="center">
 						<input type="submit" value="수정">

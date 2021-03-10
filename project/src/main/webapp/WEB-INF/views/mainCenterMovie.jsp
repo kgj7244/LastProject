@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="row" style="margin-top: 70px;">
-		<c:forEach var="i" begin="0" end="4" items="${movieList}">
+		<c:forEach var="i" begin="0" end="3" items="${movieList}">
 		<div class="col-sm-6 col-md-3">
 			<div class="thumbnail">
 				<img src="${path}/resources/images/m_poster/${i.m_poster}" alt="사진없는거 아니여?" onclick='location.href="movieView.do?m_num=${i.m_num}"'>
@@ -45,16 +45,16 @@
 		<div class="col-sm-3" align="center">　</div> <!-- (ㅡ.ㅡ)? 아니 딱 12씩 맞췄는데 왜 3이 비냐고... 일단 공백(특수문자 공백임 사실상 값이 들어있음)으로 씀  -->
 		<div class="col-sm-1" align="center"></div>
 		<div class="col-sm-10" align="center">
-			<form>
+			<form action="movieMainForm.do">
 				<table class="table table-bordered" style="background-color: gray;">
 					<tr height="50px;">
 						<td width="25%" align="center" style="vertical-align:middle;">
-							<input type="text" name="movieSearch" placeholder="영화명을 입력해주세요">
+							<input type="text" name="movieSearch" placeholder="영화검색">
 							<a href="#" style="color:black;"><span class="glyphicon glyphicon-search"></span></a>					
 						</td>
-						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><span class="glyphicon glyphicon-calendar"></span>상영시간표</td>
-						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><span class="glyphicon glyphicon-film"></span>영화</td>
-						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><span class="glyphicon glyphicon-phone"></span>예메</td>
+						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="#" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-calendar"></span>상영시간표</a></td>
+						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="movieMainForm.do" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-film"></span>영화</a></td>
+						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="ticketMainForm.do" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-phone"></span>예메</a></td>
 					</tr>
 				</table>
 			</form>

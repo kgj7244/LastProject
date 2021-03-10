@@ -24,4 +24,11 @@ public class Movie {
 	
 	//포스터 upload용
 	private MultipartFile file;
+	
+	// paging용
+	private int startRow;
+	private int endRow;
+	
+	// 검색용
+	private String keyword;
 }
