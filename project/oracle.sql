@@ -9,6 +9,7 @@ drop sequence mt_num;
 drop sequence sv_num;
 drop sequence t_account;
 drop sequence r_num;
+drop sequence n_num;
 
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
@@ -28,7 +29,7 @@ drop table theater CASCADE CONSTRAINTS;
 drop table member CASCADE CONSTRAINTS;
 drop table master CASCADE CONSTRAINTS;
 drop table reBoard CASCADE CONSTRAINTS;
-
+drop table notice CASCADE CONSTRAINTS;
 
 
 --------------------------------------관리자
@@ -209,6 +210,34 @@ create table reBoard (
 
 create sequence r_num increment by 1 start with 1;
 select * from reBoard;
+
+----------------------------------- 공지 게시판
+
+create table notice (
+	n_num number primary key not null,      -- 공지 번호
+	n_branch nvarchar2(50)                  -- 지점
+	n_title nvarchar2(100) not null,        -- 공지 제목
+	n_content nvarchar2(1000) not null,     -- 공지 내용
+	n_date date default sysdate not null,   -- 공지 등록일
+	n_del char(1) default 'n'               -- 삭제여부
+);
+
+create sequence n_num increment by 1 start with 1;
+
+-- 시연시 보여줄 공지
+insert into notice values(1,'신촌','21년 3월 휴관일 안내','3월 휴관일 : 3/12, 3/19 (금요일)',sysdate,'n');
+insert into notice values(2,'강남','주차창 이용 변경 안내','매점 창구에서 당일 영화 티켓 확인 후 입차 시간 기준 4시간 무료',sysdate,'n');
+insert into notice values(3,'용산','공사로 인한 일부건물 이용불가 안내','21년 3월19일까지 자란공영주차장에서 주차 부탁드립니다',sysdate,'n');
+insert into notice values(4,'전체','개인정보 처리방침 변경 안내','개정내용 : 개인정보처리방침 제 6조(개인정보파기)',sysdate,'n');
+insert into notice values(5,'대전','영화관람 요금 조정 안내','21년 4월부터 요금이 2,000원이 인상됩니다',sysdate,'n');
+insert into notice values(6,'용인','운영일자 임시 조정 안내','내부 사정으로 인하여 부득이하게 극장 운영 일자가 임시 조정됩니다',sysdate,'n');
+insert into notice values(7,'전체','굿즈 구매 제한 안내','카드(인당 4개), 퍼즐(인당 4개) 구매 제한',sysdate,'n');
+insert into notice values(8,'이천','임시 휴점 안내','코로나19 확산으로 인해 메가박스 양산지점의 영업을 21년 3월 10일까지 임시 중단하게 되었습니다. 죄송합니다',sysdate,'n');
+insert into notice values(9,'수원','21년 3월1일 건물운영안내','B1 메인 출입구는 입장이 불가합니다',sysdate,'n');
+insert into notice values(10,'구리','21년 3월 휴관일 안내','3월 휴관일 : 3/10, 3/24 (수요일)',sysdate,'n');
+insert into notice values(11,'전체','21년 3월 시스템 정기점검 안내','작업일시: 2021년 2월 16일(화) 00:00 ~ 05:00',sysdate,'n');
+
+select * from notice;
 
 -----------------------------------상영
 

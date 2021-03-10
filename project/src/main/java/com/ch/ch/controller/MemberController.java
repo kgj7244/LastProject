@@ -102,7 +102,7 @@ public class MemberController {
 		if (mem == null || mem.getMember_del().equals("y")) {
 			result = -1; // db에 없는 아이디거나 탈퇴한 아이디
 			// db에 저장된 pw와 화면에 입력한 pw가 같은지 확인
-		} else if (member.getMember_password().equals(member.getMember_password())) {
+		} else if (mem.getMember_password().equals(member.getMember_password())) {
 			result = 1; // 로그인 성공
 			session.setAttribute("member_id", member.getMember_id());
 		}
