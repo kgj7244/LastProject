@@ -27,8 +27,17 @@ public class TheaterController {
 	private TheaterService tts; // 극장
 	
 	@RequestMapping("theaterMainForm")
-	public String theaterMainForm() {
+	public String theaterMainForm(Model model) {
+		List<Theater> showLocList =tts.listT_loc();
+		model.addAttribute("showLocList",showLocList);
+		
 		return "theater/theaterMainForm";
+	}
+	@RequestMapping("theaterLoc")
+	public String selectMovieTheater(String t_loc, Model model) {
+		List<Theater> showLocList = tts.locList(t_loc);
+		model.addAttribute("showLocList",showLocList);
+		return "theater/theaterLoc";
 	}
 	//영화 선택
 	@RequestMapping("choiceMovie")

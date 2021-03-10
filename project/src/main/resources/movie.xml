@@ -21,9 +21,20 @@
 	</resultMap>
 	<select id="list" resultMap="movieResult">
 		select * from movie
+			<where>
+			 	<if test="keyword!=null and keyword!=''">
+			 		m_title like '%'||#{keyword}||'%' 
+			 	</if>
+			 </where>
 	</select>
 	<select id="moviePage" parameterType="movie" resultType="movie">
-		select * from (select a.*, rownum rn from (select * from movie order by m_opendate desc)a) 
+		select * from (select a.*, rownum rn from (select * from movie 
+			<where>
+			 	<if test="keyword!=null and keyword!=''">
+			 		m_title like '%'||#{keyword}||'%' 
+			 	</if>
+			 </where>
+		order by m_opendate desc)a) 
 			where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="select" parameterType="integer" resultType="movie">
@@ -61,5 +72,4 @@
 	<select id="allMovieList" resultMap="movieResult">
 		select * from movie
 	</select>
-	
 </mapper>
