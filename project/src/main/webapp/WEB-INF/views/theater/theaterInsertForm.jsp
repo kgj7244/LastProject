@@ -8,7 +8,7 @@
 <title>극장 추가</title>
 <script type="text/javascript">
 	function TLocChk() {
-		if(!frm.t_loc.value){
+		if(!frm.t_loc.value || !frm.t_title.value){
 			alert("중복체크를 해주세요.");
 			frm.t_loc.focus();
 			return false;
@@ -40,11 +40,13 @@
 					<input type="text" name="t_loc" required="required" autofocus="autofocus">
 					<input type="button" onclick="TLocChk()" class="btn btn-warning" value="중복 확인">
 					<div id="disp" style="color: red;"></div>
-					<%-- <select name="t_loc">
-					<c:forEach var="title" items="${titleList}">
-						<option>${title}</option>
-					</c:forEach>
-					</select> --%>
+					<%-- 
+					<select name="t_loc">
+						<c:forEach var="title" items="${titleList}">
+							<option>${title}</option>
+						</c:forEach>
+					</select> 
+					--%>
 				</td>
 			</tr>
 			<tr>
@@ -62,7 +64,7 @@
 			<tr>
 				<th>전화번호</th>
 					<td>
-						<input type="text" name="t_number" required="required">
+						<input type="tel" name="t_number" pattern="\d{2,3}-\d{3,4}-\d{4}" placeholder="xx-xxx-xxxx" required="required">
 					</td>
 			</tr>
 			<tr>
@@ -72,8 +74,9 @@
 					</td>
 			</tr>
 			<tr>
-				<td colspan="4" align="center">
+				<td align="center" colspan="4">
 					<input type="submit" value="등록">
+					<button><a href="#">목록</a></button>
 				</td>
 			</tr>	
 		</table>
