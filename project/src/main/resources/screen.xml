@@ -79,7 +79,7 @@
 		select * from theater where t_title = #{t_title}
 	</select>
 	<select id="mTheater" parameterType="integer" resultType="movieTheater">
-	    select * from movieTheater where t_num =#{t_num}
+	    select * from movieTheater where t_num =#{t_num} order by mt_name
 	</select>
 	
 </mapper>

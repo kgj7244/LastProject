@@ -13,12 +13,19 @@
 		font-weight: bold;
 	}
 </style>
+<script type="text/javascript">
+	function findChk() {
+		if((frm21.search.value == "")==true){
+			alert('영화제목을 입력해주세요.');
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 <div style="background-color: #0d0908; height: 50px; vertical-align:middle;">
 	<div class="container" align="center">
 		<div class="row">
-			<div class="col-sm-1" align="center"><img src="${path}/resources/images/home/전체메뉴.png" width="70%" height="70%" style="margin-top: 5px;"></div>
 			<div class="col-sm-10" align="center">
 			<ul class="nav nav-pills nav-justified">
 				<li><a href="movieMainForm.do">영화</a></li>
@@ -28,7 +35,13 @@
 				<li><a href="boardList.do">고객센터</a></li>
 			</ul>
 			</div>
-			<div class="col-sm-1" align="center"><img src="${path}/resources/images/home/찾기.png" width="70%" height="70%"  style="margin-top: 5px;"></div>
+			<div class="col-sm-2" align="center">
+				<form action="movieMainForm.do" method="post" name="frm21" onsubmit="return findChk()">
+					<input type="text" name="search" id="search" placeholder="영화검색" size="11px;">
+					<input type="submit" class="btn btn-warning btn-sm" width="15px;" height="15px;" value="검색">
+				<%-- <img src="${path}/resources/images/home/찾기.png" width="70%" height="70%"  style="margin-top: 5px;" id="Find" onclick="Chk()"> --%>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
