@@ -122,7 +122,8 @@ public class StoreController {
 	@RequestMapping("storeContent")
 	public String storeContent(int s_num,Model model){
 		Store store = ss.select(s_num);
-		model.addAttribute("store", store);				
+		model.addAttribute("store", store);	
+		
 					
 		return "store/storeContent";
 	}
@@ -145,9 +146,24 @@ public class StoreController {
 	
 	//주문페이지로
 	@RequestMapping("orderList")
-	public String orderList(int s_num,Model model,int s_purchase) {
+	public String orderList( int s_num,Model model,int s_purchase,HttpSession session)throws IOException {
+		String member_id = (String)session.getAttribute("member_id");
+		
 		Store store = ss.select(s_num);
+	
+//		int result=0;
+//		Ord ord = new Ord();
+//		ord.setS_num(s_num);
+//		ord.setS_purchase(s_purchase);
+//		
+//		result=ss.insertOrd(ord);
+//	
+//	
+//		model.addAttribute("result", result);	
+		
 		model.addAttribute("store", store);	
+		
+	
 
 		return "store/orderList";
 	}
@@ -174,8 +190,32 @@ public class StoreController {
 	
 	
 	//결제 진행
+	@RequestMapping("order")
+	public String order(int s_num, Model model,int s_purchase,HttpSession session) {
+		
+		Store store = ss.select(s_num);
+		model.addAttribute("store", store);	
+		
+		
+				
+		
+		return "store/order";
+	}
+	
+	//주문
+//	@RequestMapping("order")
+//	public String order(Model model,HttpSession session)throws IOException  {
+//	String member_id = (String)session.getAttribute("member_id"); 
 	
 	
+//		ord = ss.insertOrd(member_id,s_num)
+//		
+//		int result = ss.insertOrd(ord);
+//		
+//		model.addAttribute("ord", ord);	
+//		model.addAttribute("result", result);
+//		return "store/order";
+//	}
 	
 	//구매 리스트에 추가
 //	@RequestMapping("memberStoreInsert")
@@ -196,17 +236,7 @@ public class StoreController {
 //		return "store/OK";
 //	}
 	
-	//주문
-//	@RequestMapping("order")
-//	public String order(Ord ord,Model model,HttpSession session)throws IOException  {
-//
-//		
-//		int result = ss.insertOrd(ord);
-//		
-//		model.addAttribute("ord", ord);	
-//		model.addAttribute("result", result);
-//		return "store/order";
-//	}
+
 	
 	
 	
@@ -221,6 +251,18 @@ public class StoreController {
 		model.addAttribute("ord", ord);	
 		return "/member/memberStore";
 	}
+	@RequestMapping("memberStoreInfo") 
+	public String memberStoreInfo(int s_num, Model model) {
+		
+		
+		Store store =ss.select(s_num);
+		
+		
+		model.addAttribute("store", store);	
+		
+		return "/member/memberStoreInfo";
+	}
+	
 	
 //	@RequestMapping("memberStore") 
 //	public String memberStore(int s_num,Model model, HttpSession session) {

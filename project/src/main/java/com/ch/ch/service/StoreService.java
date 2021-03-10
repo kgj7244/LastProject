@@ -22,4 +22,8 @@ public interface StoreService {
 
 	List<Ord> memberStore(String member_id);
 
+	int insertOrd(Ord ord);
+
+	
+
 }

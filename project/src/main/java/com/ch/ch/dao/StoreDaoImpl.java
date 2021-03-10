@@ -64,6 +64,22 @@ public class StoreDaoImpl implements StoreDao{
 		return sst.selectList("ordns.memberStore",member_id);
 	}
 
+
+//er
+	@Override
+	public int insertOrd(Ord ord) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	
+
+
+
+	
+	
 	
 
 	

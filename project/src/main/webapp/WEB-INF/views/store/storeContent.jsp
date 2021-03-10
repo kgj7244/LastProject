@@ -7,8 +7,15 @@
 <meta charset="UTF-8">
 <title>상품 상세</title>
  <script type="text/javascript">
-	var s_prive 
-	var s_purchase 
+ 
+
+ 
+ function total(s_prive, s_purchase) {
+	var total = s_prive*s_purchase;
+	
+	 
+ }
+	
 
 	</script>
 </head>
@@ -21,7 +28,7 @@
 	
 	<div class="container" align="center">
 	
-	<form action="<c:url value='orderList.do' />" method="post">
+	
 	
 	<div align="left"><h2>${store.s_Pname }</h2> </div>
 	
@@ -58,17 +65,18 @@
 
 <tr>
 <th>총 상품금액</th>
-<td>${total+(s_prive*s_purchase)}원</td>
+<td>${total+(store.s_prive*s_purchase)}원</td>
 </tr>
 
 
 <!-- ====================================== -->  
 
 <tr><td>
-	<%-- 	<form name="order" method="post" action="orderList.do?s_num=${store.s_num}"> --%>
+<form name="order" method="post" action="orderList.do?s_num=${store.s_num}"> 
 		
+<%-- <form action="<c:url value='orderList.do' />" method="post">	 --%>
 	
-		
+	<c:set var="s_purchase" value="${s_purchase}"></c:set>
 		<select name="s_purchase">
 			<c:forEach begin="1" end="10" var="i">
 				<option value="${i}">${i}</option> </c:forEach>

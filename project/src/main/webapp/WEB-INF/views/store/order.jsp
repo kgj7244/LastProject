@@ -18,7 +18,7 @@
 
 <c:if test="${result ==0 }">
  <script type="text/javascript">
- alert("구매 실패했습니다. 확인해주세요");
+ alert("구매 실패했습니다. 다시 확인해주세요");
  history.go(-1);
  </script>
 </c:if>

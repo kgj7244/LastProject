@@ -23,10 +23,11 @@
  enctype="multipart/form-data">
 
 <input type ="hidden" name = "s_num" value = "${store.s_num }">
-<input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
+<input type ="hidden" name = "member_id" value = "${member.member_id }">
+<%-- <input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
 <input type ="hidden" name = "s_Pimage" value = "${store.s_Pimage }">
 <input type ="hidden" name = "s_prive" value = "${store.s_prive }">
-<input type ="hidden" name = "s_purchase" value = "${s_purchase}">
+<input type ="hidden" name = "s_purchase" value = "${s_purchase}"> --%>
 
 
 <table class="table" style="width: 1000px; height: 150px; ">
@@ -50,16 +51,34 @@
             <td>${s_purchase}</td>
             <td>${ store.s_prive * s_purchase }</td>
         </tr>
+        
+      <tr>
+        <td colspan="4">총 결제 예정금액</td>
+        <td>${total+(s_prive*s_purchase)}</td>
+	 </tr>
+	 
+    
 
   </tbody>
   <tfoot>
-    <tr>
-        <td colspan="4"></td>
-        <td>${total+(s_prive*s_purchase)}</td>
+   <tr>
+      <td>주문자 정보 확인</td>
+     <td>이름
+     <input type="text" name="member_name" value="${ member.member_name }" readonly  required="required"></td>
+     <td>휴대전화 번호
+     <input type="text" name="member_number" value="${ member.member_number }" readonly  required="required"></td>
         
     </tr>
+    
+   <tr>
+      <td>결제 수단</td>
+     <td>계좌이체</td>
+    </tr>
+  
+   
   </tfoot>
 </table>
+
 
 
 <!-- ======================================
