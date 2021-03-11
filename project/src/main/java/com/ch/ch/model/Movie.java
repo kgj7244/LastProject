@@ -31,4 +31,6 @@ public class Movie {
 	
 	// 검색용
 	private String keyword;
+	
+	private String m_ing;
 }

@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ch.ch.model.Movie;
+import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Review;
 import com.ch.ch.model.Stillcut;
+import com.ch.ch.model.Theater;
 import com.ch.ch.service.MovieService;
 import com.ch.ch.service.PagingBean;
 import com.ch.ch.service.ReviewService;
@@ -32,14 +34,29 @@ public class MovieController {
 	
 	//영화 메인
 	@RequestMapping("movieMainForm")
-	public String movieMainForm(String pageNum, Movie movie, Model model, String m_state) {
-		if (pageNum == null || pageNum.equals("") || pageNum == "0") {
+	public String movieMainForm(String pageNum, Movie movie, Model model) {
+		model.addAttribute("movie", movie);
+		model.addAttribute("pageNum", pageNum);
+
+		return "movie/movieMainForm";
+	}
+	@RequestMapping(value = "movieList")
+	public String movieList(Movie movie, Model model, String pageNum, String m_ing) {
+		if(movie.getM_ing() == null || movie.getM_ing().equals("") || movie.getM_ing().equals("0")) {
+			movie.setM_ing("0");
+		}else {
+			movie.setM_ing("1");
+		}
+		if (pageNum == null || pageNum.equals("") || pageNum.equals("0")) {
 			pageNum = "1";
 		}
-		
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 4;
 		int total = ms.getTotal(movie);
+		if(total <= 4 && movie.getM_ing().equals("1")) {
+			
+			pageNum="1";
+		}
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		
@@ -50,11 +67,13 @@ public class MovieController {
 		
 		List<Movie> movieList = ms.moviePage(movie);
 		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("movie", movie);
 		model.addAttribute("pb", pb);
 		model.addAttribute("movieList", movieList);
-
-		return "movie/movieMainForm";
-	}
+		
+		return "movie/movieList"; 
+	 }
 	
 	//영화 목록 추가 작성 폼
 	@RequestMapping("movieInsertForm")
@@ -156,6 +175,10 @@ public class MovieController {
 		int hap = rvs.sum(review);
 		
 		double grade = hap/(double)tot;
+		
+		System.out.println("tot : " + tot);
+		System.out.println("hap : " + hap);
+		System.out.println("grade : " + grade);
 		
 		List<Stillcut> list = ms.listPhoto(m_num);
 		

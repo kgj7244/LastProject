@@ -28,7 +28,7 @@
 		<div class="row">
 			<div class="col-sm-10" align="center">
 			<ul class="nav nav-pills nav-justified">
-				<li><a href="movieMainForm.do">영화</a></li>
+				<li><a href="movieMainForm.do?m_ing=0">영화</a></li>
 				<li><a href="theaterMainForm.do">극장</a></li>
 				<li><a href="ticketMainForm.do">예매</a></li>
 				<li><a href="storeMainForm.do">스토어</a></li>
