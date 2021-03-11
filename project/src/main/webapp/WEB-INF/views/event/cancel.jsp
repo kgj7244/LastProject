@@ -8,24 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${result>0}">
+<c:if test="${result==1}">
 	<script type="text/javascript">
-		alert('상영 등록 되었습니다.');
-		location.href="mainForm.do";
+		alert("취소했습니다.");
+		location.href="eventList.do";
 	</script>
 </c:if>
-<c:if test="${result ==0}">
+<c:if test="${result!=1}">
 	<script type="text/javascript">
-		alert('상영 등록이 실패 됬습니다.');
-		histroy.back();
+		alert("취소에 실패했습니다.");
+		history.back();
 	</script>
 </c:if>
-<c:if test="${result ==-1}">
-	<script type="text/javascript">
-		alert('상영 등록이 실패 됬습니다.');
-		histroy.back();
-	</script>
-</c:if>
-
 </body>
 </html>

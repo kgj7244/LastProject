@@ -20,6 +20,7 @@
 		<typeAlias alias="reBoard" type="com.ch.ch.model.ReBoard" />
 		<typeAlias alias="notice" type="com.ch.ch.model.Notice" />
 		<typeAlias alias="bank" type="com.ch.ch.model.Bank" />
+		<typeAlias alias="event_over" type="com.ch.ch.model.Event_over" />
 	
 	</typeAliases>
 	<mappers>   <!-- 어디로 연결할지 --> 

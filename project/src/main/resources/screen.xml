@@ -89,5 +89,20 @@
 	<select id="eventList" resultType="event">
 		select * from event order by e_num
 	</select>
+	<select id="eventFind" parameterType="hashmap" resultType="Event_over">
+		select * from event_over where member_id = #{member_id} and e_num =#{e_num}
+	</select>
+	<insert id="event_overInsert" parameterType="hashmap">
+		insert into event_over values(eo_num.nextval, #{member_id}, '대기', #{e_num})
+	</insert>
+	<select id="event_overList" resultType="event_over">
+		select * from event_over where eo_state = '대기'
+	</select>
+	<update id="rankUp" parameterType="integer">
+		update event_over set eo_state = '발급' where eo_num = #{eo_num}
+	</update>
+	<delete id="eventCancel" parameterType="integer">
+		delete from event_over where eo_num = #{eo_num}
+	</delete>
 	
 </mapper>
