@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ch.ch.model.Event;
+import com.ch.ch.model.Event_over;
 import com.ch.ch.model.Member;
 import com.ch.ch.model.Movie;
 import com.ch.ch.model.MovieTheater;
@@ -300,12 +301,7 @@ public class TicketController {
 	
 	//이벤트 추가
 	@RequestMapping("eventInsert")
-	public String eventInsert(Event event,Model model,HttpSession session)throws IOException  {
-		System.out.println("event.getE_title() : " + event.getE_title());
-		System.out.println("event.sale() : " + event.getE_sale());
-		System.out.println("event.getE_state() : " + event.getE_state());
-		System.out.println("event.getE_state() : " + event.getFile());
-		
+	public String eventInsert(Event event,Model model,HttpSession session)throws IOException  {		
 		if(!event.getFile().isEmpty()) {
 			String event_poster = event.getFile().getOriginalFilename();
 			
@@ -326,9 +322,44 @@ public class TicketController {
 		
 		return "event/eventInsert";
 	}
+	//운영자 리스트
 	@RequestMapping("eventList")
 	public String eventList(Model model) {
+		List<Event_over> event_overList = ss.Event_overList(); //대기자들만 검색할까?
 		
+		model.addAttribute("event_overList", event_overList);
 		return "event/eventList";
+	}
+	
+	//이벤트 클릭시 참여한 사람인지 체크 (없으면 바로 이벤트 대기로 ㄱㄱ)
+	@RequestMapping("eventPart")
+	public String eventPart(Model model, int e_num, HttpSession session) {
+		int result = 0; 
+		String member_id = (String)session.getAttribute("member_id");
+		List<Event_over> eventFind = ss.eventFind(e_num, member_id); // 이벤트에 참여한 기록이 없다면
+		if(eventFind.size() >0) { // 값이 있으면 이벤트에 이미 참여하였음
+			result = -1;
+		}else {
+			result = ss.event_overInsert(e_num, member_id);
+		}
+		model.addAttribute("result", result);
+		return "event/eventPart";
+	}
+	
+	//쿠폰 발급
+	@RequestMapping("Issued")
+	public String Issued(Model model, int eo_num) {
+		int result = ss.rankUp(eo_num);
+		
+		model.addAttribute("result", result);
+		return "event/Issued";
+	}
+	//쿠폰 발급
+	@RequestMapping("cancel")
+	public String cancel(Model model, int eo_num) {
+		int result = ss.eventCancel(eo_num);
+		
+		model.addAttribute("result", result);
+		return "event/cancel";
 	}
 }

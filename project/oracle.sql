@@ -18,6 +18,7 @@ drop sequence b_num;
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
 drop table service CASCADE CONSTRAINTS;
+drop table ord CASCADE CONSTRAINTS;
 drop table store CASCADE CONSTRAINTS;
 drop table bank CASCADE CONSTRAINTS;
 drop table aam_bank CASCADE CONSTRAINTS;
@@ -36,6 +37,7 @@ drop table event CASCADE CONSTRAINTS;
 drop table master CASCADE CONSTRAINTS;
 drop table reBoard CASCADE CONSTRAINTS;
 drop table notice CASCADE CONSTRAINTS;
+
 
 
 --------------------------------------관리자
@@ -79,8 +81,6 @@ select * from member;
 
 -------------------------------------- 이벤트(추가)
 create table event(
-
-create table event(
 	e_num number(10) primary key, 				 			-- 이벤트번호
 	e_title nvarchar2(50) not null,            		 		-- 이벤트제목
 	e_state nvarchar2(50) not null,           		 		-- 이벤트종류(1: 쿠폰, 2: 상품권)
@@ -93,10 +93,10 @@ create sequence e_num increment by 1 start with 1;
 
 ---------------------------------------이벤트 중복체크
 create table event_over(
-	eo_num number(10) primary key,               -- 중복체크 번호
-	member_id nvarchar2(50) not null,                     -- 아이디
-	eo_state nvarchar2(50) not null,                      -- 상태
-	e_num number(10) references event(e_num)  -- 이벤트번호
+	eo_num number(10) primary key,               					-- 중복체크 번호
+	member_id nvarchar2(50) not null,  								-- 아이디
+	eo_state nvarchar2(50) not null,    			                -- 상태(0.미참여, 1. 대기, 2. 발급, 3. 사용)
+	e_num number(10) references event(e_num)  						-- 이벤트번호
 );
 create sequence eo_num increment by 1 start with 1;
 
@@ -403,3 +403,5 @@ create table service(
 	sv_Adate date,                       --답변일자
 	sv_state nvarchar2(50) not null      --답변상태
 );
+
+select * from event_over;
