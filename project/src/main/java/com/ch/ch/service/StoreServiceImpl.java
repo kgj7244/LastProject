@@ -71,6 +71,18 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
+	
+	public int update_refund(int ord_num) {
+		return sd.update_refund(ord_num);
+	}
+
+
+	
+	public int maxOrd_num() {
+		return sd.maxOrd_num();
+	}
+
+
 	}
 
 

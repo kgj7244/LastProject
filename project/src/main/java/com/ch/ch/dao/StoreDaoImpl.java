@@ -78,5 +78,19 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 
+
+	
+	public int update_refund(int ord_num) {
+		return sst.update("ordns.update_refund",ord_num);
+	}
+
+
+
+	
+	public int maxOrd_num() {
+		return sst.selectOne("ordns.maxOrd_num");
+	}
+
+
 	
 }

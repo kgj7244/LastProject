@@ -81,7 +81,6 @@ select * from member;
 create table event(
 
 create table event(
->>>>>>> Stashed changes
 	e_num number(10) primary key, 				 			-- 이벤트번호
 	e_title nvarchar2(50) not null,            		 		-- 이벤트제목
 	e_state nvarchar2(50) not null,           		 		-- 이벤트종류(1: 쿠폰, 2: 상품권)
@@ -320,7 +319,7 @@ create table seat(
 --------------------------------------예매
 
 create table ticket(
-	t_ordernum number primary key not null,           --예매번호
+	t_ordernum number primary key,           --예매번호
 	t_adult number not null,                          --성인예매수
 	t_teen number not null,                           --청소년예매수
 	t_sale number not null, 	                      --사용포인트
@@ -331,26 +330,6 @@ create table ticket(
 );
 create sequence t_ordernum increment by 1 start with 1;
 
---------------------------------------관리자계좌
-create table aam_bank(
-	aam_account nvarchar2(50) primary key not null,     --계좌번호
-	bank_name nvarchar2(50) not null,   				--은행이름
-	aam_name nvarchar2(50) not null     				--이름
-);
-insert into aam_bank values('565-278311-02-001','우리은행','김희주');
-
---------------------------------------입금금액
-
-create table bank(
-	t_account nvarchar2(50) primary key not null,               --입금번호
-	t_date date not null,                                       --#입금일	
-	t_price number not null,                                    --#금액
-	t_deal nvarchar2(50) not null,                              --거래방법
-	member_id nvarchar2(50) references member(member_id),       --아이디
-	aam_account nvarchar2(50) references aam_bank(aam_account), --관리자계좌
-	t_ordernum number references ticket(t_ordernum)             --예매번호
-);
-create sequence t_account increment by 1 start with 1;
 
 --------------------------------------스토어
 select * from store;
@@ -399,7 +378,7 @@ drop table ord;
 select * from ord;
 drop sequence ord_num;
 
-	create table ord (
+create table ord (
 	ord_num number(10) primary key,
 	member_id nvarchar2(50) not null REFERENCES member(member_id), --로그인 여부
 	s_num number(10) not null REFERENCES store(s_num),
@@ -411,9 +390,31 @@ drop sequence ord_num;
 	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
 	);
---	, t_account varchar2(50) references bank(t_account) not null --입금번호
 
 create sequence ord_num increment by 1 start with 1;
+
+--------------------------------------관리자계좌
+create table aam_bank(
+	aam_account nvarchar2(50) primary key not null,     --계좌번호
+	bank_name nvarchar2(50) not null,   				--은행이름
+	aam_name nvarchar2(50) not null     				--이름
+);
+insert into aam_bank values('565-278311-02-001','우리은행','김희주');
+
+--------------------------------------입금금액
+drop table bank CASCADE CONSTRAINTS;
+
+create table bank(
+	t_account nvarchar2(50) primary key not null,               --입금번호
+	t_date date not null,                                       --#입금일	
+	t_price number not null,                                    --#금액
+	t_deal nvarchar2(50) not null,                              --거래방법
+	member_id nvarchar2(50) references member(member_id),      --아이디
+	aam_account nvarchar2(50) references aam_bank(aam_account), --관리자계좌	
+	t_ordernum number references ticket(t_ordernum),            --예매번호(티켓
+	ord_num number(10) references ord(ord_num)		            --주문번호(스토어
+);
+create sequence t_account increment by 1 start with 1;
 
 -----------------------------------------고객센터(미완성)
 create table service(
