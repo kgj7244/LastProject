@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace xml을 구별하기 위한 이름 -->
+<!-- resultMap는 table에 컬럼명과 class에 dept변수명이 다를 때 mapping하는 용도 -->
+
+<mapper namespace="bankns">
+<resultMap type="bank" id="bankResult">
+		<result column="t_account" property="t_account"/>
+		<result column="t_date" property="t_date"/>
+		<result column="t_price" property="t_price"/>
+		<result column="t_deal" property="t_deal"/>
+		<result column="member_id" property="member_id"/>
+		<result column="aam_account" property="aam_account"/>
+		<result column="t_ordernum" property="t_ordernum"/>
+</resultMap>
+
+<insert id="insert_bank" parameterType="bank">
+	insert into bank values(t_account.nextval,
+	#{t_date},#{t_price},#{t_deal},
+	#{member_id},'565-278311-02-001',#{ord_num})
+	</insert>
+<!-- 예매번호 안들감  ,null-->
+	
+<select id="select_bank" parameterType="integer" resultType="bank">
+ select * from bank where ord_num=#{ord_num}
+
+
+</select>
+	
+	 
+</mapper>

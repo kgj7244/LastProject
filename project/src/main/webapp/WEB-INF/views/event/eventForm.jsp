@@ -46,7 +46,7 @@
 		
 		<div class="col-sm-6 col-md-3">
 			<div class="thumbnail">
-				<img src="${path}/resources/images/event/${i.e_poster}" alt="사진없는거 아니여?" onclick='#'>
+				<img src="${path}/resources/images/event/${i.e_poster}" alt="사진없는거 아니여?">
 				<div class="caption">
 					<div align="center">
 						<h4 style="font-weight: bold;">

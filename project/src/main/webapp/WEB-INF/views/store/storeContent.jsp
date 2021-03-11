@@ -6,16 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세</title>
- <script type="text/javascript">
- 
- 
- function total(s_prive, s_purchase) {
-	var total = s_prive*s_purchase;
-	 
- }
+<script type="text/javascript">
+
+ function a12() {
+	 var full_price = order.s_purchase.value*order.s_prive.value;
+	 $('#full_price').val(full_price);
+}
 	
 
-	</script>
+</script>
 </head>
 <body> 
 <%@include file="../mainTop.jsp" %>
@@ -62,8 +61,8 @@
 
 <tr>
 <th>총 상품금액</th>
-
-<td>${full_price+(store.s_prive*s_purchase)}원</td>
+<td><input type="number" readonly="readonly" name="full_price" id="full_price">
+</td>
 </tr>
 
 
@@ -71,11 +70,12 @@
 
 <tr><td>
 <form name="order" method="post" action="orderList.do"> 
-		
+		<input type="hidden" name="s_prive" value="${store.s_prive}">
 <%-- <form action="<c:url value='orderList.do' />" method="post">	 --%>
 	
 <%-- 	<c:set var="s_purchase" value="${s_purchase}"></c:set> --%>
-		<select name="s_purchase">
+		
+		<select name="s_purchase" onchange="a12()">
 			<c:forEach begin="1" end="10" var="i">
 				<option value="${i}">${i}</option> </c:forEach>
 		</select>&nbsp;개 

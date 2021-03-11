@@ -28,6 +28,10 @@ public interface StoreDao {
 
 	Ord select_ord(int ord_num);
 
+	int update_refund(int ord_num);
+
+	int maxOrd_num();
+
 
 
 }

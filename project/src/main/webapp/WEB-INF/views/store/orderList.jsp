@@ -6,6 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>주문상세</title>
+<style type="text/css">
+#trans1 {display: none;}
+</style>
+<script type="text/javascript">
+ function trans() {
+	 alert("질러라");
+	 $('#trans1').css('display','block');
+	
+}
+ function show() {
+	 $('#trans1').css('display','none');
+	
+}
+
+</script>
+
+
+
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>
@@ -63,20 +81,33 @@
         
     </tr>
     
+    
+ <!-- ====================================== -->     
    <tr>
-      <td>결제 수단</td>
-          
-   <td><input type="checkbox" name="t_deal" readonly  required="required">
-   	카카오뱅크
-   </td> </tr>
+   <td>결제 수단</td>         
+   <td><input type="radio" name="t_deal" value="휴대폰 결제" onclick="show()" checked>휴대폰 결제</td> 
+   <td><input type="radio" name="t_deal" value="계좌이체" onclick="trans()">계좌이체</td>  
+   </tr>
+   
+ 
+   
+   <input type="hidden" name="t_price" value="${store.s_prive * ord.s_purchase }">
+     
+   
+  
+  <tr id="trans1">  
+   <td>입금계좌<input type="text" name="aam_account" value="${ aam_bank.aam_account }" readonly></td>
+   <td>은행 <input type="text" name="bank_name" value="${ aam_bank.bank_name }" readonly ></td>
+   <td>이름 <input type="text" name="aam_name" value="${ aam_bank.aam_name }" readonly></td>
+  </tr>  
+ 
     
   </tfoot>
 </table>
 
 
 
-<!-- ======================================
-    <input name="id" type="hidden" value="${ ord_num }" type="hidden" /> -->  
+<!-- ====================================== -->  
     <button type="submit">구매하기</button>
 </form>
 </div>

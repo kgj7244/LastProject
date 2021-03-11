@@ -19,18 +19,14 @@
 
 	<h2>구매 상품 </h2>
 	<table class="table table-bordered">
-		<tr>
-			<td><h2>구매일</h2></td>
+		<tr>	
 			<td>주문번호</td>
 			<td>상품 이름</td>
-			<td>구매 수량</td>
-			
-			
-		
-			<td>유통기한</td>
-				
+			<td>결제금액</td>				
+			<td>구매일</td>
+			<td>유효기간</td>				
 			<td>자세히 보기</td>
-			<td>환불</td>
+			<td>상태</td>
 		</tr>
 		<tr>
 			<c:if test="${empty ord}">
@@ -39,28 +35,23 @@
 			<c:if test="${not empty ord}">
 				<c:forEach var="ord" items="${ord}">
 					<tr>
-						<td>${ord.buy_date}</td>
-						
-						
-						<td>${ord.s_num }</td>
-						
 						<td>${ord.ord_num}</td>
-						<td>${ord.s_Pname}</td>												
-						<td>${ord.s_purchase}</td>	
-									
-						<td>${ord.s_validity}</td>
-					
+						<td>${ord.s_Pname}</td>		
+						<td>${ord.full_price}</td>							
+						<td>${ord.buy_date}</td>													
+						<td>~${ord.s_validity}</td>
+										
+						<td><input type="button" value="상세 정보" 
+						onclick='location.href="memberStoreInfo.jsp.do?ord_num=${ord.ord_num}&s_num=${ord.s_num}"'>
+						</td>
+			<!-- 		&s_num=${ord.s_num}&s_validity=${ord.s_validity}	 -->	
+						<c:if test="${ord.del=='n'}">						
+						<td>사용가능</td>
+						</c:if>
 						
-						
-						
-						<td><input type="button" value="자세히 보기 s_num" 
-						onclick='location.href="memberStoreInfo.jsp.do?s_num=${ord.s_num}"'>
-
-						
-						<td><input type="button" value="건너가세" 
-						onclick='location.href="memberStoreInfo.jsp.do?ord_num=${ord.ord_num}&s_num=${ord.s_num}&s_validity=${ord.s_validity}"'>
-						
-						<td><input type="button" value="구매 취소" onclick=''>
+						<c:if test="${ord.del=='y'}">						
+						<td>불가능</td>
+						</c:if>
 						
 					</tr>
 				</c:forEach>
