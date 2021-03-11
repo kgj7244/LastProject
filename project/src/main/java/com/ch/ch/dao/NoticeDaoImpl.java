@@ -13,10 +13,10 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Autowired
 	private SqlSessionTemplate sst;
 
-	public int getTotal(Notice notice) {
-		return sst.selectOne("noticens.getTotal", notice);
+	public int getNtotal(Notice notice) {
+		return sst.selectOne("noticens.getNtotal", notice);
 	}
-
+	
 	public List<Notice> list(Notice notice) {
 		return sst.selectList("noticens.list", notice);
 	}
@@ -36,4 +36,5 @@ public class NoticeDaoImpl implements NoticeDao {
 	public int delete(int n_num) {
 		return sst.update("noticens.delete", n_num);
 	}
+
 }
