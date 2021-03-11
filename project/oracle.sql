@@ -90,25 +90,6 @@ create table event(
 );
 
 create sequence e_num increment by 1 start with 1;
-	e_num nvarchar2(10) primary key,  -- 이벤트번호
-	e_title nvarchar2(50) not null,            -- 이벤트제목
-	e_state nvarchar2(50) not null,            -- 이벤트종류
-	e_sale nvarchar2(50) not null,             -- 이벤트금액
-	member_id nvarchar2(50) references member(member_id)        -- 회원아이디
-);
-
--------------------------------------- 이벤트(추가)
-create table event(
-	event_num nvarchar(10) primary key not null,  -- 이벤트번호
-	event_title nvarchar(50) not null,            -- 이벤트제목
-	event_state nvarchar(50) not null,            -- 이벤트종류
-	event_sale nvarchar(50) not null,             -- 이벤트금액
-	member_id references member(member_id)        -- 회원아이디
-);
-
-create sequence e_num increment by 1 start with 1;
-
-create sequence event_num increment by 1 start with 1;
 
 ---------------------------------------이벤트 중복체크
 create table event_over(
@@ -131,11 +112,6 @@ create table theater(
 );
 select * from theater;
 create sequence theater_t_num_seq increment by 1 start with 13;
-
-select * from theater;
-create sequence theater_t_num_seq increment by 1 start with 13;
-
-drop sequence theater_t_num_seq;
 
 insert into theater values(1, '신촌','서울','서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)','1544-1122','주자요금 영화 관람시 3시간, 4000원입니다.');
 insert into theater values(2, '강남','서울','서울특별시 강남구 강남대로 438 (역삼동, 스타플렉스)','1544-1122','건물 지하2F ~ 지하4F# 주차요금- CGV 영화 관람 시 주차 3시간 6,000원');
@@ -427,11 +403,3 @@ create table service(
 	sv_Adate date,                       --답변일자
 	sv_state nvarchar2(50) not null      --답변상태
 );
-
-<<<<<<< HEAD
-create sequence sv_num increment by 1 start with 1;
-=======
-create sequence sv_num increment by 1 start with 1;
-
-select * from screen;
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
