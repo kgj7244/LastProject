@@ -12,22 +12,14 @@
 <%@include file="../mainNav.jsp" %>
 
 
-
-
 <div class="container" align="center">
-
 <div align="left"><h3>구매상품 정보</h3> </div>
 
-
-<form action="order.do" method="post" name="frm"
- enctype="multipart/form-data">
+<form action="order.do" method="post" name="frm" enctype="multipart/form-data">
 
 <input type ="hidden" name = "s_num" value = "${store.s_num }">
 <input type ="hidden" name = "member_id" value = "${member.member_id }">
-<%-- <input type ="hidden" name = "s_Pname" value = "${store.s_Pname }">
-<input type ="hidden" name = "s_Pimage" value = "${store.s_Pimage }">
-<input type ="hidden" name = "s_prive" value = "${store.s_prive }">
-<input type ="hidden" name = "s_purchase" value = "${s_purchase}"> --%>
+<input type ="hidden" name = "s_purchase" value = "${ord.s_purchase }">
 
 
 <table class="table" style="width: 1000px; height: 150px; ">
@@ -48,18 +40,19 @@
   ${ store.s_Pname }</td>
           
             <td>${ store.s_prive }</td>
-            <td>${s_purchase}</td>
-            <td>${ store.s_prive * s_purchase }</td>
+            <td>${ord.s_purchase}</td>
+            <td>${store.s_prive * ord.s_purchase }</td>
         </tr>
         
       <tr>
         <td colspan="4">총 결제 예정금액</td>
-        <td>${total+(s_prive*s_purchase)}</td>
-	 </tr>
+        <td><input type="text" name = "full_price" value="${store.s_prive * ord.s_purchase }">
+        </td></tr>
 	 
-    
 
   </tbody>
+
+  
   <tfoot>
    <tr>
       <td>주문자 정보 확인</td>
@@ -70,19 +63,36 @@
         
     </tr>
     
+    
+ <!-- ====================================== -->     
    <tr>
-      <td>결제 수단</td>
-     <td>계좌이체</td>
-    </tr>
-  
+   <td>결제 수단</td>         
+   <td><input type="radio" name="t_deal" value="휴대폰 결제">휴대폰 결제</td> 
+   <td><input type="radio" name="t_deal" value="계좌이체">계좌이체</td>  
+   </tr>
    
+<c:if test="${t_deal=='휴대폰 결제'}">		
+   <td>생년월일</td>   
+  <td><input type="text" name="member_birth" value="${ member.member_birth }" required="required"></td>
+</c:if>
+ 
+ 
+  <tr>  
+   <td>입금액 <input type="text" name="t_price" value="${store.s_prive * ord.s_purchase }"  ></td>
+  </tr>   
+   
+  <tr>  
+   <td>입금계좌<input type="text" name="aam_account" value="${ aam_bank.aam_account }" readonly></td>
+   <td>은행 <input type="text" name="bank_name" value="${ aam_bank.bank_name }" readonly ></td>
+   <td>이름 <input type="text" name="aam_name" value="${ aam_bank.aam_name }" readonly></td>
+  </tr>    
+    
   </tfoot>
 </table>
 
 
 
-<!-- ======================================
-    <input name="id" type="hidden" value="${ ord_num }" type="hidden" /> -->  
+<!-- ====================================== -->  
     <button type="submit">구매하기</button>
 </form>
 </div>

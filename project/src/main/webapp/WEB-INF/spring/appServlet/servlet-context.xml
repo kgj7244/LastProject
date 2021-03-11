@@ -38,6 +38,8 @@
 			<mapping path="/boardInsertForm.do"/>
 			<mapping path="/boardUpdateForm.do"/>
 			<mapping path="/boardDelete.do"/>
+			<mapping path="/eventForm.do"/>
+			<mapping path="/orderList.do"/>
 			
 			<beans:ref bean="sc"/>
 		</interceptor>

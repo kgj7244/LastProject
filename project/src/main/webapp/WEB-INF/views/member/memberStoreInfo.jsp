@@ -14,19 +14,23 @@
 
 <div class="container" align="center">
 	
-	<form action="memberStoreRefund.do" method="post">
+	<form action="memberStoreRefund.do" method="post" enctype="multipart/form-data">
 	
-	<input type="hidden" name="s_sum" value="${store.s_sum}">
+	<input type="hidden" name="s_num" value="${store.s_num}">
+	<input type ="hidden" name = "member_id" value = "${member.member_id }">
+	<input type ="hidden" name = "ord_num" value = "${ord.ord_num }">
 	
 	<div align="left"><h2>${store.s_Pname }</h2> </div>
+	
+	
 	
 	<div style="width:50%; float:left;">
 	 <div><img src="resources/images/s_pop/${store.s_Pimage}" height="200"></div>
 	</div>
 	
 <!-- ====================================== -->  
-<div style="width:50%; float:right;">
-<table>
+		<div style="width:50%; float:right;">
+		<table>
 
 
 <tr><th>
@@ -38,14 +42,18 @@
 </tr>
 
 <tr>
-<th>유효기간</th>
-<%-- td>${ord.s_validity}</td> --%>
-</tr>
+<th>주문번호</th>
+<td>${ord.ord_num}</td> 
 
-<tr><td>
-<c:if test="${ord.s_validity-sysdate<0}">
- <td>유효기간이 지났을 경우 환불 할 수 없습니다.</td>
- </c:if>
+<th>유효기간</th>
+<td>${ord.s_validity}</td> 
+
+
+<th>총액</th>
+<td>${ord.full_price}</td> 
+</tr>
+ 
+ <tr><td>
   <input type="submit" value="환불요청">
 
 

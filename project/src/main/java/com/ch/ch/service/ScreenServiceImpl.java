@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.ch.dao.ScreenDao;
+import com.ch.ch.model.Event;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
@@ -72,6 +73,12 @@ public class ScreenServiceImpl implements ScreenService{
 	}
 	public List<MovieTheater> mTheater(int t_num) {
 		return sd.mTheater(t_num);
+	}
+	public int insertEvent(Event event) {
+		return sd.insertEvent(event);
+	}
+	public List<Event> eventList() {
+		return sd.eventList();
 	}
 
 }

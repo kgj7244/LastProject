@@ -3,6 +3,7 @@ package com.ch.ch.dao;
 import java.sql.Date;
 import java.util.List;
 
+import com.ch.ch.model.Event;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
@@ -46,5 +47,9 @@ public interface ScreenDao {
 	Theater selectTheater(String t_title);
 
 	List<MovieTheater> mTheater(int t_num);
+
+	int insertEvent(Event event);
+
+	List<Event> eventList();
 
 }

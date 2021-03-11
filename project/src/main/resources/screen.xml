@@ -21,7 +21,7 @@
 		<!-- select s.*, m.mt_name, nvl(seatCount,0) 
 		from screen s, movieTheater m, (select sc_num, count(*) seatCount from seat group by sc_num) ct 
 		where s.mt_num = m.mt_num and s.t_num = #{theater_num} and s.sc_num = ct.sc_num and s.m_num = #{movie_num} and s.sc_date = #{sc_date} and s.sc_del = 'n' order by s.sc_start -->
-		select s.sc_num, s.sc_date, s.sc_start, s.sc_end, s.t_num, s.mt_num, s.m_num, m.mt_name mt_name, nvl(ct.cnt,0) cnt
+		select s.sc_num, s.sc_date, s.sc_start, s.sc_end, s.t_num, s.mt_num, s.m_num, m.mt_name, mt_name, nvl(ct.cnt,0) cnt
 		from screen s, movieTheater m, (select sc_num, count(*) cnt from seat group by sc_num) ct 
 		where s.mt_num = m.mt_num and s.t_num = #{theater_num} and s.sc_num = ct.sc_num(+) and s.m_num = #{movie_num} and s.sc_date = #{sc_date} and s.sc_del = 'n' 
         order by s.sc_start
@@ -80,6 +80,14 @@
 	</select>
 	<select id="mTheater" parameterType="integer" resultType="movieTheater">
 	    select * from movieTheater where t_num =#{t_num} order by mt_name
+	</select>
+	
+	<!-- 이벤트 -->
+	<insert id="insertEvent" parameterType="event">
+		insert into event values (e_num.nextval , #{e_title}, #{e_state}, #{e_sale},#{e_poster},'n')
+	</insert>
+	<select id="eventList" resultType="event">
+		select * from event order by e_num
 	</select>
 	
 </mapper>

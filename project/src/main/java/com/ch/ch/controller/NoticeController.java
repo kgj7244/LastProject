@@ -23,7 +23,7 @@ public class NoticeController {
 	public String noticeList(String pageNum, Notice notice, Model model) {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = ns.getTotal(notice);
+		int total = ns.getNtotal(notice);
 		int rowPerPage= 10;
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;

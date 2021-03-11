@@ -29,7 +29,7 @@
 					<div>관람권 및 할인 적용</div>
 					<div>
 						<select class="form-control">
-						    <option>포인트/쿠폰</option>
+						    <option>포인트/쿠폰</option> <!-- 교안에 첫번쨰껀 선택 못하게 하는기능있음 나머진 for문으로 돌림 -->
 						    <option>2</option>
 						    <option>3</option>
 						    <option>4</option>
@@ -46,16 +46,7 @@
 						</select>
 					</div>
 					<div>
-						<select class="form-control">
-						    <option>제휴포인트</option>
-						    <option>2</option>
-						    <option>3</option>
-						    <option>4</option>
-						    <option>5</option>
-						</select>
-					</div>
-					<div>
-						<div>결제수단선택</div>
+						<div style="height: 20px;">결제수단선택</div>
 					</div>
 					<table class="table table-bordered">
 						<tr>
@@ -70,7 +61,13 @@
 							<td>
 								카드사 선택 
 								<select>
-									<option>카드선택
+									<option>신한카드</option>
+									<option>KB국민카드</option>
+									<option>우리카드</option>
+									<option>하나카드</option>
+									<option>롯데카드</option>
+									<option>삼성카드</option>
+									<option>현대카드</option>
 								</select>
 							</td>
 						</tr>
@@ -82,7 +79,7 @@
 							<td width="20%" rowspan="3" align="center">
 								<img alt="이미지 뜨는 창입니다." src="resources/images/m_poster/${movie.m_poster}" height="200px;" width="150px;">
 							</td>
-							<td width="5%" style="vertical-align:middle;">
+							<td width="5%" height="20%" style="vertical-align:middle;">
 								<c:choose>
 									<c:when test="${movie.m_rank == '전 연령'}">
 										<img alt="안보여" src="resources/images/m_rank/전체.png" height="30px" width="30px" >
@@ -111,7 +108,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" style="color:white;">
-								<div>성인(${adult_ticket}개)
+								<div>성인(${adult_ticket}명)
 									<c:if test="${adult_ticket>0}">
 										<fmt:formatNumber value="${adult_ticket * 11000}" pattern="#,000"></fmt:formatNumber>원
 									</c:if>
@@ -120,7 +117,7 @@
 									</c:if>
 								</div>
 								<div>
-									청소년(${youth_ticket}개)
+									청소년(${youth_ticket}명)
 									<c:if test="${youth_ticket>0}">
 										<fmt:formatNumber value="${youth_ticket * 8000}" pattern="#,000"></fmt:formatNumber>원
 									</c:if>

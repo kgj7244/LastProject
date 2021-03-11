@@ -16,6 +16,7 @@
 		<typeAlias alias="movieTheater" type="com.ch.ch.model.MovieTheater" />
 		<typeAlias alias="seat" type="com.ch.ch.model.Seat" />
 		<typeAlias alias="ord" type="com.ch.ch.model.Ord" />
+		<typeAlias alias="event" type="com.ch.ch.model.Event" />
 		<typeAlias alias="reBoard" type="com.ch.ch.model.ReBoard" />
 		<typeAlias alias="notice" type="com.ch.ch.model.Notice" />
 	</typeAliases>

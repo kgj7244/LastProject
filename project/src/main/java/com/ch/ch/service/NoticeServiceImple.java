@@ -13,8 +13,8 @@ public class NoticeServiceImple implements NoticeService {
 	@Autowired
 	private NoticeDao nd;
 
-	public int getTotal(Notice notice) {
-		return nd.getTotal(notice);
+	public int getNtotal(Notice notice) {
+		return nd.getNtotal(notice);
 	}
 
 	public List<Notice> list(Notice notice) {

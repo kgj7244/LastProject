@@ -18,4 +18,6 @@ public class Ord {
 	private String del;		//환불여부
 
 	private String t_account; //입금 (거래번호
+	
+	private String s_Pname;
 }

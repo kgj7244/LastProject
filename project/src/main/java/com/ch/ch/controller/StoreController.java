@@ -4,6 +4,7 @@ package com.ch.ch.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ch.ch.model.Store;
+import com.ch.ch.model.Member;
 import com.ch.ch.model.Ord;
+import com.ch.ch.model.Store;
+import com.ch.ch.service.MemberService;
 import com.ch.ch.service.StoreService;
 
 
@@ -22,6 +25,8 @@ import com.ch.ch.service.StoreService;
 public class StoreController {
 	@Autowired
 	private StoreService ss;
+	@Autowired
+	private MemberService ms;
 	
 	
 	//스토어 메인
@@ -77,7 +82,7 @@ public class StoreController {
 	
 	@RequestMapping("storeUpload")
 	public String storeUpload(Store store,Model model,HttpSession session) throws IOException {
-	
+	System.out.println("1");
 		String s_Pimage = store.getFile().getOriginalFilename();
 		
 		if (s_Pimage != null && !s_Pimage.equals("")) {			
@@ -127,158 +132,107 @@ public class StoreController {
 					
 		return "store/storeContent";
 	}
-//	//상품 상세
-//	@RequestMapping("storeContent")
-//	public String storeContent(int s_num,Model model,String s_purchase){
-//		Store store = ss.select(s_num);
-//		int s_purchase1=0;
-//		
-//		List<Store> list = ss.list();
-//		int total = 0;
-//		for(Store store1:list) {
-//			total+=store1.getS_prive()*s_purchase1;
-//		}
-//		
-//		model.addAttribute("store", store);				
-//		model.addAttribute("total", total);				
-//		return "store/storeContent";
-//	}
 	
 	//주문페이지로
 	@RequestMapping("orderList")
-	public String orderList( int s_num,Model model,int s_purchase,HttpSession session)throws IOException {
+	public String orderList(Ord ord,Model model,HttpSession session)throws IOException {
 		String member_id = (String)session.getAttribute("member_id");
 		
-		Store store = ss.select(s_num);
-	
-//		int result=0;
-//		Ord ord = new Ord();
-//		ord.setS_num(s_num);
-//		ord.setS_purchase(s_purchase);
-//		
-//		result=ss.insertOrd(ord);
-//	
-//	
-//		model.addAttribute("result", result);	
+		Member member = ms.select(member_id);	
+		Store store = ss.select(ord.getS_num());
 		
+		Date date = new Date(System.currentTimeMillis());
+		Date date1 = new Date(System.currentTimeMillis());
+		date1.setYear(date.getYear()+1);
+		
+		ord.setBuy_date(date);
+		ord.setS_validity(date1);
+		
+		ord.setFull_price(store.getS_prive() *ord.getS_purchase());
+
+				
+		model.addAttribute("ord", ord);		
 		model.addAttribute("store", store);	
+		model.addAttribute("member", member);	
 		
 	
 
 		return "store/orderList";
 	}
 	
-	
-	//주문페이지로 
-//	@RequestMapping("orderList")
-//	public String orderList(int s_num,Model model,int s_purchase) {
-//		Store store = ss.select(s_num);
-//		List<Ord> ordlist = ss.ordlist(s_num);	
-//		
-//		int result=0;
-//		
-//		
-//		store.setS_num(s_num);		
-//		
-//		
-//		model.addAttribute("store", store);	
-//		model.addAttribute("ordlist", ordlist);	
-//		
-//		return "store/orderList";
-//	}
-	
-	
-	
-	//결제 진행
-	@RequestMapping("order")
-	public String order(int s_num, Model model,int s_purchase,HttpSession session) {
-		
-		Store store = ss.select(s_num);
-		model.addAttribute("store", store);	
-		
-		
-				
-		
-		return "store/order";
-	}
-	
-	//주문
-//	@RequestMapping("order")
-//	public String order(Model model,HttpSession session)throws IOException  {
-//	String member_id = (String)session.getAttribute("member_id"); 
-	
-	
-//		ord = ss.insertOrd(member_id,s_num)
-//		
-//		int result = ss.insertOrd(ord);
-//		
-//		model.addAttribute("ord", ord);	
-//		model.addAttribute("result", result);
-//		return "store/order";
-//	}
-	
-	//구매 리스트에 추가
-//	@RequestMapping("memberStoreInsert")
-//	public String o(Model model,String full_price) {
-//		Store store = ss.select(s_num);
-//			
-//		
-//		model.addAttribute("store", store);	
-//		model.addAttribute("store", store);	
-//		
-//		
-//		model.addAttribute("store", store);	
-//		model.addAttribute("s_purchase", s_purchase);	
-//		model.addAttribute("full_price", full_price);	
-//		
-//		
-//		model.addAttribute("ord", ord);	
-//		return "store/OK";
-//	}
+	//결제 진행 
+		@RequestMapping("order")
+		public String order(Ord ord,Model model,HttpSession session)throws IOException {	
+			String member_id = (String)session.getAttribute("member_id");
+			Member member = ms.select(member_id);
+			
+			int result = 0;
+			Ord or = ss.select_ord(ord.getOrd_num());
+			
+			Store store = ss.select(ord.getS_num());		
+			Date date = new Date(System.currentTimeMillis());
+			Date date1 = new Date(System.currentTimeMillis());
+			date1.setYear(date.getYear()+1);		
+			ord.setBuy_date(date);
+			ord.setS_validity(date1);		
+			ord.setFull_price(store.getS_prive() *ord.getS_purchase());
+			
+			
+			
+			if (or == null) {
+				result = ss.insertOrd(ord);
+			} else {
+				result = -1;
+			}
+			model.addAttribute("result", result);
+			model.addAttribute("ord", ord);
+			model.addAttribute("member", member);	
+			
+			return "store/order";
+		}
+
 	
 
 	
-	
-	
-	
-	//구매 목록 넘겨주기만
+	//구매 목록
 	@RequestMapping("memberStore") 
 	public String memberStore(Model model, HttpSession session) {
 		String member_id = (String)session.getAttribute("member_id");
-		List<Ord> ord = ss.memberStore(member_id); 
 		
+		List<Ord> ord = ss.memberStore(member_id);
 		
-		model.addAttribute("ord", ord);	
+		model.addAttribute("ord", ord);			
 		return "/member/memberStore";
 	}
+	//구매 상품 상세
 	@RequestMapping("memberStoreInfo") 
-	public String memberStoreInfo(int s_num, Model model) {
+	public String memberStoreInfo(int s_num,Ord ord,Model model,HttpSession session)throws IOException {
+		String member_id = (String)session.getAttribute("member_id");
+		
+	
+		Store store = ss.select(ord.getS_num());
+		Store ss1=ss.select(s_num);
 		
 		
-		Store store =ss.select(s_num);
 		
+		Member member = ms.select(member_id);	
+	
 		
-		model.addAttribute("store", store);	
+		System.out.println(ord.getOrd_num());
+		System.out.println(ord.getMember_id());	
+		System.out.println(ord.getFull_price());		
+		System.out.println("들어갑시다");	
+	
+		
+		model.addAttribute("ord", ord);
+		model.addAttribute("store", store);
+		model.addAttribute("member", member);	
 		
 		return "/member/memberStoreInfo";
 	}
 	
 	
-//	@RequestMapping("memberStore") 
-//	public String memberStore(int s_num,Model model, HttpSession session) {
-//		String member_id = (String)session.getAttribute("member_id");
-//		List<Ord> ord = ss.memberStore(member_id); 
-//		
-//		
-//		Store store=ss.select(s_num);
-//		List<Ord> ordlist = ss.ordlist(s_num); 
-//	
-//		model.addAttribute("store", store);		
-//		model.addAttribute("ord", ord);	
-//		model.addAttribute("ordlist", ordlist);	
-//		return "/member/memberStore";
-//	}
-//	
+	
 		
 	}
 
