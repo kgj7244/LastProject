@@ -379,7 +379,3 @@ create table service(
 create sequence sv_num increment by 1 start with 1;
 
 select * from screen;
-select s.sc_num, s.sc_date, s.sc_start, s.sc_end, s.t_num, s.mt_num, s.m_num, m.mt_name, nvl(ct.cnt,0) cnt
-		from screen s, movieTheater m, (select sc_num, count(*) cnt from seat group by sc_num) ct 
-		where s.mt_num = m.mt_num and s.t_num = 4 and s.sc_num = ct.sc_num(+) and s.m_num = 5 and s.sc_date = '2021-03-11' and s.sc_del = 'n' 
-        order by s.sc_start
