@@ -6,7 +6,7 @@ import com.ch.ch.model.Notice;
 
 public interface NoticeDao {
 
-	int getTotal(Notice notice);
+	int getNtotal(Notice notice);
 
 	List<Notice> list(Notice notice);
 
@@ -17,5 +17,6 @@ public interface NoticeDao {
 	int update(Notice notice);
 
 	int delete(int n_num);
+
 
 }

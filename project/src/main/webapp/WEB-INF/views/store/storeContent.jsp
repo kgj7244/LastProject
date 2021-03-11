@@ -8,13 +8,6 @@
 <title>상품 상세</title>
  <script type="text/javascript">
  
- 
- function total(s_prive, s_purchase) {
-	var total = s_prive*s_purchase;
-	 
- }
-	
-
 	</script>
 </head>
 <body> 
@@ -62,7 +55,6 @@
 
 <tr>
 <th>총 상품금액</th>
-
 <td>${full_price+(store.s_prive*s_purchase)}원</td>
 </tr>
 

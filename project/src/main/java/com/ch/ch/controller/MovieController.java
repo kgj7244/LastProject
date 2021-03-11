@@ -34,10 +34,56 @@ public class MovieController {
 	
 	//영화 메인
 	@RequestMapping("movieMainForm")
+<<<<<<< HEAD
 	public String movieMainForm(String pageNum, Movie movie, Model model, String m_state, String test) {
-		
+=======
+	public String movieMainForm(String pageNum, Movie movie, Model model) {
+		model.addAttribute("movie", movie);
+		model.addAttribute("pageNum", pageNum);
+
 		return "movie/movieMainForm";
 	}
+	@RequestMapping(value = "movieList")
+	public String movieList(Movie movie, Model model, String pageNum, String m_ing) {
+		if(movie.getM_ing() == null || movie.getM_ing().equals("") || movie.getM_ing().equals("0")) {
+			movie.setM_ing("0");
+		}else {
+			movie.setM_ing("1");
+		}
+		if (pageNum == null || pageNum.equals("") || pageNum.equals("0")) {
+			pageNum = "1";
+		}
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+		
+<<<<<<< HEAD
+		return "movie/movieMainForm";
+	}
+=======
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 4;
+		int total = ms.getTotal(movie);
+		if(total <= 4 && movie.getM_ing().equals("1")) {
+			
+			pageNum="1";
+		}
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		
+		movie.setStartRow(startRow);
+		movie.setEndRow(endRow);
+
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
+		List<Movie> movieList = ms.moviePage(movie);
+		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("movie", movie);
+		model.addAttribute("pb", pb);
+		model.addAttribute("movieList", movieList);
+		
+		return "movie/movieList"; 
+	 }
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 	
 	//영화 목록 추가 작성 폼
 	@RequestMapping("movieInsertForm")
@@ -139,6 +185,10 @@ public class MovieController {
 		int hap = rvs.sum(review);
 		
 		double grade = hap/(double)tot;
+		
+		System.out.println("tot : " + tot);
+		System.out.println("hap : " + hap);
+		System.out.println("grade : " + grade);
 		
 		List<Stillcut> list = ms.listPhoto(m_num);
 		

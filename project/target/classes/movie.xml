@@ -22,7 +22,7 @@
 	<select id="list" resultMap="movieResult">
 		select * from movie
 			<where>
-			 	<if test="keyword!=null and keyword!=''">
+			 	<if test="keyword != null and keyword != ''">
 			 		m_title like '%'||#{keyword}||'%' 
 			 	</if>
 			 </where>
@@ -30,12 +30,20 @@
 	<select id="moviePage" parameterType="movie" resultType="movie">
 		select * from (select a.*, rownum rn from (select * from movie 
 			<where>
-			 	<if test="keyword!=null and keyword!=''">
+			 	<if test="keyword != null and keyword != ''">
 			 		m_title like '%'||#{keyword}||'%' 
+			 		   <if test="m_ing == 1">
+					  		 and  m_state = 2 or m_state = 1
+					 	</if>
 			 	</if>
-			 </where>
+			 	<if test="keyword == null or keyword == ''">				 		
+				 	<if test="m_ing == 1">
+				 		   m_state = 2 or m_state = 1
+				 	</if>					 	
+			 	</if>
+		    </where>
 		order by m_opendate desc)a) 
-			where rn between #{startRow} and #{endRow}
+			where rn between #{startRow} and #{endRow} 
 	</select>
 	<select id="select" parameterType="integer" resultType="movie">
 		select * from movie where m_num=#{m_num}
@@ -64,7 +72,20 @@
 		select * from stillcut where m_num=#{m_num} order by st_num
 	</select>
 	<select id="getTotal" parameterType="movie" resultType="integer">
-		select count(*) from movie
+		select count(*) from movie 
+			<where>
+			 	<if test="keyword != null and keyword != ''">
+			 		m_title like '%'||#{keyword}||'%' 
+			 		   <if test="m_ing == 1">
+					  		 and  m_state = 2 or m_state = 1
+					 	</if>
+			 	</if>
+			 	<if test="keyword == null or keyword == ''">				 		
+				 	<if test="m_ing == 1">
+				 		   m_state = 2 or m_state = 1
+				 	</if>					 	
+			 	</if>
+			 </where>
 	</select>
 	<select id="movieMainList" resultType="movie"> <!-- 희주 추가 메인 홈페이지 평점 기준으로 순서대로 출력 예정 -->
 		select * from movie order by m_genre desc
