@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+ function hey() {
+	 alert("환불할 경우 어쩌구");
+}
+
+</script>
+
+
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>
@@ -52,12 +60,22 @@
 <th>총액</th>
 <td>${ord.full_price}</td> 
 </tr>
+
+
+<th>거래방법</th>
+<td>${bank.t_deal}</td> 
  
- <tr><td>
-  <input type="submit" value="환불요청">
+
+ <c:if test="${ord.del=='n'}">	
+ <tr><td><input type="submit" onclick="hey()" value="환불요청"></td></tr>
+ </c:if>
 
 
-</td></tr>
+ 
+ <c:if test="${ord.del=='y'}">
+ <tr><td>환불된 상품입니다</td></tr>
+ </c:if>
+
 	
 </table>
 </div>

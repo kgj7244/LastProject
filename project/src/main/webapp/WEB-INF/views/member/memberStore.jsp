@@ -42,11 +42,15 @@
 						<td>~${ord.s_validity}</td>
 										
 						<td><input type="button" value="상세 정보" 
-						onclick='location.href="memberStoreInfo.jsp.do?ord_num=${ord.ord_num}&s_num=${ord.s_num}&s_validity=${ord.s_validity}"'>
+						onclick='location.href="memberStoreInfo.jsp.do?ord_num=${ord.ord_num}&s_num=${ord.s_num}"'>
 						</td>
-						
+			<!-- 		&s_num=${ord.s_num}&s_validity=${ord.s_validity}	 -->	
 						<c:if test="${ord.del=='n'}">						
 						<td>사용가능</td>
+						</c:if>
+						
+						<c:if test="${ord.del=='y'}">						
+						<td>불가능</td>
 						</c:if>
 						
 					</tr>
