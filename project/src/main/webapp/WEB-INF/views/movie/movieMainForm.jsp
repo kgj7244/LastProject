@@ -42,37 +42,36 @@
 				<input type="submit" value="검색">
 			</form>
        	</div>
-       	<div id="view"></div>
-		<div class="row" style="margin-top: 70px;">
+		<div class="row" style="margin-top: 70px; display: inline-block;">
 			<c:if test="${not empty movieList}">
 				<c:forEach var="movie" items="${movieList}">
-					<c:if test="${movie.m_state != '3'}">
-						<div class="col-sm-6 col-md-3">
-							<div class="thumbnail">
-					            <a href="movieView.do?m_num=${movie.m_num}">
-					                <img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="100px">
-					            </a>
-					            <div class="caption">
-					            	<div align="center">
-						            	<h4 style="font-weight: bold;">
-						            		<c:if test="${movie.m_rank.equals('전 연령')}"><img alt="전 연령" src="resources/images/m_rank/전체.png" height="22px" width="22px"></c:if>
-							                <c:if test="${movie.m_rank.equals('12세')}"><img alt="12세" src="resources/images/m_rank/12세.png" height="22px" width="22px"></c:if>
-							                <c:if test="${movie.m_rank.equals('15세')}"><img alt="15세" src="resources/images/m_rank/15세.png" height="22px" width="22px"></c:if>
-							                <c:if test="${movie.m_rank.equals('청불')}"><img alt="청불" src="resources/images/m_rank/청불.png" height="22px" width="22px"></c:if>        
-							            	<a href="movieView.do?m_num=${movie.m_num}" style="text-decoration: none">
-							            		<strong class="title" style="color: black;">${movie.m_title}</strong>
-							            	</a>
-							            </h4>
-					            	</div>
-					            	<p align="center" style="font-size: 15px;">${movie.m_opendate} / ${movie.m_grade}</p>
-									<div align="center">
-										<a class="btn btn-danger" style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle;" 
-											href="ticketMainForm.do">예매</a>
-									</div>
-					           	</div>
-					        </div>
-						</div>
-					</c:if>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+					    	<a href="movieView.do?m_num=${movie.m_num}">
+					        	<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}">
+					    	</a>
+					        <div class="caption">
+					        	<div align="center">
+						           	<h4 style="font-weight: bold;">
+						           		<c:if test="${movie.m_rank.equals('전 연령')}"><img alt="전 연령" src="resources/images/m_rank/전체.png" height="22px" width="22px"></c:if>
+							            <c:if test="${movie.m_rank.equals('12세')}"><img alt="12세" src="resources/images/m_rank/12세.png" height="22px" width="22px"></c:if>
+							            <c:if test="${movie.m_rank.equals('15세')}"><img alt="15세" src="resources/images/m_rank/15세.png" height="22px" width="22px"></c:if>
+							            <c:if test="${movie.m_rank.equals('청불')}"><img alt="청불" src="resources/images/m_rank/청불.png" height="22px" width="22px"></c:if>        
+							            <a href="movieView.do?m_num=${movie.m_num}" style="color:black; text-decoration: none;">${movie.m_title}</a>
+							        </h4>
+					          	</div>
+					            <p align="center" style="font-size: 15px;">${movie.m_opendate}
+					            	(<c:if test="${movie.m_state == '0'}">개봉예정</c:if>
+									<c:if test="${movie.m_state == '1'}">개봉</c:if>
+									<c:if test="${movie.m_state == '2'}">재개봉</c:if>
+									<c:if test="${movie.m_state == '3'}">상영종료</c:if>) / ${movie.m_grade}</p>
+								<div align="center">
+									<a class="btn btn-danger" style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 10px" 
+										href="ticketMainForm.do">예매</a>
+								</div>
+					       	</div>
+				        </div>
+					</div>
 				</c:forEach>
 			</c:if>
 		</div>

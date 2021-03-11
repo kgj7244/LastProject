@@ -30,7 +30,12 @@
 					<td>${movie.m_director}</td>
 					<td>${movie.m_genre}</td>
 					<td>${movie.m_opendate}</td>
-					<td>${movie.m_state}</td>
+					<td>
+						<c:if test="${movie.m_state == '0'}">개봉예정</c:if>
+						<c:if test="${movie.m_state == '1'}">개봉</c:if>
+						<c:if test="${movie.m_state == '2'}">재개봉</c:if>
+						<c:if test="${movie.m_state == '3'}">상영종료</c:if>
+					</td>
 					<td>
 						<a class="btn btn-warning btn-sm"
 							href="movieUpdateForm.do?m_num=${movie.m_num}">수정</a>

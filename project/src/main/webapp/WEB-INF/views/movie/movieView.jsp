@@ -16,15 +16,17 @@
 	.carousel-control { 
 		background: none !important;
         filter: none !important; 
-        progid:none !important;
+    	progid: none !important;
 	}
-	 .carousel-inner > .item > img {
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      height: 150px;
-  object-fit: cover;
-    } 
+	/* .carousel-inner > .item > img {
+    	object-fit: contain;
+    } */
+    .carousel-item img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: scale-down;
+    object-position: 50% 50%;
+}
 	.navbar-fixed-top  {
      -webkit-backface-visibility: hidden;
 	}
@@ -90,12 +92,12 @@
 			<a href="allMovieList.do">영화 전체 목록</a>
 		</c:if>
 	</div>
-	<div class="container" align="center">
-		<h2 class="text-primary">${movie.m_title}</h2>
+	<div class="container">
 		<c:set var="tot" value="${tot}"></c:set>
 		<c:set var="grade" value="${grade}"></c:set>
-		<div>
-			<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="200px"><br>
+		<div style="background-color: #151515;">
+			<h2 class="text-primary">${movie.m_title}</h2>
+			<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="400px"><br>
 			<c:choose>
 				<c:when test="${grade > 0}">
 					<fmt:formatNumber value="${grade}" pattern=".00"/>
@@ -134,16 +136,16 @@
 		</div>
 		<a name="stillcut" style="text-decoration: none;">
 		<h2 class="text-primary" style="color: black;">스틸컷</h2></a>
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-		    <div class="carousel-inner">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false" align="center">
+		    <div class="carousel-inner" role="listbox" style="width: 100%; height: 500px !important;">
 				<c:forEach var="st" items="${list}" begin="0" end="0">
 			        <div class="item active">	
-						<img alt="" src="resources/images/stillcut/${st.m_stillcut}">
+						<img alt="" src="resources/images/stillcut/${st.m_stillcut}" class="d-block">
 					 </div>
 				</c:forEach>
 				<c:forEach var="st" items="${list}" begin="1">
 			        <div class="item">
-						<img alt="" src="resources/images/stillcut/${st.m_stillcut}">
+						<img alt="" src="resources/images/stillcut/${st.m_stillcut}" class="d-block">
 					 </div>
 				</c:forEach>
 			    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
