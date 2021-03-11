@@ -63,20 +63,36 @@
         
     </tr>
     
+    
+ <!-- ====================================== -->     
    <tr>
-      <td>결제 수단</td>
-          
-   <td><input type="checkbox" name="t_deal" readonly  required="required">
-   	카카오뱅크
-   </td> </tr>
+   <td>결제 수단</td>         
+   <td><input type="radio" name="t_deal" value="휴대폰 결제">휴대폰 결제</td> 
+   <td><input type="radio" name="t_deal" value="계좌이체">계좌이체</td>  
+   </tr>
+   
+<c:if test="${t_deal=='휴대폰 결제'}">		
+   <td>생년월일</td>   
+  <td><input type="text" name="member_birth" value="${ member.member_birth }" required="required"></td>
+</c:if>
+ 
+ 
+  <tr>  
+   <td>입금액 <input type="text" name="t_price" value="${store.s_prive * ord.s_purchase }"  ></td>
+  </tr>   
+   
+  <tr>  
+   <td>입금계좌<input type="text" name="aam_account" value="${ aam_bank.aam_account }" readonly></td>
+   <td>은행 <input type="text" name="bank_name" value="${ aam_bank.bank_name }" readonly ></td>
+   <td>이름 <input type="text" name="aam_name" value="${ aam_bank.aam_name }" readonly></td>
+  </tr>    
     
   </tfoot>
 </table>
 
 
 
-<!-- ======================================
-    <input name="id" type="hidden" value="${ ord_num }" type="hidden" /> -->  
+<!-- ====================================== -->  
     <button type="submit">구매하기</button>
 </form>
 </div>

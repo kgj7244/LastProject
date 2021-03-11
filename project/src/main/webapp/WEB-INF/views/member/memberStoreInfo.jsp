@@ -22,6 +22,8 @@
 	
 	<div align="left"><h2>${store.s_Pname }</h2> </div>
 	
+	
+	
 	<div style="width:50%; float:left;">
 	 <div><img src="resources/images/s_pop/${store.s_Pimage}" height="200"></div>
 	</div>
@@ -45,8 +47,11 @@
 
 <th>유효기간</th>
 <td>${ord.s_validity}</td> 
+
+
+<th>총액</th>
+<td>${ord.full_price}</td> 
 </tr>
- 
  
  <tr><td>
   <input type="submit" value="환불요청">

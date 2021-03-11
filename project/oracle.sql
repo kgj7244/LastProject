@@ -277,7 +277,6 @@ create table ticket(
 create sequence t_ordernum increment by 1 start with 1;
 
 --------------------------------------관리자계좌
-
 create table aam_bank(
 	aam_account nvarchar2(50) primary key not null,     --계좌번호
 	bank_name nvarchar2(50) not null,   				--은행이름
@@ -289,8 +288,8 @@ insert into aam_bank values('565-278311-02-001','우리은행','김희주');
 
 create table bank(
 	t_account nvarchar2(50) primary key not null,               --입금번호
-	t_date date not null,                                       --입금일	
-	t_price number not null,                                    --금액
+	t_date date not null,                                       --#입금일	
+	t_price number not null,                                    --#금액
 	t_deal nvarchar2(50) not null,                              --거래방법
 	member_id nvarchar2(50) references member(member_id),       --아이디
 	aam_account nvarchar2(50) references aam_bank(aam_account), --관리자계좌
@@ -298,7 +297,6 @@ create table bank(
 );
 create sequence t_account increment by 1 start with 1;
 
-insert into bank values(1,sysdate,'10000','휴대폰','q1','565-278311-02-001',null);
 --------------------------------------스토어
 select * from store;
 drop table store CASCADE CONSTRAINTS;
@@ -361,8 +359,6 @@ drop sequence ord_num;
 --	, t_account varchar2(50) references bank(t_account) not null --입금번호
 
 create sequence ord_num increment by 1 start with 1;
-
-insert into ord values(2,'q1','4',3,2000,'2021-03-02','2021-04-02','y','n');
 
 -----------------------------------------고객센터(미완성)
 create table service(
