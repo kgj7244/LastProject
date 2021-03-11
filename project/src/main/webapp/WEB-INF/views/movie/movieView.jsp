@@ -13,20 +13,16 @@
 		top:0;
 		background-color: white;
 	}
-	.carousel-control { 
+	.carousel {
+		height: 400px;
+	}
+   	.carousel-control {
+   		height: 400px;
 		background: none !important;
         filter: none !important; 
     	progid: none !important;
 	}
-	/* .carousel-inner > .item > img {
-    	object-fit: contain;
-    } */
-    .carousel-item img {
-    width: 100vw;
-    height: 100vh;
-    object-fit: scale-down;
-    object-position: 50% 50%;
-}
+	
 	.navbar-fixed-top  {
      -webkit-backface-visibility: hidden;
 	}
@@ -96,8 +92,8 @@
 		<c:set var="tot" value="${tot}"></c:set>
 		<c:set var="grade" value="${grade}"></c:set>
 		<div style="background-color: #151515;">
-			<h2 class="text-primary">${movie.m_title}</h2>
-			<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="400px"><br>
+			<h2 class="text-primary" style="color: white;">${movie.m_title}</h2>
+			<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="400px">
 			<c:choose>
 				<c:when test="${grade > 0}">
 					<fmt:formatNumber value="${grade}" pattern=".00"/>
