@@ -76,7 +76,7 @@
 											<button class="btn btn-danger btn-sm">답변완료</button>
 										</c:if></td>
 								</c:if>
-								<c:if test="${member_id != 'master' }">
+								<c:if test="${member_id != 'master'}">
 									<td title="${board.b_content }"><span
 										class="glyphicon glyphicon-lock"></span> <a
 										href="boardViewForm.do?b_num=${board.b_num }&pageNum=${pb.currentPage}">${board.b_title }</a>
