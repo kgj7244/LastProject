@@ -34,9 +34,6 @@ public class MovieController {
 	
 	//영화 메인
 	@RequestMapping("movieMainForm")
-<<<<<<< HEAD
-	public String movieMainForm(String pageNum, Movie movie, Model model, String m_state, String test) {
-=======
 	public String movieMainForm(String pageNum, Movie movie, Model model) {
 		model.addAttribute("movie", movie);
 		model.addAttribute("pageNum", pageNum);
@@ -53,12 +50,6 @@ public class MovieController {
 		if (pageNum == null || pageNum.equals("") || pageNum.equals("0")) {
 			pageNum = "1";
 		}
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
-		
-<<<<<<< HEAD
-		return "movie/movieMainForm";
-	}
-=======
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 4;
 		int total = ms.getTotal(movie);
@@ -83,7 +74,6 @@ public class MovieController {
 		
 		return "movie/movieList"; 
 	 }
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 	
 	//영화 목록 추가 작성 폼
 	@RequestMapping("movieInsertForm")
