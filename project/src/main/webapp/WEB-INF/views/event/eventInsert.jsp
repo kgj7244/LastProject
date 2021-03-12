@@ -10,12 +10,14 @@
 <body>
 <c:if test="${result >0}">
 	<script type="text/javascript">
-		alert('성공');
+		alert('이벤트 상품에 추가 되었습니다.');
+		location.href="eventInsertForm.do";
 	</script>
 </c:if>
 <c:if test="${result ==0}">
 	<script type="text/javascript">
-		alert('실패');
+		alert('이벤트 상품에 실패 하였습니다.');
+		history.back();
 	</script>
 </c:if>
 

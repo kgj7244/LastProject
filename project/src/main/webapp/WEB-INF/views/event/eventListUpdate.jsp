@@ -11,16 +11,17 @@
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
-	<h2>운영자가 관리해주는 이벤트</h2><a href="eventListUpdate" class="btn btn-info">이벤트 수정 / 삭제</a>
+	<h2>이벤트 수정 및 삭제</h2>
 	<form>
 		<table class="table table-bordered">
 			<tr>
 				<th>번호</th>
-				<th>아이디</th>
-				<th>상태</th>
-				<th>이벤트번호</th>
-				<th>쿠폰발급</th>
-				<th>취소</th>
+				<th>이벤트제목</th>
+				<th>이벤트종류</th>
+				<th>할인금액</th>
+				<th>삭제여부</th>
+				<th>수정</th>
+				<th>삭제</th>
 			</tr>
 			<c:if test="${empty event_overList}">
 				<td colspan="6" align="center">이벤트 이용하는 사람이 없습니다.</td>
