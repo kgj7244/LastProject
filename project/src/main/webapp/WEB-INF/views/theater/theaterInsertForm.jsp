@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	function TLocChk() {
 		if(!frm.t_loc.value || !frm.t_title.value){
-			alert("중복체크를 해주세요.");
+			alert("모든 정보를 입력해주세요.");
 			frm.t_loc.focus();
 			return false;
 		}

@@ -25,7 +25,7 @@
 			var date2 = today.getDate();
 			//doc += "<span>" + year2 + "<br>";
 			//doc += "<span>월 : " + month2 + "<br>";
-			doc += "<span>" + date2 +"일" +"</span>";
+			doc += "<span>" + date2 +"일" +"\n"+"</span>";
 		}
 		$("#disp-date").html(doc);
 	}
@@ -76,15 +76,16 @@
 				<a href="theaterInsertForm.do">극장 추가</a>
 				<a href="movieTheaterInsertForm.do">상영관 추가</a>
 			</c:if>
-	<hr>		
-		<table class="table table-bordered"  style="border-color:black; width: 1200px; height: 500px; align-items: center;">
+	<hr>	
+	
+		<table class="table table-bordered"  style="border-color:black; width: 1150px; height: 500px; align-items: center;">
 			<tr>
 				<td title="영화별 선택" width="10%" align="center" id="movie">
 					<input type="button" value="영화별">
 				</td>
 				<td rowspan="2" width="60%" id="disp-choice-movie"></td>
 				<!-- 추가할 부분 이미지 뜨게 만들기 -->
-				<td rowspan="2" width="30%" id="disp-poster">${movie.m_poster}</td>
+				<td rowspan="2" width="30%" id="disp-poster"></td>
 			</tr>
 			<tr>
 				<td id="theater" title="극장별 선택" align="center">
@@ -95,13 +96,11 @@
 		</table>
 
 		<!-- 상영시간표 상세  -->
-		<table class="table table-hover table-bordered" id="showtime">
-			<tr>
-				<td colspan="3">
-					<span id="disp-date"></span>
-				</td>
+		<table class="table table-hover table-bordered" id="showtime" style="border-color:black; width: 1150px; height: 1000px; align-items: center;">
+			<tr height="100px">
+				<td colspan="3"><span id="disp-date" ></span></td>
 			</tr>
-			<tr>
+			<tr height="100px">
 			<c:forEach var="theater" items="${showLocList }">
 				<td align="center">
 					<input type="button" value="${theater.t_loc }" onclick="timeLocChk('${theater.t_loc}')">
