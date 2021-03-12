@@ -35,10 +35,10 @@
 					<td><a href="allMovieList.do" class="btn btn-default">영화목록</a></td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn btn-default">극장추가</a></td>
+					<td><a href="theaterInsertForm.do" class="btn btn-default">극장추가</a></td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn btn-default">상영관추가</a></td>
+					<td><a href="movieTheaterInsertForm.do" class="btn btn-default">상영관추가</a></td>
 				</tr>
 				<tr>
 					<td><a href="screenInsertForm.do" class="btn btn-default">상영추가</a></td>

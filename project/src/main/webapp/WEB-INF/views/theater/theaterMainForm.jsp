@@ -54,8 +54,6 @@
 			$('#disp-showTimeList').html(data);
 		});
 	}
-	/* 영화 제목 클릭시 포스터 보여주기  */
-
 </script>
 <style type="text/css">
 	#disp-date span {
