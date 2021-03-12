@@ -213,7 +213,7 @@
 		<input type="hidden" name="m_title" value="${movie.m_title}">
 		<input type="hidden" name="t_title" value="${theater.t_title}">
 		<input type="hidden" name="mt_num2" value="${mt_num}">
-		<input type="text" name="mt_name" value="${mt_name}">
+		<input type="hidden" name="mt_name" value="${mt_name}">
 		<input type="hidden" name="sc_num2" value="${sc_num}">
 		<input type="hidden" name="selectList1">
 		<input type="hidden" name="seat12" value="${st_name}">

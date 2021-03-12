@@ -33,12 +33,12 @@
 			 	<if test="keyword != null and keyword != ''">
 			 		m_title like '%'||#{keyword}||'%' 
 			 		<if test="m_ing == 1">
-				  		and m_state = '개봉'
+				  		and m_state = '1'
 				 	</if>
 			 	</if>
 			 	<if test="keyword == null or keyword == ''">				 		
 				 	<if test="m_ing == 1">
-				 		m_state = '개봉'
+				 		m_state = '1'
 				 	</if>					 	
 			 	</if>
 			</where>
@@ -77,12 +77,12 @@
 			 	<if test="keyword != null and keyword != ''">
 			 		m_title like '%'||#{keyword}||'%' 
 			 		<if test="m_ing == 1">
-				  		and m_state = '개봉'
+				  		and m_state = '1'
 				 	</if>
 			 	</if>
 			 	<if test="keyword == null or keyword == ''">				 		
 				 	<if test="m_ing == 1">
-				 		m_state = '개봉'
+				 		m_state = '1'
 				 	</if>					 	
 			 	</if>
 			</where>

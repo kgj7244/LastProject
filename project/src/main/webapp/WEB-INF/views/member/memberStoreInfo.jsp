@@ -7,12 +7,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
- function hey() {
-	 alert("환불할 경우 어쩌구");
-}
+ function hey() { 
+	 alert("환불 시 결제상품을 이용할 수 없습니다.");
+			 
+	/* var con = confirm("환불 시 결제상품을 이용할 수 없습니다. 환불하시겠습니까?");
+		if (con)
+			 document.form.submit();
+		else{  
+			alert("취소되었습니다");
+			location.reload()
+		    return;
+		}  */
+ }
+ </script>
+<!-- /*  function hey() { 
+	if (confirm("환불 시 결제상품을 이용할 수 없습니다. 환불하시겠습니까?") == true){ 
+		    document.form.submit();
+		}else{  alert("취소되었습니다"); history.go(-1);
+		    return;
+		} 
 
-</script>
-
+ */
+ -->
 
 </head>
 <body>
@@ -22,8 +38,9 @@
 
 <div class="container" align="center">
 	
-	<form action="memberStoreRefund.do" method="post" enctype="multipart/form-data">
+<!-- 	<form action="memberStoreRefund.do" method="post" enctype="multipart/form-data"> -->
 	
+<form action="memberStoreRefund.do" method="post" enctype="multipart/form-data"> 
 	<input type="hidden" name="s_num" value="${store.s_num}">
 	<input type ="hidden" name = "member_id" value = "${member.member_id }">
 	<input type ="hidden" name = "ord_num" value = "${ord.ord_num }">
@@ -40,9 +57,10 @@
 		<div style="width:50%; float:right;">
 		<table>
 
+ <tr><th>
+<h3>구매상품 정보</h3></th></tr>
+ 
 
-<tr><th>
-<h3><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</h3></th></tr>
 
 <tr>
 <th>구성품</th>
@@ -53,23 +71,35 @@
 <th>주문번호</th>
 <td>${ord.ord_num}</td> 
 
-<th>유효기간</th>
+<th>유효기간 :</th>
 <td>${ord.s_validity}</td> 
-
-
-<th>총액</th>
-<td>${ord.full_price}</td> 
 </tr>
 
+<tr>
+<th>판매 금액</th>
+<td><fmt:formatNumber pattern="###,###" value="${store.s_prive}"/>원</td> 
 
+
+<th>구매 수량</th>
+<td>${ord.s_purchase}개</td> 
+
+
+<th>구매 금액</th>
+<td><fmt:formatNumber pattern="###,###" value="${ord.full_price }"/>원</td> 
+</tr>
+
+<tr>
 <th>거래방법</th>
 <td>${bank.t_deal}</td> 
+ </tr>
  
 
  <c:if test="${ord.del=='n'}">	
- <tr><td><input type="submit" onclick="hey()" value="환불요청"></td></tr>
- </c:if>
+ <tr>
+ <td><input type="submit" onclick="hey()" value="환불요청">  </td></tr>
+ 
 
+ </c:if>
 
  
  <c:if test="${ord.del=='y'}">
@@ -80,7 +110,7 @@
 </table>
 </div>
 
-</form>
+</form> 
 </div>
 <%@ include file="../mainFloor.jsp" %>
 </body>

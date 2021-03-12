@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 추가 페이지</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+<%@include file="../mainTop.jsp" %>
+<%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
 
 <form action="storeInsert.do" method="post" name="frm"

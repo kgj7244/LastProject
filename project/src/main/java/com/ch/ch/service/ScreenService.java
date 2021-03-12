@@ -63,4 +63,14 @@ public interface ScreenService {
 
 	int eventCancel(int eo_num);
 
+	Event selectEvent(int e_num);
+
+	int eventUpdate(Event event);
+
+	int eventDelete(int e_num);
+
+	List<Event_over> coupon(String member_id);
+
+
+
 }

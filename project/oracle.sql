@@ -14,6 +14,7 @@ drop sequence eo_num;
 drop sequence p_num;
 drop sequence n_num;
 drop sequence b_num;
+drop sequence ord_num;
 
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
@@ -81,12 +82,6 @@ select * from member;
 
 -------------------------------------- 이벤트(추가)
 create table event(
-<<<<<<< HEAD
-
-create table event(
->>>>>>> Stashed changes
-=======
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 	e_num number(10) primary key, 				 			-- 이벤트번호
 	e_title nvarchar2(50) not null,            		 		-- 이벤트제목
 	e_state nvarchar2(50) not null,           		 		-- 이벤트종류(1: 쿠폰, 2: 상품권)
@@ -96,28 +91,6 @@ create table event(
 );
 
 create sequence e_num increment by 1 start with 1;
-<<<<<<< HEAD
-	e_num nvarchar2(10) primary key,  -- 이벤트번호
-	e_title nvarchar2(50) not null,            -- 이벤트제목
-	e_state nvarchar2(50) not null,            -- 이벤트종류
-	e_sale nvarchar2(50) not null,             -- 이벤트금액
-	member_id nvarchar2(50) references member(member_id)        -- 회원아이디
-);
-
--------------------------------------- 이벤트(추가)
-create table event(
-	event_num nvarchar(10) primary key not null,  -- 이벤트번호
-	event_title nvarchar(50) not null,            -- 이벤트제목
-	event_state nvarchar(50) not null,            -- 이벤트종류
-	event_sale nvarchar(50) not null,             -- 이벤트금액
-	member_id references member(member_id)        -- 회원아이디
-);
-
-create sequence e_num increment by 1 start with 1;
-
-create sequence event_num increment by 1 start with 1;
-=======
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 ---------------------------------------이벤트 중복체크
 create table event_over(
@@ -164,7 +137,7 @@ create table movieTheater(
 	mt_count number not null,               --좌석
 	t_num number references theater(t_num)  --극장번호
 );
-create sequence mt_num increment by 1 start with 6;
+create sequence mt_num increment by 1 start with 1;
 insert into movieTheater values(1, '1관',50,1);
 insert into movieTheater values(2, '2관',70,1);
 insert into movieTheater values(3, '3관',80,1);
@@ -336,10 +309,7 @@ create sequence t_ordernum increment by 1 start with 1;
 
 
 --------------------------------------스토어
-select * from store;
-drop table store CASCADE CONSTRAINTS;
-drop sequence s_num; 
-
+select * from STORE;
 
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
@@ -359,7 +329,7 @@ create table store(
 );	
 
 create sequence s_num increment by 1 start with 15; 
---#
+-----#
 insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg',0,2500,'n','1111-03-02','9999-12-02',99999,0);
 insert into store values(2,'n','3','콜라 L','콜라 L','콜라L.jpg',0,3000,'n','1111-03-02','9999-12-02',99999,0);
 insert into store values(3,'n','3','사이다 M','사이다 M','사이다M.jpg',0,2500,'n','1111-03-02','9999-12-02',99999,0);
@@ -378,10 +348,6 @@ insert into store values(14,'n','4','전용 관람권','전용 관람권 1매','
 
 
 ------------------------------- order 구매 데이터(미완성)
-drop table ord;
-select * from ord;
-drop sequence ord_num;
-
 create table ord (
 	ord_num number(10) primary key,
 	member_id nvarchar2(50) not null REFERENCES member(member_id), --로그인 여부
@@ -389,7 +355,7 @@ create table ord (
 	
 	s_purchase number(10) not null, 	--#구매수량 
 	full_price number(10) not null, 	--총 금액
-	buy_date date, 		--구매 날짜
+	buy_date date, 				--구매 날짜
 	s_validity date not null, 	--유통기한 sysdate+365
 	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
@@ -420,26 +386,3 @@ create table bank(
 );
 create sequence t_account increment by 1 start with 1;
 
------------------------------------------고객센터(미완성)
-create table service(
-	sv_num number primary key not null,  --고객센터번호
-	sv_title nvarchar2(50) not null,     --제목
-	sv_content nvarchar2(1000) not null, --내용
-	sv_id nvarchar2(50) not null,        --신청자ID
-	sv_date date not null,               --신청일자
-	sv_Aid nvarchar2(50),                --답변자ID
-	sv_Adate date,                       --답변일자
-	sv_state nvarchar2(50) not null      --답변상태
-);
-
-<<<<<<< HEAD
-create sequence sv_num increment by 1 start with 1;
-
-select * from screen;
-select s.sc_num, s.sc_date, s.sc_start, s.sc_end, s.t_num, s.mt_num, s.m_num, m.mt_name, nvl(ct.cnt,0) cnt
-		from screen s, movieTheater m, (select sc_num, count(*) cnt from seat group by sc_num) ct 
-		where s.mt_num = m.mt_num and s.t_num = 4 and s.sc_num = ct.sc_num(+) and s.m_num = 5 and s.sc_date = '2021-03-11' and s.sc_del = 'n' 
-        order by s.sc_start
-=======
-select * from event_over;
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git

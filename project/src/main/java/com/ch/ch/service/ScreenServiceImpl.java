@@ -96,5 +96,17 @@ public class ScreenServiceImpl implements ScreenService{
 	public int eventCancel(int eo_num) {
 		return sd.eventCancel(eo_num);
 	}
-
+	public Event selectEvent(int e_num) {
+		return sd.selectEvent(e_num);
+	}
+	public int eventUpdate(Event event) {
+		return sd.eventUpdate(event);
+	}
+	public int eventDelete(int e_num) {
+		return sd.eventDelete(e_num);
+	}
+	public List<Event_over> coupon(String member_id) {
+		return sd.coupon(member_id);
+	}
+	
 }

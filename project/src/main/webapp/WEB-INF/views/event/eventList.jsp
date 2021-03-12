@@ -11,7 +11,7 @@
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
-	<h2>운영자가 관리해주는 이벤트</h2>
+	<h2>운영자가 관리해주는 이벤트</h2><a href="eventListUpdate.do" class="btn btn-info">이벤트 수정 / 삭제</a>
 	<form>
 		<table class="table table-bordered">
 			<tr>

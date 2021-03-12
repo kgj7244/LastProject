@@ -362,4 +362,58 @@ public class TicketController {
 		model.addAttribute("result", result);
 		return "event/cancel";
 	}
+	// 이벤트 수정 및 삭제 페이지(마스터기준)
+	@RequestMapping("eventListUpdate")
+	public String eventListUpdate(Model model) {
+		List<Event> event = ss.eventList(); // 이벤트 리스트 불러옴
+		
+		model.addAttribute("event", event);
+		return "event/eventListUpdate";
+	}
+	
+	// 이벤트 수정
+	@RequestMapping("eventUpdateForm")
+	public String eventUpdate(Model model, int e_num) {
+		Event event = ss.selectEvent(e_num);
+		
+		model.addAttribute("event" , event);
+		return "event/eventUpdateForm";
+	}
+	//이벤트 결과
+	@RequestMapping("eventUpdate")
+	public String eventUpdate(Model model, Event event, HttpSession session)throws IOException  {
+		if(!event.getFile().isEmpty()) {
+			String event_poster = event.getFile().getOriginalFilename();
+			
+			String real = session.getServletContext().getRealPath("/resources/images/event");
+			String path = real + "/" + event_poster; 
+			
+			
+			FileOutputStream fos = new FileOutputStream(path);
+			fos.write(event.getFile().getBytes());
+			fos.close();
+			
+			event.setE_poster(event_poster);
+		} 
+		int result = ss.eventUpdate(event); // 수정 되면 1
+		model.addAttribute("result", result);
+		return "event/eventUpdate";
+	}
+	//이벤트 삭제
+	@RequestMapping("eventDelete")
+	public String eventdelete(Model model, int e_num) {
+		int result = ss.eventDelete(e_num);
+		
+		model.addAttribute("result", result);
+		return "event/eventDelete";
+	}
+	//회원 쿠폰 사용 리스트
+	@RequestMapping("memberCouponForm")
+	public String memberCouponForm(Model model, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id");
+		List<Event_over> coupon = ss.coupon(member_id);
+		
+		model.addAttribute("coupon", coupon);
+		return "event/memberCouponForm";
+	}
 }
