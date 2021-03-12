@@ -14,7 +14,7 @@ drop sequence eo_num;
 drop sequence p_num;
 drop sequence n_num;
 drop sequence b_num;
-
+drop sequence ord_num;
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
 drop table service CASCADE CONSTRAINTS;
@@ -308,10 +308,6 @@ create sequence t_ordernum increment by 1 start with 1;
 
 
 --------------------------------------스토어
-select * from store;
-drop table store CASCADE CONSTRAINTS;
-drop sequence s_num; 
-
 
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
@@ -331,7 +327,7 @@ create table store(
 );	
 
 create sequence s_num increment by 1 start with 15; 
---#
+-----#
 insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg',0,2500,'n','1111-03-02','9999-12-02',99999,0);
 insert into store values(2,'n','3','콜라 L','콜라 L','콜라L.jpg',0,3000,'n','1111-03-02','9999-12-02',99999,0);
 insert into store values(3,'n','3','사이다 M','사이다 M','사이다M.jpg',0,2500,'n','1111-03-02','9999-12-02',99999,0);
