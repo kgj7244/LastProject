@@ -64,9 +64,9 @@ create table member(
 );
 
 -- 회원 시연용(게시판 시연을 위해)
-insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
-insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
-insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
+insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
+insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
+insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
 insert into member values('aa11','1234','이다혜','여성',sysdate,'aa11@gmail.com','010-2222-2222','서대문구',sysdate,'n');
 insert into member values('bb11','1234','유연지','여성',sysdate,'bb11@naver.com','010-3333-3333','용산구',sysdate,'n');
 insert into member values('cc11','1234','한유진','여성',sysdate,'cc11@daum.net','010-4444-4444','마포구',sysdate,'n');

@@ -27,10 +27,17 @@
 			<tr>
 				<th>상영관 번호</th>
 				<td width="70%">
-					<select required="required" autofocus="autofocus" name="mt_name">
+					<%-- <select required="required" autofocus="autofocus" name="mt_name">
 						<c:forEach var="movieNum" items="${movieTheaterList}">
 							<option value="${movieNum.mt_name }">${movieNum.mt_name }</option>
 						</c:forEach>
+					</select> --%>
+					<select name="mt_name">
+						<option value="1관">1관</option>
+						<option value="2관">2관</option>
+						<option value="3관">3관</option>
+						<option value="4관">4관</option>
+						<option value="5관">5관</option>
 					</select>
 				</td>				
 			</tr>
