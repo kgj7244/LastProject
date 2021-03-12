@@ -75,7 +75,6 @@
 					<input type="button" value="영화별">
 				</td>
 				<td rowspan="2" width="60%" id="disp-choice-movie"></td>
-				<!-- 추가할 부분 이미지 뜨게 만들기 -->
 				<td rowspan="2" width="30%" id="disp-poster"></td>
 			</tr>
 			<tr>
