@@ -97,21 +97,21 @@
 		<!-- 상영시간표 상세  -->
 		<table class="table table-hover table-bordered" id="showtime">
 			<tr>
-				<td>
+				<td colspan="3">
 					<span id="disp-date"></span>
 				</td>
 			</tr>
 			<tr>
 			<c:forEach var="theater" items="${showLocList }">
-				<td>
+				<td align="center">
 					<input type="button" value="${theater.t_loc }" onclick="timeLocChk('${theater.t_loc}')">
-					<span id="disp-loc"></span>
+					<div id="disp-loc"></div>
 				</td>
 			</c:forEach>
 			</tr>		
 			<tr>
-				<td>
-					<span id="disp-showTimeList"></sapn>
+				<td colspan="3">
+					<div id="disp-showTimeList"></div>
 				</td>
 			</tr>
 		</table>
