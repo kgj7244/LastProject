@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>무비리스트 | AAM</title>
 <script type="text/javascript">
-
 	$(document).ready(function(){
 		$('#movieList2').load("movieList.do","m_ing=${movie.m_ing}&keyword=${movie.keyword}&pageNum=${pageNum}");
 	    $("#chk_nowshow").change(function(){
@@ -27,19 +26,13 @@
 	    });
 	});
 </script>
-
 </head>
 <body>
 	<div><%@include file="../mainTop.jsp" %></div>
 	<div><%@include file="../mainNav.jsp" %></div>
 	<div class="container">
-		<h2 class="text-primary">영화</h2>
-		<div align="center">
-			<c:if test="${sessionScope.member_id == 'master'}">
-				<a href="movieInsertForm.do">영화 추가</a>
-				<a href="allMovieList.do">영화 목록</a>
-			</c:if>
-		</div>
+		<div align="left"><h2>무비리스트</h2></div>
+		<hr style="border: 0px; height: 3px; background-color: #cccccc;">
 		<div class="nowshow">
         	<c:if test="${movie.m_ing == '1'}">
 	        	<input type="checkbox" id="chk_nowshow"  title="현재 선택됨" checked="checked"/>
@@ -54,8 +47,7 @@
 			<form action="movieMainForm.do" name ="frm27">
 			<input type="hidden" name="m_ing" value="${movie.m_ing}">
 				<input type="hidden" name="pageNum" value="1">
-				영화 검색
-				<input type="text" name="keyword" value="${moive.keyword}">
+				<input type="text" name="keyword" value="${moive.keyword}" placeholder="영화 검색">
 				<input type="submit" value="검색">
 			</form>
        	</div>

@@ -78,7 +78,7 @@
 	<div align="left"><h2>빠른 예매</h2></div>
 	<hr style="border: 0px; height: 3px; background-color: #cccccc;"> 
 	<div style="margin-top: 20px;"> <!-- 선택창 -->
-		<table class="table table-bordered" style="width: 1200px; height: 500px;">
+		<table class="table table-bordered" style="width: 1200px; height: 400px;">
 			<tr height="40px;"><!-- 제목 -->
 				<td style="background-color: #333333; color: #e9e9e9; font-weight: bold; vertical-align:middle;" align="center" height="35px;" width="30%" >영화</td>
 				<td colspan="2" style="background-color: #333333; color: #e9e9e9; font-weight: bold;" align="center" width="20%">극장</td>
@@ -88,10 +88,10 @@
 			<tr height="auto;">
 				
 				<!-- 영화 -->
-				<td style="overflow:auto;"> <!-- 안에 내용 -->
+				<td style="height: 300px;"> <!-- 안에 내용 -->
 					<form action="selectMovie.do" method="post" name="frm1">
 						<input type="hidden" name="m_title2">
-						<table class="table table-hover" >
+						<table class="table table-hover" style="overflow: scroll;">
 							<c:if test="${not empty movie}"> <!-- 값이 있으면 -->
 								<c:forEach var="i" items="${movie}">
 									<tr>

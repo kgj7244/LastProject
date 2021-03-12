@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>무비 리스트 | AAM</title>
 </head>
 <body>
 	<div class="row" style="margin-top: 70px; display: inline-block;">
@@ -27,11 +27,7 @@
 						            <a href="movieView.do?m_num=${movie.m_num}" style="color:black; text-decoration: none;">${movie.m_title}</a>
 							    </h4>
 					    	</div>
-						    <p align="center" style="font-size: 15px;">${movie.m_opendate}
-						      	(<c:if test="${movie.m_state == '0'}">개봉예정</c:if>
-								<c:if test="${movie.m_state == '1'}">개봉</c:if>
-								<c:if test="${movie.m_state == '2'}">재개봉</c:if>
-								<c:if test="${movie.m_state == '3'}">상영종료</c:if>) / ${movie.m_grade}</p>
+						    <p align="center" style="font-size: 15px;">${movie.m_opendate}(${movie.m_state}) / ${movie.m_grade}</p>
 							<div align="center">
 								<a class="btn btn-danger" style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 10px" 
 									href="ticketMainForm.do">예매</a>

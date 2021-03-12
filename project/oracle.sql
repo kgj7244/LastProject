@@ -15,6 +15,7 @@ drop sequence p_num;
 drop sequence n_num;
 drop sequence b_num;
 drop sequence ord_num;
+
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
 drop table service CASCADE CONSTRAINTS;
@@ -64,9 +65,9 @@ create table member(
 );
 
 -- 회원 시연용(게시판 시연을 위해)
-insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
-insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
-insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
+insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
+insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
+insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
 insert into member values('aa11','1234','이다혜','여성',sysdate,'aa11@gmail.com','010-2222-2222','서대문구',sysdate,'n');
 insert into member values('bb11','1234','유연지','여성',sysdate,'bb11@naver.com','010-3333-3333','용산구',sysdate,'n');
 insert into member values('cc11','1234','한유진','여성',sysdate,'cc11@daum.net','010-4444-4444','마포구',sysdate,'n');
@@ -346,10 +347,6 @@ insert into store values(14,'n','4','전용 관람권','전용 관람권 1매','
 
 
 ------------------------------- order 구매 데이터(미완성)
-drop table ord;
-select * from ord;
-drop sequence ord_num;
-
 create table ord (
 	ord_num number(10) primary key,
 	member_id nvarchar2(50) not null REFERENCES member(member_id), --로그인 여부
@@ -357,7 +354,7 @@ create table ord (
 	
 	s_purchase number(10) not null, 	--#구매수량 
 	full_price number(10) not null, 	--총 금액
-	buy_date date, 		--구매 날짜
+	buy_date date, 				--구매 날짜
 	s_validity date not null, 	--유통기한 sysdate+365
 	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
@@ -388,16 +385,3 @@ create table bank(
 );
 create sequence t_account increment by 1 start with 1;
 
------------------------------------------고객센터(미완성)
-create table service(
-	sv_num number primary key not null,  --고객센터번호
-	sv_title nvarchar2(50) not null,     --제목
-	sv_content nvarchar2(1000) not null, --내용
-	sv_id nvarchar2(50) not null,        --신청자ID
-	sv_date date not null,               --신청일자
-	sv_Aid nvarchar2(50),                --답변자ID
-	sv_Adate date,                       --답변일자
-	sv_state nvarchar2(50) not null      --답변상태
-);
-
-select * from event_over;
