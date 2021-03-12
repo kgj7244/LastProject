@@ -110,7 +110,8 @@
 													<img src="resources/images/m_rank/청불.png" height="25px" width="25px">
 												</c:when>							
 											</c:choose>
-											<input type="button" value="${i.m_title}" onclick="movieChk('${i.m_title}','${i.m_poster}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 10px;">
+											<input type="button" value="${i.m_title}" 
+="movieChk('${i.m_title}','${i.m_poster}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 10px;">
 										</td>
 									</tr>
 								</c:forEach>
