@@ -1,9 +1,9 @@
 package com.ch.ch.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import com.ch.ch.model.Event;
+import com.ch.ch.model.Event_over;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
@@ -52,5 +52,15 @@ public interface ScreenService {
 	int insertEvent(Event event);
 
 	List<Event> eventList();
+
+	List<Event_over> eventFind(int e_num, String member_id);
+
+	int event_overInsert(int e_num, String member_id);
+
+	List<Event_over> Event_overList();
+
+	int rankUp(int eo_num);
+
+	int eventCancel(int eo_num);
 
 }

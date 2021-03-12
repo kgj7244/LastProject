@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ch.ch.model.Movie;
+import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Review;
 import com.ch.ch.model.Stillcut;
+import com.ch.ch.model.Theater;
 import com.ch.ch.service.MovieService;
 import com.ch.ch.service.PagingBean;
 import com.ch.ch.service.ReviewService;
@@ -48,7 +50,6 @@ public class MovieController {
 		if (pageNum == null || pageNum.equals("") || pageNum.equals("0")) {
 			pageNum = "1";
 		}
-		
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 4;
 		int total = ms.getTotal(movie);

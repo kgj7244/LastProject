@@ -1,9 +1,5 @@
 package com.ch.ch.dao;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ch.ch.model.Event;
+import com.ch.ch.model.Event_over;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
@@ -126,6 +123,27 @@ public class ScreenDaoImpl implements ScreenDao{
 	}
 	public List<Event> eventList() {
 		return sst.selectList("screenns.eventList");
+	}
+	public List<Event_over> eventFind(int e_num, String member_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("e_num", e_num);
+		map.put("member_id", member_id);
+		return sst.selectList("screenns.eventFind", map);
+	}
+	public int event_overInsert(int e_num, String member_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("e_num", e_num);
+		map.put("member_id", member_id);
+		return sst.insert("screenns.event_overInsert", map);
+	}
+	public List<Event_over> event_overList() {
+		return sst.selectList("screenns.event_overList");
+	}
+	public int rankUp(int eo_num) {
+		return sst.update("screenns.rankUp",eo_num);
+	}
+	public int eventCancel(int eo_num) {
+		return sst.delete("screenns.eventCancel", eo_num);
 	}
 
 }

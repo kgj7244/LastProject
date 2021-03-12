@@ -18,6 +18,7 @@ drop sequence b_num;
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
 drop table service CASCADE CONSTRAINTS;
+drop table ord CASCADE CONSTRAINTS;
 drop table store CASCADE CONSTRAINTS;
 drop table bank CASCADE CONSTRAINTS;
 drop table aam_bank CASCADE CONSTRAINTS;
@@ -36,6 +37,7 @@ drop table event CASCADE CONSTRAINTS;
 drop table master CASCADE CONSTRAINTS;
 drop table reBoard CASCADE CONSTRAINTS;
 drop table notice CASCADE CONSTRAINTS;
+
 
 
 --------------------------------------관리자
@@ -62,9 +64,9 @@ create table member(
 );
 
 -- 회원 시연용(게시판 시연을 위해)
-insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
-insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
-insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','사울시',sysdate,'n');
+insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
+insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
+insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
 insert into member values('aa11','1234','이다혜','여성',sysdate,'aa11@gmail.com','010-2222-2222','서대문구',sysdate,'n');
 insert into member values('bb11','1234','유연지','여성',sysdate,'bb11@naver.com','010-3333-3333','용산구',sysdate,'n');
 insert into member values('cc11','1234','한유진','여성',sysdate,'cc11@daum.net','010-4444-4444','마포구',sysdate,'n');
@@ -79,9 +81,12 @@ select * from member;
 
 -------------------------------------- 이벤트(추가)
 create table event(
+<<<<<<< HEAD
 
 create table event(
 >>>>>>> Stashed changes
+=======
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 	e_num number(10) primary key, 				 			-- 이벤트번호
 	e_title nvarchar2(50) not null,            		 		-- 이벤트제목
 	e_state nvarchar2(50) not null,           		 		-- 이벤트종류(1: 쿠폰, 2: 상품권)
@@ -91,6 +96,7 @@ create table event(
 );
 
 create sequence e_num increment by 1 start with 1;
+<<<<<<< HEAD
 	e_num nvarchar2(10) primary key,  -- 이벤트번호
 	e_title nvarchar2(50) not null,            -- 이벤트제목
 	e_state nvarchar2(50) not null,            -- 이벤트종류
@@ -110,13 +116,15 @@ create table event(
 create sequence e_num increment by 1 start with 1;
 
 create sequence event_num increment by 1 start with 1;
+=======
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 
 ---------------------------------------이벤트 중복체크
 create table event_over(
-	eo_num number(10) primary key,               -- 중복체크 번호
-	member_id nvarchar2(50) not null,                     -- 아이디
-	eo_state nvarchar2(50) not null,                      -- 상태
-	e_num number(10) references event(e_num)  -- 이벤트번호
+	eo_num number(10) primary key,               					-- 중복체크 번호
+	member_id nvarchar2(50) not null,  								-- 아이디
+	eo_state nvarchar2(50) not null,    			                -- 상태(0.미참여, 1. 대기, 2. 발급, 3. 사용)
+	e_num number(10) references event(e_num)  						-- 이벤트번호
 );
 create sequence eo_num increment by 1 start with 1;
 
@@ -132,11 +140,6 @@ create table theater(
 );
 select * from theater;
 create sequence theater_t_num_seq increment by 1 start with 13;
-
-select * from theater;
-create sequence theater_t_num_seq increment by 1 start with 13;
-
-drop sequence theater_t_num_seq;
 
 insert into theater values(1, '신촌','서울','서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)','1544-1122','주자요금 영화 관람시 3시간, 4000원입니다.');
 insert into theater values(2, '강남','서울','서울특별시 강남구 강남대로 438 (역삼동, 스타플렉스)','1544-1122','건물 지하2F ~ 지하4F# 주차요금- CGV 영화 관람 시 주차 3시간 6,000원');
@@ -320,7 +323,7 @@ create table seat(
 --------------------------------------예매
 
 create table ticket(
-	t_ordernum number primary key not null,           --예매번호
+	t_ordernum number primary key,           --예매번호
 	t_adult number not null,                          --성인예매수
 	t_teen number not null,                           --청소년예매수
 	t_sale number not null, 	                      --사용포인트
@@ -331,26 +334,6 @@ create table ticket(
 );
 create sequence t_ordernum increment by 1 start with 1;
 
---------------------------------------관리자계좌
-create table aam_bank(
-	aam_account nvarchar2(50) primary key not null,     --계좌번호
-	bank_name nvarchar2(50) not null,   				--은행이름
-	aam_name nvarchar2(50) not null     				--이름
-);
-insert into aam_bank values('565-278311-02-001','우리은행','김희주');
-
---------------------------------------입금금액
-
-create table bank(
-	t_account nvarchar2(50) primary key not null,               --입금번호
-	t_date date not null,                                       --#입금일	
-	t_price number not null,                                    --#금액
-	t_deal nvarchar2(50) not null,                              --거래방법
-	member_id nvarchar2(50) references member(member_id),       --아이디
-	aam_account nvarchar2(50) references aam_bank(aam_account), --관리자계좌
-	t_ordernum number references ticket(t_ordernum)             --예매번호
-);
-create sequence t_account increment by 1 start with 1;
 
 --------------------------------------스토어
 select * from store;
@@ -399,7 +382,7 @@ drop table ord;
 select * from ord;
 drop sequence ord_num;
 
-	create table ord (
+create table ord (
 	ord_num number(10) primary key,
 	member_id nvarchar2(50) not null REFERENCES member(member_id), --로그인 여부
 	s_num number(10) not null REFERENCES store(s_num),
@@ -411,9 +394,31 @@ drop sequence ord_num;
 	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
 	);
---	, t_account varchar2(50) references bank(t_account) not null --입금번호
 
 create sequence ord_num increment by 1 start with 1;
+
+--------------------------------------관리자계좌
+create table aam_bank(
+	aam_account nvarchar2(50) primary key not null,     --계좌번호
+	bank_name nvarchar2(50) not null,   				--은행이름
+	aam_name nvarchar2(50) not null     				--이름
+);
+insert into aam_bank values('565-278311-02-001','우리은행','김희주');
+
+--------------------------------------입금금액
+drop table bank CASCADE CONSTRAINTS;
+
+create table bank(
+	t_account nvarchar2(50) primary key not null,               --입금번호
+	t_date date not null,                                       --#입금일	
+	t_price number not null,                                    --#금액
+	t_deal nvarchar2(50) not null,                              --거래방법
+	member_id nvarchar2(50) references member(member_id),      --아이디
+	aam_account nvarchar2(50) references aam_bank(aam_account), --관리자계좌	
+	t_ordernum number references ticket(t_ordernum),            --예매번호(티켓
+	ord_num number(10) references ord(ord_num)		            --주문번호(스토어
+);
+create sequence t_account increment by 1 start with 1;
 
 -----------------------------------------고객센터(미완성)
 create table service(
@@ -427,6 +432,7 @@ create table service(
 	sv_state nvarchar2(50) not null      --답변상태
 );
 
+<<<<<<< HEAD
 create sequence sv_num increment by 1 start with 1;
 
 select * from screen;
@@ -434,3 +440,6 @@ select s.sc_num, s.sc_date, s.sc_start, s.sc_end, s.t_num, s.mt_num, s.m_num, m.
 		from screen s, movieTheater m, (select sc_num, count(*) cnt from seat group by sc_num) ct 
 		where s.mt_num = m.mt_num and s.t_num = 4 and s.sc_num = ct.sc_num(+) and s.m_num = 5 and s.sc_date = '2021-03-11' and s.sc_del = 'n' 
         order by s.sc_start
+=======
+select * from event_over;
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git

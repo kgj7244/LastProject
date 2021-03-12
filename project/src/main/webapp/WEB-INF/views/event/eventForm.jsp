@@ -7,13 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function eventChk(e_num, member_id) {
-		alert(e_num);
-		alert(member_id);
-		/* $.post("eventOverChk.do", "member_id="+frm.member_id.value, function(data){
+	/* function eventChk(e_num, member_id) {
+		$('.content').click(function(){});
+		$.post("eventOverChk.do", "member_id="+member_id+"&e_num="+e_num, function(data){
 			$('#disp').html(data);
-		}); */
-	}
+		});
+	} */
 </script>
 </head>
 <body>
@@ -41,26 +40,26 @@
 			</tr>
 		</table>
 	</form>	 --%>
-	
-	<c:forEach var="i" begin="0" end="7" items="${eventList}">
-		
-		<div class="col-sm-6 col-md-3">
-			<div class="thumbnail">
-				<img src="${path}/resources/images/event/${i.e_poster}" alt="사진없는거 아니여?" onclick='#'>
-				<div class="caption">
-					<div align="center">
-						<h4 style="font-weight: bold;">
-							<a href="#" style="color:black;">${i.e_title}</a>
-						</h4>
-					</div>
-					<div align="center">
-						<button class="btn btn-primary" role="button" style="width: 150px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle;" onclick="eventChk(${i.e_num},${member_id})">이벤트 참여하기</button>
+		<c:forEach var="i" begin="0" end="7" items="${eventList}">
+			
+			<div class="col-sm-6 col-md-3">
+				<div class="thumbnail">
+					<img src="${path}/resources/images/event/${i.e_poster}" alt="사진없는거 아니여?">
+					<div class="caption">
+						<div align="center">
+							<h4 style="font-weight: bold;">
+								<a href="#" style="color:black;">${i.e_title}</a>
+							</h4>
+						</div>
+						<div align="center">
+							<button id="" class="btn btn-primary" role="button" style="width: 150px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle;" onclick="location.href='eventPart.do?e_num=${i.e_num}'">이벤트 참여하기</button>
+							<%-- <button id="" class="btn btn-primary" role="button" style="width: 150px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle;" onclick="eventChk(${i.e_num},'${member_id}')">이벤트 참여하기</button> --%>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<c:if test="${i.e_num==4}"><p></c:if>
-	</c:forEach>
+			<c:if test="${i.e_num==4}"><p></c:if>
+		</c:forEach>
 </div>
 <%@ include file="../mainFloor.jsp" %>
 </body>

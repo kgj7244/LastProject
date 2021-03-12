@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ch.ch.dao.ScreenDao;
 import com.ch.ch.model.Event;
+import com.ch.ch.model.Event_over;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
@@ -79,6 +80,21 @@ public class ScreenServiceImpl implements ScreenService{
 	}
 	public List<Event> eventList() {
 		return sd.eventList();
+	}
+	public List<Event_over> eventFind(int e_num, String member_id) {
+		return sd.eventFind(e_num, member_id);
+	}
+	public int event_overInsert(int e_num, String member_id) {
+		return sd.event_overInsert(e_num, member_id);
+	}
+	public List<Event_over> Event_overList() {
+		return sd.event_overList();
+	}
+	public int rankUp(int eo_num) {
+		return sd.rankUp(eo_num);
+	}
+	public int eventCancel(int eo_num) {
+		return sd.eventCancel(eo_num);
 	}
 
 }

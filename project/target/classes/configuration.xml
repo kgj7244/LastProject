@@ -19,6 +19,9 @@
 		<typeAlias alias="event" type="com.ch.ch.model.Event" />
 		<typeAlias alias="reBoard" type="com.ch.ch.model.ReBoard" />
 		<typeAlias alias="notice" type="com.ch.ch.model.Notice" />
+		<typeAlias alias="bank" type="com.ch.ch.model.Bank" />
+		<typeAlias alias="event_over" type="com.ch.ch.model.Event_over" />
+	
 	</typeAliases>
 	<mappers>   <!-- 어디로 연결할지 --> 
 		<mapper resource="member.xml" />
@@ -32,5 +35,7 @@
 		<mapper resource="ord.xml" />
 		<mapper resource="reBoard.xml" />
 		<mapper resource="notice.xml" />
+		<mapper resource="bank.xml" />
+
 	</mappers>
 </configuration>
