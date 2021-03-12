@@ -25,7 +25,7 @@
 			var date2 = today.getDate();
 			//doc += "<span>" + year2 + "<br>";
 			//doc += "<span>월 : " + month2 + "<br>";
-			doc += "<span>" + date2 +"일" +"</span>";
+			doc += "<span>" + date2 +"일" +"\n"+"</span>";
 		}
 		$("#disp-date").html(doc);
 	}
@@ -74,38 +74,45 @@
 				<a href="theaterInsertForm.do">극장 추가</a>
 				<a href="movieTheaterInsertForm.do">상영관 추가</a>
 			</c:if>
-	<hr>		
-			
-		<table class="table table-bordered"  style="border-color:black; width: 1200px; height: 500px; align-items: center;">
+	<hr>	
+	
+		<table class="table table-bordered"  style="border-color:black; width: 1150px; height: 500px; align-items: center;">
 			<tr>
-				<td id="movie" title="영화별 선택" width="20%" align="center">영화별</td>
-				<td rowspan="2" width="50%" id="disp-choice-movie"></td>
-				<td rowspan="2" width="30%">${movie.m_poster}</td>
+				<td title="영화별 선택" width="10%" align="center" id="movie">
+					<input type="button" value="영화별">
+				</td>
+				<td rowspan="2" width="60%" id="disp-choice-movie"></td>
+				<!-- 추가할 부분 이미지 뜨게 만들기 -->
+				<td rowspan="2" width="30%" id="disp-poster"></td>
 			</tr>
 			<tr>
-				<td id="theater" title="극장별 선택" align="center">극장별</td>
+				<td id="theater" title="극장별 선택" align="center">
+					<input type="button" value="극장별">
+				</td>
 				<!-- <td id="disp-movie-theather"></td> -->
 			</tr>
 		</table>
 
 		<!-- 상영시간표 상세  -->
-		<table class="table table-hover" id="showtime">
+		<table class="table table-hover table-bordered" id="showtime" style="border-color:black; width: 1150px; height: 1000px; align-items: center;">
+			<tr height="100px">
+				<td colspan="3"><span id="disp-date" ></span></td>
+			</tr>
+			<tr height="100px">
+			<c:forEach var="theater" items="${showLocList }">
+				<td align="center">
+					<input type="button" value="${theater.t_loc }" onclick="timeLocChk('${theater.t_loc}')">
+					<div id="disp-loc"></div>
+				</td>
+			</c:forEach>
+			</tr>		
 			<tr>
-				<td>
-					<input type="button" value="">
-					<span id="disp-date"></span>
+				<td colspan="3">
+					<div id="disp-showTimeList"></div>
 				</td>
 			</tr>
-			<c:forEach var="theater" items="${showLocList }">
-				<tr>
-					<td>
-						<input type="button" value="${theater.t_loc }" onclick="timeLocChk('${theater.t_loc}')">
-						<span id="disp-loc"></span>
-					</td>
-				</tr>
-			</c:forEach>			
 		</table>
-		<div id="disp-showTimeList"></div>
+		
 	</div>
 	<%@ include file="../mainFloor.jsp" %>
 </body>

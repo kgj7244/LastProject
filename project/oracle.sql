@@ -137,7 +137,7 @@ create table movieTheater(
 	mt_count number not null,               --좌석
 	t_num number references theater(t_num)  --극장번호
 );
-create sequence mt_num increment by 1 start with 6;
+create sequence mt_num increment by 1 start with 1;
 insert into movieTheater values(1, '1관',50,1);
 insert into movieTheater values(2, '2관',70,1);
 insert into movieTheater values(3, '3관',80,1);
