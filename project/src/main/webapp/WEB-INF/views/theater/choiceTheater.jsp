@@ -11,7 +11,7 @@
 	<table>
 		<c:forEach var="theater" items="${list }">
 			<tr>
-				<td>{ththeater.t_title }</td>
+				<td class="btn btn-sm">${theater.t_title }</td>
 			</tr>
 		</c:forEach>
 	</table>

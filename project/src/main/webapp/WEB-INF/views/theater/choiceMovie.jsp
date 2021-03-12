@@ -16,7 +16,7 @@
 	<table>
 		<c:forEach var="movie" items="${movieList }">
 			<tr>
-				<td><a class="btn btn-info btn-sm" onclick="movieP('${movie.m_poster}')">${movie.m_title }</a></td>
+				<td><a class="btn btn-sm" onclick="movieP('${movie.m_poster}')">${movie.m_title }</a></td>
 			</tr>
 		</c:forEach>
 	</table>
