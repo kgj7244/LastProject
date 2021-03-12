@@ -7,12 +7,16 @@
 <meta charset="UTF-8">
 <title>영화관 선택</title>
 </head>
-<body>
+<body> 
 	<table>
-		<c:forEach var="theater" items="${list }">
-			<tr>
-				<td class="btn btn-sm">${theater.t_title }</td>
-			</tr>
+		<c:forEach var="theater" items="${list }" varStatus="i">
+			<c:if test="${i.index % 5 ==0 }">
+				<tr>
+			</c:if>
+			<td class="btn btn-sm">${theater.t_title }</td>
+			<c:if test="${i.index % 5 ==4 }">
+				</tr>
+			</c:if>
 		</c:forEach>
 	</table>
 </body>

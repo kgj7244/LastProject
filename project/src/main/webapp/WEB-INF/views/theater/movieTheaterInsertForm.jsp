@@ -38,6 +38,11 @@
 						<option value="3관">3관</option>
 						<option value="4관">4관</option>
 						<option value="5관">5관</option>
+						<option value="6관">6관</option>
+						<option value="7관">7관</option>
+						<option value="8관">8관</option>
+						<option value="9관">9관</option>
+						<option value="10관">10관</option>
 					</select>
 				</td>				
 			</tr>

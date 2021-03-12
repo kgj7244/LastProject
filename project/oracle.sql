@@ -118,35 +118,50 @@ insert into theater values(1, '신촌','서울','서울특별시 서대문구 �
 insert into theater values(2, '강남','서울','서울특별시 강남구 강남대로 438 (역삼동, 스타플렉스)','1544-1122','건물 지하2F ~ 지하4F# 주차요금- CGV 영화 관람 시 주차 3시간 6,000원');
 insert into theater values(3, '용산','서울','서울특별시 용산구 한강대로23길 55 현대아이파크몰 6층','1544-1122','주자요금- 영화 관람시 4시간, 5000원입니다.');
 insert into theater values(4, '불광','서울','서울특별시 은평구 불광로 20 팜스퀘어 11층','1544-1122','건물에 음료 무료가능!');
-insert into theater values(5, '대전','대전','주소가 5번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(6, '용인','대전','주소가 6번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(7, '수원','대전','주소가 7번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(8, '이천','대전','주소가 8번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(9, '쌍팔','광주','주소가 9번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(10, '용역','광주','주소가 10번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(11, '구리','광주','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(12, '미영','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
-
+insert into theater values(5, '공주','대전','충청남도 공주시 신관동 흑수골길 12','1544-1122','건물에 음료 무료가능!');
+insert into theater values(6, '논산','대전','충청남도 논산시 중앙로 255','1544-1122','건물에 음료 무료가능!');
+insert into theater values(7, '오창','대전','충북 청주시 청원구 오창읍 중심상업1로 8-9','1544-1122','건물에 음료 무료가능!');
+insert into theater values(8, '대전','대전','대전 서구 문정로 77 로데오타운 5층','1544-1122','건물에 음료 무료가능!');
+insert into theater values(9, '광주상무','광주','광주광역시 서구 치평동 시청로60번길 21 콜롬버스시네마','1544-1122','건물에 음료 무료가능!');
+insert into theater values(10, '광주하남','광주','광주광역시 광산구 우산동 풍영철길로 15 콜럼버스월드','1544-1122','건물에 음료 무료가능!');
+insert into theater values(11, '송천','전라북도 전주시 덕진구 송천동2가 동부대로 1215 메가박스','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
+insert into theater values(12, '순천','전라남도 순천시 덕암동 충효로 15 메가박스','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
 select * from theater;
 
 -----------------------------------상영관
-
+select * from MOVIETHEATER;
 create table movieTheater(
 	mt_num number primary key not null,     --상영관번호
 	mt_name nvarchar2(50) not null,         --상영관이름
 	mt_count number not null,               --좌석
 	t_num number references theater(t_num)  --극장번호
 );
-create sequence mt_num increment by 1 start with 1;
+create sequence mt_num increment by 1 start with 6;
+--시연시 보여줄 상영관
 insert into movieTheater values(1, '1관',50,1);
 insert into movieTheater values(2, '2관',70,1);
 insert into movieTheater values(3, '3관',80,1);
 insert into movieTheater values(4, '4관',90,1);
 insert into movieTheater values(5, '5관',100,1);
 
+insert into movieTheater values(1, '1관',50,2);
+insert into movieTheater values(2, '2관',70,2);
+insert into movieTheater values(3, '3관',80,2);
+insert into movieTheater values(4, '4관',90,2);
+insert into movieTheater values(5, '5관',100,2);
 
-select * from movieTheater;
+insert into movieTheater values(1, '1관',50,3);
+insert into movieTheater values(2, '2관',70,3);
+insert into movieTheater values(3, '3관',80,3);
+insert into movieTheater values(4, '4관',90,3);
+insert into movieTheater values(5, '5관',100,3);
 
+insert into movieTheater values(1, '1관',50,4);
+insert into movieTheater values(2, '2관',70,4);
+insert into movieTheater values(3, '3관',80,4);
+insert into movieTheater values(4, '4관',90,4);
+insert into movieTheater values(5, '5관',100,4);
+--delete from movieTheater where mt_num=28;
 --------------------------------------영화
 create table movie (
 	m_num number primary key not null, 	--영화번호

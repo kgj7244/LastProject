@@ -67,16 +67,9 @@
 <%@include file="../mainNav.jsp" %>
 	<!-- 상영하는 영화, 극장 선택 -->
 	<div class="container">	
-	<h2 align="center">극장</h2>
-		<!-- 상영관 추가, master만 가능  -->
-		<input type="hidden" name="member_id" value="${member_id}">
-			<c:if test="${member_id == 'master'}">
-				<a href="theaterInsertForm.do">극장 추가</a>
-				<a href="movieTheaterInsertForm.do">상영관 추가</a>
-			</c:if>
-	<hr>	
-	
-		<table class="table table-bordered"  style="border-color:black; width: 1150px; height: 500px; align-items: center;">
+	<h2 align="left">극장</h2>
+	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
+		<table class="table table-bordered"  style="border-color:black; width: 1000px; height: 300px; align-items: center;">
 			<tr>
 				<td title="영화별 선택" width="10%" align="center" id="movie">
 					<input type="button" value="영화별">
@@ -94,9 +87,11 @@
 		</table>
 
 		<!-- 상영시간표 상세  -->
-		<table class="table table-hover table-bordered" id="showtime" style="border-color:black; width: 1150px; height: 1000px; align-items: center;">
+<%-- 		<table class="table table-hover table-bordered" id="showtime" style="border-color:black; width: 1000px; height: 600px;">
 			<tr height="100px">
-				<td colspan="3"><span id="disp-date" ></span></td>
+				<td colspan="3">
+					<span class="btn" id="disp-date" ></span>
+				</td>
 			</tr>
 			<tr height="100px">
 			<c:forEach var="theater" items="${showLocList }">
@@ -111,7 +106,7 @@
 					<div id="disp-showTimeList"></div>
 				</td>
 			</tr>
-		</table>
+		</table> --%>
 		
 	</div>
 	<%@ include file="../mainFloor.jsp" %>
