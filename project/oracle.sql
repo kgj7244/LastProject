@@ -309,6 +309,7 @@ create sequence t_ordernum increment by 1 start with 1;
 
 
 --------------------------------------스토어
+select * from STORE;
 
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호

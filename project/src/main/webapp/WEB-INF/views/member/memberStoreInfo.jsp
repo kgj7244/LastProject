@@ -7,22 +7,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
- function hey() {
-alert("환불 시 결제상품을 이용할 수 없습니다.")"
-	 
-	/*  if (confirm("환불 시 결제상품을 이용할 수 없습니다. 환불하시겠습니까?") == true){ 
+ function hey() { 
+	 alert("환불 시 결제상품을 이용할 수 없습니다.");
+			 
+	/* var con = confirm("환불 시 결제상품을 이용할 수 없습니다. 환불하시겠습니까?");
+		if (con)
+			 document.form.submit();
+		else{  
+			alert("취소되었습니다");
+			location.reload()
+		    return;
+		}  */
+ }
+ </script>
+<!-- /*  function hey() { 
+	if (confirm("환불 시 결제상품을 이용할 수 없습니다. 환불하시겠습니까?") == true){ 
 		    document.form.submit();
 		}else{  alert("취소되었습니다"); history.go(-1);
 		    return;
-		} */
+		} 
 
-
-	
-//	alert("환불 시 결제상품을 이용할 수 없습니다. 환불하시겠습니까?");
-}
-
-</script>
-
+ */
+ -->
 
 </head>
 <body>
@@ -32,8 +38,9 @@ alert("환불 시 결제상품을 이용할 수 없습니다.")"
 
 <div class="container" align="center">
 	
-	<form action="memberStoreRefund.do" method="post" enctype="multipart/form-data">
+<!-- 	<form action="memberStoreRefund.do" method="post" enctype="multipart/form-data"> -->
 	
+<form action="memberStoreRefund.do" method="post" enctype="multipart/form-data"> 
 	<input type="hidden" name="s_num" value="${store.s_num}">
 	<input type ="hidden" name = "member_id" value = "${member.member_id }">
 	<input type ="hidden" name = "ord_num" value = "${ord.ord_num }">
@@ -88,10 +95,11 @@ alert("환불 시 결제상품을 이용할 수 없습니다.")"
  
 
  <c:if test="${ord.del=='n'}">	
- <tr><td><input type="submit" onclick="hey()" value="환불요청"></td></tr>
- </c:if>
+ <tr>
+ <td><input type="submit" onclick="hey()" value="환불요청">  </td></tr>
+ 
 
-<!-- 타입 submit -->
+ </c:if>
 
  
  <c:if test="${ord.del=='y'}">
@@ -102,7 +110,7 @@ alert("환불 시 결제상품을 이용할 수 없습니다.")"
 </table>
 </div>
 
-</form>
+</form> 
 </div>
 <%@ include file="../mainFloor.jsp" %>
 </body>

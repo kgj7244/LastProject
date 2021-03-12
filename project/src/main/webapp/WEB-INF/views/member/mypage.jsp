@@ -44,7 +44,7 @@
 					<td><a href="screenInsertForm.do" class="btn btn-default">상영추가</a></td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn btn-default">스토어상품추가</a></td>
+					<td><a href="storeInsertForm.do" class="btn btn-default">스토어상품추가</a></td>
 				</tr>
 				<tr>
 					<td><a href="eventInsertForm.do" class="btn btn-default">이벤트추가</a></td>

@@ -110,8 +110,12 @@
 
 
 <!-- ====================================== -->  
-    <button type="submit">구매하기</button>
+   <a href="storeMainForm.do" class="btn btn-default">구매 취소</a>
+    <button type="submit" class="btn btn-info">구매하기</button> 
 </form>
+
+
+
 </div>
 
 </body>
