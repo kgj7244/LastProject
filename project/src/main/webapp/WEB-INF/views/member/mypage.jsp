@@ -32,7 +32,7 @@
 					<td><a href="eventList.do" class="btn btn-default">이벤트관리</a></td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn btn-default">영화추가</a></td>
+					<td><a href="allMovieList.do" class="btn btn-default">영화목록</a></td>
 				</tr>
 				<tr>
 					<td><a href="#" class="btn btn-default">극장추가</a></td>

@@ -83,10 +83,9 @@
 					<th>상영 상태</th>
 					<td>
 						<select name="m_state">
-							<option value="0">개봉예정</option>
-							<option value="1">개봉</option>
-							<option value="2">재개봉</option>
-							<option value="3">상영종료</option>
+							<option value="개봉예정">개봉예정</option>
+							<option value="개봉">개봉</option>
+							<option value="상영종료">상영종료</option>
 						</select>
 					</td>
 				</tr>
@@ -112,6 +111,7 @@
 					</th>
 					<td colspan="3">
 						<input type="file" name="file" required="required">
+						<span style="color: red">*포스터는 600 x 855만 가능합니다</span>
 					</td>
 				</tr>
 				<tr>
@@ -121,9 +121,14 @@
 					</th>
 					<td colspan="3">
 						<input type="file" name="file1" required="required" multiple="multiple">
+						<span style="color: red">*스틸컷은 727 x 405만 가능합니다</span>
 					</td>
 				</tr>
-				<tr><td colspan="4" align="center"><input type="submit"></td></tr>
+				<tr>
+					<td colspan="4" align="center">
+						<input type="submit">&nbsp;<input type="button" onclick="location.href='allMovieList.do'" value="목록">
+					</td>
+				</tr>
 			</table>
 		</form>
 	</div>

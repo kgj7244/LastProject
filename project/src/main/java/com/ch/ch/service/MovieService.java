@@ -25,5 +25,7 @@ public interface MovieService {
 
 	List<Movie> moviePage(Movie movie);
 
-	List<Movie> allMovieList();
+	List<Movie> allMovieList(Movie movie);
+
+	int allMovieTotal(Movie movie);
 }

@@ -175,10 +175,6 @@ public class MovieController {
 		
 		double grade = hap/(double)tot;
 		
-		System.out.println("tot : " + tot);
-		System.out.println("hap : " + hap);
-		System.out.println("grade : " + grade);
-		
 		List<Stillcut> list = ms.listPhoto(m_num);
 		
 		model.addAttribute("list", list);
@@ -232,7 +228,6 @@ public class MovieController {
 	 @RequestMapping("movieUpdate") 
 	 public String movieUpdate(Movie movie, Stillcut stillcut, String file1,
 			 Model model, HttpServletRequest request) throws IOException { 
-		 
 		 int result = 0;
 		 
 		 String m_poster = movie.getFile().getOriginalFilename();
@@ -257,11 +252,30 @@ public class MovieController {
 	 }
 	 
 	 @RequestMapping("allMovieList")
-	 public String allMovieList(Model model) {
-		 List<Movie> list = ms.allMovieList();
+	 public String allMovieList(String pageNum, Movie movie, Model model) {
+		 if (pageNum == null || pageNum.equals("") || pageNum == "0") {
+				pageNum = "1";
+		}
+
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;
+		int total = ms.allMovieTotal(movie);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+
+		movie.setStartRow(startRow);
+		movie.setEndRow(endRow);
+
+		PagingBean mpb = new PagingBean(currentPage, rowPerPage, total);
 		 
-		 model.addAttribute("list", list);
+		List<Movie> list = ms.allMovieList(movie);
+		
+		String[] tit = {"제목", "감독"};
 		 
-		 return "movie/allMovieList";
+		model.addAttribute("tit", tit);
+		model.addAttribute("mpb", mpb);
+		model.addAttribute("list", list);
+		 
+		return "movie/allMovieList";
 	 }
 }

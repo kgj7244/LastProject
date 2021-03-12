@@ -55,7 +55,7 @@
 	function rUpdate(m_num, re_num) {
 		var txt = $('#td_' + re_num).text();
 		
-		$('#td_' + re_num).html("<textarea rows='3' cols='30' id='rt'>" + 
+		$('#td_' + re_num).html("<textarea rows='3' cols=90' id='rt'>" + 
 				txt + "</textarea>");
 		
 		$('#btn_' + re_num).html("<input type='button' onclick='up(" + 
@@ -82,26 +82,27 @@
 <body>
 	<div><%@include file="../mainTop.jsp" %></div>
 	<div><%@include file="../mainNav.jsp" %></div>
-	<div align="center">
-		<c:if test="${sessionScope.member_id == 'master'}">
-			<a href="movieUpdateForm.do?m_num=${movie.m_num}">영화 수정</a>
-			<a href="allMovieList.do">영화 전체 목록</a>
-		</c:if>
-	</div>
 	<div class="container">
+		<div align="left"><h2>영화 상세</h2></div>
+		<hr style="border: 0px; height: 3px; background-color: #cccccc;">
 		<c:set var="tot" value="${tot}"></c:set>
 		<c:set var="grade" value="${grade}"></c:set>
-		<div style="background-color: #151515;">
-			<h2 class="text-primary" style="color: white;">${movie.m_title}</h2>
+		<div>
 			<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="400px">
-			<c:choose>
+			<h2 class="text-primary" style="color: black;">${movie.m_title}</h2>
+			<%-- <c:choose>
 				<c:when test="${grade > 0}">
 					<fmt:formatNumber value="${grade}" pattern=".00"/>
 				</c:when>
 				<c:otherwise>아직 평점이 없습니다. 평점을 등록해주세요</c:otherwise>
-			</c:choose>
-			<br>
-			<a href="ticketMainForm.do">예매</a>
+			</c:choose> --%>
+			<a class="btn btn-warning" 
+				style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 10px" 
+				href="ticketMainForm.do">예매</a>
+			<c:if test="${sessionScope.member_id == 'master'}">
+				<a href="movieUpdateForm.do?m_num=${movie.m_num}" class="btn btn-info">영화 수정</a>
+				<a href="allMovieList.do" class="btn btn-success">영화 전체 목록</a>
+			</c:if>
 		</div>
 		<div class="header navbar navbar-fixed-top" role="navigation">
 			<table class="table table-bordered">
@@ -112,11 +113,10 @@
 				</tr>
 			</table>
 		</div>
+		<h2 class="text-primary" style="color: black;" id="content">줄거리</h2>
 		<div>
 			<table class="table table-bordered">
 				<tr>
-					<a name="content" style="text-decoration: none;">
-						<h2 class="text-primary" style="color: black;">줄거리</h2></a>
 					<td colspan="3" style="white-space:pre;">${movie.m_content}</td>
 				</tr>
 				<tr>
@@ -130,8 +130,7 @@
 				</tr>
 			</table>
 		</div>
-		<a name="stillcut" style="text-decoration: none;">
-		<h2 class="text-primary" style="color: black;">스틸컷</h2></a>
+		<h2 class="text-primary" style="color: black;" id="stillcut">스틸컷</h2>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false" align="center">
 		    <div class="carousel-inner" role="listbox" style="width: 100%; height: 500px !important;">
 				<c:forEach var="st" items="${list}" begin="0" end="0">
@@ -154,8 +153,7 @@
 				</a>
 			</div>
 		</div>
-		<a name="review" style="text-decoration: none;">
-			<h2 class="text-primary" style="color: black;">한줄평</h2></a>
+		<h2 class="text-primary" style="color: black;" id="review">한줄평</h2>
 		<p>${movie.m_title}에 대한 ${tot}개의 이야기가 있어요!</p>
 		<div class="container" align="center" id="rvListDisp">
 			<c:if test="${empty rvList}">
@@ -202,7 +200,7 @@
 					<table class="table table-striped">
 						<tr>
 							<td>
-								<input type="text" name="member_id" value="${sessionScope.member_id}" disabled="disabled">
+								<input type="text" name="member_id" value="${member_id}" readonly="readonly">
 							</td>
 							<td>
 								<select name="re_grade">

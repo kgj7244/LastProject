@@ -30,6 +30,7 @@ public class Movie {
 	private int endRow;
 	
 	// 검색용
+	private String search;
 	private String keyword;
 	
 	private String m_ing;

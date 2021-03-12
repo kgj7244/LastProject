@@ -83,10 +83,9 @@
 					<th>상영 상태</th>
 					<td>
 						<select name="m_state" id="m_state">
-							<option value="0">개봉예정</option>
-							<option value="1">개봉</option>
-							<option value="2">재개봉</option>
-							<option value="3">상영종료</option>
+							<option value="개봉예정">개봉예정</option>
+							<option value="개봉">개봉</option>
+							<option value="상영종료">상영종료</option>
 						</select>
 					</td>
 				</tr>
