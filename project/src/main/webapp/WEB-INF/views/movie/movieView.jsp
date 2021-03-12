@@ -87,22 +87,31 @@
 		<hr style="border: 0px; height: 3px; background-color: #cccccc;">
 		<c:set var="tot" value="${tot}"></c:set>
 		<c:set var="grade" value="${grade}"></c:set>
-		<div>
-			<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="400px">
-			<h2 class="text-primary" style="color: black;">${movie.m_title}</h2>
+		<div style="height: 400px;">
+			<div>
+				<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="400px" align="left">
+			</div>
+			<div style="height: 400px;">
+				<h2 class="text-primary" style="color: black;">${movie.m_title}</h2>
+				<hr style="border: 0px; height: 1px; background-color: #cccccc;">
 			<%-- <c:choose>
 				<c:when test="${grade > 0}">
 					<fmt:formatNumber value="${grade}" pattern=".00"/>
 				</c:when>
 				<c:otherwise>아직 평점이 없습니다. 평점을 등록해주세요</c:otherwise>
 			</c:choose> --%>
+				<p>감독 : ${movie.m_director}&nbsp;&nbsp;/&nbsp;&nbsp;배우 : ${movie.m_actor}</p>
+				<p>장르 : ${movie.m_genre}&nbsp;&nbsp;/&nbsp;&nbsp;등급 : ${movie.m_rank}</p>
+				<p>개봉일 : <fmt:formatDate value="${movie.m_opendate}" pattern="yyyy.MM.dd (E)"/></p>
+				<p></p>
 			<a class="btn btn-warning" 
-				style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 10px" 
+				style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0" 
 				href="ticketMainForm.do">예매</a>
 			<c:if test="${sessionScope.member_id == 'master'}">
 				<a href="movieUpdateForm.do?m_num=${movie.m_num}" class="btn btn-info">영화 수정</a>
 				<a href="allMovieList.do" class="btn btn-success">영화 전체 목록</a>
 			</c:if>
+			</div>
 		</div>
 		<div class="header navbar navbar-fixed-top" role="navigation">
 			<table class="table table-bordered">
@@ -114,21 +123,7 @@
 			</table>
 		</div>
 		<h2 class="text-primary" style="color: black;" id="content">줄거리</h2>
-		<div>
-			<table class="table table-bordered">
-				<tr>
-					<td colspan="3" style="white-space:pre;">${movie.m_content}</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						감독 : ${movie.m_director}&nbsp;&nbsp;&nbsp;&nbsp;
-						장르 : ${movie.m_genre}&nbsp;&nbsp;&nbsp;&nbsp;
-						등급 : ${movie.m_rank}&nbsp;&nbsp;&nbsp;&nbsp;
-						개봉일 : ${movie.m_opendate}<br>
-						출연진 : ${movie.m_actor}
-					</td>
-				</tr>
-			</table>
+		<div style="white-space:pre;">${movie.m_content}		
 		</div>
 		<h2 class="text-primary" style="color: black;" id="stillcut">스틸컷</h2>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false" align="center">
@@ -180,7 +175,7 @@
 								</td>
 								<c:if test="${rv.member_id == sessionScope.member_id or sessionScope.member_id == 'master'}">
 									<td id="btn_${rv.re_num}">
-										<button class="btn btn-warning btn-sm" 
+										<button class="btn btn-success btn-sm" 
 											onclick="rUpdate(${rv.m_num}, ${rv.re_num})">수정</button>
 										<button class="btn btn-danger btn-sm" 
 											onclick="rDelete(${rv.m_num}, ${rv.re_num})">삭제</button>
@@ -217,7 +212,7 @@
 									placeholder="'${movie.m_title}' 재미있게 보셨나요?&#13;&#10;영화의 어떤 점이 좋았는지 500자 이내로 이야기해주세요."></textarea>
 							</td>
 							<td>
-								<input type="button" value="댓글 입력" id="rInsert" class="btn btn-success">
+								<input type="button" value="댓글 입력" id="rInsert" class="btn btn-warning">
 							</td>
 						</tr>
 					</table>
