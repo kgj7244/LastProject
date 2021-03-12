@@ -11,7 +11,7 @@
 </style>
 <script type="text/javascript">
  function trans() {
-	 alert("질러라");
+	 alert("일부 카드는 카드사 사정으로 사용이 제한될 수 있습니다");
 	 $('#trans1').css('display','block');
 	
 }
@@ -83,23 +83,25 @@
     
     
  <!-- ====================================== -->     
+  <input type="hidden" name="t_price" value="${store.s_prive * ord.s_purchase }">
+  
    <tr>
    <td>결제 수단</td>         
    <td><input type="radio" name="t_deal" value="휴대폰 결제" onclick="show()" checked>휴대폰 결제</td> 
    <td><input type="radio" name="t_deal" value="계좌이체" onclick="trans()">계좌이체</td>  
    </tr>
    
- 
-   
-   <input type="hidden" name="t_price" value="${store.s_prive * ord.s_purchase }">
-     
    
   
+  
   <tr id="trans1">  
-   <td>입금계좌<input type="text" name="aam_account" value="${ aam_bank.aam_account }" readonly></td>
+  </tr> 
+  
+  <%--  <td>입금계좌<input type="text" name="aam_account" value="${ aam_bank.aam_account }" readonly></td>
    <td>은행 <input type="text" name="bank_name" value="${ aam_bank.bank_name }" readonly ></td>
-   <td>이름 <input type="text" name="aam_name" value="${ aam_bank.aam_name }" readonly></td>
-  </tr>  
+   <td>이름 <input type="text" name="aam_name" value="${ aam_bank.aam_name }" readonly></td> --%>
+   
+ 
  
     
   </tfoot>

@@ -18,9 +18,8 @@
 <insert id="insert_bank" parameterType="bank">
 	insert into bank values(t_account.nextval,
 	#{t_date},#{t_price},#{t_deal},
-	#{member_id},'565-278311-02-001',#{ord_num})
+	#{member_id},'565-278311-02-001',null,#{ord_num})
 	</insert>
-<!-- 예매번호 안들감  ,null-->
 	
 <select id="select_bank" parameterType="integer" resultType="bank">
  select * from bank where ord_num=#{ord_num}
