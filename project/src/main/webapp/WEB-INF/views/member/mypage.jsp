@@ -67,6 +67,9 @@
 					<td><a href="memberStore.do" class="btn btn-default">스토어주문조회</a></td>
 				</tr>
 				<tr>
+					<td><a href="memberCouponForm.do" class="btn btn-default">쿠폰조회</a></td>
+				</tr>
+				<tr>
 					<td><a onclick="del()" class="btn btn-default">회원탈퇴</a></td>
 				</tr>
 			</table>
