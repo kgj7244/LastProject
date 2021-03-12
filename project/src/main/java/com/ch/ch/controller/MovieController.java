@@ -1,6 +1,5 @@
 package com.ch.ch.controller;
 
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,10 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ch.ch.model.Movie;
-import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Review;
 import com.ch.ch.model.Stillcut;
-import com.ch.ch.model.Theater;
 import com.ch.ch.service.MovieService;
 import com.ch.ch.service.PagingBean;
 import com.ch.ch.service.ReviewService;
@@ -278,5 +275,15 @@ public class MovieController {
 		model.addAttribute("list", list);
 		 
 		return "movie/allMovieList";
+	 }
+	 
+	 @RequestMapping("mainNav")
+	 public String mainNav() {
+		 return "movie/movieMainForm";
+	 }
+	 
+	 @RequestMapping("mainCenterMovie")
+	 public String mainCenterMovie() {
+		 return "movie/movieMainForm";
 	 }
 }

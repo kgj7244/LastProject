@@ -45,10 +45,10 @@
        	</div>
        	<div>
 			<form action="movieMainForm.do" name ="frm27">
-			<input type="hidden" name="m_ing" value="${movie.m_ing}">
+				<input type="hidden" name="m_ing" value="${movie.m_ing}">
 				<input type="hidden" name="pageNum" value="1">
 				<input type="text" name="keyword" value="${moive.keyword}" placeholder="영화 검색">
-				<input type="submit" value="검색">
+				<input type="submit" value="검색" class="btn btn-warning btn-sm">
 			</form>
        	</div>
 		<div id="movieList2"></div>

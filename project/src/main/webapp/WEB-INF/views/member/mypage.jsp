@@ -44,7 +44,7 @@
 					<td><a href="screenInsertForm.do" class="btn btn-default">상영추가</a></td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn btn-default">스토어상품추가</a></td>
+					<td><a href="storeInsertForm.do" class="btn btn-default">스토어상품추가</a></td>
 				</tr>
 				<tr>
 					<td><a href="eventInsertForm.do" class="btn btn-default">이벤트추가</a></td>
@@ -65,6 +65,9 @@
 				</tr>
 				<tr>
 					<td><a href="memberStore.do" class="btn btn-default">스토어주문조회</a></td>
+				</tr>
+				<tr>
+					<td><a href="memberCouponForm.do" class="btn btn-default">쿠폰조회</a></td>
 				</tr>
 				<tr>
 					<td><a onclick="del()" class="btn btn-default">회원탈퇴</a></td>

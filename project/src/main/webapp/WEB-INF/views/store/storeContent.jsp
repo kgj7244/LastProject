@@ -64,7 +64,7 @@
 <td><input type="number" readonly="readonly" name="full_price" id="full_price">
 </td>
 </tr>
-
+<!--  style="border:none" -->
 
 <!-- ====================================== -->  
 

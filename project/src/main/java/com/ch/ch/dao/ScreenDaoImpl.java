@@ -145,5 +145,17 @@ public class ScreenDaoImpl implements ScreenDao{
 	public int eventCancel(int eo_num) {
 		return sst.delete("screenns.eventCancel", eo_num);
 	}
+	public Event selectEvent(int e_num) {
+		return sst.selectOne("screenns.selectEvent",e_num);
+	}
+	public int eventUpdate(Event event) {
+		return sst.update("screenns.eventUpdate", event);
+	}
+	public int eventDelete(int e_num) {
+		return sst.update("screenns.eventDelete", e_num);
+	}
+	public List<Event_over> coupon(String member_id) {
+		return sst.selectList("screenns.coupon", member_id);
+	}
 
 }

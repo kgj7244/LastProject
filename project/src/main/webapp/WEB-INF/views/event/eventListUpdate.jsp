@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function del() {
+		var con = confirm("정말 삭제하시겠습니까?");
+		if (con)
+			location.href = "eventListUpdate.do";
+		else {
+			alert("삭제가 취소되었습니다");
+			return;
+		}
+	}
+</script>
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>
@@ -23,18 +34,19 @@
 				<th>수정</th>
 				<th>삭제</th>
 			</tr>
-			<c:if test="${empty event_overList}">
-				<td colspan="6" align="center">이벤트 이용하는 사람이 없습니다.</td>
+			<c:if test="${empty event}">
+				<td colspan="7" align="center">이벤트가 없습니다.</td>
 			</c:if>	
-			<c:if test="${!empty event_overList}">		
-				<c:forEach var="eo" items="${event_overList}">
+			<c:if test="${!empty event}">		
+				<c:forEach var="e" items="${event}">
 					<tr>
-						<td>${eo.eo_num}</td>
-						<td>${eo.member_id}</td>
-						<td>${eo.eo_state}</td>
-						<td>${eo.e_num}</td>
-						<td><a href="Issued.do?eo_num=${eo.eo_num}" class="btn btn-info">발급</a></td>
-						<td><a href="cancel.do?eo_num=${eo.eo_num}" class="btn btn-danger">취소</a></td>
+						<td>${e.e_num}</td>
+						<td>${e.e_title}</td>
+						<td>${e.e_state}</td>
+						<td>${e.e_sale}</td>
+						<td>${e.e_del}</td>
+						<td><a href="eventUpdateForm.do?e_num=${e.e_num}" class="btn btn-info">수정</a></td>
+						<td><a href="eventDelete.do?e_num=${e.e_num}" class="btn btn-danger" onclick="del()">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</c:if>

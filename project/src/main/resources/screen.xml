@@ -87,7 +87,7 @@
 		insert into event values (e_num.nextval , #{e_title}, #{e_state}, #{e_sale},#{e_poster},'n')
 	</insert>
 	<select id="eventList" resultType="event">
-		select * from event order by e_num
+		select * from event where e_del ='n' order by e_num
 	</select>
 	<select id="eventFind" parameterType="hashmap" resultType="Event_over">
 		select * from event_over where member_id = #{member_id} and e_num =#{e_num}
@@ -104,5 +104,16 @@
 	<delete id="eventCancel" parameterType="integer">
 		delete from event_over where eo_num = #{eo_num}
 	</delete>
-	
+	<select id="selectEvent" parameterType="integer" resultType="event">
+		select * from event where e_num = #{e_num}
+	</select>
+	<update id="eventUpdate" parameterType="event">
+		update event set e_title=#{e_title}, e_state =#{e_state}, e_sale= #{e_sale}, e_poster =#{e_poster} where e_num = #{e_num}
+	</update>
+	<update id="eventDelete" parameterType="integer">
+		update event set e_del='y' where e_num=#{e_num}
+	</update>
+	<select id="coupon" parameterType="string" resultType="event_over">
+		select * from event_over where member_id=#{member_id}
+	</select>
 </mapper>
