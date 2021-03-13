@@ -444,3 +444,6 @@ create table bank(
 );
 create sequence t_account increment by 1 start with 1;
 
+select * from event e, event_over eo where e.e_num = eo.e_num and member_id = 'lamslams';
+select * from event;
+select * from event e, event_over eo where e.e_num = eo.e_num and eo_num=1;

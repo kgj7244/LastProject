@@ -71,6 +71,5 @@ public interface ScreenService {
 
 	List<Event_over> coupon(String member_id);
 
-
-
+	List<Event_over> memberEvent_over(String member_id);
 }

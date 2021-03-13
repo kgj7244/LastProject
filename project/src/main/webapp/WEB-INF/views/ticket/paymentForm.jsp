@@ -226,52 +226,71 @@
 				<!-- 오른쪽 정보 제공 창 -->
 				<td rowspan="3" width="350px;" height="420px;" style="background-color: #333333;"> <!-- 오른쪽 창 3개 합친거 -->
 					<table style="width:350px; height:420px;">
+					
+						<!-- 등급, 제목 -->
 						<tr height="5%">
-							<td rowspan="2" width="10%" align="center" style="border-bottom: 1px; solid; red;">
+							<td width="10%"></td>
+							<td width="10%" align="center" style="border-bottom: 1px; solid; red;">
 								<c:choose>	
 									<c:when test="${movie.m_rank == '전 연령'}">
-										<img src="resources/images/m_rank/전체.png" height="25px" width="25px" >
+										<img src="resources/images/m_rank/전체.png" height="20px" width="20px" >
 									</c:when>								
 								<c:when test="${movie.m_rank == '12세'}">
-									<img src="resources/images/m_rank/12세.png" height="25px" width="25px">
+									<img src="resources/images/m_rank/12세.png" height="20px" width="20px">
 								</c:when>									
 								<c:when test="${movie.m_rank == '15세'}">
-									<img src="resources/images/m_rank/15세.png" height="25px" width="25px">
+									<img src="resources/images/m_rank/15세.png" height="20px" width="20px">
 								</c:when>									
 								<c:when test="${movie.m_rank == '청불'}">
-									<img src="resources/images/m_rank/청불.png" height="25px" width="25px">
+									<img src="resources/images/m_rank/청불.png" height="20px" width="20px">
 								</c:when>							
 								</c:choose>
 							</td>
-							<td colspan="3" width="90%" style="color:white; font-weight: bold;">${movie.m_title}</td>			
+							<td colspan="3" width="80%" style="color:#FFFFFF; font-size:18px; text-shadow: 1px 0 #888371, 0 1px #888371,1px 0 #888371,0 1px #888371;">${movie.m_title}</td>			
 						</tr>
 						
+						<!-- 애니메이션 -->
 						<tr height="5%">
-							<td colspan="3" style="font-size: 12px; font-weight: 400; border-bottom:2px; color:white;">(${movie.m_genre})</td>
+							<td></td>
+							<td></td>
+							<td colspan="3" style="font-size: 12px; color:#c4c4c4; text-shadow: 1px 0 #888371, 0 1px #888371,1px 0 #888371,0 1px #888371;">(${movie.m_genre})</td>
 						</tr>
+						
+						<!-- 예매할 정보 -->
 						<tr height="20%">
-							<td colspan="2" width="40%" align="left" style="vertical-align:middle; color:white; font-weight: bold;">
+							<td width="10%"></td>
+							<td colspan="2" width="40%" align="left" style="vertical-align:middle; color:#c4c4c4; font-size: 15px; text-shadow: 1px 0 #888371, 0 1px #888371,1px 0 #888371,0 1px #888371;">
 								${theater.t_loc}(${theater.t_title}점)<br>
 								${mt_name}<br>
-								${screen.sc_date}<br>
+								${screen.sc_date}<br><br>
 								${screen.sc_start} ~ ${screen.sc_end}
 							</td>
-							<td colspan="2" width="60%" align="center"><img alt="보여줄 이미지가 없습니다." src="${path}/resources/images/m_poster/${movie.m_poster}" height="100px;" width="80px;"></td>
+							<td colspan="2" width="50%" align="center"><img alt="보여줄 이미지가 없습니다." src="${path}/resources/images/m_poster/${movie.m_poster}" height="100px;" width="80px;"></td>
 						</tr>
+						
+						<!-- 선택하신좌석 -->
 						<tr>
-							<td colspan="2"></td>
-							<td colspan="2" align="center" style="color:white; font-weight: bold;">[선택하신좌석]</td>
+							<td colspan="3"></td>
+							<td colspan="2" align="center" style="color:#c4c4c4; text-shadow: 1px 0 #888371, 0 1px #888371,1px 0 #888371,0 1px #888371;">[선택하신좌석]</td>
 						</tr>
+						
+						<!-- 좌석 -->
 						<tr height="30%">
-							<td colspan="2" width="40%" style="color:white; vertical-align:middle; font-weight: bold;" align="center">
+							<td colspan="3" width="50%" style="color:white; vertical-align:middle; font-weight: bold; border: 1px solid #FFFFFF;" align="center">
 								<table>
 									<tr>
 										<td><img src="${path}/resources/images/home/좌석선택한거.png" width="20px;" height="20px;"></td>
 										<td style="color:white;">&nbsp;&nbsp;선택</td>
 									</tr>
 									<tr>
+										<td>　</td>
+									</tr>
+									<tr>
 										<td><img src="${path}/resources/images/home/좌석예매불가.png" width="20px;" height="20px;"></td>
 										<td style="color:white;">&nbsp;&nbsp;선택불가</td>
+									</tr>
+									<tr>
+										<td>　</td>
 									</tr>
 									<tr>
 										<td><img src="${path}/resources/images/home/좌석예매가능.png" width="20px;" height="20px;"></td>
@@ -279,7 +298,7 @@
 									</tr>
 								</table>
 							</td>
-							<td colspan="2">
+							<td colspan="2" width="50%">
 								<table class="table table-bordered" style="margin: 0px; padding: 0px; width: 210px;">
 									<c:forEach var="i" begin="0" end="7" step="2">
 										<tr height="40px;" style="vertical-align:middle;">
@@ -290,25 +309,33 @@
 								</table>
 							</td>
 						</tr>
+						
+						<!-- 예매한 수 정보 -->
 						<tr height="10%">
+							<td></td>
 							<td colspan="4" style="vertical-align:middle;" >
 								<span id="adult" style="color:white;"></span>
 								<span id="youth" style="color:white;"></span>
 							</td>
 						</tr>
+						
+						<!-- 최종금액 -->
 						<tr height="10%">
-							<td colspan="2" width="40%" style="color:white; font-weight: bold;">
+							<td width="10%"></td>
+							<td colspan="2" width="50%" style="color:white; font-weight: bold;">
 								최종결제금액
 							</td>
 							<td align="right" width="30%">
-								<span id="totalPrice" style="color:#329eb1; font-size: 25px; font-weight: bold;"></span>
+								<span id="totalPrice" style="color:#329eb1; font-size: 25px; font-weight: bold;">0</span>
 							</td>
-							<td width="30%" style="color:white; font-weight: bold;">
-								<span id="totalPrice1"></span>
+							<td width="10%" style="color:white; text-shadow: 1px 0 #888371, 0 1px #888371,1px 0 #888371,0 1px #888371; font-weight: bold;" align="left">
+								<span id="totalPrice1">원</span>
 							</td>
 						</tr>
+						
+						<!-- 결제 -->
 						<tr height="20%">
-							<td colspan="4" align="center"><input type="submit" value="결제하기" class="btn btn-info" width="200px;" height="80px;"></td>
+							<td colspan="5" align="center"><input type="submit" value="결제하기" class="btn btn-warning btn-md"></td>
 						</tr>
 					</table>
 				</td>

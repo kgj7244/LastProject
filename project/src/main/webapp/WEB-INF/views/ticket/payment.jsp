@@ -7,11 +7,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+	function select_over() {
+		var over = $('#event').val();
+		frm30.eo_num.value= over;
+		alert(over);
+	}
+	function phone() {
+		$.post("selectTheater.do","id="+t_loc, function(data) {
+			$('#theaterSelect').html(data);
+		});
+	}
+	function transfer() {
+		var transfer = frm30.transfer.value;
+		('#payment').html("<input type='text' value='"+transfer+"'>");
+	}
+</script>
 <body>
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
-	<form action="ticketInsert.do" method="post">
+	<form action="ticketInsert.do" method="post" name="frm30">
 		<input type="hidden" name="m_title" value="${movie.m_title}">
 		<input type="hidden" name="sc_num" value="${screen.sc_num}">
 		<input type="hidden" name="t_title" value="${theater.t_title}">
@@ -20,6 +36,7 @@
 		<input type="hidden" name="youth_ticket" value="${youth_ticket}">
 		<input type="hidden" name="totalPrice" value="${totalPrice}">
 		<input type="hidden" name="selectList" value="${selectList1}">
+		<input type="hidden" name="eo_num">
 		<div align="left">
 			<h2>빠른 예매</h2>
 		</div>
@@ -28,21 +45,11 @@
 				<td width="60%">
 					<div>관람권 및 할인 적용</div>
 					<div>
-						<select class="form-control">
-						    <option>포인트/쿠폰</option> <!-- 교안에 첫번쨰껀 선택 못하게 하는기능있음 나머진 for문으로 돌림 -->
-						    <option>2</option>
-						    <option>3</option>
-						    <option>4</option>
-						    <option>5</option>
-						</select>
-					</div>
-					<div>
-						<select class="form-control">
-						    <option>모바일상품권</option>
-						    <option>2</option>
-						    <option>3</option>
-						    <option>4</option>
-						    <option>5</option>
+						<select class="form-control" name="event" id="event" onchange="select_over()">
+						    <option value="쿠폰없음">쿠폰없음</option> <!-- 교안에 첫번쨰껀 선택 못하게 하는기능있음 나머진 for문으로 돌림 -->
+						    <c:forEach var="m" items="${memberEvent_over}">
+						    	<option value="${m.eo_num}">(${m.e_state}) "${m.e_title}" ${m.e_sale}원 </option>
+						    </c:forEach>
 						</select>
 					</div>
 					<div>
@@ -51,25 +58,12 @@
 					<table class="table table-bordered">
 						<tr>
 							<td style="vertical-align:middle;">
-								<label for="card"><input type="radio" id="card" name="paymentChk" value="신용카드">신용카드</label> &nbsp;&nbsp;&nbsp;&nbsp;
-								<label for="phone"><input type="radio" id="phone" name="paymentChk" value="휴대폰">휴대폰</label> &nbsp;&nbsp;&nbsp;&nbsp;
-								<label for="cacao"><input type="radio" id="cacao" name="paymentChk" value="카카오페이">카카오페이</label> &nbsp;&nbsp;&nbsp;&nbsp;
-								<label for="payco"><input type="radio" id="payco" name="paymentChk" value="PAYCO">PAYCO</label>
+								<label for="phone"><input type="radio" id="phone" name="payment" value="휴대폰 결제" onclick="phone()" checked="checked">휴대폰 결제</label> &nbsp;&nbsp;&nbsp;&nbsp;
+								<label for="transfer"><input type="radio" id="transfer" name="payment" value="계좌이체" onclick="transfer()">계좌이체</label> &nbsp;&nbsp;&nbsp;&nbsp;
 							</td>
 						</tr>
 						<tr>
-							<td>
-								카드사 선택 
-								<select>
-									<option>신한카드</option>
-									<option>KB국민카드</option>
-									<option>우리카드</option>
-									<option>하나카드</option>
-									<option>롯데카드</option>
-									<option>삼성카드</option>
-									<option>현대카드</option>
-								</select>
-							</td>
+							<td><div id="disp"></div></td>
 						</tr>
 					</table>
 				</td>
@@ -137,22 +131,10 @@
 								</table>
 							</td>
 						</tr>
-						<tr>
-							<td colspan="3" align="center" style="color:white;">(마이너스)</td>
-						</tr>
-						<tr>
-							<td colspan="3" align="center">
-								<table style="background-color: #434343; width: 400px;">
-									<tr>
-										<td width="50%" style="color:white;" align="left">할인적용</td>
-										<td width="50%" style="color:white;" align="right"><fmt:formatNumber value="" pattern="#,000"></fmt:formatNumber>원</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
+						
 						<tr>
 							<td style="color:white;">결제수단</td>
-							<td colspan="2" align="right" style="color:white;">신용카드</td>
+							<td colspan="2" align="right" style="color:white;"><span id="payment"></span></td>
 						</tr>
 						<tr>
 							<td colspan="3" align="center"><input type="submit" value="결제" class="btn btn-info"></td>

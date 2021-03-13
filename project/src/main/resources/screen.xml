@@ -116,4 +116,7 @@
 	<select id="coupon" parameterType="string" resultType="event_over">
 		select * from event_over where member_id=#{member_id}
 	</select>
+	<select id="memberEvent_over" parameterType="string" resultType="event">
+		select * from event e, event_over eo where e.e_num = eo.e_num and member_id = #{member_id}
+	</select>
 </mapper>

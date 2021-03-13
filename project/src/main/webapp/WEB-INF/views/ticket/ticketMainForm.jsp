@@ -69,21 +69,25 @@
 	}
 	
 </script>
-
+<style type="text/css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/minty/bootstrap.min.css" integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH" crossorigin="anonymous">
+	
+</style>
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
+
 	<div align="left"><h2>빠른 예매</h2></div>
 	<hr style="border: 0px; height: 3px; background-color: #cccccc;"> 
 	<div style="margin-top: 20px;"> <!-- 선택창 -->
 		<table class="table table-bordered" style="width: 1200px; height: 400px;">
 			<tr height="40px;"><!-- 제목 -->
-				<td style="background-color: #333333; color: #e9e9e9; font-weight: bold; vertical-align:middle;" align="center" height="35px;" width="30%" >영화</td>
-				<td colspan="2" style="background-color: #333333; color: #e9e9e9; font-weight: bold;" align="center" width="20%">극장</td>
-				<td style="background-color: #333333; color: #e9e9e9; font-weight: bold;" align="center" width="10%">날짜</td>
-				<td style="background-color: #333333; color: #e9e9e9; font-weight: bold;" align="center" width="40%">시간</td>
+				<td style="background-color: #ffce67; color: #888371; vertical-align:middle; border-color:#FFFFFF; font-weight: bold;" align="center" width="30%">영화</td>
+				<td colspan="2" style="background-color: #ffce67; color: #888371; vertical-align:middle; border-color:#FFFFFF; font-weight: bold;" align="center" width="20%">극장</td>
+				<td style="background-color: #ffce67; color: #888371; border-color:#FFFFFF; vertical-align:middle; font-weight: bold;" align="center" width="10%">날짜</td>
+				<td style="background-color: #ffce67; color: #888371; border-color:#FFFFFF; vertical-align:middle; font-weight: bold;" align="center" width="40%">시간</td>
 			</tr>
 			<tr height="auto;">
 				
@@ -110,8 +114,7 @@
 													<img src="resources/images/m_rank/청불.png" height="25px" width="25px">
 												</c:when>							
 											</c:choose>
-											<input type="button" value="${i.m_title}" 
-="movieChk('${i.m_title}','${i.m_poster}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 10px;">
+											<input type="button" value="${i.m_title}" onclick="movieChk('${i.m_title}','${i.m_poster}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 10px;">
 										</td>
 									</tr>
 								</c:forEach>
@@ -187,11 +190,11 @@
 			<table class="table" style="width: 1200px; height: 140px; background-color: #1d1d1c;"><!--background-color: #1d1d1c;  -->
 				<tr>
 					<td width="20%"></td>
-					<td align="center" width="20%" style="vertical-align:middle; color: #e6e6e6"><span id="img" style="color: #e6e6e6; font-size: 30px; font-weight: bold;" >영화선택</span><br><span id="m_title" style="color:white; font-weight: bold;"></span></td>
+					<td align="center" width="20%" style="vertical-align:middle; color: #e6e6e6"><span id="img" style="color: #ffce67; font-size: 30px; font-weight: bold;" >영화선택</span><br><span id="m_title" style="color:white; font-weight: bold;"></span></td>
 					<td align="center" width="20%" style="vertical-align:middle;">
 						<table>
 							<tr>
-								<td><span id="t_title" style="font-size:20px; color: #e6e6e6; font-weight: bold;"><span style="color: #e6e6e6; font-size: 30px;">극장선택</span></span></td>
+								<td><span id="t_title" style="font-size:20px; color: #e6e6e6; font-weight: bold;"><span style="color: #ffce67; font-size: 30px;">극장선택</span></span></td>
 							</tr>
 							<tr>
 								<td><span id="sc_date" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>
@@ -201,7 +204,7 @@
 							</tr>
 						</table>
 					</td>
-					<td width="20%" align="center" style="vertical-align:middle;"><input type="submit" value="결제" class="btn btn-info" style="padding :30px; 30px; font-size: 30px;"></td>
+					<td width="20%" align="center" style="vertical-align:middle;"><input type="submit" value="결제" class="btn" style="background-color: #1d1d1c; color:#ffce67; border:2px solid #ffce67; padding :30px; 30px; font-size: 30px;"></td>
 					<td width="20%"></td>
 				</tr>
 			</table>

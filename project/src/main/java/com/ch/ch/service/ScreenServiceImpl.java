@@ -108,5 +108,7 @@ public class ScreenServiceImpl implements ScreenService{
 	public List<Event_over> coupon(String member_id) {
 		return sd.coupon(member_id);
 	}
-	
+	public List<Event_over> memberEvent_over(String member_id) {
+		return sd.memberEvent_over(member_id);
+	}	
 }

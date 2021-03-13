@@ -165,8 +165,9 @@ public class TicketController {
 		return "ticket/movieTheater100";
 	}
 	@RequestMapping("payment")
-	public String payment(Model model, String totalPrice, String m_title, String t_title, String mt_num2, String sc_num2, String adult_ticket, String youth_ticket, String selectList1) {
-		// 나중에 회원에서 사용가능하는 쿠폰 있는지 확인 하기
+	public String payment(Model model, String totalPrice, String m_title, String t_title, String mt_num2, String sc_num2, String adult_ticket, String youth_ticket, String selectList1, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id");
+		List<Event_over> memberEvent_over = ss.memberEvent_over(member_id); // session에 불러온 아이디로 쿠폰 list 불러옴
 		Movie movie = ms.selectTitle(m_title);
 		Theater theater = tts.selectTitle(t_title);
 		int mt_num = Integer.parseInt(mt_num2);
@@ -189,8 +190,10 @@ public class TicketController {
 		model.addAttribute("adult_ticket", adult_ticket);
 		model.addAttribute("youth_ticket", youth_ticket);
 		model.addAttribute("selectList1", selectList1);
+		model.addAttribute("memberEvent_over", memberEvent_over);
 		return "ticket/payment";
 	}
+
 	@RequestMapping("ticketInsert") // 예매
 	public String ticketInsert(Model model, String m_title, String sc_num, String mt_num, String t_title, String adult_ticket, String youth_ticket, String t_sale, String totalPrice, String selectList, HttpSession session) {	
 		String member_id = (String)session.getAttribute("member_id"); // session에 저장된 id를 가져오기
