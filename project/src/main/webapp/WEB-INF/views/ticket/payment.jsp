@@ -10,8 +10,7 @@
 <script type="text/javascript">
 	function select_over() {
 		var over = $('#event').val();
-		frm30.eo_num.value= over;
-		alert(over);
+		frm30.eo_num.value= over+"";
 	}
 	function phone() {
 		$.post("selectTheater.do","id="+t_loc, function(data) {

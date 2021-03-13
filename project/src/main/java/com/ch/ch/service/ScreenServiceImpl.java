@@ -110,5 +110,12 @@ public class ScreenServiceImpl implements ScreenService{
 	}
 	public List<Event_over> memberEvent_over(String member_id) {
 		return sd.memberEvent_over(member_id);
+	}
+	public Event eventNumFind(int eo_num) {
+		return sd.eventNumFind(eo_num);
+	}
+	public void event_use(int eo_num) {
+		sd.event_use(eo_num);
+		
 	}	
 }
