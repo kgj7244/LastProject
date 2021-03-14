@@ -54,6 +54,9 @@
 				</c:forEach>
 			</c:if>
 		</tr>
+		<tr>
+			<td align="center" colspan="7"><input type="button" value="목록으로" onclick="location.href='mypage.do'" class="btn btn-warning"></td>
+		</tr>
 	</table>
 	
 </div>

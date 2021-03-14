@@ -43,7 +43,7 @@
 		</div>
 		</c:forEach>
 		<div class="col-sm-3" align="center">　</div> <!-- (ㅡ.ㅡ)? 아니 딱 12씩 맞췄는데 왜 3이 비냐고... 일단 공백(특수문자 공백임 사실상 값이 들어있음)으로 씀  -->
-		<div class="col-sm-1" align="center"></div>
+		<div class="col-sm-1" align="center">　</div>
 		<div class="col-sm-10" align="center">
 			<form action="movieMainForm.do">
 				<table class="table table-bordered" style="background-color: gray;">
@@ -56,12 +56,12 @@
 						</td>
 						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="#" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-calendar"></span>상영시간표</a></td>
 						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="movieMainForm.do" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-film"></span>영화</a></td>
-						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="ticketMainForm.do" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-phone"></span>예메</a></td>
+						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="ticketMainForm.do" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-phone"></span>예매</a></td>
 					</tr>
 				</table>
 			</form>
 		</div>
-		<div class="col-sm-1" align="center"></div>
+		<div class="col-sm-1" align="center">　</div>
 	</div>
 </body>
 </html>
