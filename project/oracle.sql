@@ -96,7 +96,7 @@ create sequence e_num increment by 1 start with 1;
 create table event_over(
 	eo_num number(10) primary key,               					-- 중복체크 번호
 	member_id nvarchar2(50) not null,  								-- 아이디
-	eo_state nvarchar2(50) not null,    			                -- 상태(0.미참여, 1. 대기, 2. 발급, 3. 사용)
+	eo_state nvarchar2(50) not null,    			                -- 상태(1. 대기, 2. 발급, 3. 사용)
 	e_num number(10) references event(e_num)  						-- 이벤트번호
 );
 create sequence eo_num increment by 1 start with 1;
@@ -447,3 +447,4 @@ create sequence t_account increment by 1 start with 1;
 select * from EVENT_OVER;
 select* from ticket;
 select * from bank;
+select * from event e, event_over eo where e.e_num = eo.e_num and eo.eo_num = 0;

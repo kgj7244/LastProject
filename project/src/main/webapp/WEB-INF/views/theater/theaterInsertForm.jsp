@@ -18,65 +18,56 @@
 		})
 	}
 </script>
+<style type="text/css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/minty/bootstrap.min.css" integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH" crossorigin="anonymous">
+</style>
+<style type="text/css">
+	#container1{
+		height: 750px;
+	}
+</style>
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
-	<div class="container" align="center" >
-	<h2>극장 추가</h2>
+	<div class="container" align="center" id="container1">
+	<table class="table table-hover" style="margin-top: 30px;">
+		<tr>
+			<td align="center" style="font-weight: bold; background-color: #fedf9e; vertical-align: middle; color: #908c88; height: 60px; font-size: 30px; margin-top: 30px;">극장 추가</td>
+		</tr>
+	</table>
+	<hr>
 	<form action="theaterInsert.do" method="post" name="frm">
 		<table class="table table-bordered">
-			<!-- <tr>
-				<th>상영관 번호</th>
-				<td>
-					<input type="number" name="t_num" required="required" autofocus="autofocus">
-					<input type="button" onclick="TnumChk()" class="btn btn-warning" value="중복 확인">
-					<div id="disp" style="color: red;"></div>
-				</td>
-			</tr> -->
 			<tr>
-				<th>지역</th>
-				<td>
+				<td width="50%" align="right" style="vertical-align:middle;">지역 &nbsp;&nbsp;</td>
+				<td width="50%" align="left"style="vertical-align:middle;">
 					<input type="text" name="t_loc" required="required" autofocus="autofocus">
 					<input type="button" onclick="TLocChk()" class="btn btn-warning" value="중복 확인">
 					<div id="disp" style="color: red;"></div>
-					<%-- 
-					<select name="t_loc">
-						<c:forEach var="title" items="${titleList}">
-							<option>${title}</option>
-						</c:forEach>
-					</select> 
-					--%>
 				</td>
 			</tr>
 			<tr>
-				<th>극장명</th>
-				<td>
-					<input type="text" name="t_title" required="required" autofocus="autofocus">
+				<td width="50%" align="right"style="vertical-align:middle;">극장명 &nbsp;&nbsp;</td>
+				<td width="50%" align="left"style="vertical-align:middle;"><input type="text" name="t_title" required="required" autofocus="autofocus"></td>
+				
+			</tr>
+			<tr>
+				<td width="50%" align="right"style="vertical-align:middle;">주소 &nbsp;&nbsp;</td>
+				<td width="50%" align="left"style="vertical-align:middle;"><input type="text" name="t_addr" required="required"></td>
+			</tr>
+			<tr>
+				<td width="50%" align="right"style="vertical-align:middle;">전화번호 &nbsp;&nbsp;</td>
+				<td width="50%" align="left"style="vertical-align:middle;">
+					<input type="tel" name="t_number" pattern="\d{2,3}-\d{3,4}-\d{4}" placeholder="xx-xxx-xxxx" required="required">
 				</td>
 			</tr>
 			<tr>
-				<th>주소</th>
-					<td>
-						<input type="text" name="t_addr" required="required">
-					</td>
+				<td width="50%" align="right"style="vertical-align:middle;">시설 안내 &nbsp;&nbsp;</td>
+				<td width="50%" align="left"style="vertical-align:middle;"><input type="text" name="t_gui" required="required"></td>
 			</tr>
 			<tr>
-				<th>전화번호</th>
-					<td>
-						<input type="tel" name="t_number" pattern="\d{2,3}-\d{3,4}-\d{4}" placeholder="xx-xxx-xxxx" required="required">
-					</td>
-			</tr>
-			<tr>
-				<th>시설 안내</th>
-					<td>
-						<input type="text" name="t_gui" required="required">
-					</td>
-			</tr>
-			<tr>
-				<td align="center" colspan="4">
-					<input type="submit" value="등록">
-					<button><a href="#">목록</a></button>
+				<td align="center" colspan="3"><input type="button" value="목록" onclick="location.href='mypage.do'" class="btn btn-info">&nbsp;&nbsp;<input type="submit" value="등록" class="btn btn-warning">
 				</td>
 			</tr>	
 		</table>

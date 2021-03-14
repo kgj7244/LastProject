@@ -198,11 +198,12 @@ public class TicketController {
 	public String ticketInsert(Model model, String m_title, String sc_num, String mt_num, String t_title, String adult_ticket, String youth_ticket, String t_sale, String totalPrice, String selectList, HttpSession session, String eo_num) {	
 		String member_id = (String)session.getAttribute("member_id"); // session에 저장된 id를 가져오기
 		int ticket=0; int result=0; int t_sale1=0; String st_name =""; int adult_ticket1 = 0; int youth_ticket1 = 0; int totalPrice1 = Integer.parseInt(totalPrice);
-		if(eo_num.equals("쿠폰없음")) {
+		if(eo_num.equals("쿠폰없음")||eo_num == null || eo_num.equals("")) {
 			eo_num = "0"; // 쿠폰없음을 클릭하면 그냥 0으로 받아서 값 넘김
 		}
 		Event eventNumFind = ss.eventNumFind(Integer.parseInt(eo_num)); // eo_num이 값이 들어가있으면 그 해당하는 값에 이벤트 정보를 가져옴
-		if(eventNumFind.getE_num()>0) { //검색해서 나온 값이 있으면 0보다 크고 없으면 else로 빠져나감
+		if(eventNumFind!=null) { //검색해서 나온 값이 있으면 0보다 크고 없으면 else로 빠져나감
+			System.out.println("여기들어옴?");
 			ss.event_use(eventNumFind.getEo_num()); // 쿠폰이 사용했으면 3으로 변경됨
 			t_sale1=eventNumFind.getE_sale(); // 할인가격을 t_sale1로 변경
 			totalPrice1 -= t_sale1; // 총 가격에서 할인가격을 뺀 총 가격으로 변경
