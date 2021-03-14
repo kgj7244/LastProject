@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#rt {
+	margin-bottom: 30px;
+}
+</style>
 <script type="text/javascript">
 	function reDelete(b_num,r_num) {
 		var sendData = 'b_num='+b_num+'&r_num='+r_num;
@@ -39,29 +44,38 @@
 </head>
 <body>
 	<c:if test="${not empty rbList}">
-		<table class="table table-striped">
-				<tr>
-					<td>작성자</td>
-					<td>내용</td>
-					<td>작성일</td>
-					<td></td>
-				</tr>
-				<c:forEach var="rb" items="${rbList }">
-					<c:if test="${rb.r_del == 'y' }">
-						<tr>
-							<td colspan="4">삭제된 댓글입니다</td>
-						</tr>
-					</c:if>
-					<c:if test="${rb.r_del != 'y' }">
-						<tr>
-							<td>${rb.member_id }<!-- 작성자 --></td>
-							<td id="td_${rb.r_num }">${rb.r_text }<!-- 댓글 --></td>
-							<td>${rb.r_date }<!-- 작성일 --></td>
-							<td id="btn_${rb.r_num }"><button class="btn btn-warning btn-sm" onclick="reUpdate(${rb.b_num},${rb.r_num})">수정</button>
-								<button class="btn btn-danger btn-sm" onclick="reDelete(${rb.b_num},${rb.r_num})">삭제</button></td>
-						</tr>
-					</c:if>
-				</c:forEach>
+		<table class="table table" id="rt">
+			<tr align="center" class="table-light">
+				<td>작성자</td>
+				<td>내용</td>
+				<td>작성일</td>
+				<td></td>
+			</tr>
+			<c:forEach var="rb" items="${rbList }">
+				<c:if test="${rb.r_del == 'y' }">
+					<tr align="center">
+						<td colspan="4">삭제된 댓글입니다</td>
+					</tr>
+				</c:if>
+				<c:if test="${rb.r_del != 'y' }">
+					<tr align="center">
+						<td>${rb.member_id }<!-- 작성자 --></td>
+						<td id="td_${rb.r_num }">${rb.r_text }<!-- 댓글 --></td>
+						<td>${rb.r_date }<!-- 작성일 --></td>
+						<c:if test="${member_id == 'master' }">
+							<td id="btn_${rb.r_num }"><button
+									class="btn btn-outline-warning btn-lg"
+									onclick="reUpdate(${rb.b_num},${rb.r_num})">
+									<b>UPDATE</b>
+								</button>
+								<button class="btn btn-outline-warning btn-lg"
+									onclick="reDelete(${rb.b_num},${rb.r_num})">
+									<b>DELETE</b>
+								</button></td>
+						</c:if>
+					</tr>
+				</c:if>
+			</c:forEach>
 		</table>
 	</c:if>
 </body>

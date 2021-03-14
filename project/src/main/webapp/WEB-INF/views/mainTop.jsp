@@ -7,11 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
 </style>
 </head>
 <body>
-<div style="background-color: #0d0908; height: 70px;">
+<!-- <div style="background-color: #0d0908; height: 70px;"> -->
+<div style="background-color: #0d0908; height: 150px;">
 	<div class="container" id="mainTop" style="background-color: #0d0908; height: 70px;">
 		<div class="row">
 			<div class="col-sm-4" align="center">

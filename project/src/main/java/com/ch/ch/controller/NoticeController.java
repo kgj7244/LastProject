@@ -32,8 +32,8 @@ public class NoticeController {
 		List<Notice> list = ns.list(notice);
 		int no = total - startRow + 1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		// String[] tit = {"지점", "제목", "내용", "제목+내용"};
-		// model.addAttribute("tit", tit);
+		String[] tit = {"지점", "제목", "내용", "제목+내용"};
+		model.addAttribute("tit", tit);
 		model.addAttribute("pb", pb);
 		model.addAttribute("no", no);
 		model.addAttribute("total", total);

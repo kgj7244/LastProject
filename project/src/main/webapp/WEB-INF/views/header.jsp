@@ -15,6 +15,11 @@
 <!-- 절대 경로로 바뀜 -->
 <link rel="stylesheet" type="text/css" 
 	href="${path}/resources/bootstrap/css/bootstrap.min.css">
+<!--  부트스트랩 -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/minty/bootstrap.min.css"
+	integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH"
+	crossorigin="anonymous">
 <script type="text/javascript"
 	src="${path}/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript" 
