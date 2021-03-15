@@ -1,34 +1,26 @@
 package com.ch.ch.controller;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import com.ch.ch.model.Event;
 import com.ch.ch.model.Event_over;
-import com.ch.ch.model.Member;
 import com.ch.ch.model.Movie;
 import com.ch.ch.model.MovieTheater;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
-import com.ch.ch.model.Store;
 import com.ch.ch.model.Theater;
 import com.ch.ch.model.Ticket;
-import com.ch.ch.service.MemberService;
+
 import com.ch.ch.service.MovieService;
 import com.ch.ch.service.ScreenService;
 import com.ch.ch.service.TheaterService;
@@ -44,8 +36,6 @@ public class TicketController {
 	private TheaterService tts; // 극장
 	@Autowired
 	private ScreenService ss; // 상영
-	@Autowired
-	private MemberService mms; // 회원
 	@RequestMapping("ticketMainForm")
 	public String ticketMainForm(Model model, Theater theater) {
 		List<Movie> movie = ms.list(); // 영화 리스트

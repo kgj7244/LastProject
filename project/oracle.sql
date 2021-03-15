@@ -350,7 +350,7 @@ create table seat(
 	st_num nvarchar2(10),                   --좌석번호 
 	sc_num number references screen(sc_num) --상영번호
 );
-
+select * from seat
 --------------------------------------예매
 
 create table ticket(
