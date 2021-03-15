@@ -307,6 +307,14 @@ public class StoreController {
 		return "/member/memberStoreRefund";
 	}
 	
+	@RequestMapping("master_Storelist")
+	public String master_Storelist(Store store,Model model) {
+		
+
+        List<Store> storeList = ss.list();
+		model.addAttribute("storeList", storeList);	
+		return "/store/master_Storelist";	
+	}
 	
 	
 		

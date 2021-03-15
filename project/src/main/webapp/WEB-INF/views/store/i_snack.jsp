@@ -31,6 +31,8 @@
  <c:if test="${not empty storeList }">
  <c:forEach var="store" items="${storeList }">
  
+ 
+ 		<c:if test="${store.s_del != 'y' }">	
  <div class="image">
  <div class="a1">
  <a href="storeContent.do?s_num=${store.s_num }">
@@ -44,7 +46,11 @@
   <div>${store.s_prive }원</div>
 
  </div></div>
- </c:forEach></c:if>
+ 		</c:if>
+ </c:forEach>
+ 
+ 
+ </c:if>
  </div>
 </div>
 

@@ -12,7 +12,7 @@
 <c:if test="${result > 0 }">
  <script type="text/javascript">
   alert("수정 성공했습니다");
-  location.href="storeMainForm.do";
+  location.href="master_Storelist.do";
  </script>
 </c:if>
 

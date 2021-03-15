@@ -12,7 +12,7 @@
 <c:if test="${result >0 }">
  <script type="text/javascript">
  alert("추가 완료되었습니다");
- location.href="storeMainForm.do";
+ location.href="master_Storelist.do";
  </script>
 </c:if>
 

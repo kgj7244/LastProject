@@ -61,7 +61,7 @@
 
 <tr>
 <th>총 상품금액</th>
-<td><input type="number" readonly="readonly" name="full_price" id="full_price">
+<td><input type="number" readonly="readonly" style="border:none"  name="full_price" id="full_price">
 </td>
 </tr>
 <!--  style="border:none" -->

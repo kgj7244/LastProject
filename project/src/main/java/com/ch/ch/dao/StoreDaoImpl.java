@@ -41,7 +41,7 @@ public class StoreDaoImpl implements StoreDao{
 
 	
 	public int delete(int s_num) {
-		return sst.delete("storens.delete",s_num);
+		return sst.update("storens.delete",s_num);
 	}
 
 
