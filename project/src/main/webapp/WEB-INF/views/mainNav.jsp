@@ -59,7 +59,6 @@ li>a {
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-<<<<<<< HEAD
 		<div class="collapse navbar-collapse" id="navbarColor03">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link"
@@ -94,7 +93,6 @@ li>a {
 					<b>SEARCH</b>
 				</button>
 			</form>
-=======
 		<div class="collapse navbar-collapse row" id="navbarColor03">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-4" align="left">
@@ -132,7 +130,6 @@ li>a {
 				</form>
 			</div>
 			<!-- <div class="col-sm-2"></div> -->
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 		</div>
 	</nav>
 </body>
