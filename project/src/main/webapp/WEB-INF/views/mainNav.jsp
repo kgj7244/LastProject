@@ -58,7 +58,7 @@ li>a {
 			data-target="#navbarColor03" aria-controls="navbarColor03"
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
-		</button>
+		</button>			
 		<div class="collapse navbar-collapse row" id="navbarColor03">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-4" align="left">
@@ -96,7 +96,6 @@ li>a {
 					</button>
 				</form>
 			</div>
-			<!-- <div class="col-sm-2"></div> -->
 		</div>
 	</nav>
 </body>

@@ -335,7 +335,7 @@
 						
 						<!-- 결제 -->
 						<tr height="20%">
-							<td colspan="5" align="center"><input type="submit" value="결제하기" class="btn btn-warning btn-lg" style="width: 100px; height: 30px;"></td>
+							<td colspan="5" align="center"><input type="submit" value="결제하기" class="btn btn-Secondary btn-lg" style="width: 100px; height: 30px;"></td>
 						</tr>
 					</table>
 				</td>

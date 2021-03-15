@@ -44,7 +44,7 @@
 		<div class="col-sm-1" align="center">　</div> <!-- 혹시 몰라서 ㄱ [한자] 1번 으로 특수문자 공백넣음 -->
 		<div class="col-sm-10" align="center">
 			<form action="movieMainForm.do">
-				<table class="table table-bordered" style="background-color: gray;">
+				<table class="table table-bordered" style="background-color: gray; margin-top: 30px;">
 					<tr height="50px;">
 						<td width="25%" align="center" style="vertical-align:middle;">
 							<input type="hidden" name="m_ing" value="1">

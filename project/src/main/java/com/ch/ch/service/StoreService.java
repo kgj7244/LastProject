@@ -30,6 +30,8 @@ public interface StoreService {
 
 	int maxOrd_num();
 
+	int resurrection(int s_num);
+
 	
 
 }
