@@ -44,9 +44,13 @@
 	)
 	</insert>
 	
-	<delete id="delete" parameterType="integer">
+	<update id="delete" parameterType="integer">
+	 update store set s_del='y' where s_num=#{s_num}
+	</update>
+<!-- 	
+	<delete id="delete" parameterType="integer">	 
 	 delete from store where s_num=#{s_num}
-	</delete>
+	</delete> -->
 	
 	<update id="update" parameterType="store">
 	 update store set 
@@ -56,13 +60,20 @@
 			,  s_Pimage=#{s_Pimage}
 	</if>
 	 ,s_purchase=#{s_purchase},s_prive=#{s_prive},del=#{del},
-	 s_per=#{s_per}, s_pernd=#{s_pernd},s_total=#{s_total},s_sale=#{s_sale}
-	 
+	 s_per=#{s_per}, s_pernd=#{s_pernd},s_total=#{s_total},s_sale=#{s_sale} 
 	 where s_num=#{s_num} 
 	</update>
 
 <!-- ================================= -->
-
-
+	<update id="resurrection" parameterType="integer">
+	 update store set s_del='n' where s_num=#{s_num}
+	</update>
+	
+	<update id="counts" parameterType="integer">
+	 update store 
+	 set s_total=#{s_total-s_purchase}
+	 where s_num=#{s_num}
+	</update>
+<!--  from ord o, store s  -->
 
 </mapper>

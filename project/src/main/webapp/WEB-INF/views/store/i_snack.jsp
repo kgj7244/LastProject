@@ -17,7 +17,9 @@
  <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
 
-<h2 class="text-primary">스토어</h2>
+
+<h2 align="left">스토어</h2>
+<hr style="border: 0px; height: 3px; background-color: #cccccc;">
  <%@include file="storecategory.jsp" %>
  
 <!-- ====================================== -->
@@ -31,8 +33,12 @@
  <c:if test="${not empty storeList }">
  <c:forEach var="store" items="${storeList }">
  
+ 
+ 		<c:if test="${store.s_del != 'y' }">	
  <div class="image">
  <div class="a1">
+ 
+ 			
  <a href="storeContent.do?s_num=${store.s_num }">
 <span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150"></span>
 
@@ -42,9 +48,27 @@
   <div>${store.s_Pconfig }</div>
  
   <div>${store.s_prive }원</div>
+		
+			
+ 			
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
+<fmt:formatDate value="${store.s_pernd }" pattern="yyyy-MM-dd" var="s_pernd"/>
 
+<c:if test="${today >= s_pernd }">
+
+현재 구매가 불가능한 상품입니다
+
+</c:if>
+
+			
+			
  </div></div>
- </c:forEach></c:if>
+ 		</c:if>
+ </c:forEach>
+ 
+ 
+ </c:if>
  </div>
 </div>
 
@@ -52,12 +76,6 @@
 
 
 
-<div align="center">
-<input type="hidden" name="member_id" value="${member_id}">
-	<c:if test="${member_id == 'master'}">
- <a href="storeInsertForm.do">상품 추가</a>
- </c:if>
-</div>
 
 <div><%@include file="../mainFloor.jsp" %></div>
 </body>

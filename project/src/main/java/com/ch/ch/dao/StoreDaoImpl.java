@@ -41,7 +41,7 @@ public class StoreDaoImpl implements StoreDao{
 
 	
 	public int delete(int s_num) {
-		return sst.delete("storens.delete",s_num);
+		return sst.update("storens.delete",s_num);
 	}
 
 
@@ -89,6 +89,20 @@ public class StoreDaoImpl implements StoreDao{
 	
 	public int maxOrd_num() {
 		return sst.selectOne("ordns.maxOrd_num");
+	}
+
+
+
+	
+	public int resurrection(int s_num) {
+		return sst.update("storens.resurrection",s_num);
+	}
+
+
+
+	
+	public int counts(int s_num) {
+		return sst.update("storens.counts",s_num);
 	}
 
 

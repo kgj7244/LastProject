@@ -11,23 +11,15 @@
 
 <c:if test="${result > 0 }">
  <script type="text/javascript">
-  alert("수정 성공했습니다");
+  alert("복원 성공했습니다");
   location.href="master_Storelist.do";
  </script>
 </c:if>
 
 <c:if test="${result == 0 }">
  <script type="text/javascript">
-  alert("수정 실패했습니다. 다시 확인해주세요");
+  alert("복원 실패했습니다. 다시 확인해주세요");
   history.go(-1);
- </script>
-</c:if>
-
-
-<c:if test="${result ==-1 }">
- <script type="text/javascript">
- alert("뭔가 잘 못 됐습니다. 확인해주세요");
- history.go(-1);
  </script>
 </c:if>
 

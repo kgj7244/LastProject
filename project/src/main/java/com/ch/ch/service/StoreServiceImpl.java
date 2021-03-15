@@ -83,6 +83,17 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
+	public int resurrection(int s_num) {
+		return sd.resurrection(s_num);
+	}
+
+
+	@Override
+	public int counts(int s_num) {
+		return sd.counts(s_num);
+	}
+
+
 	}
 
 

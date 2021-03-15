@@ -41,8 +41,7 @@
 	<%@ include file="../mainTop.jsp"%>
 	<%@ include file="../mainNav.jsp"%>
 	<div class="container" align="center">
-		<form action="memberJoin.do" method="post" name="frm"
-			onsubmit="return chk()">
+		<form action="memberJoin.do" method="post" name="frm" onsubmit="return chk()">
 			<table class="table">
 				<tr>
 					<td colspan="2" align="center"><button type="button"
@@ -56,8 +55,9 @@
 					<td align="center">아이디</td>
 					<td><input type="text" name="member_id"
 						required="required" autofocus="autofocus" class="form-control">
-						<button type="button" class="btn btn-outline-warning"
-							onclick="idChk()">중복체크</button>
+						<input class="btn btn-outline-warning" type="button" value="중복체크" onclick="idChk()">
+<!-- 						<button type="button" class="btn btn-outline-warning"
+							onclick="idChk()">중복체크</button> -->
 						<div id="disp" class="err"></div>
 					</td>
 				</tr>
@@ -78,10 +78,10 @@
 				</tr>
 				<tr>
 					<td align="center">성별</td>
-					<td><label for="g1"> 남성 &nbsp;</label>
+					<td><label for="g1" > 남성 &nbsp;</label>
 					<input type="radio" name="member_gender" value="남성"
 						checked="checked"> <label for="g1">	&nbsp; 여성 	&nbsp;</label><input type="radio"
-						name="member_gender" value="여성"></td>
+						name="member_gender" value="여성" ></td>
 				</tr>
 				<tr>
 					<td align="center">생년월일</td>

@@ -17,8 +17,9 @@
 }
 
 #ti {
-	width: 910px;
+	width: 100%;
 }
+#ct {width: 30%;}
 </style>
 <script type="text/javascript">
 	function set1(tr) {
@@ -52,12 +53,8 @@
 						</button></td>
 				</tr>
 				<tr>
-					<td align="center"><b>아이디</b></td>
-					<td>${board.member_id }</td>
-				</tr>
-				<tr>
 					<td align="center"><b>카테고리</b></td>
-					<td><select name="b_code" required="required" class="form-control">
+					<td><select name="b_code" required="required" class="form-control" id="ct">
 							<option id="b_code" hidden="hidden"></option>
 							<!-- 선택안했을시 required호출용 -->
 							<option value='mem'>회원</option>
@@ -65,8 +62,12 @@
 							<option value='st'>스토어</option>
 							<option value='etc'>기타</option>
 					</select></td>
+					<td align="center"><b>아이디</b></td>
+					<td>${board.member_id }</td>
+				</tr>
+				<tr>
 					<td align="center"><b>제목</b></td>
-					<td><input type="text" id="ti" class="form-control" name="b_title"
+					<td colspan="3"><input type="text" id="ti" class="form-control" name="b_title"
 						required="required" autofocus="autofocus" value=${board.b_title }></td>
 				</tr>
 				<tr>
@@ -83,12 +84,12 @@
 					<td>
 				</tr>
 				<tr id="act1" style="display: none">
-					<td>비밀번호</td>
+					<td align="center"><b>비밀번호</b></td>
 					<td><input type="password" name="b_password"
 						disabled="disabled" class="form-control"></td>
 				</tr>
 				<tr id="act2" style="display: none">
-					<td>비밀번호</td>
+					<td align="center"><b>비밀번호</b></td>
 					<td><input type="password" name="b_password" class="form-control" class="form-control"></td>
 				<tr>
 					<td colspan="4" align="center">

@@ -86,9 +86,9 @@ table {
 							<b>영화 목록</b>
 						</button></td>
 					<td align="center"><button type="submit"
-							class="btn btn-warning btn-lg" onclick="location.href='storeInsertForm.do'"
+							class="btn btn-warning btn-lg" onclick="location.href='master_Storelist.do'"
 							id="ml">
-							<b>스토어상품 추가</b>
+							<b>스토어 상품 목록</b>
 						</button></td>
 				</tr>
 			</table>

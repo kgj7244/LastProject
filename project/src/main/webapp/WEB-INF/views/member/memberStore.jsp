@@ -5,7 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>스토어 주문 조회</title>
+
+<style type="text/css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/minty/bootstrap.min.css" integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH" crossorigin="anonymous">
+</style>
+<style type="text/css">
+	#container1{
+		height: 750px;
+	}
+</style>
 
 </head>
 <body>
@@ -17,16 +26,27 @@
 <input type ="hidden" name = "s_num" value = "${store.s_num }">
 <input type ="hidden" name = "member_id" value = "${member.member_id }">
 
-	<h2>구매 상품 </h2>
-	<table class="table table-bordered">
+
+<table class="table table-hover" style="margin-top: 30px;">
+		<tr>
+			<td align="center" style="font-weight: bold; background-color: #fedf9e; vertical-align: middle; color: #908c88; height: 60px; 
+			font-size: 30px; margin-top: 30px;">내 구매 상품</td>
+		</tr>
+	</table>
+	<hr>
+
+
+
+	<table class="table table-bordered table-hover" id="tableLook">
+	
 		<tr>	
-			<td>주문번호</td>
-			<td>상품 이름</td>
-			<td>결제금액</td>				
-			<td>구매일</td>
-			<td>유효기간</td>				
-			<td>자세히 보기</td>
-			<td>상태</td>
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="10%">주문번호</td>
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="20%">상품 이름</td>
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="15%">결제금액</td>				
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="15%">구매일</td>
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="15%">유효기간</td>				
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="10%">자세히 보기</td>
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="10%">상태</td>
 		</tr>
 		<tr>
 			<c:if test="${empty ord}">
@@ -35,28 +55,33 @@
 			<c:if test="${not empty ord}">
 				<c:forEach var="ord" items="${ord}">
 					<tr>
-						<td>${ord.ord_num}</td>
-						<td>${ord.s_Pname}</td>		
-						<td>${ord.full_price}</td>							
+						<td style="text-align: center;">${ord.ord_num}</td>
+						<td style="font-weight: bold;">${ord.s_Pname}</td>		
+					
+						<td><fmt:formatNumber pattern="###,###" value="${ord.full_price}"/>원</td>							
 						<td>${ord.buy_date}</td>													
 						<td>~${ord.s_validity}</td>
 										
 						<td><input type="button" value="상세 정보" 
-						onclick='location.href="memberStoreInfo.jsp.do?ord_num=${ord.ord_num}&s_num=${ord.s_num}"'>
+						onclick='location.href="memberStoreInfo.do?ord_num=${ord.ord_num}&s_num=${ord.s_num}"'>
 						</td>
 			<!-- 		&s_num=${ord.s_num}&s_validity=${ord.s_validity}	 -->	
 						<c:if test="${ord.del=='n'}">						
-						<td>사용가능</td>
+						<td style="color: blue;">사용가능</td>
 						</c:if>
 						
 						<c:if test="${ord.del=='y'}">						
-						<td>불가능</td>
+						<td style="color: red;">불가능</td>
 						</c:if>
 						
 					</tr>
 				</c:forEach>
 			</c:if>
 		</tr>
+		<tr>
+			<td align="center" colspan="7"><input type="button" value="목록으로" onclick="location.href='mypage.do'" class="btn btn-warning"></td>
+		</tr>
+		
 	</table>
 </div>
 <%@ include file="../mainFloor.jsp" %>
