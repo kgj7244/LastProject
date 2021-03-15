@@ -29,7 +29,7 @@
 					    	</div>
 						    <p align="center" style="font-size: 15px;">${movie.m_opendate}(${movie.m_state}) / ${movie.m_grade}</p>
 							<div align="center">
-								<a class="btn btn-warning" style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 10px" 
+								<a class="btn btn-secondary" style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 10px" 
 									href="ticketMainForm.do">예매</a>
 							</div>					       	
 						</div>
@@ -39,7 +39,7 @@
 		</c:if>
 	</div>
 	<div align="center">
-		<ul class="pagination">
+		<ul class="pagination justify-content-center">
 			<c:if test="${pb.startPage > pb.pagePerBlock}">
 				<li>
 					<a href="movieMainForm.do?pageNum=1&keyword=${movie.keyword}&m_ing=${movie.m_ing}">

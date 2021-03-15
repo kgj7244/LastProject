@@ -111,12 +111,13 @@ public class BoardController {
 	@RequestMapping("boardView")
 	public String boardView(int b_num, String pageNum, Model model,HttpSession session) {
 		String member_id = (String)session.getAttribute("member_id"); //세션
-		Member member = ms.select(member_id);
+		// Member member = ms.select(member_id);
 		bs.updateReadCount(b_num);
 		Board board = bs.select(b_num);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("board", board);
-		model.addAttribute("member", member);
+		// model.addAttribute("member", member);
+		model.addAttribute("member_id", member_id);
 		return "/board/boardView";
 	}
 	

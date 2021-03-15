@@ -94,7 +94,7 @@
 				<td width="50%" align="left"style="vertical-align:middle;"><input type="text" name="sc_end"></td>
 			</tr>
 			<tr height="50px;">
-				<td colspan="2" align="center"><input type="button" class="btn btn-info" value="Home" onclick="location.href='mypage.do'" value="메인으로">&nbsp;&nbsp; <input class="btn btn-warning" type="submit" value="추가하기"></td>
+				<td colspan="2" align="center"><input type="button" class="btn btn-info btn-lg" value="Home" onclick="location.href='mypage.do'" value="메인으로">&nbsp;&nbsp; <input class="btn btn-warning btn-lg" type="submit" value="추가하기"></td>
 			</tr>			
 		</table>
 	</form>

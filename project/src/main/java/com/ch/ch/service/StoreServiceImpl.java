@@ -83,6 +83,11 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
+	public int resurrection(int s_num) {
+		return sd.resurrection(s_num);
+	}
+
+
 	}
 
 

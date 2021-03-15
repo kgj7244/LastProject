@@ -19,9 +19,12 @@
 	 $('#trans1').css('display','none');
 	
 }
+ 
+/*  function go1() {
+	 alert("${ member.member_name }(${ member.member_number })로 스토어 교환권이 발송됩니다");
+} */
 
 </script>
-
 
 
 </head>
@@ -57,16 +60,18 @@
   <td colspan="2"><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150">
   ${ store.s_Pname }</td>
           
-            <td>${ store.s_prive }</td>
+            <td><fmt:formatNumber pattern="###,###" value="${ store.s_prive }"/>원</td>
             <td>${ord.s_purchase}</td>
-            <td>${store.s_prive * ord.s_purchase }</td>
+            
+            <td><fmt:formatNumber pattern="###,###" value="${store.s_prive * ord.s_purchase }"/>원
+            </td>
         </tr>
         
       <tr>
         <td colspan="4">총 결제 예정금액</td>
-        <td><input type="text" name = "full_price" value="${store.s_prive * ord.s_purchase }">
+        <td><input type="number" readonly
+        name = "full_price" value="${store.s_prive * ord.s_purchase }">
         </td></tr>
-	 
 
   </tbody>
 
@@ -91,18 +96,14 @@
    <td><input type="radio" name="t_deal" value="계좌이체" onclick="trans()">계좌이체</td>  
    </tr>
    
-   
+
+  <%-- <tr id="trans1">  
+
   
-  
-  <tr id="trans1">  
-  </tr> 
-  
-  <%--  <td>입금계좌<input type="text" name="aam_account" value="${ aam_bank.aam_account }" readonly></td>
+  <td>입금계좌<input type="text" name="aam_account" value="${ aam_bank.aam_account }" readonly></td>
    <td>은행 <input type="text" name="bank_name" value="${ aam_bank.bank_name }" readonly ></td>
-   <td>이름 <input type="text" name="aam_name" value="${ aam_bank.aam_name }" readonly></td> --%>
-   
- 
- 
+   <td>이름 <input type="text" name="aam_name" value="${ aam_bank.aam_name }" readonly></td>
+  </tr>  --%>
     
   </tfoot>
 </table>
@@ -110,7 +111,7 @@
 
 
 <!-- ====================================== -->  
-   <a href="storeMainForm.do" class="btn btn-default">구매 취소</a>
+   <a href="storeMainForm.do" class="btn btn-danger">구매 취소</a>
     <button type="submit" class="btn btn-info">구매하기</button> 
 </form>
 

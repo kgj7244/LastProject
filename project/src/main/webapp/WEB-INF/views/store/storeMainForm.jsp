@@ -17,7 +17,8 @@
  <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
 
-<h2 class="text-primary">스토어</h2>
+<h2 align="left">스토어</h2>
+<hr style="border: 0px; height: 3px; background-color: #cccccc;">
  <%@include file="storecategory.jsp" %>
  
 <!-- ====================================== -->
@@ -28,45 +29,32 @@
 </div>
 <!-- ====================================== --> 
 <div>
- <c:if test="${not empty storeList }">
+ <c:if test="${not empty storeList}">
  	 <div class="image">
  	<c:forEach var="store" items="${storeList }">
- 	<div class="a1">
-		<a href="storeContent.do?s_num=${store.s_num }" >
+ 	
+ 	<c:if test="${store.s_del != 'y' }">	
+ 		<div class="a1">
+			<a href="storeContent.do?s_num=${store.s_num }" >
 		<span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150"></span>
 		 <span class="name"><h4>${store.s_Pname }</h4></span></a>
+		 
  		  <div>${store.s_Pconfig }</div> 
- 		  <div>${store.s_prive }원</div>
- 		  
- 		  
- 		  
- 		  
- 		  <div>
- 		  <input type="hidden" name="member_id" value="${member_id}">
-			<c:if test="${member_id == 'master'}">
- 			  <a href="storeUploadForm.do?s_num=${store.s_num }">상품 수정</a>
- 		 	  <a href="storeDelete.do?s_num=${store.s_num }">상품 삭제</a>
- 		  	</c:if>
- 		  </div>
- 		  
- 		  
- 		  </div>
- 		 
+ 		  <div><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</div>
+ 		</div>
+ 		  </c:if>
+ 		
 	 </c:forEach>
 	  </div>
 	 </c:if>
+	
 
 </div>
 </div>
 <!-- ====================================== -->  
 
 <br>
-<div align="center">
-<input type="hidden" name="member_id" value="${member_id}">
-	<c:if test="${member_id == 'master'}">
- 		<a href="storeInsertForm.do">상품 추가</a>
-	</c:if>
-</div>
+
 
 <div style="clea: "><%@include file="../mainFloor.jsp" %></div>
 </body>

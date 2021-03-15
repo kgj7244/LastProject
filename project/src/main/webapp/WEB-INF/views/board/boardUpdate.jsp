@@ -6,19 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <body>
-<c:if test="${result > 0 }">
-	<script type="text/javascript">
-		alert("수정 성공");
-		location.href="boardList.do?pageNum=${pageNum}";
-	</script>
-</c:if>
-<c:if test="${result == 0 }">
-	<script type="text/javascript">
-		alert("수정 실패");
-		history.go(-1);
-	</script>
-</c:if>
+	<c:if test="${result > 0 }">
+		<script type="text/javascript">
+			alert("수정 성공");
+			location.href = "boardList.do?pageNum=${pageNum}";
+		</script>
+	</c:if>
+	<c:if test="${result == 0 }">
+		<script type="text/javascript">
+			alert("수정 실패");
+			history.go(-1);
+		</script>
+	</c:if>
 </body>
 </html>

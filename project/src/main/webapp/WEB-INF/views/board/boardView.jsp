@@ -6,6 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#ta {
+	margin-top: 60px;
+	margin-bottom: 20px;
+}
+
+#rt {
+	margin-bottom: 40px;
+}
+
+#t {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+</style>
 <script type="text/javascript">
 	$(function() {
 		$('#boardDisp').load('boardList.do table', 'pageNum=${pageNum}')
@@ -25,18 +40,36 @@
 	<%@ include file="../mainTop.jsp"%>
 	<%@ include file="../mainNav.jsp"%>
 	<div class="container" align="center">
-		<h2 class="text-primary">게시글 상세 내역</h2>
-		<table class="table table-striped">
+		<table class="table table-borderd" id="ta">
 			<tr>
-				<th>아이디</th>
-				<td>${board.member_id }</td>
-				<th>조회수</th>
-				<td>${board.b_readcount}</td>
-				<th>작성일</th>
-				<td>${board.b_date}</td>
+				<td colspan="6" align="center"><button type="button"
+						class="btn btn-warning disabled btn-block btn-sm" id="t">
+						<h2><b>Question & Answer Detail</b></h2>
+					</button></td>
 			</tr>
 			<tr>
-				<th>카테고리</th>
+				<td colspan="8" align="right">
+					<!-- 회원이 아니면 수정/삭제 버튼 안보이기 -->
+					<c:if
+						test="${board.member_id == member_id || member_id == 'master'}">
+						<a
+							href="boardUpdateForm.do?b_num=${board.b_num }&pageNum=${pageNum }"
+							class="btn btn-outline-warning btn-lg"><b>UPDATE</b></a>
+						<a href="boardDelete.do?b_num=${board.b_num }&pageNum=${pageNum }"
+							class="btn btn-outline-warning btn-lg"><b>DELETE</b></a>
+
+					</c:if>
+			</tr>
+			<tr align="center">
+				<td>아이디</td>
+				<td>${board.member_id }</td>
+				<td>조회수</td>
+				<td>${board.b_readcount}</td>
+				<td>작성일</td>
+				<td>${board.b_date}</td>
+			</tr>
+			<tr align="center">
+				<td>카테고리</td>
 				<c:if test="${board.b_code == 'mem' }">
 					<td>회원</td>
 				</c:if>
@@ -49,48 +82,34 @@
 				<c:if test="${board.b_code == 'etc' }">
 					<td>기타</td>
 				</c:if>
-				<th>제목</th>
-				<td colspan="5" align="center">${board.b_title }</td>
+				<td>제목</td>
+				<td colspan="3" align="left">${board.b_title }</td>
 			</tr>
 			<tr>
-				<th>내용</th>
-				<td colspan="7"><pre>${board.b_content }</pre></td>
-			</tr>
-			<tr>
-				<td colspan="8">
-					<%-- <a href="boardList.do?pageNum=${pageNum }"
-					class="btn btn-info">게시글 목록</a> --%> <!-- 회원이 아니면 수정/삭제 버튼 안보이기 -->
-					<c:if
-						test="${board.member_id == member_id || member_id == 'master'}">
-						<a
-							href="boardUpdateForm.do?b_num=${board.b_num }&pageNum=${pageNum }"
-							class="btn btn-warning">수정</a>
-						<a href="boardDelete.do?b_num=${board.b_num }&pageNum=${pageNum }"
-							class="btn btn-danger">삭제</a>
-
-					</c:if>
+				<td align="center">내용</td>
+				<td colspan="5"><pre>${board.b_content }</pre></td>
 			</tr>
 		</table>
+		<div id="reBoardListDisp"></div>
 		<form action="" name="frm" id="frm">
 			<!-- board.num을 숨겨서 넘겨 -->
 			<input type="hidden" name="b_num" value="${board.b_num }"> <input
 				type="hidden" name="pageNum" value="${pageNum }">
 			<c:if test="${member.member_id == 'master' }">
-				<h2 class="text-primary">댓글 작성</h2>
-				<table class="table table-hover">
+			<h1 class="text-warning">REPLY</h1>
+				<table class="table" id="rt">
 					<tr>
-						<td>작성자</td>
+						<td align="center">작성자</td>
 						<td><input type="text" name="member_id"
-							value="${member.member_id }" size="4" readonly="readonly"></td>
-						<td>댓글</td>
-						<td><textarea rows="2" cols="100" name="r_text"></textarea></td>
-						<td><input type="button" value="입력" id="reInsert"
-							class="btn btn-danger btn-sm"></td>
+							value="${member.member_id }" size="4" readonly="readonly" class="form-control"></td>
+						<td align="center">댓글</td>
+						<td><textarea rows="2" cols="100" name="r_text" class="form-control"></textarea></td>
+						<th><input type="button" value="WRITE" id="reInsert"
+							class="btn btn-outline-warning btn-lg"></th>
 					</tr>
 				</table>
 			</c:if>
 		</form>
-		<div id="reBoardListDisp"></div>
 		<div id="boardDisp"></div>
 	</div>
 	<%@ include file="../mainFloor.jsp"%>

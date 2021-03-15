@@ -35,6 +35,7 @@
 			<td align="center" style="font-weight: bold; background-color: #fedf9e; vertical-align: middle; color: #908c88; height: 60px; font-size: 30px; margin-top: 30px;">이벤트 수정 및 삭제</td>
 		</tr>
 	</table>
+	<hr>
 	<form>
 		<table class="table table-bordered">
 			<tr>

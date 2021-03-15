@@ -31,8 +31,8 @@
 			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="10%">예매번호</td>
 			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="20%">좌석번호</td>
 			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="10%">성인예매수</td>
-			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="10%">청소년예매수</td>
-			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="20%">예매일</td>
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="15%">청소년예매수</td>
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="15%">예매일</td>
 			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="20%">예매아이디</td>
 			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;" width="10%">보기</td>
 		</tr>
@@ -45,8 +45,8 @@
 					<tr>
 						<td align="center" style="color:#8c8b9b;vertical-align: middle;">${t.t_ordernum}</td>
 						<td align="center" style="color:#8c8b9b;vertical-align: middle;">${t.t_state}</td>
-						<td align="center" style="color:#8c8b9b;vertical-align: middle;">${t.t_adult}</td>
-						<td align="center" style="color:#8c8b9b;vertical-align: middle;">${t.t_teen}</td>
+						<td align="center" style="color:#8c8b9b;vertical-align: middle;">${t.t_adult}개</td>
+						<td align="center" style="color:#8c8b9b;vertical-align: middle;">${t.t_teen}개</td>
 						<td align="center" style="color:#8c8b9b;vertical-align: middle;"><fmt:formatDate value="${t.t_date}" pattern="yyyy.MM.dd"/></td>
 						<td align="center" style="color:#8c8b9b;vertical-align: middle;">${t.t_id}</td>
 						<td align="center"><input type="button" class="btn btn-warning" value="보기" onclick='location.href="memberTicketView.do?sc_num=${t.sc_num}&t_state=${t.t_state}&t_ordernum=${t.t_ordernum}"'></td>
