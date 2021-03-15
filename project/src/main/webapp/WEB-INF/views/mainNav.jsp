@@ -81,6 +81,7 @@ li>a {
 			<form class="form-inline my-2 my-lg-0" action="movieMainForm.do"
 				method="post" name="frm21" onsubmit="return findChk()"
 				style="width: 220px;">
+				<input type="hidden" name="m_ing" value="1">
 				<input class="form-control mr-sm-2" type="text" name="search"
 					id="search" placeholder="영화 검색">
 				<button class="btn btn-warning my-2 my-sm-0 btn-lg" type="submit">
