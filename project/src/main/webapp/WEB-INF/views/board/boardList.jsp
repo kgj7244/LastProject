@@ -15,6 +15,11 @@
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
+
+.my.pagination>.active>a {
+	background-color: #ffe194;
+	border-color: #ffe194;
+}
 </style>
 </head>
 <body>
@@ -34,19 +39,29 @@
 			<tr>
 				<td colspan="6" align="center"><button type="button"
 						class="btn btn-warning disabled btn-block btn-sm" id="t">
-						<h2><b>Question & Answer</b></h2>
+						<h2>
+							<b>Question & Answer</b>
+						</h2>
 					</button></td>
 			</tr>
 			<tr>
 				<td colspan="6"><div class="bgroup" align="right">
 						<button type="button" class="btn btn-outline-warning btn-lg"
-							onclick="location.href='boardList.do'"><b>전체</b></button>
+							onclick="location.href='boardList.do'">
+							<b>전체</b>
+						</button>
 						<button type="button" class="btn btn-outline-warning btn-lg"
-							onclick="location.href='boardlistByb_code.do?b_code=tk'"><b>회원</b></button>
+							onclick="location.href='boardlistByb_code.do?b_code=tk'">
+							<b>회원</b>
+						</button>
 						<button type="button" class="btn btn-outline-warning btn-lg"
-							onclick="location.href='boardlistByb_code.do?b_code=st'"><b>스토어</b></button>
+							onclick="location.href='boardlistByb_code.do?b_code=st'">
+							<b>스토어</b>
+						</button>
 						<button type="button" class="btn btn-outline-warning btn-lg"
-							onclick="location.href='boardlistByb_code.do?b_code=etc'"><b>기타</b></button>
+							onclick="location.href='boardlistByb_code.do?b_code=etc'">
+							<b>기타</b>
+						</button>
 					</div></td>
 			</tr>
 			<c:set var="b_num" value="${no }"></c:set>
@@ -66,10 +81,10 @@
 			<c:if test="${not empty list }">
 				<c:forEach var="board" items="${list }">
 					<tr>
-						<td  align="center">${b_num}</td>
+						<td align="center">${b_num}</td>
 						<c:set var="b_num" value="${b_num -1}"></c:set>
 						<c:if test="${board.b_del == 'y' }">
-							<th colspan="6" align="center">삭제된 게시글입니다</th>
+							<th colspan="5" align="center">삭제된 게시글입니다</th>
 						</c:if>
 						<c:if test="${board.b_del != 'y' }">
 							<c:if test="${board.b_code == 'mem' }">
@@ -117,47 +132,46 @@
 					</tr>
 				</c:forEach>
 			</c:if>
-			<tr align="center">
-				<td colspan="6" align="center">
-					<ul class="pagination pagination-sm">
-						<c:if test="${pb.startPage > pb.pagePerBlock }">
-							<li><a
-								href="boardList.do?pageNum=1&search=${board.search }&keyword=${board.keyword}">
-									<span class="glyphicon glyphicon-backward"></span>
-							</a></li>
-							<li><a
-								href="boardList.do?pageNum=${pb.startPage-1 }&search=${board.search }&keyword=${board.keyword}">
-									<span class="glyphicon glyphicon-triangle-left"></span>
-							</a></li>
-						</c:if>
-						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
-							<c:if test="${pb.currentPage == i }">
-								<li class="active"><a
-									href="boardList.do?pageNum=${i }&search=${board.search }&keyword=${board.keyword}">${i }</a></li>
-							</c:if>
-							<c:if test="${pb.currentPage != i }">
-								<li><a
-									href="boardList.do?pageNum=${i }&search=${board.search }&keyword=${board.keyword}">${i }</a></li>
-							</c:if>
-						</c:forEach>
-						<c:if test="${pb.endPage < pb.totalPage }">
-							<li><a
-								href="boardList.do?pageNum=${pb.endPage+1 }&search=${board.search }&keyword=${board.keyword}">
-									<span class="glyphicon glyphicon-triangle-right"></span>
-							</a></li>
-							<li><a
-								href="boardList.do?pageNum=${pb.totalPage }&search=${board.search }&keyword=${board.keyword}">
-									<span class="glyphicon glyphicon-forward"></span>
-							</a></li>
-						</c:if>
-					</ul>
-				</td>
-			</tr>
-			<!-- 검색 -->
 			<tr>
-				<td colspan="6" align="center"><form action="boardList.do">
+				<td colspan="6" align="center"><form
+						class="form-inline pull-left">
+						<ul class="pagination my pagination-lg">
+							<c:if test="${pb.startPage > pb.pagePerBlock }">
+								<li class="page-item"><a class="page-link"
+									href="boardList.do?pageNum=1&search=${board.search }&keyword=${board.keyword}">
+										<span class="glyphicon glyphicon-backward"></span>
+								</a></li>
+								<li class="page-item"><a class="page-link"
+									href="boardList.do?pageNum=${pb.startPage-1 }&search=${board.search }&keyword=${board.keyword}">
+										<span class="glyphicon glyphicon-triangle-left"></span>
+								</a></li>
+							</c:if>
+							<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
+								<c:if test="${pb.currentPage == i }">
+									<li class="page-item active"><a class="page-link"
+										href="boardList.do?pageNum=${i }&search=${board.search }&keyword=${board.keyword}">${i }</a></li>
+								</c:if>
+								<c:if test="${pb.currentPage != i }">
+									<li class="page-item"><a class="page-link"
+										href="boardList.do?pageNum=${i }&search=${board.search }&keyword=${board.keyword}">${i }</a></li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${pb.endPage < pb.totalPage }">
+								<li class="page-item"><a class="page-link"
+									href="boardList.do?pageNum=${pb.endPage+1 }&search=${board.search }&keyword=${board.keyword}">
+										<span class="glyphicon glyphicon-triangle-right"></span>
+								</a></li>
+								<li class="page-item"><a class="page-link"
+									href="boardList.do?pageNum=${pb.totalPage }&search=${board.search }&keyword=${board.keyword}">
+										<span class="glyphicon glyphicon-forward"></span>
+								</a></li>
+							</c:if>
+						</ul>
+					</form> <!-- 검색 -->
+					<p><p>
+					<form action="boardList.do" class="form-inline pull-right">
 						<input type="hidden" name="pageNum" value="1"> <select
-							name="search">
+							name="search" class="form-control">
 							<c:forTokens var="sh" items="member_id,b_title,b_content,subcon"
 								delims="," varStatus="i">
 								<c:if test="${sh == board.search }">
@@ -167,8 +181,10 @@
 									<option value="${sh }">${tit[i.index] }</option>
 								</c:if>
 							</c:forTokens>
-						</select> <input type="text" name="keyword" value="${board.keyword }">
-						<button type="submit" class="btn btn-outline-warning btn-lg"><b>SEARCH</b></button>
+						</select> &nbsp;<input type="text" name="keyword" class="form-control input-lg" value="${board.keyword }">
+						&nbsp;<button type="submit" class="btn btn-outline-warning btn-lg">
+							<b>SEARCH</b>
+						</button>
 					</form></td>
 			</tr>
 		</table>
