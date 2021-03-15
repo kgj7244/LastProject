@@ -111,7 +111,7 @@
 					</th>
 					<td colspan="3">
 						<input type="file" name="file" required="required">
-						<span style="color: red">*포스터는 600 x 855만 가능합니다</span>
+						<p class="text-danger">*포스터는 600 x 855만 가능합니다</p>
 					</td>
 				</tr>
 				<tr>
@@ -121,7 +121,7 @@
 					</th>
 					<td colspan="3">
 						<input type="file" name="file1" required="required" multiple="multiple">
-						<span style="color: red">*스틸컷은 727 x 405만 가능합니다</span>
+						<p class="text-danger">*스틸컷은 727 x 405만 가능합니다</p>
 					</td>
 				</tr>
 				<tr>

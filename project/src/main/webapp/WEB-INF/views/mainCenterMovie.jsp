@@ -35,7 +35,7 @@
 					</div>
 					<p align="center" style="font-size: 20px;">${i.m_opendate} / 평점</p>
 					<div align="center">
-						<a class="btn btn-primary" role="button" style="width: 150px; height: 40px; font-weight: bold; font-size: 23px; vertical-align:middle;" href="ticketMainForm.do">예매</a>
+						<a class="btn btn-secondary" role="button" style="width: 150px; height: 40px; font-weight: bold; font-size: 23px; vertical-align:middle;" href="ticketMainForm.do">예매</a>
 					</div>
 				</div>
 			</div>
