@@ -49,7 +49,7 @@
 				<table class="table table-bordered" style="background-color: gray;">
 					<tr height="50px;">
 						<td width="25%" align="center" style="vertical-align:middle;">
-							<input type="hidden" name="m_ing" value="1">
+							<input type="hidden" name="m_ing" value="0">
 							<input type="hidden" name="pageNum" value="1">
 							<input type="text" name="keyword" value="${moive.keyword}" placeholder="영화 검색">
 							<input type="submit" class="btn btn-warning btn-sm" value="검색">

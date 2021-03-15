@@ -37,7 +37,7 @@
 			</div>
 			<div class="col-sm-2" align="center">
 				<form action="movieMainForm.do" method="post" name="frm21" onsubmit="return findChk()">
-					<input type="hidden" name="m_ing" value="1">
+					<input type="hidden" name="m_ing" value="0">
 					<input type="hidden" name="pageNum" value="1">
 					<input type="text" name="keyword" value="${moive.keyword}" placeholder="영화 검색" size="11px;">
 					<input type="submit" class="btn btn-warning btn-sm" width="15px;" height="15px;" value="검색">
