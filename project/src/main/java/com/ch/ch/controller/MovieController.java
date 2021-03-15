@@ -59,7 +59,7 @@ public class MovieController {
 		
 		movie.setStartRow(startRow);
 		movie.setEndRow(endRow);
-
+		
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		
 		List<Movie> movieList = ms.moviePage(movie);

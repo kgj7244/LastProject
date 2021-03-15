@@ -11,11 +11,11 @@
 	div{margin: 0px;padding: 0px;}
 	#mainTop{
 		background-color: #0d0908; 
-		height: 110px;"
+		height: 95px;"
 	}
 	#mainNav{
 		background-color: #0d0908; 
-		height: 60px;"
+		height: 75px;"
 	}
 	#mainCenterVideo{
 		height:850px;
@@ -58,11 +58,11 @@
 	
 	<!-- mainNav -->
 	<div class="row" id="mainNav"> 
-		<div class="col-md-1" align="center"></div>
-		<div class="col-md-10">
+		<<!-- div class="col-md-1" align="center"></div> -->
+		<div class="col-md-12">
 			<%@include file="mainNav.jsp" %>
 		</div>
-		<div class="col-md-1" align="center"></div>
+<!-- 		<div class="col-md-1" align="center"></div> -->
 	</div>
 	
 	<hr style="margin: 0px;	padding: 0px;">

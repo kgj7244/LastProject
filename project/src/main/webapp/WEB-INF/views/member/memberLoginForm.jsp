@@ -23,20 +23,13 @@
 				<tr>
 					<td align="center"><b>ID</b></td>
 					<td><input type="text" class="form-control" name="member_id"
-						id="exampleInputId1"></td>
+						id="exampleInputId1" required="required" autofocus="autofocus"></td>
 				</tr>
 				<tr>
 					<td align="center"><b>Password</b></td>
 					<td><input type="password" class="form-control"
-						name="member_password"></td>
+						name="member_password" required="required"></td>
 				</tr>
-				<!-- 				<td>아이디</td>
-				<td><input type="text" name="member_id" required="required" autofocus="autofocus"></td>
-			</tr>
-			<tr>
-				<td>패스워드</td>
-				<td><input type="password" name="member_password"></td>
-			</tr>-->
 				<tr>
 					<td colspan="2" align="center"><button type="submit"
 							class="btn btn-outline-warning btn-lg"><b>Login</b></button></td>

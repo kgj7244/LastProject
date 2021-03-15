@@ -10,7 +10,22 @@
 .text-warning {
 	margin-top: 50px;
 }
+td>a, #d {
+color:gray;
+font-weight: bold;
+text-decoration:none !important;}
 </style>
+<script type="text/javascript">
+function del() {
+	var con = confirm("정말 삭제하시겠습니까?");
+	if (con)
+		location.href = "masterMemberDelete.do?member_id=${member.member_id }&member_del=${member.member_del}";
+	else {
+		alert("삭제가 취소되었습니다");
+		return;
+	}
+}
+</script>
 </head>
 <body>
 	<%@ include file="../mainTop.jsp"%>
@@ -21,9 +36,9 @@
 		</h1>
 		<p />
 		<!-- 검색 -->
-		<form action="masterMemberList.do">
+		<form action="masterMemberList.do" class="form-inline pull-right">
 			<!-- <input type="hidden" name="pageNum" value="1">  -->
-			<select name="search">
+			<select name="search" class="form-control">
 				<c:forTokens var="sh" items="member_id,member_name" delims=","
 					varStatus="i">
 					<c:if test="${sh == member.search }">
@@ -33,8 +48,8 @@
 						<option value="${sh }">${tit[i.index] }</option>
 					</c:if>
 				</c:forTokens>
-			</select> <input type="text" name="keyword" value="${member.keyword }">
-			<button type="submit" class="btn btn-outline-warning btn-lg">
+			</select>	&nbsp;	&nbsp;<input type="text" name="keyword" class="form-control" value="${member.keyword }">
+				&nbsp;	&nbsp;<button type="submit" class="btn btn-outline-warning btn-lg">
 				<b>SEARCH</b>
 			</button>
 		</form>
@@ -71,8 +86,7 @@
 						<td align="center">${member.member_del }</td>
 						<td align="center"><a
 							href="masterMemberUpdateForm.do?member_id=${member.member_id }">수정</a></td>
-						<td align="center"><a
-							href="masterMemberDelete.do?member_id=${member.member_id }&member_del=${member.member_del}">삭제</a></td>
+						<td align="center"><a onclick="del()" id="d">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</c:if>

@@ -18,7 +18,7 @@
 	}
    	.carousel-control {
    		height: 400px;
-		background: none !important;
+		background: black !important;
         filter: none !important; 
     	progid: none !important;
 	}
