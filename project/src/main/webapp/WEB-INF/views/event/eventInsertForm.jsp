@@ -49,8 +49,8 @@
 				<td width="50%" align="right"style="vertical-align:middle;">포스터 이미지 &nbsp;&nbsp;</td>
 				<td width="50%" align="left"style="vertical-align:middle;"><input type="file" name="file"></td>
 			</tr>
-			<tr>
-				<td colspan="3" align="center"><input type="button" class="btn btn-info" onclick="location.href='mypage.do'" value="목록으로">&nbsp;&nbsp;<input type="submit" class="btn btn-warning"></td>
+			<tr style="height: 50px;">
+				<td colspan="3" align="center" style="vertical-align:middle;"><input type="button" class="btn btn-info btn-lg" onclick="location.href='mypage.do'" value="목록으로">&nbsp;&nbsp;<input type="submit" class="btn btn-warning btn-lg"></td>
 			</tr>
 		</table>
 	</form>

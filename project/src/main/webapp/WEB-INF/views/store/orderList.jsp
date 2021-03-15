@@ -60,9 +60,11 @@
   <td colspan="2"><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150">
   ${ store.s_Pname }</td>
           
-            <td>${ store.s_prive }</td>
+            <td><fmt:formatNumber pattern="###,###" value="${ store.s_prive }"/>원</td>
             <td>${ord.s_purchase}</td>
-            <td>${store.s_prive * ord.s_purchase }</td>
+            
+            <td><fmt:formatNumber pattern="###,###" value="${store.s_prive * ord.s_purchase }"/>원
+            </td>
         </tr>
         
       <tr>

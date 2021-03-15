@@ -12,6 +12,11 @@ li>a {
 	font-size: 20px;
 	font-weight: bold;
 }
+/* .dropdown-menu>a
+ {
+	background-color: #ffe194;
+}  */
+/* 	border-color: #ffe194; */
 </style>
 <script type="text/javascript">
 	function findChk() {
@@ -37,7 +42,7 @@ li>a {
 			</div>
 			<div class="col-sm-2" align="center">
 				<form action="movieMainForm.do" method="post" name="frm21" onsubmit="return findChk()">
-					<input type="hidden" name="m_ing" value="1">
+					<input type="hidden" name="m_ing" value="0">
 					<input type="hidden" name="pageNum" value="1">
 					<input type="text" name="keyword" value="${moive.keyword}" placeholder="영화 검색" size="11px;">
 					<input type="submit" class="btn btn-warning btn-sm" width="15px;" height="15px;" value="검색">
@@ -54,38 +59,42 @@ li>a {
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarColor03">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link"
-					href="mainForm.do">HOME <span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="movieMainForm.do?m_ing=0">영화</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="theaterMainForm.do">극장</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="ticketMainForm.do">예매</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="storeMainForm.do">스토어</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="noticeList.do">고객센터</a></li>
-<!-- 			드롭다운 왜 안되는거지 ㅠㅠ
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-					role="button" aria-haspopup="true" aria-expanded="false">고객센터</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="noticeList.do">NOTICE</a> <a
-							class="dropdown-item" href="boardList.do">Q & A</a>
-					</div></li> -->
-			</ul>
-			<form class="form-inline my-2 my-lg-0" action="movieMainForm.do"
-				method="post" name="frm21" onsubmit="return findChk()">
-				<input class="form-control mr-sm-2" type="text" name="search"
-					id="search" placeholder="영화 검색">
-				<button class="btn btn-warning my-2 my-sm-0 btn-lg" type="submit">
-					<b>SEARCH</b>
-				</button>
-			</form>
+		<div class="collapse navbar-collapse row" id="navbarColor03">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-4" align="left">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link"
+						href="mainForm.do">HOME <span class="sr-only">(current)</span></a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="movieMainForm.do?m_ing=0">영화</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="theaterMainForm.do">극장</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="ticketMainForm.do">예매</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="storeMainForm.do">스토어</a></li>
+					<!-- 극장/예매에서는 고객센터드롭다운이 실행되는데, 영화/스토어에서는 실행안됨 -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+						role="button" aria-haspopup="true" aria-expanded="false">고객센터</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item bg-warning" href="noticeList.do">NOTICE</a>
+							<a class="dropdown-item bg-warning" href="boardList.do">Q & A</a>
+						</div></li>
+				</ul>
+			</div>
+			<div class="col-sm-4" align="right">
+				<form class="form-inline my-2 my-lg-0" action="movieMainForm.do"
+					method="post" name="frm21" onsubmit="return findChk()"
+					style="width: 220px;">
+					<input type="hidden" name="m_ing" value="1">
+					<input class="form-control mr-sm-2" type="text" name="search"
+						id="search" placeholder="영화 검색">
+					<button class="btn btn-warning my-2 my-sm-0 btn-lg" type="submit">
+						<b>SEARCH</b>
+					</button>
+				</form>
+			</div>
 		</div>
 	</nav>
 </body>

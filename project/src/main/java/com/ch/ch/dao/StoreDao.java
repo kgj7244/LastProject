@@ -32,6 +32,8 @@ public interface StoreDao {
 
 	int maxOrd_num();
 
+	int resurrection(int s_num);
+
 
 
 }

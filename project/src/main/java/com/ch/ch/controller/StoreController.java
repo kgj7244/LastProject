@@ -115,6 +115,14 @@ public class StoreController {
 		return "/store/storeDelete";	
 	}
 	
+	//복구
+		@RequestMapping("storeRestore")
+		public String storeRestore(int s_num,Model model) {
+			int result = ss.resurrection(s_num);
+			model.addAttribute("result",result);	
+			return "/store/storeRestore";	
+		}
+	
 	//카테고리별 리스트
 	@RequestMapping("i_snack")
 	public String i_snack(int s_Pclass, Model model){	
@@ -123,6 +131,18 @@ public class StoreController {
 		model.addAttribute("storeList", storeList);		
 		return "store/i_snack";
 	}
+	
+	//관리자 스토어 목록
+	@RequestMapping("master_Storelist")
+	public String master_Storelist(Store store,Model model) {
+		
+
+        List<Store> storeList = ss.list();
+		model.addAttribute("storeList", storeList);	
+		return "/store/master_Storelist";	
+	}
+	
+	
 	
 //====================================================
 	
@@ -201,39 +221,6 @@ public class StoreController {
 			
 			return "store/order";
 		}
-//		//결제 진행 
-//		@RequestMapping("order")
-//		public String order(Ord ord,Model model,HttpSession session)throws IOException {	
-//			String member_id = (String)session.getAttribute("member_id");
-//			Member member = ms.select(member_id);
-//			
-//			int result = 0;
-//			Ord or = ss.select_ord(ord.getOrd_num());
-//			
-//			Store store = ss.select(ord.getS_num());		
-//			Date date = new Date(System.currentTimeMillis());
-//			Date date1 = new Date(System.currentTimeMillis());
-//			date1.setYear(date.getYear()+1);		
-//			ord.setBuy_date(date);
-//			ord.setS_validity(date1);		
-//			ord.setFull_price(store.getS_prive() *ord.getS_purchase());
-//			
-//			
-//			
-//			if (or == null) {
-//				result = ss.insertOrd(ord);
-//			} else {
-//				result = -1;
-//			}
-//			model.addAttribute("result", result);
-//			model.addAttribute("ord", ord);
-//			model.addAttribute("member", member);	
-//			
-//			return "store/order";
-//		}
-
-	
-
 	
 	//구매 목록
 	@RequestMapping("memberStore") 
@@ -245,7 +232,7 @@ public class StoreController {
 		model.addAttribute("ord", ord);			
 		return "/member/memberStore";
 	}
-	//구매 상품 상세 Bank bank, bank insert까지 잠시 막아두기
+	//구매 상품 상세
 	@RequestMapping("memberStoreInfo") 
 	public String memberStoreInfo( Bank bank,Ord ord,Model model,HttpSession session)throws IOException {
 		String member_id = (String)session.getAttribute("member_id");
@@ -272,32 +259,10 @@ public class StoreController {
 		
 		return "/member/memberStoreInfo";
 	}
-//	@RequestMapping("memberStoreInfo") 
-//	public String memberStoreInfo(Ord ord,Model model,HttpSession session)throws IOException {
-//		String member_id = (String)session.getAttribute("member_id");
-//		
-//		
-//		Store store = ss.select(ord.getS_num());
-//		ord = ss.select_ord(ord.getOrd_num());
-//		
-//		Member member = ms.select(member_id);	
-//		
-//		
-//		System.out.println(ord.getOrd_num());
-//		System.out.println(ord.getMember_id());	
-//		System.out.println(ord.getFull_price());		
-//		System.out.println("들어갑시다");	
-//		
-//		
-//		model.addAttribute("ord", ord);
-//		model.addAttribute("store", store);
-//		model.addAttribute("member", member);	
-//		
-//		return "/member/memberStoreInfo";
-//	}
+
 	
 	
-	//구매 목록
+	//환불
 	@RequestMapping("memberStoreRefund") 
 	public String memberStoreRefund(Model model,int ord_num, HttpSession session) {
 		int result = 0;
@@ -307,15 +272,7 @@ public class StoreController {
 		return "/member/memberStoreRefund";
 	}
 	
-	@RequestMapping("master_Storelist")
-	public String master_Storelist(Store store,Model model) {
-		
 
-        List<Store> storeList = ss.list();
-		model.addAttribute("storeList", storeList);	
-		return "/store/master_Storelist";	
-	}
-	
 	
 		
 	}

@@ -45,22 +45,22 @@
 				</tr>
 				<tr>
 					<td align="center"><b>아이디</b></td>
-					<td>${member.member_id }</td>
+					<td align="center">${member.member_id }</td>
 				</tr>
 				<tr>
 					<td align="center"><b>비밀번호</b></td>
 					<td><input type="password" name="member_password"
-						required="required"></td>
+						required="required" class="form-control"></td>
 				</tr>
 				<tr>
 					<td align="center"><b>비밀번호 확인</b></td>
 					<td><input type="password" name="member_password2"
-						required="required"></td>
+						required="required" class="form-control"></td>
 				</tr>
 				<tr>
 					<td align="center"><b>이름</b></td>
 					<td><input type="text" name="member_name" required="required"
-						value="${member.member_name }"></td>
+						value="${member.member_name }" class="form-control"></td>
 				</tr>
 				<tr>
 					<td align="center"><b>성별</b></td>
@@ -79,22 +79,22 @@
 				<tr>
 					<td align="center"><b>생년월일</b></td>
 					<td><input type="date" name="member_birth" required="required"
-						value="${member.member_birth }"></td>
+						value="${member.member_birth }" class="form-control"></td>
 				</tr>
 				<tr>
 					<td align="center"><b>이메일</b></td>
 					<td><input type="email" name="member_email"
-						required="required" value="${member.member_email }"></td>
+						required="required" value="${member.member_email }" class="form-control"></td>
 				</tr>
 				<tr>
 					<td align="center"><b>전화번호</b></td>
 					<td><input type="text" name="member_number"
-						required="required" value="${member.member_number }"></td>
+						required="required" value="${member.member_number }" class="form-control"></td>
 				</tr>
 				<tr>
 					<td align="center"><b>주소</b></td>
 					<td><input type="text" name="member_addr" required="required"
-						value="${member.member_addr }"></td>
+						value="${member.member_addr }" class="form-control"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">

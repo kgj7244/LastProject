@@ -17,7 +17,8 @@
  <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
 
-<h2 class="text-primary">스토어</h2>
+<h2 align="left">스토어</h2>
+<hr style="border: 0px; height: 3px; background-color: #cccccc;">
  <%@include file="storecategory.jsp" %>
  
 <!-- ====================================== -->
@@ -39,8 +40,7 @@
 		 <span class="name"><h4>${store.s_Pname }</h4></span></a>
 		 
  		  <div>${store.s_Pconfig }</div> 
- 		  <div>${store.s_prive }원</div>
- 		  
+ 		  <div><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</div>
  		</div>
  		  </c:if>
  		
@@ -54,12 +54,7 @@
 <!-- ====================================== -->  
 
 <br>
-<div align="center">
-<input type="hidden" name="member_id" value="${member_id}">
-	<c:if test="${member_id == 'master'}">
- 		<a href="storeInsertForm.do">상품 추가</a>
-	</c:if>
-</div>
+
 
 <div style="clea: "><%@include file="../mainFloor.jsp" %></div>
 </body>

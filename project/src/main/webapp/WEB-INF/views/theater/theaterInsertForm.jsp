@@ -67,7 +67,7 @@
 				<td width="50%" align="left"style="vertical-align:middle;"><input type="text" name="t_gui" required="required"></td>
 			</tr>
 			<tr>
-				<td align="center" colspan="3"><input type="button" value="목록" onclick="location.href='mypage.do'" class="btn btn-info">&nbsp;&nbsp;<input type="submit" value="등록" class="btn btn-warning"></td>
+				<td align="center" colspan="3"><input type="button" value="목록" onclick="location.href='mypage.do'" class="btn btn-info btn-lg">&nbsp;&nbsp;<input type="submit" value="등록" class="btn btn-warning btn-lg"></td>
 			</tr>	
 		</table>
 	</form>

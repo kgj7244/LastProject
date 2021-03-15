@@ -92,44 +92,47 @@
 			<tr height="auto;">
 				
 				<!-- 영화 -->
-				<td style="height: 300px;"> <!-- 안에 내용 -->
-					<form action="selectMovie.do" method="post" name="frm1">
-						<input type="hidden" name="m_title2">
-						<table class="table table-hover" style="overflow: scroll;">
-							<c:if test="${not empty movie}"> <!-- 값이 있으면 -->
-								<c:forEach var="i" items="${movie}">
+				<td> <!-- 안에 내용 -->
+					<div style="height: 400px; overflow: auto;">
+						<form action="selectMovie.do" method="post" name="frm1">
+							<input type="hidden" name="m_title2">
+							<table class="table table-hover" style="overflow: scroll;">
+								<c:if test="${not empty movie}"> <!-- 값이 있으면 -->
+									<c:forEach var="i" items="${movie}">
+										<tr>
+											<td align="left">
+												<c:choose>
+													<c:when test="${i.m_rank == '전 연령'}">
+														<img src="resources/images/m_rank/전체.png" height="25px" width="25px" >
+													</c:when>								
+													<c:when test="${i.m_rank == '12세'}">
+														<img src="resources/images/m_rank/12세.png" height="25px" width="25px">
+													</c:when>									
+													<c:when test="${i.m_rank == '15세'}">
+														<img src="resources/images/m_rank/15세.png" height="25px" width="25px">
+													</c:when>									
+													<c:when test="${i.m_rank == '청불'}">
+														<img src="resources/images/m_rank/청불.png" height="25px" width="25px">
+													</c:when>							
+												</c:choose>
+												<input type="button" value="${i.m_title}" onclick="movieChk('${i.m_title}','${i.m_poster}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 10px;">
+											</td>
+										</tr>
+									</c:forEach>
+								</c:if>
+								<c:if test="${!not empty movie}"> <!-- 값이 없으면 -->
 									<tr>
-										<td align="left">
-											<c:choose>
-												<c:when test="${i.m_rank == '전 연령'}">
-													<img src="resources/images/m_rank/전체.png" height="25px" width="25px" >
-												</c:when>								
-												<c:when test="${i.m_rank == '12세'}">
-													<img src="resources/images/m_rank/12세.png" height="25px" width="25px">
-												</c:when>									
-												<c:when test="${i.m_rank == '15세'}">
-													<img src="resources/images/m_rank/15세.png" height="25px" width="25px">
-												</c:when>									
-												<c:when test="${i.m_rank == '청불'}">
-													<img src="resources/images/m_rank/청불.png" height="25px" width="25px">
-												</c:when>							
-											</c:choose>
-											<input type="button" value="${i.m_title}" onclick="movieChk('${i.m_title}','${i.m_poster}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 10px;">
-										</td>
+										<td>보여줄 영화가 없습니다</td>
 									</tr>
-								</c:forEach>
-							</c:if>
-							<c:if test="${!not empty movie}"> <!-- 값이 없으면 -->
-								<tr>
-									<td>보여줄 영화가 없습니다</td>
-								</tr>
-							</c:if>
-						</table>.,
-					</form>
+								</c:if>
+							</table>
+						</form>
+					</div>
 				</td>
 				
 				<!-- 극장 -->
 				<td style="overflow:auto;">
+					<div style="height: 400px; overflow: auto;">
 					<table class="table table-hover"> 
 						<c:if test="${not empty theater1}">
 							<c:forEach var="i" items="${theater1}">
@@ -139,18 +142,21 @@
 							</c:forEach> 	
 						</c:if>
 					</table>
+					</div>
 				</td>
 				
 				<!-- 극장명 -->
-				<td style="overflow:auto;">
-					<form method="post" name="frm2">
-						<input type="hidden" name="t_title2">
-						<table class="table">
-							<tr>
-								<td width="170px;" align="center"><span id="theaterSelect"></span></td><!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
-							</tr>
-						</table>
-					</form>
+				<td>
+					<div style="height: 400px; overflow: auto;">
+						<form method="post" name="frm2">
+							<input type="hidden" name="t_title2">
+							<table class="table">
+								<tr>
+									<td width="170px;" align="center"><span id="theaterSelect"></span></td><!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
+								</tr>
+							</table>
+						</form>
+					</div>
 				</td>
 				
 				<!-- 날짜 -->
@@ -165,15 +171,17 @@
 				</td>
 				
 				<!-- 시간 -->
-				<td style="overflow:auto;">
-					<form method="post" name="frm3">
-						<input type="hidden" name="sc_date2">
-						<table class="table">
-							<tr>
-								<td><span id="selectTime"></span></td>
-							</tr>
-						</table>
-					</form>
+				<td>
+					<div style="height: 400px; overflow: auto;">
+						<form method="post" name="frm3">
+							<input type="hidden" name="sc_date2">
+							<table class="table">
+								<tr>
+									<td><span id="selectTime"></span></td>
+								</tr>
+							</table>
+						</form>
+					</div>
 				</td>		
 			</tr>
 		</table>
@@ -194,10 +202,10 @@
 					<td align="center" width="20%" style="vertical-align:middle;">
 						<table>
 							<tr>
-								<td><span id="t_title" style="font-size:20px; color: #e6e6e6; font-weight: bold;"><span style="color: #ffce67; font-size: 30px;">극장선택</span></span></td>
+								<td><span id="t_title" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>
 							</tr>
 							<tr>
-								<td><span id="sc_date" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>
+								<td><span id="sc_date" style="font-size:20px; color: #e6e6e6; font-weight: bold;"><span style="color: #ffce67; font-size: 30px; vertical-align:middle;">극장선택</span></span></td>
 							</tr>
 							<tr>
 								<td><span id="mt_name" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>

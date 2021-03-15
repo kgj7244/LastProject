@@ -30,7 +30,7 @@
 			</tr>
 			<c:forEach var="store" items="${storeList}">
 				<tr>
-					<td>${store.s_num}</td>
+					<td align="center">${store.s_num}</td>
 		
 	<c:if test="${store.s_Pclass=='1'}"><td>관람권</td></c:if>
 	<c:if test="${store.s_Pclass=='2'}"><td>콤보</td></c:if>
@@ -42,7 +42,7 @@
 				<c:if test="${store.s_del=='n'}">		
 					<td>
 						<a href="storeContent.do?s_num=${store.s_num}" style="text-decoration: none;  color: black;">
-							${store.s_Pname}</a>
+							<strong>${store.s_Pname}</a>
 					</td>
 				</c:if>		
 				
@@ -55,27 +55,39 @@
 					
 				</c:if>
 					<td>${store.s_Pconfig}</td>
-					<td>${store.s_prive}</td>
-					
-					
-					
-			<c:if test="${store.s_del=='n'}">			
-					<td>구매 가능</td>
-			</c:if>
-			
-			<c:if test="${store.s_del=='y'}">			
-					<td>상품 삭제</td>
-			</c:if>
-						<td>
-				<c:if test="${store.s_del=='n'}">	
 				
-						<a class="btn btn-warning btn-sm"
-							href="storeUploadForm.do?s_num=${store.s_num}">수정</a>
+		<td><fmt:formatNumber pattern="###,###" value="${store.s_prive}"/>원</td>
+
+
+					<c:if test="${store.s_del=='n'}">
+						<td>구매 가능</td>
+					</c:if>
+
+					<c:if test="${store.s_del=='y'}">
+						<td>상품 삭제</td>
+					</c:if>
 					
-						<a class="btn btn-warning btn-sm"
-							href="storeDelete.do?s_num=${store.s_num}">삭제</a>
-				</c:if>			
-					</td>
+					
+<c:if test="${store.s_del=='n'}">
+	<td>
+		<a class="btn btn-warning btn-sm"
+			href="storeUploadForm.do?s_num=${store.s_num}">수정</a>
+
+		<a class="btn btn-danger btn-sm"
+			href="storeDelete.do?s_num=${store.s_num}">삭제</a>
+			</td>
+		</c:if>
+		
+		
+	<c:if test="${store.s_del=='y'}">
+	<td>
+		<a class="btn btn-primary"
+			href="storeRestore.do?s_num=${store.s_num}">상품 복원</a>
+			
+		</c:if>
+		
+		
+		
 				</tr>
 			</c:forEach>
 		</table>

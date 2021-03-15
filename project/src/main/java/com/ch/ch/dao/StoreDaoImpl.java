@@ -92,5 +92,12 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 
+
+	
+	public int resurrection(int s_num) {
+		return sst.update("storens.resurrection",s_num);
+	}
+
+
 	
 }

@@ -26,7 +26,7 @@
 					<td align="center">다음에 또 이용해주세요.</td>
 				</tr>
 				<tr>
-					<td align="center"><input type="button" class="btn btn-warning" value="메인으로" onclick='location.href="memberTicket.do"'></td>
+					<td align="center"><input type="button" class="btn btn-warning btn-lg" style="width: 100px; height: 30px;" value="메인으로" onclick='location.href="memberTicket.do"'></td>
 				</tr>
 			</table>
 		</div>
@@ -46,7 +46,7 @@
 					<td align="center">다음에 또 이용해주세요.</td>
 				</tr>
 				<tr>
-					<td align="center"><input type="button" class="btn btn-warning" value="메인으로" onclick='location.href="memberTicket.do"'></td>
+					<td align="center"><input type="button" class="btn btn-warning btn-lg" style="width: 100px; height: 30px;" value="메인으로" onclick='location.href="memberTicket.do"'></td>
 				</tr>
 			</table>
 		</div>
