@@ -88,6 +88,12 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
+	@Override
+	public int counts(int s_num) {
+		return sd.counts(s_num);
+	}
+
+
 	}
 
 

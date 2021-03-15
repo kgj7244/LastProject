@@ -99,5 +99,12 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 
+
+	
+	public int counts(int s_num) {
+		return sst.update("storens.counts",s_num);
+	}
+
+
 	
 }

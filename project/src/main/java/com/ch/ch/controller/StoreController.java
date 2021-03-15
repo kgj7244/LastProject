@@ -172,7 +172,8 @@ public class StoreController {
 		ord.setBuy_date(date);
 		ord.setS_validity(date1);
 		
-		ord.setFull_price(store.getS_prive() *ord.getS_purchase());
+		ord.setFull_price((store.getS_prive() *ord.getS_purchase())-(store.getS_prive() *ord.getS_purchase())*store.getS_sale()/100);
+
 		
 		
 		model.addAttribute("ord", ord);		
@@ -186,7 +187,7 @@ public class StoreController {
 	
 	//결제 진행 
 		@RequestMapping("order")
-		public String order(Bank bank,Ord ord,Model model,HttpSession session)throws IOException {	
+		public String order(int s_num,Bank bank,Ord ord,Model model,HttpSession session)throws IOException {	
 			String member_id = (String)session.getAttribute("member_id");
 			Member member = ms.select(member_id);
 			
@@ -205,7 +206,7 @@ public class StoreController {
 			bank.setMember_id(member_id);
 			
 			
-			ord.setFull_price(store.getS_prive() *ord.getS_purchase());
+			ord.setFull_price((store.getS_prive() *ord.getS_purchase())-(store.getS_prive() *ord.getS_purchase())*store.getS_sale()/100);
 			bank.setT_price(store.getS_prive() *ord.getS_purchase());
 			
 		
@@ -213,6 +214,9 @@ public class StoreController {
 			int ord2_num = ss.maxOrd_num();
 			bank.setOrd_num(ord2_num);
 			result = bdo.insert_bank(bank);
+			
+			int count = ss.counts(s_num);
+			model.addAttribute("count",count);	
 
 			model.addAttribute("result", result);
 			model.addAttribute("ord", ord);
@@ -221,6 +225,45 @@ public class StoreController {
 			
 			return "store/order";
 		}
+//		//결제 진행 
+//		@RequestMapping("order")
+//		public String order(Bank bank,Ord ord,Model model,HttpSession session)throws IOException {	
+//			String member_id = (String)session.getAttribute("member_id");
+//			Member member = ms.select(member_id);
+//			
+//			int result = 0;			
+//			
+//			Store store = ss.select(ord.getS_num());		
+//			Date date = new Date(System.currentTimeMillis());
+//			Date date1 = new Date(System.currentTimeMillis());
+//			Date date2 = new Date(System.currentTimeMillis());
+//			date1.setYear(date.getYear()+1);
+//			
+//			ord.setBuy_date(date);
+//			ord.setS_validity(date1);		
+//			bank.setT_date(date2);
+//			ord.setMember_id(member_id);
+//			bank.setMember_id(member_id);
+//			
+//			
+//			ord.setFull_price(store.getS_prive() *ord.getS_purchase());
+//			bank.setT_price(store.getS_prive() *ord.getS_purchase());
+//			
+//			
+//			result = ss.insertOrd(ord);
+//			int ord2_num = ss.maxOrd_num();
+//			bank.setOrd_num(ord2_num);
+//			result = bdo.insert_bank(bank);
+//			
+//			
+//			
+//			model.addAttribute("result", result);
+//			model.addAttribute("ord", ord);
+//			model.addAttribute("member", member);	
+//			model.addAttribute("bank", bank);	
+//			
+//			return "store/order";
+//		}
 	
 	//구매 목록
 	@RequestMapping("memberStore") 

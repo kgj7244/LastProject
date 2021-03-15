@@ -370,12 +370,14 @@ create sequence t_ordernum increment by 1 start with 1;
 --------------------------------------스토어
 select * from STORE;
 
+drop table STORE CASCADE CONSTRAINTS;
+
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
 	s_del char(1) default 'n', 			--#게시글 삭제여부
 	s_Pclass number(10) not null, 	--상품 분류(관람권,스낵)
 	s_Pname varchar2(50) not null, 		--상품 이름
-	s_Pconfig varchar2(50) not null, 	--상품 구성
+	s_Pconfig varchar2(500) not null, 	--상품 구성
 	s_Pimage varchar2(100) not null, 	--상품 이미지	
 	s_purchase number(10) default 0 not null, --#구매수량 
 	s_prive number(10) not null,	--가격
@@ -387,7 +389,8 @@ create table store(
 	s_sale number(10)		--#할인율 
 );	
 
-create sequence s_num increment by 1 start with 15; 
+
+create sequence s_num increment by 1 start with 20; 
 -----#
 insert into store values(1,'n','3','콜라 M','콜라 M','콜라M.jpg',0,2500,'n','1111-03-02','9999-12-02',99999,0);
 insert into store values(2,'n','3','콜라 L','콜라 L','콜라L.jpg',0,3000,'n','1111-03-02','9999-12-02',99999,0);
@@ -403,8 +406,12 @@ insert into store values(11,'n','2','반반콤보','반반팝콘L+탄산음료 M
 insert into store values(12,'n','2','더블콤보','카라멜팝콘M+오리지널M+탄산음료 M2','더블콤보.jpg',0,13000,'n','1111-03-02','9999-12-02',99999,0);
 
 insert into store values(13,'n','1','일반 관람권','일반 관람권 1매','일반관람권.jpg',0,11000,'n','1111-03-02','9999-12-02',99999,0);
-insert into store values(14,'n','4','전용 관람권','전용 관람권 1매','전용관람권.jpg',0,13000,'n','2021-03-02','2021-04-02',100,0);
-
+insert into store values(14,'n','1','전용 관람권','전용 관람권 1매','전용관람권.jpg',0,13000,'n','1111-03-02','9999-12-02',100,0);
+insert into store values(15,'n','1','4DX관람권','4DX관람권 1매','4DX관람권.jpg',0,19000,'n','1111-03-02','9999-12-02',100,0);
+insert into store values(16,'n','4','IMAX 관람권','IMAX 관람권 1매','IMAX 관람권.jpg',0,16000,'n','2021-03-02','2021-04-02',500,10);
+insert into store values(17,'n','4','반지의 제왕 오리지널 티켓','오리지널 티켓 1종','반지의 제왕.jpg',0,14000,'n','2021-03-18','2021-04-02',1000,0);
+insert into store values(18,'n','4','한정 할인! 스위트 콤보','오리지널L+탄산음료 M2','스위트콤보.jpg',0,9000,'n','2021-03-18','2021-04-02',200,15);
+insert into store values(19,'n','4','메이플스토리 콤보','팝콘L+탄산음료M2+메이플 탑퍼컵2+돌의 정령 팝콘통1','메이플 스토리 콤보.jpg',0,15000,'n','2021-01-18','2021-02-15',2000,0);
 
 ------------------------------- order 구매 데이터(미완성)
 create table ord (
