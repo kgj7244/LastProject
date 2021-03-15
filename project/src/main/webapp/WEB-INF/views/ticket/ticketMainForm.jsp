@@ -84,10 +84,10 @@
 	<div style="margin-top: 20px;"> <!-- 선택창 -->
 		<table class="table table-bordered" style="width: 1200px; height: 400px;">
 			<tr height="40px;"><!-- 제목 -->
-				<td style="background-color: #ffce67; color: #888371; vertical-align:middle; border-color:#FFFFFF; font-weight: bold;" align="center" width="30%">영화</td>
-				<td colspan="2" style="background-color: #ffce67; color: #888371; vertical-align:middle; border-color:#FFFFFF; font-weight: bold;" align="center" width="20%">극장</td>
-				<td style="background-color: #ffce67; color: #888371; border-color:#FFFFFF; vertical-align:middle; font-weight: bold;" align="center" width="10%">날짜</td>
-				<td style="background-color: #ffce67; color: #888371; border-color:#FFFFFF; vertical-align:middle; font-weight: bold;" align="center" width="40%">시간</td>
+				<td style="background-color: #ffce67; color: #888371; vertical-align:middle; border-color:#FFFFFF; font-weight: bold; font-size: 20px;" align="center" width="30%">영화</td>
+				<td colspan="2" style="background-color: #ffce67; color: #888371; vertical-align:middle; border-color:#FFFFFF; font-weight: bold; font-size: 20px;" align="center" width="20%">극장</td>
+				<td style="background-color: #ffce67; color: #888371; border-color:#FFFFFF; vertical-align:middle; font-weight: bold;font-size: 20px;" align="center" width="10%">날짜</td>
+				<td style="background-color: #ffce67; color: #888371; border-color:#FFFFFF; vertical-align:middle; font-weight: bold;font-size: 20px;" align="center" width="40%">시간</td>
 			</tr>
 			<tr height="auto;">
 				
@@ -100,7 +100,7 @@
 								<c:if test="${not empty movie}"> <!-- 값이 있으면 -->
 									<c:forEach var="i" items="${movie}">
 										<tr>
-											<td align="left">
+											<td align="left" style="font-size: 15px;">
 												<c:choose>
 													<c:when test="${i.m_rank == '전 연령'}">
 														<img src="resources/images/m_rank/전체.png" height="25px" width="25px" >
@@ -137,7 +137,7 @@
 						<c:if test="${not empty theater1}">
 							<c:forEach var="i" items="${theater1}">
 								<tr>
-									<td width="100px;" align="center"><input type="button" value="${i.t_loc}" onclick="theaterChk('${i.t_loc}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 7px;"></td>
+									<td width="100px;" style="font-size: 15px;" align="center"><input type="button" value="${i.t_loc}" onclick="theaterChk('${i.t_loc}')" style="background-color: rgba( 255, 255, 255, 0.0 ); border: none; padding: 7px;"></td>
 								</tr>
 							</c:forEach> 	
 						</c:if>
@@ -152,7 +152,7 @@
 							<input type="hidden" name="t_title2">
 							<table class="table">
 								<tr>
-									<td width="170px;" align="center"><span id="theaterSelect"></span></td><!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
+									<td width="170px;" style="font-size: 15px;" align="center"><span id="theaterSelect"></span></td><!-- 극장 주소 선택시 그 해당 지점 리스트 출력하는곳 -->
 								</tr>
 							</table>
 						</form>
@@ -164,7 +164,7 @@
 					<table class="table">
 						<tr>
 							<td>
-								<input type="date" name="calendar" id = "cal1" onchange="date_pick(); " value="" style="border: none;" value="날짜를 입력해주세요">
+								<input type="date" name="calendar" id = "cal1" onchange="date_pick(); " value="" style="border: none; font-size: 12px;" value="날짜를 입력해주세요">
 							</td>
 						</tr>
 					</table>
@@ -177,7 +177,7 @@
 							<input type="hidden" name="sc_date2">
 							<table class="table">
 								<tr>
-									<td><span id="selectTime"></span></td>
+									<td style="font-size: 12px;"><span id="selectTime"></span></td>
 								</tr>
 							</table>
 						</form>
@@ -212,7 +212,7 @@
 							</tr>
 						</table>
 					</td>
-					<td width="20%" align="center" style="vertical-align:middle;"><input type="submit" value="결제" class="btn" style="background-color: #1d1d1c; color:#ffce67; border:2px solid #ffce67; padding :30px; 30px; font-size: 30px;"></td>
+					<td width="20%" align="center" style="vertical-align:middle;"><input type="submit" value="결제" class="btn btn-Secondary" style="padding :30px; 30px; font-size: 30px;"></td>
 					<td width="20%"></td>
 				</tr>
 			</table>

@@ -10,9 +10,6 @@
 // 좌석이 있는지 클릭
 	$(function() {  // 들어오기전에 좌석이 있는지 확인후 좌석 막아놓기
 		listSeat2 = listSeat.split(",");
-		/* for (var i=0; i<listSeat2.length;i++) {
-			alert(listSeat2[i]);
-		} */
 		if(listSeat2.length > 0){
 			for(var i=0; i<listSeat2.length; i++){
 				$("input[name='"+listSeat2[i]+"']").attr("disabled", "disabled");

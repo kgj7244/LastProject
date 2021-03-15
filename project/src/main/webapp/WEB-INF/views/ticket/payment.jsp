@@ -120,7 +120,7 @@
 						</tr>
 						
 						<tr>
-							<td colspan="3" align="center"><input type="submit" value="결제" class="btn btn-warning btn-lg" style="width: 100px; height: 30px;"></td>
+							<td colspan="3" align="center"><input type="submit" value="결제" class="btn btn-Secondary btn-lg" style="width: 100px; height: 30px;"></td>
 						</tr>
 					</table>
 				</td>
