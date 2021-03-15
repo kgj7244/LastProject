@@ -124,7 +124,7 @@
 									<td>보여줄 영화가 없습니다</td>
 								</tr>
 							</c:if>
-						</table>.,
+						</table>
 					</form>
 				</td>
 				
@@ -194,10 +194,10 @@
 					<td align="center" width="20%" style="vertical-align:middle;">
 						<table>
 							<tr>
-								<td><span id="t_title" style="font-size:20px; color: #e6e6e6; font-weight: bold;"><span style="color: #ffce67; font-size: 30px;">극장선택</span></span></td>
+								<td><span id="t_title" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>
 							</tr>
 							<tr>
-								<td><span id="sc_date" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>
+								<td><span id="sc_date" style="font-size:20px; color: #e6e6e6; font-weight: bold;"><span style="color: #ffce67; font-size: 30px; vertical-align:middle;">극장선택</span></span></td>
 							</tr>
 							<tr>
 								<td><span id="mt_name" style="font-size:20px; color: #e6e6e6; font-weight: bold;"></span></td>

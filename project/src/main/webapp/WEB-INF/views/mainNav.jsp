@@ -54,22 +54,17 @@ li>a {
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarColor03">
+		<div class="collapse navbar-collapse row" id="navbarColor03">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-4" align="left">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link"
-					href="mainForm.do">HOME <span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="movieMainForm.do?m_ing=0">영화</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="theaterMainForm.do">극장</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="ticketMainForm.do">예매</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="storeMainForm.do">스토어</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="noticeList.do">고객센터</a></li>
-<!-- 			드롭다운 왜 안되는거지 ㅠㅠ
+				<li class="nav-item active"><a class="nav-link"	href="mainForm.do">HOME <span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="movieMainForm.do?m_ing=0">영화</a></li>
+				<li class="nav-item"><a class="nav-link" href="theaterMainForm.do">극장</a></li>
+				<li class="nav-item"><a class="nav-link" href="ticketMainForm.do">예매</a></li>
+				<li class="nav-item"><a class="nav-link" href="storeMainForm.do">스토어</a></li>
+				<li class="nav-item"><a class="nav-link" href="noticeList.do">고객센터</a></li>
+				<!-- 드롭다운 왜 안되는거지 ㅠㅠ
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
 					role="button" aria-haspopup="true" aria-expanded="false">고객센터</a>
@@ -78,14 +73,14 @@ li>a {
 							class="dropdown-item" href="boardList.do">Q & A</a>
 					</div></li> -->
 			</ul>
-			<form class="form-inline my-2 my-lg-0" action="movieMainForm.do"
-				method="post" name="frm21" onsubmit="return findChk()">
-				<input class="form-control mr-sm-2" type="text" name="search"
-					id="search" placeholder="영화 검색">
-				<button class="btn btn-warning my-2 my-sm-0 btn-lg" type="submit">
-					<b>SEARCH</b>
-				</button>
+			</div>
+			<div class="col-sm-4" align="right">
+			<form class="form-inline my-2 my-lg-0" action="movieMainForm.do" method="post" name="frm21" onsubmit="return findChk()"style="width: 220px;">
+				<input class="form-control mr-sm-2" type="text" name="search" id="search" placeholder="영화 검색">
+				<button class="btn btn-warning my-2 my-sm-0 btn-lg" type="submit"><b>SEARCH</b></button>
 			</form>
+			</div>
+			<div class="col-sm-2"></div>
 		</div>
 	</nav>
 </body>

@@ -11,11 +11,11 @@
 	div{margin: 0px;padding: 0px;}
 	#mainTop{
 		background-color: #0d0908; 
-		height: 70px;"
+		height: 110px;"
 	}
 	#mainNav{
 		background-color: #0d0908; 
-		height: 50px;"
+		height: 60px;"
 	}
 	#mainCenterVideo{
 		height:850px;
