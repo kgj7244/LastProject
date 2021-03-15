@@ -7,19 +7,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
 </style>
 </head>
 <body>
-<div style="background-color: #0d0908; height: 70px;">
-	<div class="container" id="mainTop" style="background-color: #0d0908; height: 70px;">
+<!-- <div style="background-color: #0d0908; height: 70px;"> -->
+<div style="background-color: #0d0908; height: 110px;">
+	<div class="container" id="mainTop" style="background-color: #0d0908; height: 110px;">
 		<div class="row">
 			<div class="col-sm-4" align="center">
 			
 			</div>
 			
 			<div class="col-sm-4" align="center">
-				<img src="${path}/resources/images/home/로고.png" width="70%" height="70%" style="margin-top: 7px;" onclick="location.href='mainForm.do'">
+				<img src="${path}/resources/images/home/로고.png" width="50%" height="50%" style="margin-top: 7px;" onclick="location.href='mainForm.do'">
 			</div>
 			
 			<div class="col-sm-4" align="right" style="margin-top: 20px;">

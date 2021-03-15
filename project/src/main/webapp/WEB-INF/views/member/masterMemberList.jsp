@@ -6,17 +6,39 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.text-warning {
+	margin-top: 50px;
+}
+td>a, #d {
+color:gray;
+font-weight: bold;
+text-decoration:none !important;}
+</style>
+<script type="text/javascript">
+function del() {
+	var con = confirm("정말 삭제하시겠습니까?");
+	if (con)
+		location.href = "masterMemberDelete.do?member_id=${member.member_id }&member_del=${member.member_del}";
+	else {
+		alert("삭제가 취소되었습니다");
+		return;
+	}
+}
+</script>
 </head>
 <body>
 	<%@ include file="../mainTop.jsp"%>
 	<%@ include file="../mainNav.jsp"%>
 	<div class="container" align="center">
-		<h2 class="text-primary">회원관리</h2>
+		<h1 class="text-warning">
+			<b>회원 관리</b>
+		</h1>
 		<p />
 		<!-- 검색 -->
-		<form action="masterMemberList.do">
+		<form action="masterMemberList.do" class="form-inline pull-right">
 			<!-- <input type="hidden" name="pageNum" value="1">  -->
-			<select name="search">
+			<select name="search" class="form-control">
 				<c:forTokens var="sh" items="member_id,member_name" delims=","
 					varStatus="i">
 					<c:if test="${sh == member.search }">
@@ -26,49 +48,49 @@
 						<option value="${sh }">${tit[i.index] }</option>
 					</c:if>
 				</c:forTokens>
-			</select> <input type="text" name="keyword" value="${member.keyword }">
-			<input type="submit" value="검색">
+			</select>	&nbsp;	&nbsp;<input type="text" name="keyword" class="form-control" value="${member.keyword }">
+				&nbsp;	&nbsp;<button type="submit" class="btn btn-outline-warning btn-lg">
+				<b>SEARCH</b>
+			</button>
 		</form>
 		<table class="table table-striped">
 			<tr>
-				<th>가입일</th>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>성별</th>
-				<th>생년월일</th>
-				<th>이메일</th>
-				<th>전화번호</th>
-				<th>주소</th>
-				<th>탈퇴여부</th>
-				<td>수정</td>
-				<td>삭제</td>
+				<td align="center"><b>가입일</b></td>
+				<td align="center"><b>아이디</b></td>
+				<td align="center"><b>이름</b></td>
+				<td align="center"><b>성별</b></td>
+				<td align="center"><b>생년월일</b></td>
+				<td align="center"><b>이메일</b></td>
+				<td align="center"><b>전화번호</b></td>
+				<td align="center"><b>주소</b></td>
+				<td align="center"><b>탈퇴여부</b></td>
+				<td align="center"><b>수정</b></td>
+				<td align="center"><b>삭제</b></td>
 			</tr>
 			<c:if test="${empty list }">
 				<tr>
-					<th colspan="6">회원이 없습니다</th>
+					<td colspan="6" align="center"><b>회원이 없습니다</b></th>
 				</tr>
 			</c:if>
 			<c:if test="${not empty list }">
 				<c:forEach var="member" items="${list }">
 					<tr>
-						<td>${member.member_date}</td>
-						<td>${member.member_id }</td>
-						<td>${member.member_name }</td>
-						<td>${member.member_gender}</td>
-						<td>${member.member_birth }</td>
-						<td>${member.member_email }</td>
-						<td>${member.member_number }</td>
-						<td>${member.member_addr }</td>
-						<td>${member.member_del }</td>
-						<td><a href="masterMemberUpdateForm.do?member_id=${member.member_id }">수정</a></td>
-						<td><a href="masterMemberDelete.do?member_id=${member.member_id }&member_del=${member.member_del}">삭제</a></td>
+						<td align="center">${member.member_date}</td>
+						<td align="center">${member.member_id }</td>
+						<td align="center">${member.member_name }</td>
+						<td align="center">${member.member_gender}</td>
+						<td align="center">${member.member_birth }</td>
+						<td align="center">${member.member_email }</td>
+						<td align="center">${member.member_number }</td>
+						<td align="center">${member.member_addr }</td>
+						<td align="center">${member.member_del }</td>
+						<td align="center"><a
+							href="masterMemberUpdateForm.do?member_id=${member.member_id }">수정</a></td>
+						<td align="center"><a onclick="del()" id="d">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</c:if>
 		</table>
-		<div align="center">
-			<a href="mainForm.do" class="btn btn-warning">HOME</a>
-		</div>
 	</div>
 	<%@ include file="../mainFloor.jsp"%>
 </body>

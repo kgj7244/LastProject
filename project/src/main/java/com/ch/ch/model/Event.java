@@ -16,5 +16,9 @@ public class Event {
 	private String e_del; // 삭제 여부		
 	
 	private MultipartFile file; //이미지 파일
+	
+	private int eo_num; //중복체크 번호
+	private String member_id; //아이디
+	private String eo_state; //상태
 
 }

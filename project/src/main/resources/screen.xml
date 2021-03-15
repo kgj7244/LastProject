@@ -116,4 +116,13 @@
 	<select id="coupon" parameterType="string" resultType="event_over">
 		select * from event_over where member_id=#{member_id}
 	</select>
+	<select id="memberEvent_over" parameterType="string" resultType="event">
+		select * from event e, event_over eo where e.e_num = eo.e_num and member_id = #{member_id} and eo_state = '발급'
+	</select>
+	<select id="eventNumFind" parameterType="integer" resultType="event">
+		select * from event e, event_over eo where e.e_num = eo.e_num and eo.eo_num = #{eo_num}
+	</select>
+	<update id="event_use" parameterType="integer">
+		update event_over set eo_state = '사용완료' where eo_num = #{eo_num}
+	</update>
 </mapper>

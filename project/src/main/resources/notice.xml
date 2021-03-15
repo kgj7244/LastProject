@@ -2,17 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="noticens">
-	<select id="getNtotal" parameterType="notice" resultType="integer">
+	<select id="getNtotal" parameterType="notice"
+		resultType="integer">
 		select count(*) from notice
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<if test="search=='n_subcon'">
+					n_title like '%'||#{keyword}||'%' or n_content like '%'||#{keyword}||'%'
+				</if>
+				<if test="search!='n_subcon'">
+					${search} like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</where>
 	</select>
 	<select id="list" parameterType="notice" resultType="notice">
-		select * from (select a.*, rownum rn from (select * from notice order by n_num desc) a) where rn between #{startRow} and #{endRow}
+		select * from (select a.*, rownum rn from (select * from notice
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<if test="search=='n_subcon'">
+					n_title like '%'||#{keyword}||'%' or n_content like '%'||#{keyword}||'%'
+				</if>
+				<if test="search!='n_subcon'">
+					${search} like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</where>
+		order by n_num desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="select" parameterType="integer" resultType="notice">
-		select * from notice where n_num=#{n_num}
+		select *
+		from notice where n_num=#{n_num}
 	</select>
 	<insert id="insert" parameterType="notice">
-		<selectKey keyProperty="n_num" resultType="Integer"	order="BEFORE">
+		<selectKey keyProperty="n_num" resultType="Integer"
+			order="BEFORE">
 			SELECT NVL(max(n_num),0) + 1 from notice
 		</selectKey>
 		insert into notice values(#{n_num},#{n_branch},#{n_title},#{n_content},sysdate,'n')
@@ -21,6 +45,6 @@
 		update notice set n_branch=#{n_branch},n_title=#{n_title},n_content=#{n_content} where n_num=#{n_num}
 	</update>
 	<update id="delete" parameterType="integer">
-		update notice set n_del='y' where n_num=#{n_num}
+		update notice set n_del='y'	where n_num=#{n_num}
 	</update>
 </mapper>

@@ -116,4 +116,21 @@ public class TheaterController {
 		 else data = "이미 사용 중입니다. 다시 입력해주세요.";
 		 return data; 
 	 }
+	 @RequestMapping("seoul1")
+	 public String seoul1(){
+		 return "theater/seoul1";
+	 }
+	 @RequestMapping("seoul2")
+	 public String seoul2(){
+		 return "theater/seoul2";
+	 }
+	 @RequestMapping("seoul3")
+	 public String seoul3(){
+		 return "theater/seoul3";
+	 }
+	 @RequestMapping("seoul4")
+	 public String seoul4(){
+		 return "theater/seoul4";
+	 }
+	 
 }

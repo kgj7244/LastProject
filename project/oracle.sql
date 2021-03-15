@@ -1,5 +1,5 @@
 --삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
-drop sequence theater_t_num_seq; 
+drop sequence theater_t_num_seq;
 drop sequence st_num; 
 drop sequence re_num; 
 drop sequence s_num; 
@@ -96,57 +96,115 @@ create sequence e_num increment by 1 start with 1;
 create table event_over(
 	eo_num number(10) primary key,               					-- 중복체크 번호
 	member_id nvarchar2(50) not null,  								-- 아이디
-	eo_state nvarchar2(50) not null,    			                -- 상태(0.미참여, 1. 대기, 2. 발급, 3. 사용)
+	eo_state nvarchar2(50) not null,    			                -- 상태(1. 대기, 2. 발급, 3. 사용)
 	e_num number(10) references event(e_num)  						-- 이벤트번호
 );
 create sequence eo_num increment by 1 start with 1;
 
 --------------------------------------극장
+--삭제
+drop sequence theater_t_num_seq;
+drop table theater CASCADE CONSTRAINTS;
 
 create table theater(
-	t_num number primary key not null,   --극장번호
-	t_title nvarchar2(50) not null,      --이름
-	t_loc nvarchar2(50) not null,        --지역
-	t_addr nvarchar2(100) not null,     --주소(극장주소)
-	t_number nvarchar2(50) not null,   --전화번호
-	t_gui nvarchar2(1000) not null        --시설 안내
+	t_num number primary key not null,   --극장번호 1
+	t_title nvarchar2(50) not null,      --이름 2
+	t_loc nvarchar2(50) not null,        --지역 3
+	t_content nvarchar2(1000) not null, -- 극장 정보 4
+	t_floor nvarchar2(500) not null, -- 층별 안내 5
+	t_addr nvarchar2(100) not null,     --주소(극장주소) 6 
+	t_number nvarchar2(50) not null,   --전화번호 7
+	t_gui nvarchar2(1000) not null        --시설 안내 8
 );
 select * from theater;
 create sequence theater_t_num_seq increment by 1 start with 13;
 
-insert into theater values(1, '신촌','서울','서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)','1544-1122','주자요금 영화 관람시 3시간, 4000원입니다.');
-insert into theater values(2, '강남','서울','서울특별시 강남구 강남대로 438 (역삼동, 스타플렉스)','1544-1122','건물 지하2F ~ 지하4F# 주차요금- CGV 영화 관람 시 주차 3시간 6,000원');
-insert into theater values(3, '용산','서울','서울특별시 용산구 한강대로23길 55 현대아이파크몰 6층','1544-1122','주자요금- 영화 관람시 4시간, 5000원입니다.');
-insert into theater values(4, '불광','서울','서울특별시 은평구 불광로 20 팜스퀘어 11층','1544-1122','건물에 음료 무료가능!');
-insert into theater values(5, '대전','대전','주소가 5번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(6, '용인','대전','주소가 6번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(7, '수원','대전','주소가 7번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(8, '이천','대전','주소가 8번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(9, '쌍팔','광주','주소가 9번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(10, '용역','광주','주소가 10번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(11, '구리','광주','주소가 11번이다','1544-1122','건물에 음료 무료가능!');
-insert into theater values(12, '미영','광주','주소가 12번이다','1544-1122','건물에 음료 무료가능!');
-
+insert into theater values(
+	1, 
+	'신촌','서울','품격을 높여주는 최고급 쇼파에서 고급화된 인테리어의 안락함을 즐겨보세요 전좌석 가죽시트, 핸드폰 충전이 가능한 가장 진화한 컴포트관 (COMFORT)',
+	'5층 : COMFORT 1관, 2관 ~ 8관, 매표소, 매점, 무인발권기, 남자 · 여자 화장실',
+	'서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)',
+	'1544-1122',
+	'일반상영관, 장애인석');
+insert into theater values(
+	2, 
+	'강남','서울','강남의 중심! 강남 소비문화의 중심지인 지하철 2호선 , 신분당선 - 강남역과 연결 로맨틱 멀티플렉스! 젊은 도시 강남이 한 눈에 보이는 최상의 View를 제공 '
+	'8층 : 매표소, 매점, 에스컬레이터, 엘리베이터 , 남자 · 여자 화장실, 비상계단 3',
+	'서울특별시 강남구 강남대로 438 (역삼동, 스타플렉스)',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	3, 
+	'용산','서울','강북의 문화 랜드마크, 메가박스 100호점! Meyer Sound와 Dolby ATMOS 시스템, 차세대 상영관의 표준 사운드 특화관 MX관'
+	'1층 : 매표소, 매점, 무인발권기, 남자/여자 화장실, 상영관 (MX관, COMFORT관, 3~9관)',
+	'서울특별시 용산구 한강대로23길 55 현대아이파크몰 6층',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	4, 
+	'불광','서울',
+	'9개관 / 총 1,681석 규모 가장 진화 된 입체음향, 차세대 영화관의 표준을 제시하는 MX관',
+	'5층 : 6관, 7관, 8관, 9관, 남/여화장실(상영관 중앙에 위치)',
+	'서울특별시 은평구 불광로 20 팜스퀘어 11층',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	5, 
+	'공주','대전',
+	'',
+	'',
+	'충청남도 공주시 신관동 흑수골길 12',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	6, 
+	'논산','대전',
+	'충청남도 논산시 중앙로 255',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	7, 
+	'오창','대전',
+	'충북 청주시 청원구 오창읍 중심상업1로 8-9',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	8, 
+	'대전','대전',
+	'대전 서구 문정로 77 로데오타운 5층',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	9, 
+	'광주상무','광주',
+	'광주광역시 서구 치평동 시청로60번길 21 콜롬버스시네마',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	10, 
+	'광주하남','광주',
+	'광주광역시 광산구 우산동 풍영철길로 15 콜럼버스월드',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	11, 
+	'송천','광주',
+	'전라북도 전주시 덕진구 송천동2가 동부대로 1215 ',
+	'1544-1122','일반상영관, 장애인');
+insert into theater values(
+	12, 
+	'순천','광주',
+	'전라남도 순천시 덕암동 충효로 15',
+	'1544-1122','일반상영관, 장애인');
 select * from theater;
 
 -----------------------------------상영관
-
+select * from MOVIETHEATER;
 create table movieTheater(
 	mt_num number primary key not null,     --상영관번호
 	mt_name nvarchar2(50) not null,         --상영관이름
 	mt_count number not null,               --좌석
 	t_num number references theater(t_num)  --극장번호
 );
-create sequence mt_num increment by 1 start with 1;
+create sequence mt_num increment by 1 start with 6;
+--시연시 보여줄 상영관
 insert into movieTheater values(1, '1관',50,1);
 insert into movieTheater values(2, '2관',70,1);
 insert into movieTheater values(3, '3관',80,1);
 insert into movieTheater values(4, '4관',90,1);
 insert into movieTheater values(5, '5관',100,1);
-
-
-select * from movieTheater;
-
+--delete from movieTheater where mt_num=28;
 --------------------------------------영화
 create table movie (
 	m_num number primary key not null, 	--영화번호
@@ -292,7 +350,7 @@ create table seat(
 	st_num nvarchar2(10),                   --좌석번호 
 	sc_num number references screen(sc_num) --상영번호
 );
-
+select * from seat
 --------------------------------------예매
 
 create table ticket(
@@ -386,3 +444,7 @@ create table bank(
 );
 create sequence t_account increment by 1 start with 1;
 
+select * from EVENT_OVER;
+select* from ticket;
+select * from bank;
+select * from event e, event_over eo where e.e_num = eo.e_num and eo.eo_num = 0;

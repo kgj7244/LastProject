@@ -157,5 +157,13 @@ public class ScreenDaoImpl implements ScreenDao{
 	public List<Event_over> coupon(String member_id) {
 		return sst.selectList("screenns.coupon", member_id);
 	}
-
+	public List<Event_over> memberEvent_over(String member_id) {
+		return sst.selectList("screenns.memberEvent_over", member_id);
+	}
+	public Event eventNumFind(int eo_num) {
+		return sst.selectOne("screenns.eventNumFind",eo_num);
+	}
+	public void event_use(int eo_num) {
+		sst.update("screenns.event_use", eo_num);
+	}
 }
