@@ -113,22 +113,9 @@
 					<td colspan="3">
 						<input type="file" name="file" value="${movie.m_poster}">
 						${movie.m_poster}
+						<p class="text-danger">*포스터는 600 x 855만 가능합니다</p>
 					</td>
 				</tr>
-				<%-- <tr>
-					<th>
-						스틸컷
-						<span class="glyphicon glyphicon-picture"></span>
-					</th>
-					<td colspan="3">
-							<input type="file" name="file1" value="${st.m_stillcut}" multiple="multiple">
-					 		${st.m_stillcut}
-						<c:forEach var="st" items="${list}">
-							<input type="file" name="file1" value="${st.m_stillcut}">
-					 		${st.m_stillcut}
-						</c:forEach>
-					</td>
-				</tr> --%>
 				<tr>
 					<td colspan="4" align="center">
 						<input type="submit" value="수정">
