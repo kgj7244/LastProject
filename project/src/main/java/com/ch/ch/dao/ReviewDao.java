@@ -15,6 +15,4 @@ public interface ReviewDao {
 	int getTotal(Review review);
 
 	int count(Review review);
-
-	int sum(Review review);
 }

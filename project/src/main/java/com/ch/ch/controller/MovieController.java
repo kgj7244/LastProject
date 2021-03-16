@@ -169,15 +169,11 @@ public class MovieController {
 		List<Review> rvList = rvs.list(review);
 		
 		int tot = rvs.count(review);
-		int hap = rvs.sum(review);
-		
-		double grade = hap/(double)tot;
 		
 		List<Stillcut> list = ms.listPhoto(m_num);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("tot", tot);
-		model.addAttribute("grade", grade);
 		model.addAttribute("rpb", rpb);
 		model.addAttribute("movie", movie);
 		model.addAttribute("rvList", rvList);
@@ -187,16 +183,18 @@ public class MovieController {
 	
 	// 한줄평 작성
 	@RequestMapping("/rInsert.do")
-	public String rInsert(Review rv) {
+	public String rInsert(Review rv, Movie movie) {
 		rvs.insert(rv);
+		ms.gradeupdate(movie);
 	
 		return "redirect:/movieView.do?m_num=" + rv.getM_num();
 	}
 
 	// 한줄평 삭제
 	@RequestMapping("rDelete.do")
-	public String rDelete(Review rv) {
+	public String rDelete(Review rv, Movie movie) {
 		rvs.delete(rv.getRe_num());
+		ms.gradeupdate(movie);
 
 		return "redirect:/movieView.do?m_num=" + rv.getM_num();
 	}
@@ -205,6 +203,7 @@ public class MovieController {
 	@RequestMapping("rUpdate.do")
 	public String rUpdate(Review rv) {
 		rvs.update(rv);
+		//ms.gradeupdate(movie);
 
 		return "redirect:/movieView.do?m_num=" + rv.getM_num();
 	}
@@ -249,6 +248,7 @@ public class MovieController {
 		 return "movie/movieUpdate";
 	 }
 	 
+	 //영화 메인에 뿌려지는 영화 리스트
 	 @RequestMapping("allMovieList")
 	 public String allMovieList(String pageNum, Movie movie, Model model) {
 		 if (pageNum == null || pageNum.equals("") || pageNum == "0") {
@@ -277,11 +277,13 @@ public class MovieController {
 		return "movie/allMovieList";
 	 }
 	 
+	 //상단바 검색
 	 @RequestMapping("mainNav")
 	 public String mainNav() {
 		 return "movie/movieMainForm";
 	 }
 	 
+	 //메인 홈 검색
 	 @RequestMapping("mainCenterMovie")
 	 public String mainCenterMovie() {
 		 return "movie/movieMainForm";

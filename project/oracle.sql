@@ -18,7 +18,6 @@ drop sequence ord_num;
 
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
 
-drop table service CASCADE CONSTRAINTS;
 drop table ord CASCADE CONSTRAINTS;
 drop table store CASCADE CONSTRAINTS;
 drop table bank CASCADE CONSTRAINTS;
@@ -67,7 +66,6 @@ create table member(
 -- 회원 시연용(게시판 시연을 위해)
 insert into member values('master','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
 insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
-insert into member values('lamslams','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
 insert into member values('lamslams2','123456789','김희주','남성',sysdate,'lams1@daum.net','010-1111-1111','서울시',sysdate,'n');
 insert into member values('aa11','1234','이다혜','여성',sysdate,'aa11@gmail.com','010-2222-2222','서대문구',sysdate,'n');
 insert into member values('bb11','1234','유연지','여성',sysdate,'bb11@naver.com','010-3333-3333','용산구',sysdate,'n');
@@ -103,10 +101,6 @@ create table event_over(
 create sequence eo_num increment by 1 start with 1;
 
 --------------------------------------극장
---삭제
-drop sequence theater_t_num_seq;
-drop table theater CASCADE CONSTRAINTS;
-
 create table theater(
 	t_num number primary key not null,   --극장번호 1
 	t_title nvarchar2(50) not null,      --이름 2
@@ -117,9 +111,7 @@ create table theater(
 	t_number nvarchar2(50) not null,   --전화번호 7
 	t_gui nvarchar2(1000) not null        --시설 안내 8
 );
-select * from theater;
-create sequence theater_t_num_seq increment by 1 start with 13;
-
+create sequence theater_t_num_seq increment by 1 start with 13; 
 insert into theater values(
 	1, 
 	'신촌','서울','품격을 높여주는 최고급 쇼파에서 고급화된 인테리어의 안락함을 즐겨보세요 전좌석 가죽시트, 핸드폰 충전이 가능한 가장 진화한 컴포트관 (COMFORT)',
@@ -129,13 +121,13 @@ insert into theater values(
 	'일반상영관, 장애인석');
 insert into theater values(
 	2, 
-	'강남','서울','강남의 중심! 강남 소비문화의 중심지인 지하철 2호선 , 신분당선 - 강남역과 연결 로맨틱 멀티플렉스! 젊은 도시 강남이 한 눈에 보이는 최상의 View를 제공 '
+	'강남','서울','강남의 중심! 강남 소비문화의 중심지인 지하철 2호선 , 신분당선 - 강남역과 연결 로맨틱 멀티플렉스! 젊은 도시 강남이 한 눈에 보이는 최상의 View를 제공 ',
 	'8층 : 매표소, 매점, 에스컬레이터, 엘리베이터 , 남자 · 여자 화장실, 비상계단 3',
 	'서울특별시 강남구 강남대로 438 (역삼동, 스타플렉스)',
 	'1544-1122','일반상영관, 장애인');
 insert into theater values(
 	3, 
-	'용산','서울','강북의 문화 랜드마크, 메가박스 100호점! Meyer Sound와 Dolby ATMOS 시스템, 차세대 상영관의 표준 사운드 특화관 MX관'
+	'용산','서울','강북의 문화 랜드마크, 메가박스 100호점! Meyer Sound와 Dolby ATMOS 시스템, 차세대 상영관의 표준 사운드 특화관 MX관',
 	'1층 : 매표소, 매점, 무인발권기, 남자/여자 화장실, 상영관 (MX관, COMFORT관, 3~9관)',
 	'서울특별시 용산구 한강대로23길 55 현대아이파크몰 6층',
 	'1544-1122','일반상영관, 장애인');
@@ -148,64 +140,80 @@ insert into theater values(
 	'1544-1122','일반상영관, 장애인');
 insert into theater values(
 	5, 
-	'공주','대전',
-	'',
-	'',
-	'충청남도 공주시 신관동 흑수골길 12',
+	'남양주','경기',
+	'남양주 호평 최대의 복합 문화공간 장애우를 배려한 좌석 등 항상 따뜻한 미소가 넘치는 메가박스 남양주',
+	'9층 : 매표소, 1관, 2관, 3관, 5관, 6관, 7관, 8관, 9관, Sweet Bar, 남/여화장실',
+	'경기도 남양주시 호평동 늘을2로 26 메인시네마타워',
 	'1544-1122','일반상영관, 장애인');
 insert into theater values(
 	6, 
-	'논산','대전',
-	'충청남도 논산시 중앙로 255',
-	'1544-1122','일반상영관, 장애인');
+	'고양스타필드','경기',
+	'스타필드와 메가박스의 만남, MEGABOX in 스타필드 고양 Meyer Sound와 Dolby ATMOS 시스템, 차세대 상영관의 표준 사운드 특화관 MX관',
+	'4층 : 매표소, 매점, 8~9관(KIDS관), 무인발권기, 남녀 화장실
+	 5층 : 1관~7관, MX관, 남녀 화장실',
+	'경기도 고양시 덕양구 고양대로 1955 스타필드고양 4층 메가박스 고양스타필드점',
+	'1544-1122','MX, 일반상영관, 장애인');
 insert into theater values(
 	7, 
-	'오창','대전',
-	'충북 청주시 청원구 오창읍 중심상업1로 8-9',
-	'1544-1122','일반상영관, 장애인');
+	'동찬','경기',
+	'동탄 중심에 위치한 8개관 상영관 동탄 최초 전 좌석 리클라이너!',
+	'7층 : 매표소, 매점, 무인발권기, 로비, 엘리베이터, 에스컬레이터, 남자 · 여자 화장실
+8층 : 1~4관, 남자 · 여자 화장실, 엘리베이터, 에스컬레이터, 자판기
+10층 : 5~8관, 남자 · 여자 화장실, 엘리베이터, 에스컬레이터, 자판기',
+	'경기도 화성시 반송동 동탄지성로 11 동탄SR GOLD PLAZA',
+	'1544-1122','컴포트, 장애인');
 insert into theater values(
 	8, 
-	'대전','대전',
-	'대전 서구 문정로 77 로데오타운 5층',
-	'1544-1122','일반상영관, 장애인');
+	'백석','경기',
+	'Dolby ATMOS 시스템과 JBL 사운드를 갖춘 COMFORT 4관, 대형 스크린과 가죽 더블 암 체어 (Double Arm Chair)',
+	'5층 : 유인창구(매표,매점), 무인발권기, HoneyBee Lounge(로비공연장)
+	 6층 : 상영관(1관~8관)',
+	'경기도 고양시 일산동구 중앙로 1036 고양종합터미널 5층 메가박스 백석지점',
+	'1544-1122','컴포트, 일반상영관, 장애인');
 insert into theater values(
 	9, 
-	'광주상무','광주',
-	'광주광역시 서구 치평동 시청로60번길 21 콜롬버스시네마',
-	'1544-1122','일반상영관, 장애인');
+	'송도','인천',
+	'8개관 1,548석의 프리미엄 좌석 & 진정한 영화 사운드의 감동을 느낄 수 있는 MX관 기존 영화관 로비의 전형성을 탈피한 카페형 로비',
+	'2층 : 매표소,매점,무인 발권기,남녀 화장실 ,장애인 화장실 2개
+3층 : 퇴장로, 남녀 화장실 ,장애인 화장실 2개
+4층 : 상영관(1관~8관) ,남녀 화장실 , 장애인 화장실 2개',
+	'인천광역시 연수구 송도과학로 16번길 33-4번지 트리플 스트리트 D동 2층 메가박스 송도지점',
+	'1544-1122','MX, 컴포트, 일반상영관, 장애인, 발코니');
 insert into theater values(
 	10, 
-	'광주하남','광주',
-	'광주광역시 광산구 우산동 풍영철길로 15 콜럼버스월드',
-	'1544-1122','일반상영관, 장애인');
+	'영종','인천',
+	'영종도 시민의 여가 문화를 선도하는 최적의 문화 플렛폼 영종도 중심 상권과 역세권에 위치한 탁월한 입지',
+	'6층 : 매표소, 매점, 무인 발권기, 로비, 엘리베이터, 에스컬레이터, 남자,여자 화장실
+7층 : 1관, 2관, 3관, 4관, 5관, 6관, 7관, 8관, 남자,여자 화장실, 엘리베이터, 에스컬레이터',
+	'인천 중구 영종대로 184(운서동, 7층)',
+	'1544-1122','일반상영관, 장애인석, 로얄석');
 insert into theater values(
 	11, 
-	'송천','광주',
-	'전라북도 전주시 덕진구 송천동2가 동부대로 1215 ',
-	'1544-1122','일반상영관, 장애인');
+	'인천논현','인천',
+	'남동구 논현동 랜드마크 스트리트몰 라피에스타 상가내 위치한 영화관 수인선 인천논현역,소래포구역 도보 10분거리에 위치! 8개관 총 1221석 규모',
+	'7층 : 매표소, 매점, 남자,여자 화장실, 카페
+8층 : 상영관 1, 2, 3관, 남자, 여자 화장실
+9층 : 상영관 4, 5, 6관, 남자, 여자 화장실',
+	'인천광역시 남동구 논현동 논고개로 61 라피에스타',
+	'1544-1122','일반상영관, 장애인석');
 insert into theater values(
 	12, 
-	'순천','광주',
-	'전라남도 순천시 덕암동 충효로 15',
-	'1544-1122','일반상영관, 장애인');
+	'검단','인천',
+	'더 밝고 깨끗한 화질 디지털 영사 줌렌즈 및 전 상영관 가죽시트! JBL스피커로 즐기는 실감나는 7.1 돌비사운드 음향!',
+	'4층 : 매표, 매점, 무인발권기, 컴포트 1관, 2~5관, 남자 , 여자 및 장애인화장실',
+	'인천광역시 서구 서곶로 788 (당하동) 홀리랜드 4층 메가박스 검단',
+	'1544-1122','컴포트, 일반상영관, 장애인석');
 select * from theater;
 
 -----------------------------------상영관
-select * from MOVIETHEATER;
 create table movieTheater(
 	mt_num number primary key not null,     --상영관번호
 	mt_name nvarchar2(50) not null,         --상영관이름
 	mt_count number not null,               --좌석
 	t_num number references theater(t_num)  --극장번호
 );
-create sequence mt_num increment by 1 start with 6;
---시연시 보여줄 상영관
-insert into movieTheater values(1, '1관',50,1);
-insert into movieTheater values(2, '2관',70,1);
-insert into movieTheater values(3, '3관',80,1);
-insert into movieTheater values(4, '4관',90,1);
-insert into movieTheater values(5, '5관',100,1);
---delete from movieTheater where mt_num=28;
+create sequence mt_num increment by 1 start with 1;
+
 --------------------------------------영화
 create table movie (
 	m_num number primary key not null, 	--영화번호
@@ -233,6 +241,9 @@ create sequence st_num increment by 1 start with 1;
 select * from movie;
 select * from stillcut;
 
+select rtrim(to_char(nvl(sum(re_grade)/count(*), 0), 'fm90d00'), '.') from review where m_num=1;
+update movie set m_grade = (select rtrim(to_char(nvl(sum(re_grade)/count(*), 0), 'fm90d00'), '.') from review where m_num=9) where m_num=9;
+select nvl(sum(re_grade)/count(*), 0) from review;
 --------------------------------------한줄평
 
 create table review (
@@ -245,10 +256,7 @@ create table review (
 	m_num number references movie(m_num)						   --영화번호
 );
 create sequence re_num increment by 1 start with 1;
---insert into review values(1,'재미있습니다.',5,sysdate,sysdate,'lamslams',1);
---insert into review values(2,'재미있습니다1111.',5,sysdate,sysdate,'lamslams',1);
---insert into review values(3,'재미있습니다.22',5,sysdate,sysdate,'lamslams',1);
---insert into review values(4,'재미있습니다22222.',5,sysdate,sysdate,'lamslams',1);
+
 
 select* from review;
 --------------------------------------회원 게시판
@@ -292,7 +300,7 @@ create table reBoard (
 	r_del char(1) default 'n'              							-- 삭제여부
 );
 
-create sequence r_num increment by 1 start with 1;
+create sequence r_num increment by 1 start with 4;
 
 -- 댓글 시연용
 insert into reboard values(1,8,'master','모든 영화관에는 주차공간이 마련되어있습니다. 감사합니다:-)',sysdate,'n');
@@ -312,7 +320,7 @@ create table notice (
 	n_del char(1) default 'n'               -- 삭제여부
 );
 
-create sequence n_num increment by 1 start with 1;
+create sequence n_num increment by 1 start with 12;
 
 -- 시연시 보여줄 공지
 insert into notice values(1,'신촌','21년 3월 휴관일 안내','3월 휴관일 : 3/12, 3/19 (금요일)',sysdate,'n');
@@ -370,8 +378,6 @@ create sequence t_ordernum increment by 1 start with 1;
 --------------------------------------스토어
 select * from bank;
 
-drop table STORE CASCADE CONSTRAINTS;
-
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
 	s_del char(1) default 'n', 			--#게시글 삭제여부
@@ -382,7 +388,6 @@ create table store(
 	s_purchase number(10) default 0 not null, --#구매수량 
 	s_prive number(10) not null,	--가격
 	del char(1) default 'n',		--#환불 여부
-	
 	s_per date, 			--판매기간  시작
 	s_pernd date, 			--판매기간   끝 
 	s_total number(10), 	--총 판매수량 
@@ -404,7 +409,6 @@ insert into store values(9,'n','3','반반팝콘(오리지널카라멜) L','반�
 insert into store values(10,'n','2','스위트 콤보','오리지널L+탄산음료 M2','스위트콤보.jpg',0,9000,'n','1111-03-02','9999-12-02',99999,0);
 insert into store values(11,'n','2','반반콤보','반반팝콘L+탄산음료 M2','반반콤보.jpg',0,9500,'n','1111-03-02','9999-12-02',99999,0);
 insert into store values(12,'n','2','더블콤보','카라멜팝콘M+오리지널M+탄산음료 M2','더블콤보.jpg',0,13000,'n','1111-03-02','9999-12-02',99999,0);
-
 insert into store values(13,'n','1','일반 관람권','일반 관람권 1매','일반관람권.jpg',0,11000,'n','1111-03-02','9999-12-02',99999,0);
 insert into store values(14,'n','1','전용 관람권','전용 관람권 1매','전용관람권.jpg',0,13000,'n','1111-03-02','9999-12-02',100,0);
 insert into store values(15,'n','1','4DX관람권','4DX관람권 1매','4DX관람권.jpg',0,19000,'n','1111-03-02','9999-12-02',100,0);
@@ -418,14 +422,13 @@ create table ord (
 	ord_num number(10) primary key,
 	member_id nvarchar2(50) not null REFERENCES member(member_id), --로그인 여부
 	s_num number(10) not null REFERENCES store(s_num),
-	
 	s_purchase number(10) not null, 	--#구매수량 
 	full_price number(10) not null, 	--총 금액
 	buy_date date, 				--구매 날짜
 	s_validity date not null, 	--유통기한 sysdate+365
 	buy_i char(1) default 'n',	--구매 여부 구매=y면 마이페이지 추가
 	del char(1) default 'n'		--환불 여부 (구매날짜-sysdate)
-	);
+);
 
 create sequence ord_num increment by 1 start with 1;
 
@@ -439,7 +442,6 @@ create table aam_bank(
 insert into aam_bank values('565-278311-02-001','우리은행','김희주');
 
 --------------------------------------입금금액
-drop table bank CASCADE CONSTRAINTS;
 
 create table bank(
 	t_account nvarchar2(50) primary key not null,               --입금번호
@@ -452,8 +454,3 @@ create table bank(
 	ord_num number(10) references ord(ord_num)		            --주문번호(스토어
 );
 create sequence t_account increment by 1 start with 1;
-
-select * from EVENT_OVER;
-select* from ticket;
-select * from bank;
-select * from event e, event_over eo where e.e_num = eo.e_num and eo.eo_num = 0;

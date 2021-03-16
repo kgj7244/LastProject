@@ -114,7 +114,8 @@
 				<p>감독 : ${movie.m_director}&nbsp;&nbsp;/&nbsp;&nbsp;배우 : ${movie.m_actor}</p>
 				<p>장르 : ${movie.m_genre}&nbsp;&nbsp;/&nbsp;&nbsp;등급 : ${movie.m_rank}</p>
 				<p>개봉일 : <fmt:formatDate value="${movie.m_opendate}" pattern="yyyy.MM.dd (E)"/></p>
-			<a class="btn btn-warning" 
+				<p>평점 : ${movie.m_grade}점</p>
+			<a class="btn btn-secondary" 
 				style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0" 
 				href="ticketMainForm.do">예매</a>
 			<br><br>
@@ -188,9 +189,9 @@
 								<!-- 작성자 -->
 								<td>${rv.member_id}</td>
 								<!-- 평점 -->
-								<td>${rv.re_grade}점</td>
+								<td width="50px">${rv.re_grade}점</td>
 								<!-- 댓글 -->
-								<td id="td_${rv.re_num}">${rv.re_con}</td>
+								<td id="td_${rv.re_num}" style="word-break:break-all">${rv.re_con}</td>
 								<!-- 작성일 -->
 								<td>
 									<fmt:formatDate value="${rv.re_update}" pattern="yy.MM.dd HH:mm"/>

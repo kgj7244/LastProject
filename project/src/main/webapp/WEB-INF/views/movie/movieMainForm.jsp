@@ -12,13 +12,13 @@
 	    $("#chk_nowshow").change(function(){
 	        if($("#chk_nowshow").is(":checked")){
 	        	var m_ing = "1"; // 값이 있다
-	        	$.post("movieList.do","m_ing="+m_ing+"&keyword="+frm27.keyword.value+"&pageNum=${pageNum}", function(data) {
+	        	$.post("movieList.do","m_ing="+m_ing+"&keyword="+frm27.keyword.value+"&pageNum=1", function(data) {
 					frm27.m_ing.value="1";
 	    			$('#movieList2').html(data);
 	    		});
 	        }else{
 	        	var m_ing = "0"; // 값이 없다
-	        	$.post("movieList.do","m_ing="+m_ing+"&keyword="+frm27.keyword.value+"&pageNum=${pageNum}", function(data) {
+	        	$.post("movieList.do","m_ing="+m_ing+"&keyword="+frm27.keyword.value+"&pageNum=1", function(data) {
 	        		frm27.m_ing.value="0";
 	    			$('#movieList2').html(data);
 	    		});

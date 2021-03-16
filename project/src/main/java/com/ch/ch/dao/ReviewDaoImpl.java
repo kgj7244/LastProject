@@ -34,8 +34,4 @@ public class ReviewDaoImpl implements ReviewDao{
 	public int count(Review review) {
 		return sst.selectOne("rvns.count", review);
 	}
-	
-	public int sum(Review review) {
-		return sst.selectOne("rvns.sum", review);
-	}
 }

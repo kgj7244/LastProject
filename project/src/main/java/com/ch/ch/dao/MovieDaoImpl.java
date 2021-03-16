@@ -61,4 +61,8 @@ public class MovieDaoImpl implements MovieDao{
 	public int allMovieTotal(Movie movie) {
 		return sst.selectOne("moviens.allMovieTotal", movie);
 	}
+	
+	public void gradeupdate(Movie movie) {
+		sst.update("moviens.gradeupdate", movie);
+	}
 }

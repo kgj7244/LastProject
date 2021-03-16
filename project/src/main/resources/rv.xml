@@ -29,7 +29,4 @@
 	<select id="count" parameterType="rv" resultType="integer">
 		select nvl(count(*), 0) from review where m_num=#{m_num}
 	</select>
-	<select id="sum" parameterType="rv" resultType="integer">
-		select nvl(sum(re_grade), 0) from review where m_num=#{m_num}
-	</select>
 </mapper>
