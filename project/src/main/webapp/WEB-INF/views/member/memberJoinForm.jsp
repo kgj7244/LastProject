@@ -28,7 +28,6 @@
 			 alert("비밀번호를 8~16자로 입력해주세요");
 			 frm5.member_password.focus();	
 			 frm5.member_password.value="";
-			 frm5.member_password2.value="";
 			 return false;
 		}
 	}
