@@ -7,19 +7,10 @@
 <meta charset="UTF-8">
 <title>영화관 선택</title>
 </head>
-<body> 
-	<table>
-		<c:forEach var="theater" items="${list }" varStatus="i">
-			<c:if test="${i.index % 5 ==0 }">
-				<tr>
-			</c:if>
-			<td>
-				<a class="btn btn-info" onclick="theaterMove(${theater.t_num})">${theater.t_title }</a>
-			</td>
-			<c:if test="${i.index % 5 ==4 }">
-				</tr>
-			</c:if>
-		</c:forEach>
-	</table>
+<body>
+	<div style="font-weight: bold; font-size: 20px;">극장별</div>
+	<c:forEach var="theater" items="${list}" varStatus="m">
+		<a class="btn btn-info" style="width: 90px; height:30px; font-size: 11px; margin-bottom: 5px; vertical-align:middle;" onclick="theaterMove(${theater.t_num})">${theater.t_title }</a>&nbsp;
+	</c:forEach>
 </body>
 </html>

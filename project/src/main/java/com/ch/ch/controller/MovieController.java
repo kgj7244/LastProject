@@ -48,9 +48,9 @@ public class MovieController {
 			pageNum = "1";
 		}
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 4;
+		int rowPerPage = 8;
 		int total = ms.getTotal(movie);
-		if(total <= 4 && movie.getM_ing().equals("1")) {
+		if(total <= 8 && movie.getM_ing().equals("1")) {
 			
 			pageNum="1";
 		}

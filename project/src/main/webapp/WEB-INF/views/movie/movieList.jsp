@@ -8,14 +8,14 @@
 <title>무비 리스트 | AAM</title>
 </head>
 <body>
-	<div class="row" style="margin-top: 70px; display: inline-block;">
+	<div class="row">
 		<input type="hidden" value="${movie.m_ing}">
 		<c:if test="${not empty movieList}">
 			<c:forEach var="movie" items="${movieList}">
 				<div class="col-sm-6 col-md-3">
 					<div class="thumbnail">
 				    	<a href="movieView.do?m_num=${movie.m_num}">
-				        	<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="500px;" width="600px;">
+				        	<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="500px;" >
 				    	</a>
 				        <div class="caption">
 				        	<div align="center" style="height: 50px;">

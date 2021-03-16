@@ -90,8 +90,8 @@ li>a {
 					<input type="hidden" name="m_ing" value="1">
 					<input type="hidden" name="pageNum" value="1">
 					<input class="form-control mr-sm-2" type="text" name="keyword"
-						id="keyword" value="${moive.keyword}" placeholder="영화 검색">
-					<button class="btn btn-warning my-2 my-sm-0 btn-lg" type="submit">
+						id="keyword" value="${moive.keyword}" placeholder="영화 검색" size="10px;">
+					<button class="btn btn-warning my-2 my-sm-0 btn-lg" style="border: 1px solid #FFFFFF;" type="submit">
 						<b>SEARCH</b>
 					</button>
 				</form>

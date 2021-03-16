@@ -15,8 +15,8 @@
 	padding-top: 12px;
 	padding-bottom: 12px;
 }
-.my.pagination>.active>a
- {
+
+.my.pagination>.active>a {
 	background-color: #ffe194;
 	border-color: #ffe194;
 }
@@ -34,13 +34,38 @@
 						<a href="noticeInsertForm.do?n_num=0&pageNum=1"
 							class="btn btn-outline-warning btn-lg"><b>NOTICE WRITE</b></a>
 					</c:if> <a href="boardList.do" class="btn btn-outline-warning btn-lg"><b>Question
-						& Answer</b></a></td>
+							& Answer</b></a></td>
 			</tr>
 			<tr>
 				<td colspan="4" align="center"><button type="button"
 						class="btn btn-warning disabled btn-block" id="t">
-						<h2><b>NOTICE</b></h2>
+						<h2>
+							<b>NOTICE</b>
+						</h2>
 					</button></td>
+			</tr>
+			<!-- 검색 -->
+			<tr>
+				<td colspan="4" align="center">
+					<form action="noticeList.do" class="form-inline pull-right">
+						<input type="hidden" name="pageNum" value="1"> <select
+							name="search" class="form-control">
+							<c:forTokens var="sh" items="n_branch,n_title,n_content,n_subcon"
+								delims="," varStatus="i">
+								<c:if test="${sh == notice.search }">
+									<option value="${sh }" selected="selected">${tit[i.index] }</option>
+								</c:if>
+								<c:if test="${sh != notice.search }">
+									<option value="${sh }">${tit[i.index] }</option>
+								</c:if>
+							</c:forTokens>
+						</select> &nbsp;<input type="text" name="keyword" class="form-control"
+							value="${notice.keyword }"> &nbsp;
+						<button type="submit" class="btn btn-outline-warning btn-lg">
+							<b>SEARCH</b>
+						</button>
+					</form>
+				</td>
 			</tr>
 			<tr class="table-light" align="center">
 				<th>번호</th>
@@ -72,8 +97,8 @@
 				</c:forEach>
 			</c:if>
 			<tr>
-				<td colspan="4" align="center"><form class="form-inline pull-left">
-					<ul class="pagination my pagination-lg">
+				<td colspan="4" align="center">
+					<ul class="pagination my justify-content-center pagination-lg">
 						<c:if test="${pb.startPage > pb.pagePerBlock }">
 							<li class="page-item"><a class="page-link"
 								href="noticeList.do?pageNum=1&search=${notice.search }&keyword=${notice.keyword}">
@@ -105,25 +130,7 @@
 							</a></li>
 						</c:if>
 					</ul>
-					</form>
-								<!-- 검색 -->
-			<p><p>
-				<form action="noticeList.do" class="form-inline pull-right">
-						<input type="hidden" name="pageNum" value="1"> <select
-							name="search" class="form-control">
-							<c:forTokens var="sh" items="n_branch,n_title,n_content,n_subcon"
-								delims="," varStatus="i">
-								<c:if test="${sh == notice.search }">
-									<option value="${sh }" selected="selected">${tit[i.index] }</option>
-								</c:if>
-								<c:if test="${sh != notice.search }">
-									<option value="${sh }">${tit[i.index] }</option>
-								</c:if>
-							</c:forTokens>
-						</select> &nbsp;<input type="text" name="keyword" class="form-control" value="${notice.keyword }">
-						&nbsp;<button type="submit" class="btn btn-outline-warning btn-lg"><b>SEARCH</b></button>
-					</form></td>
-			</tr>
+				</td>
 		</table>
 	</div>
 	<%@ include file="../mainFloor.jsp"%>
