@@ -21,7 +21,7 @@
 		if (frm5.member_password.value != frm5.member_password2.value) {
 			alert("비밀번호가 다릅니다");
 			frm5.member_password.focus();
-			frm5.member_password.value("");
+			frm5.member_password2.value("");
 			return false;
 		}
 		if(frm5.member_password.value.length < 8 || frm5.member_password.value.length > 16) {
