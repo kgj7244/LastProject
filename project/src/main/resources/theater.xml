@@ -57,4 +57,8 @@
 			where m.t_num=t.t_num and t.t_loc = #{t_loc}
 			order by t_title
 	</select>
+	<!-- 여기서부터 희주 코드 -->
+	<select id="theaterView" parameterType="integer" resultType="theater">
+		select * from theater where t_num =#{t_num}
+	</select>
 </mapper>
