@@ -34,14 +34,22 @@
  	<c:forEach var="store" items="${storeList }">
  	
  	<c:if test="${store.s_del != 'y' }">	
+ 
  		<div class="a1">
-			<a href="storeContent.do?s_num=${store.s_num }" >
+ 	
+
+		<a href="storeContent.do?s_num=${store.s_num }" >
 		<span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150"></span>
 		 <span class="name"><h4>${store.s_Pname }</h4></span></a>
 		 
  		  <div>${store.s_Pconfig }</div> 
  		  <div><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</div>
+
+ 		  
+ 		  
  		</div>
+ 	
+ 		
  		  </c:if>
  		
 	 </c:forEach>

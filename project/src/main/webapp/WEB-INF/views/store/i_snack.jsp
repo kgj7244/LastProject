@@ -57,7 +57,7 @@
 
 <c:if test="${today >= s_pernd }">
 
-현재 구매가 불가능한 상품입니다
+<h3 style="color: red;">현재 구매가 불가능한 상품입니다</h3>
 
 </c:if>
 

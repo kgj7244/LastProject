@@ -376,7 +376,7 @@ create sequence t_ordernum increment by 1 start with 1;
 
 select * from ticket;
 --------------------------------------스토어
-select * from STORE;
+select * from bank;
 
 create table store(
 	s_num number(10) primary key not null,  --스토어 게시글 번호
@@ -432,6 +432,7 @@ create table ord (
 
 create sequence ord_num increment by 1 start with 1;
 
+insert into ord values(500,'q1',18,1,1,sysdate,'2002-03-18','y','n');
 --------------------------------------관리자계좌
 create table aam_bank(
 	aam_account nvarchar2(50) primary key not null,     --계좌번호

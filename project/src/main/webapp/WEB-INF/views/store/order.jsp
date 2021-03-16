@@ -9,12 +9,14 @@
 </head>
 <body>
 
+
 <c:if test="${result >0 }">
  <script type="text/javascript">
  alert("구매 완료되었습니다");
- location.href="storeMainForm.do";
+ location.href="orderResult.do?ord_num=${ord.ord_num }";
  </script>
 </c:if>
+
 
 <c:if test="${result ==0 }">
  <script type="text/javascript">

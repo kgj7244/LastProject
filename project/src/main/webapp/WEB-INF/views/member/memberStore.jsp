@@ -65,16 +65,28 @@
 						<td><input type="button" value="상세 정보" 
 						onclick='location.href="memberStoreInfo.do?ord_num=${ord.ord_num}&s_num=${ord.s_num}"'>
 						</td>
+						
 			<!-- 		&s_num=${ord.s_num}&s_validity=${ord.s_validity}	 -->	
 						<c:if test="${ord.del=='n'}">						
 						<td style="color: blue;">사용가능</td>
 						</c:if>
 						
-						<c:if test="${ord.del=='y'}">						
+						<c:if test="${ord.del=='y' }">						
 						<td style="color: red;">불가능</td>
 						</c:if>
 						
 					</tr>
+					
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
+<fmt:formatDate value="${ord.s_validity }" pattern="yyyy-MM-dd" var="s_validity"/>
+
+<!-- or today >= s_validity -->
+
+
+
+
+
 				</c:forEach>
 			</c:if>
 		</tr>

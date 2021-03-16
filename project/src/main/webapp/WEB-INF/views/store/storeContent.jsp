@@ -108,9 +108,10 @@ value="${store.s_prive }" name="full_price" id="full_price">
 
 		<div align="left" class="side">
 
-	<br>
+	<br> 
 	<h3>이용 안내</h3>
-	- 스토어 상품은 회원만 구매할 수 있습니다.<br> - 유효기간은 12개월로 구매일 기준입니다.<br>
+	- 스토어 상품은 회원만 구매할 수 있습니다.<br> 
+	- 유효기간은 12개월로 구매일 기준입니다.<br>
 	- 결제가 완료된 상품은 마이페이지 > 스토어 구매 내역에서 확인할 수 있습니다. 
 	<br> - 상기 이미지는 실제 제품과 다를 수 있습니다.<br> <input type="hidden" name="s_Pclass" value="${store.s_Pclass}">
 	
