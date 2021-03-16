@@ -41,10 +41,6 @@
 <style type="text/css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/minty/bootstrap.min.css" integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH" crossorigin="anonymous">
 </style>
-<style type="text/css">
-	#container1{
-	}
-</style>
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>

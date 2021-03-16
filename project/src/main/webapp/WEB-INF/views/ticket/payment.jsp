@@ -110,7 +110,7 @@
 						</tr>
 						<tr>
 							<td colspan="3" align="center">
-								<table style="background-color: #434343; width: 400px; height: 100px; ">
+								<table style="background-color: #434343; width: 400px; height: 65px; ">
 									<tr>
 										<td width="50%" style="color:white;vertical-align:middle;font-size: 30px;" align="left">금액</td>
 										<td width="50%" style="color:white;vertical-align:middle;font-size: 30px;" align="right"><span style="color: #329eb1; font-weight: bold; font-size: 35px;"><fmt:formatNumber value="${totalPrice}" pattern="#,000"></fmt:formatNumber></span>원</td>
