@@ -25,7 +25,7 @@
 			<td>
 				<span style="color:#503396">시설안내</span><p>
 				보유시설<p>
-				${theaterView.t_gui}
+				${theaterView.t_gui}<p><p><p><p>
 				
 				층별안내<p>
 				${theaterView.t_floor}
