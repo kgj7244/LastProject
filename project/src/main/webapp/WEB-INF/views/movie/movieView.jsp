@@ -105,12 +105,6 @@
 					</c:if>
 				</h2>
 				<hr class="my-4">
-			<%-- <c:choose>
-				<c:when test="${grade > 0}">
-					<fmt:formatNumber value="${grade}" pattern=".00"/>
-				</c:when>
-				<c:otherwise>아직 평점이 없습니다. 평점을 등록해주세요</c:otherwise>
-			</c:choose> --%>
 				<p>감독 : ${movie.m_director}&nbsp;&nbsp;/&nbsp;&nbsp;배우 : ${movie.m_actor}</p>
 				<p>장르 : ${movie.m_genre}&nbsp;&nbsp;/&nbsp;&nbsp;등급 : ${movie.m_rank}</p>
 				<p>개봉일 : <fmt:formatDate value="${movie.m_opendate}" pattern="yyyy.MM.dd (E)"/></p>
@@ -128,7 +122,7 @@
 			</div>
 		</div>
 		<div class="header navbar navbar-fixed-top" role="navigation">
-			<table class="table table-hover table-bordered">
+			<table class="table table-hover table-bordered" style="width: 1260px;">
 				<tr class="table-warning">
 					<th><a href="#content" style="text-decoration: none; color: black">주요정보</a></th>
 					<th><a href="#stillcut" style="text-decoration: none; color: black">스틸컷</a></th>
@@ -138,12 +132,9 @@
 		</div>
 		<h2 class="display-4" id="content">줄거리</h2>
 		<hr class="my-4">
-		<div class="jumbotron" style="white-space:pre;">
+		<div class="jumbotron" style="white-space: pre; padding: 0 0 0 10px;">
 			<p>${movie.m_content}</p>		
 		</div>
-		<%-- <div class="jumbotron" style="white-space:pre;">
-			<p>${movie.m_content}</p>		
-		</div> --%>
 		<h2 class="display-4" id="stillcut" align="left">스틸컷</h2>
 		<hr class="my-4">
 		<div class="jumbotron">
@@ -184,28 +175,22 @@
 			<c:if test="${not empty rvList}">
 				<table class="table table-striped">
 					<c:forEach var="rv" items="${rvList}">
-						<c:if test="${rv.re_del != 'y'}">
-							<tr>
-								<!-- 작성자 -->
-								<td>${rv.member_id}</td>
-								<!-- 평점 -->
-								<td width="50px">${rv.re_grade}점</td>
-								<!-- 댓글 -->
-								<td id="td_${rv.re_num}" style="word-break:break-all">${rv.re_con}</td>
-								<!-- 작성일 -->
-								<td>
-									<fmt:formatDate value="${rv.re_update}" pattern="yy.MM.dd HH:mm"/>
+						<tr>
+							<td>${rv.member_id}</td>
+							<td width="50px">${rv.re_grade}점</td>
+							<td id="td_${rv.re_num}" style="word-break:break-all">${rv.re_con}</td>
+							<td>
+								<fmt:formatDate value="${rv.re_update}" pattern="yy.MM.dd HH:mm"/>
+							</td>
+							<c:if test="${rv.member_id == sessionScope.member_id or sessionScope.member_id == 'master'}">
+								<td id="btn_${rv.re_num}">
+									<button class="btn btn-success btn-sm" 
+										onclick="rUpdate(${rv.m_num}, ${rv.re_num})">수정</button>
+									<button class="btn btn-danger btn-sm" 
+										onclick="rDelete(${rv.m_num}, ${rv.re_num})">삭제</button>
 								</td>
-								<c:if test="${rv.member_id == sessionScope.member_id or sessionScope.member_id == 'master'}">
-									<td id="btn_${rv.re_num}">
-										<button class="btn btn-success btn-sm" 
-											onclick="rUpdate(${rv.m_num}, ${rv.re_num})">수정</button>
-										<button class="btn btn-danger btn-sm" 
-											onclick="rDelete(${rv.m_num}, ${rv.re_num})">삭제</button>
-									</td>
-								</c:if>
-							</tr>
-						</c:if>
+							</c:if>
+						</tr>
 					</c:forEach>
 				</table>
 			</c:if>
