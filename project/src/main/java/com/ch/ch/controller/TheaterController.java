@@ -64,7 +64,7 @@ public class TheaterController {
 	}
 	//극장 입력
 	@RequestMapping("theaterInsert")
-	public String theaterInsert(Theater theater, Model model) {		
+	public String theaterInsert(Theater theater, Model model) {
 		int result = tts.insert(theater);
 		model.addAttribute("result", result);
 		

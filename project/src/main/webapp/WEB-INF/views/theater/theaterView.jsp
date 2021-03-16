@@ -9,33 +9,31 @@
 </head>
 <body>
 <div class="container" align="center">
-	<table style="margin-top:15px;">
-		<tr>	
-			<td align="left"><h2>${theaterView.t_title}점 안내</h2></td>
+	
+	<div align="left" style="margin-top: 30px;"><p style=" font-weight: bold; font-size: 20px;">${theaterView.t_title}점 안내</p></div>
+	
+	<table style="width:1110px; height:auto">
+		<tr height="50px;">
+			<td style="font-weight: bold; font-size: 30px;">${theaterView.t_content}</td>
 		</tr>
-	</table>
-	<table class="table table-bordered">
-		<tr>
-			<td>${theaterView.t_content}</td>
+		<tr height="30px;">
+			<td style="font-size: 13px;">연락처 : ${theaterView.t_loc}(${theaterView.t_title})점 / ${theaterView.t_number}</td>
 		</tr>
-		<tr>
-			<td>${theaterView.t_loc}(${theaterView.t_title}) / ${theaterView.t_number}</td>
-		</tr>
-		<tr>
+		<tr height="150px;">
 			<td>
-				<span style="color:#503396">시설안내</span><p>
-				보유시설<p>
-				${theaterView.t_gui}<p><p><p><p>
+				<div style="color:#503396; font-size: 20px; font-weight: bold;">시설안내</div>
+				<div style="font-weight: bold; font-size: 17px;">보유시설</div>
+				<div style="margin-bottom: 20px;"> - ${theaterView.t_gui}</div>
 				
-				층별안내<p>
-				${theaterView.t_floor}
+				<div style="font-weight: bold; font-size: 17px;">층별안내</div>
+				<div> - ${theaterView.t_floor}</div>
 			</td>
 		</tr>
-		<tr>
+		<tr height="100px;">
 			<td>
-				<span style="color:#503396">교통안내</span><p>
-				약도<p>
-				도로명 주소 : ${theaterView.t_addr}
+				<div style="color:#503396; font-size: 20px; font-weight: bold;">교통안내</div>
+				<div style="font-weight: bold; font-size: 17px;">약도</div>
+				<div> - 도로명 주소 : ${theaterView.t_addr}</div>
 			</td>
 		</tr>
 	</table>

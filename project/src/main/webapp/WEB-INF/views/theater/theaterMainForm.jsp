@@ -43,7 +43,6 @@
 </style>
 <style type="text/css">
 	#container1{
-		height: 750px;
 	}
 </style>
 </head>
@@ -54,25 +53,23 @@
 	<div class="container" align="center" id="container1">	
 	<h2 align="left">극장</h2>
 	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
-		<table class="table table-bordered"  style="border-color:black; width: 1000px; height: 300px; align-items: center;">
-			<tr>
-				<td title="영화별 선택" width="10%" align="center" id="movie">
-					<input type="button" value="영화별">
-				</td>
-				<td rowspan="2" width="60%" id="disp-choice-movie"></td> <!-- 영화별, 극장별 보여주는 곳 -->
-				<td rowspan="2" width="30%" id="disp-poster"></td> <!-- 영화별 클릭시 포스터 사진 출력 -->
-			</tr>
-			<tr>
-				<td id="theater" title="극장별 선택" align="center">
-					<input type="button" value="극장별">
-				</td>
-			</tr>
-		</table>
-		<div id="theaterView"></div><!-- 아래에다가 극장에 대한 정보를 뿌려줄 예쩡 -->
+		<div align="left"><input type="button" class="btn btn-lg btn-success" id="movie" value="영화별">&nbsp;&nbsp;<input type="button" class="btn btn-lg btn-success" id="theater" value="극장별"></div>
 		<div>
-			<input type="button" class="btn btn-Secondary btn-lg" value="영화" onclick="location.href='movieMainForm.do?m_ing=0'">
-			<input type="button" class="btn btn-warning btn-lg" value="예매" onclick="location.href='ticketMainForm.do'">
-			<input type="button" class="btn btn-info btn-lg" value="스토어" onclick="location.href='storeMainForm.do'">
+			<table  style="width:1110px; height: 466px; vertical-align:top; align-items: center;">
+				　<!-- 여기줄에 특수문자 공백이 들어가있음 일부러 한칸 띄움!!! -->
+				<tr>
+					<td id="disp-choice-movie" style="width:70%; vertical-align: top;"></td> <!-- 영화별, 극장별 보여주는 곳 -->
+					<td id="disp-poster" style="width:30%; vertical-align: top;"></td> <!--영화별 클릭시 포스터 사진 출력  -->
+				</tr>
+			</table>
+		</div>
+		
+		<div id="theaterView"></div><!-- 아래에다가 극장에 대한 정보를 뿌려줄 예쩡 -->
+		
+		<div>
+			<input type="button" class="btn btn-Secondary btn-lg" style="width: 80px; height: 40px; font-size: 20px; font-weight: bold;" value="영화" onclick="location.href='movieMainForm.do?m_ing=0'">&nbsp;&nbsp;
+			<input type="button" class="btn btn-warning btn-lg" style="width: 80px; height: 40px; font-size: 20px; font-weight: bold;" value="예매" onclick="location.href='ticketMainForm.do'">&nbsp;&nbsp;
+			<input type="button" class="btn btn-info btn-lg" style="width: 80px; height: 40px; font-size: 20px; font-weight: bold;" value="스토어" onclick="location.href='storeMainForm.do'">
 		</div>		
 	</div>
 	<%@ include file="../mainFloor.jsp" %>

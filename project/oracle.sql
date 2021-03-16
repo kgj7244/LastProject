@@ -374,7 +374,7 @@ create table ticket(
 );
 create sequence t_ordernum increment by 1 start with 1;
 
-
+select * from ticket;
 --------------------------------------스토어
 select * from STORE;
 
