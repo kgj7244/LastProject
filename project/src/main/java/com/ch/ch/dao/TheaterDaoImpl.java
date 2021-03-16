@@ -55,5 +55,7 @@ public class TheaterDaoImpl implements TheaterDao{
 	public List<Theater> locList(String t_loc) {
 		return sst.selectList("theaterns.locList2",t_loc);
 	}
-
+	public Theater theaterView(int t_num) {
+		return sst.selectOne("theaterns.theaterView",t_num);
+	}
 }

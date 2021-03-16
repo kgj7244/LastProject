@@ -9,12 +9,11 @@
 <script type="text/javascript">
 
  function a12() {
-	 var full_price = order.s_purchase.value*order.s_prive.value;
+	 var full_price =(order.s_purchase.value*order.s_prive.value)-(order.s_purchase.value*order.s_prive.value)*(order.s_sale.value/100);
 	 $('#full_price').val(full_price);
 }
 
 </script>
-
 
 </head>
 <body> 
@@ -58,12 +57,15 @@
 
 <c:if test="${store.s_Pclass==4}">
 <tr><th>한정 판매 </th><td>남은 수량 ${store.s_total }개 </td></tr>
+   <c:if test="${store.s_sale!=0}">
+   <tr><th>할인율 </th><td> ${store.s_sale }%</td></tr>
+   </c:if>
 </c:if>
 
 <tr>
 <th>총 상품금액</th>
-<td><input type="number" readonly="readonly" style="border:none" name="full_price" id="full_price"
->
+<td><input type="number" readonly="readonly" style="border:none" 
+value="${store.s_prive }" name="full_price" id="full_price">
 </td>
 </tr>
 <!--  style="border:none" -->
@@ -73,6 +75,7 @@
 <tr><td>
 <form name="order" method="post" action="orderList.do"> 
 		<input type="hidden" name="s_prive" value="${store.s_prive}">
+		<input type="hidden" name="s_sale" value="${store.s_sale}">
 <%-- <form action="<c:url value='orderList.do' />" method="post">	 --%>
 	
 <%-- 	<c:set var="s_purchase" value="${s_purchase}"></c:set> --%>

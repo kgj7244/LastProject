@@ -69,12 +69,14 @@
         
       <tr>
         <td colspan="4">총 결제 예정금액</td>
-        <td><input type="number" readonly
-        name = "full_price" value="${store.s_prive * ord.s_purchase }">
-        </td></tr>
-
+        <td>
+        
+ <td><fmt:formatNumber  pattern="###,###" value="${(store.s_prive * ord.s_purchase)-(store.s_prive * ord.s_purchase)*store.s_sale/100}"/>원
+ </td></tr>
   </tbody>
 
+<%--   <input type="number" readonly
+        name = "full_price" value="${(store.s_prive * ord.s_purchase)-(store.s_prive * ord.s_purchase)*store.s_sale/100}"> --%>
   
   <tfoot>
    <tr>

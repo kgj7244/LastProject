@@ -39,7 +39,7 @@ public class TheaterController {
 		model.addAttribute("showLocList",showLocList);
 		return "theater/theaterLoc";
 	}
-	//영화 선택
+	//영화별 선택
 	@RequestMapping("choiceMovie")
 	public String choiceMovie(Model model) {
 		List<Movie> movieList = ms.list(); //영화 제목 나열
@@ -53,13 +53,7 @@ public class TheaterController {
 		model.addAttribute("list", list);
 		return "theater/choiceTheater";
 	}
-	//모든 영화 선택
-	@RequestMapping("choiceAllMovie")
-	public String choiceAllMovie(Model model) {
-		List<Movie> movieList = ms.list(); //영화 제목 나열
-		model.addAttribute("movieList",movieList);
-		return "theater/choiceAllMovie";
-	}
+	
 	//극장 입력 폼
 	@RequestMapping("theaterInsertForm")
 	public String theaterInsertForm(Model model) {
@@ -131,6 +125,12 @@ public class TheaterController {
 	 @RequestMapping("seoul4")
 	 public String seoul4(){
 		 return "theater/seoul4";
+	 }
+	 @RequestMapping("theaterView")
+	 public String theaterView(Model model, int t_num) {
+		 Theater theaterView = tts.theaterView(t_num); // 극장번호 클릭시 t_num값을 받아와서 극장에 대한 모든 정보를 담아서 뿌려줌
+		 model.addAttribute("theaterView", theaterView);
+		 return "theater/theaterView";
 	 }
 	 
 }

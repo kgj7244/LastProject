@@ -32,6 +32,8 @@ public interface StoreService {
 
 	int resurrection(int s_num);
 
+	int counts(int s_num);
+
 	
 
 }
