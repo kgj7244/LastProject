@@ -59,4 +59,9 @@ public class MovieServiceImpl implements MovieService{
 	public int allMovieTotal(Movie movie) {
 		return md.allMovieTotal(movie);
 	}
+	
+	@Override
+	public void gradeupdate(Movie movie) {
+		md.gradeupdate(movie);
+	}
 }

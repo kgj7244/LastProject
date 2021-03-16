@@ -233,6 +233,9 @@ create sequence st_num increment by 1 start with 1;
 select * from movie;
 select * from stillcut;
 
+select rtrim(to_char(nvl(sum(re_grade)/count(*), 0), 'fm90d00'), '.') from review where m_num=1;
+update movie set m_grade = (select rtrim(to_char(nvl(sum(re_grade)/count(*), 0), 'fm90d00'), '.') from review where m_num=9) where m_num=9;
+select nvl(sum(re_grade)/count(*), 0) from review;
 --------------------------------------한줄평
 
 create table review (

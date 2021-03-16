@@ -28,4 +28,6 @@ public interface MovieService {
 	List<Movie> allMovieList(Movie movie);
 
 	int allMovieTotal(Movie movie);
+
+	void gradeupdate(Movie movie);
 }

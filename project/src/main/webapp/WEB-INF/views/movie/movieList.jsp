@@ -15,10 +15,10 @@
 				<div class="col-sm-6 col-md-3">
 					<div class="thumbnail">
 				    	<a href="movieView.do?m_num=${movie.m_num}">
-				        	<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}">
+				        	<img alt="${movie.m_poster}" src="resources/images/m_poster/${movie.m_poster}" height="500px;" width="600px;">
 				    	</a>
 				        <div class="caption">
-				        	<div align="center">
+				        	<div align="center" style="height: 50px;">
 					        	<h4 style="font-weight: bold;">
 					           		<c:if test="${movie.m_rank.equals('전 연령')}"><img alt="전 연령" src="resources/images/m_rank/전체.png" height="22px" width="22px"></c:if>
 						            <c:if test="${movie.m_rank.equals('12세')}"><img alt="12세" src="resources/images/m_rank/12세.png" height="22px" width="22px"></c:if>

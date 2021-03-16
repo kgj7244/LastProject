@@ -15,7 +15,7 @@ public class Movie {
 	private Date m_opendate;
 	private String m_state;
 	private int m_time;
-	private int m_grade;
+	private double m_grade;
 	private String m_poster;
 	private String m_director;
 	private String m_actor;

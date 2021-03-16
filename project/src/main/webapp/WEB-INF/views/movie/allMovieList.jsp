@@ -62,7 +62,7 @@
 		<a href="mypage.do" class="btn btn-info">관리자 페이지</a>
 		<a href="movieInsertForm.do" class="btn btn-success">영화 추가</a>
 		<div align="center">
-			<ul class="pagination">
+			<ul class="pagination justify-content-center">
 				<c:if test="${mpb.startPage > mpb.pagePerBlock}">
 					<li>
 						<a href="allMovieList.do?pageNum=1&search=${movie.search}&keyword=${movie.keyword}">
