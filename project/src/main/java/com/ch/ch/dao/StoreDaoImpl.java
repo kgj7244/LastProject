@@ -106,5 +106,13 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 
+
+	
+	public void update_total(Store store) {
+		sst.update("storens.update_total",store);
+		
+	}
+
+
 	
 }

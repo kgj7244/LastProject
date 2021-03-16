@@ -95,4 +95,7 @@
 		<a href="storeInsertForm.do" class="btn btn-success">스토어 상품 추가</a>
 		</div>
 		
-		
+
+<%@ include file="../mainFloor.jsp" %>
+</body>
+</html>
