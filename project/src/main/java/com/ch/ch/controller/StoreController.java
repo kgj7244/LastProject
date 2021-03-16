@@ -145,7 +145,7 @@ public class StoreController {
 	
 	
 //====================================================
-	
+
 	
  //상품 상세
 	@RequestMapping("storeContent")
@@ -289,10 +289,10 @@ public class StoreController {
 		Member member = ms.select(member_id);	
 	
 		
-		System.out.println(ord.getOrd_num());
-		System.out.println(ord.getMember_id());	
-		System.out.println(ord.getFull_price());			
-		System.out.println("들어갑시다");	
+//		System.out.println(ord.getOrd_num());
+//		System.out.println(ord.getMember_id());	
+//		System.out.println(ord.getFull_price());			
+//		System.out.println("들어갑시다");	
 	
 		
 		model.addAttribute("ord", ord);
@@ -302,8 +302,17 @@ public class StoreController {
 		
 		return "/member/memberStoreInfo";
 	}
-
 	
+	@RequestMapping("orderResult")
+	public String orderResult(int ord_num,Model model) {
+	
+		Ord ord= ss.select_ord(ord_num);
+		
+		model.addAttribute("ord", ord);	
+	return "store/orderResult";
+	}
+
+				
 	
 	//환불
 	@RequestMapping("memberStoreRefund") 

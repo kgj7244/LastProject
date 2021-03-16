@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 </head>
 <body>
 
@@ -13,6 +15,7 @@
 
 <input type="hidden" name="s_Pclass" value="${store.s_Pclass}">
  	
+<a class="btn btn-link" href="storeMainForm.do">전체</a>
 <a class="btn btn-link" href="i_snack.do?s_Pclass=1">관람권</a>
 <a class="btn btn-link" href="i_snack.do?s_Pclass=2">콤보</a>
 <a class="btn btn-link" href="i_snack.do?s_Pclass=3">팝콘/음료</a>

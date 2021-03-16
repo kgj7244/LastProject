@@ -95,18 +95,12 @@
    <tr>
    <td>결제 수단</td>         
    <td><input type="radio" name="t_deal" value="휴대폰 결제" onclick="show()" checked>휴대폰 결제</td> 
-   <td><input type="radio" name="t_deal" value="계좌이체" onclick="trans()">계좌이체</td>  
+   <td><input type="radio" name="t_deal" value="계좌이체" onclick="trans()">계좌이체 
+  <select name="t_deal" id="trans1">		
+				<option value="신한">신한</option>
+				<option value="BC">BC</option></select> </td>
    </tr>
    
-
-  <%-- <tr id="trans1">  
-
-  
-  <td>입금계좌<input type="text" name="aam_account" value="${ aam_bank.aam_account }" readonly></td>
-   <td>은행 <input type="text" name="bank_name" value="${ aam_bank.bank_name }" readonly ></td>
-   <td>이름 <input type="text" name="aam_name" value="${ aam_bank.aam_name }" readonly></td>
-  </tr>  --%>
-    
   </tfoot>
 </table>
 

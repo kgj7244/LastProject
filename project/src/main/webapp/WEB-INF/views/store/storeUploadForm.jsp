@@ -29,14 +29,11 @@
 <table class="table table-bordered">
 
 
-<tr><td>상품 분류</td>
+<tr><td style="font-weight: bold; color: red;">상품 분류</td>
 <td>
 
  <select name="s_Pclass">
-   <option value="${store.s_Pclass }">
-   ${store.s_Pclass }</option>
-   
-    
+  <%--  <option value="${store.s_Pclass }">${store.s_Pclass }</option> --%>   
    <option value="1">관람권</option>
    <option value="2">콤보</option>
    <option value="3">팝콘/음료</option>
