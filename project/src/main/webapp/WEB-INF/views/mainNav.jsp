@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,15 +88,11 @@ li>a {
 					style="width: 220px;">
 					<input type="hidden" name="m_ing" value="1">
 					<input type="hidden" name="pageNum" value="1">
-<<<<<<< HEAD
-					<input class="form-control mr-sm-2" type="text" name="keyword" size="11px;"
-						id="keyword" value="${moive.keyword}" placeholder="영화 검색">
-					<button class="btn btn-warning my-2 my-sm-0 btn-lg" type="submit">
-=======
+
 					<input class="form-control mr-sm-2" type="text" name="keyword"
 						id="keyword" value="${moive.keyword}" placeholder="영화 검색" size="10px;">
 					<button class="btn btn-warning my-2 my-sm-0 btn-lg" style="border: 1px solid #FFFFFF;" type="submit">
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
+
 						<b>SEARCH</b>
 					</button>
 				</form>
