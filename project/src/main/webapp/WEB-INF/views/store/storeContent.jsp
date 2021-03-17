@@ -21,24 +21,33 @@
 
 </script>
 
+
+
 </head>
 <body> 
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
-	<%@include file="storecategory.jsp" %>
+
 	
  
 	
 	<div class="container" align="center">
 	
 	
-	<div align="left"><h2>${store.s_Pname }</h2> </div>
-	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
+	<div align="left"><h2>${store.s_Pname }</h2> </div> 
+	
+	
 
+
+	
+	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
 	<br>
+
+	
+
 	
 	<div style="width:50%; float:left;">
-	 <div><img src="resources/images/s_pop/${store.s_Pimage}" height="200"></div>
+	 <div><img src="resources/images/s_pop/${store.s_Pimage}" height="300"></div>
 	</div>
 	
 <!-- ====================================== -->  
@@ -47,18 +56,20 @@
 
 <c:if test="${store.s_Pclass==4}">
 <tr><th>판매기간</th>
-<td>${store.s_per } ~ ${store.s_pernd }</td>
+<td style="font-weight: bold;">${store.s_per } ~ ${store.s_pernd }</td>
 </tr>
 </c:if>
 
+<tr> </tr>
+
 <tr>
-<th>
-<h3><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</h3>
+<th colspan="2">
+<h2 style="color: black; font-weight: bold;"><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</h2>
 </th>
 </tr>
 
 
-<tr><th>
+<tr><th colspan="2">
 <hr style="border: 0px; height: 1px; background-color: #cccccc;">
 </th></tr>
 
@@ -73,95 +84,117 @@
 <td>구매일로부터 12개월</td>
 </tr>
 
+
 <c:if test="${store.s_Pclass==4}">
-<tr><th>한정 판매 </th><td>남은 수량 ${store.s_total }개 </td></tr>
+<tr>
+<th>한정 판매 </th>
+<td>남은 수량 ${store.s_total }개 </td></tr>
 
 
 
 
    <c:if test="${store.s_sale!=0}">
-   <tr><th>할인율 </th><td> ${store.s_sale }%</td></tr>
+   <tr style="color: blue;"><th>할인율 </th><td style="font-weight: bold;"> ${store.s_sale }%</td></tr>
    </c:if>
 </c:if>
 
 
-<!--  style="border:none" -->
-<%-- input type="number" readonly="readonly" style="border:none" 
-value="${store.s_prive }" name="full_price" id="full_price"> --%>
+<tr><th colspan="2">
+<hr style="border: 0px; height: 1px; background-color: #cccccc;">
+</th></tr>
+
 
 <!-- ====================================== -->  
 
 
 <tr>
-<th>총 상품금액</th>
-<td><span id="tt"></span>원
-</td>
-</tr>
-
-<tr><td>
 <form name="order" method="post" action="orderList.do"> 
+
 		<input type="hidden" name="s_prive" value="${store.s_prive}">
 		<input type="hidden" name="s_sale" value="${store.s_sale}">
-<%-- <form action="<c:url value='orderList.do' />" method="post">	 --%>
-	
-<%-- 	<c:set var="s_purchase" value="${s_purchase}"></c:set> --%>
+		<input type="hidden" name="s_num" value="${store.s_num}">
 		
-		<select name="s_purchase" onchange="a12()">
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
+<fmt:formatDate value="${store.s_pernd }" pattern="yyyy-MM-dd" var="s_pernd"/>
+
+
+<c:choose>
+
+
+    <c:when test="${today >= s_pernd }">
+ <th colspan="2">   
+     <h3 style="color: red;">현재 구매가 불가능한 상품입니다</h3>
+    </c:when>
+    
+
+  <c:otherwise>
+  <th>
+  	<select name="s_purchase" onchange="a12()">
 			<c:forEach begin="1" end="10" var="i">
 				<option value="${i}">${i}</option> </c:forEach>
-		</select>&nbsp;개 
-	
+		</select>&nbsp;개 </th> 
 		
-		<input type="hidden" name="s_num" value="${store.s_num}">
-		<button type="submit" class="btn btn-primary">구매하기</button>
-		
-	</form></td></tr>
+<tr>
+<th>총 구매금액</th>		
+
+<td style="font-size: xx-large; color: black; font-weight: bold;">
+<span id="tt" style="margin-left: 2cm;"></span>원</td>
+
+
+	<tr><td>
+	<a href="storeMainForm.do" class="btn btn-warning"
+   style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; 
+   vertical-align:middle; bottom: 0; margin-right: 5px;">스토어로</a>
+   </td>
+
+	<td>
+   <button type="submit" class="btn btn-secondary"
+   style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0" >구매하기</button>
+   </td></tr>
+   
+    </c:otherwise>
+
+</c:choose>
 	
+	</form><tr>
 	
-	
+
 </table>
 </div>
 
-
-	<%-- 	<div align="center">
-			<input type="hidden" name="member_id" value="${member_id}">
-			<c:if test="${member_id == 'master'}">
-				<a href="storeInsertForm.do">상품 추가</a>
-			</c:if>
-		</div> --%>
 	
 <!-- ====================================== -->
 <input type="hidden" name="s_Pclass" value="${store.s_Pclass}">
 
+
 <div align="left" class="side">
 
+
+
 	<br>  <!-- clear 왼쪽 이동 금지 -->
-	<h3 style="clear: both;">이용 안내</h3>
-	<ul style="list-style:square; font-size: small; ">	
+	<h3 style="clear: both; font-size: large;">이용 안내</h3>
+	<ul style="list-style:square; font-size: medium; ">	
 	
+	 <c:if test="${store.s_Pclass==4}">
+		<li style="font-weight: bold;">본 상품은 이벤트 상품으로 교환/환불/사용기한 연장이 불가하니 신중하게 구매 부탁드립니다.</li>
+	</c:if>
+      
       <li>스토어 상품은 회원만 구매할 수 있습니다.</li>
       <li>유효기간은 12개월로 구매일 기준입니다.</li>
-      <li>결제가 완료된 상품은 마이페이지 > 스토어 구매 내역에서 확인할 수 있습니다.</li>
+      <li>지정된 해당 상품으로만 교환이 가능하며 각 지점 별 매점 운영 시간까지 구매 가능합니다.</li>
+      <li>교환 완료한 상품의 환불 및 반품은 불가합니다.</li>
+      
       <c:if test="${store.s_Pclass==2}">
 		<li>탄산음료가 기본으로 제공되며, 사이즈 및 기타 음료로 변경 시 금액이 추가됩니다.</li>
 	</c:if>
-      
+	
+     
     </ul>
-	
-<%-- 	
-	- 스토어 상품은 회원만 구매할 수 있습니다.<br> 
-	- 유효기간은 12개월로 구매일 기준입니다.<br>
-	- 결제가 완료된 상품은 마이페이지 > 스토어 구매 내역에서 확인할 수 있습니다. 
-	<br> - 상기 이미지는 실제 제품과 다를 수 있습니다.<br>
-	
-	<c:if test="${store.s_Pclass==2}">
-		- 탄산음료가 기본으로 제공되며, 사이즈 및 기타 음료로 변경 시 금액이 추가됩니다. <br>
-	</c:if>
- --%>
-
 	
 	</div>
 </div>
+
 
 <div><%@include file="../mainFloor.jsp" %></div>
 </body>

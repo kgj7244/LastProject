@@ -13,7 +13,15 @@
 
 
 
+
 <div class="container" align="center">
+
+	<table class="table table-hover" style="margin-top: 30px;">
+		<tr>
+			<td align="center" style="font-weight: bold; background-color: #fedf9e; vertical-align: middle; color: #908c88; height: 60px; font-size: 30px; margin-top: 30px;">
+			상품 수정</td>
+		</tr>
+	</table>	
 
 <form action="storeUpload.do" method="post" name="frm"
  enctype="multipart/form-data">
@@ -23,7 +31,7 @@
 <input type="hidden" name="del" value="${store.del }"> 
 <input type="hidden" name="s_del" value="${store.s_del }"> 
 
-<h2 class="text-primary">상품 수정</h2>
+
 
 
 <table class="table table-bordered">
@@ -80,5 +88,6 @@ value="${store.s_sale }"></td></tr>
 </form>
 </div>
 
+<%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

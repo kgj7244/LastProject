@@ -37,7 +37,6 @@
 
 <div class="container" align="center">
 	
-<!-- 	<form action="memberStoreRefund.do" method="post" enctype="multipart/form-data"> -->
 	
 <form action="memberStoreRefund.do" method="post" enctype="multipart/form-data" name="w2"> 
 	<input type="hidden" name="s_num" value="${store.s_num}">
@@ -89,12 +88,12 @@
 <td><fmt:formatNumber pattern="###,###" value="${ord.full_price }"/>원</td> 
 </tr>
 
-<%-- <tr>
+<tr>
 <th>거래방법</th>
 <td>${bank.t_deal}</td> 
  </tr>
 <tr>
- --%>
+
  
 
  <c:if test="${ord.del=='n'}">	

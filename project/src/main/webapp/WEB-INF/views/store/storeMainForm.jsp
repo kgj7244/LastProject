@@ -15,13 +15,13 @@
 <body>
  <%@include file="../mainTop.jsp" %>
  <%@include file="../mainNav.jsp" %>
-  <%@include file="storecategory.jsp" %>
+
 <div class="container" align="center">
 
 <h2 align="left">스토어</h2>
 <hr style="border: 0px; height: 3px; background-color: #cccccc;">
 
- 
+   <%@include file="storecategory.jsp" %>
 <!-- ====================================== -->
 <div>
  <c:if test="${empty storeList }">
@@ -49,7 +49,13 @@
  		  <div><h6>${store.s_Pconfig }</h6></div> 
  		  <div><h3><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</h3></div>
  
- 		
+ 		<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
+<fmt:formatDate value="${store.s_pernd }" pattern="yyyy-MM-dd" var="s_pernd"/>
+
+					<c:if test="${today >= s_pernd }">
+									<h3 style="color: red;">현재 구매가 불가능한 상품입니다</h3>
+								</c:if>	
  		 </div>
  	
  		
