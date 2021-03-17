@@ -6,18 +6,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.table {
+	margin-top: 60px;
+}
+#t {
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+</style>
 </head>
 <body>
 	<%@ include file="../mainTop.jsp"%>
 	<%@ include file="../mainNav.jsp"%>
 	<div class="container" align="center">
-		<h3>관리자_회원 정보 수정</h3>
 		<form action="masterMemberUpdate.do" method="post" name="frm"
 			onsubmit="return chk()">
 			<input type="hidden" name="member_id" value="${member.member_id}">
 			<input type="hidden" name="member_password"
 				value="${member.member_password}">
 			<table class="table table-bordered">
+							<tr>
+					<td colspan="6" align="center"><button type="button"
+							class="btn btn-warning disabled btn-block btn-sm" id="t">
+							<h2>
+								<b>[관리자] 회원 정보 수정</b>
+							</h2>
+						</button></td>
+				</tr>
 				<tr>
 					<th>아이디</th>
 					<td>${member.member_id }</td>
@@ -66,12 +82,16 @@
 						value="${member.member_addr }"></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value="수정"
-						class="btn btn-default btn-sm"><input type="reset"
-						value="취소" class="btn btn-default btn-sm"></td>
+					<td colspan="2" align="center">
+						<button type="submit" class="btn btn-outline-warning btn-lg">
+							<b>UPDATE</b>
+						</button>
+						<button type="reset" class="btn btn-outline-warning btn-lg">
+							<b>CANCLE</b>
+						</button>
+					</td>
 				</tr>
 			</table>
-			<a href="mainForm.do" class="btn btn-info btn-sm">HOME</a>
 		</form>
 	</div>
 	<%@ include file="../mainFloor.jsp"%>

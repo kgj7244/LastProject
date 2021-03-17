@@ -17,12 +17,20 @@
 }
  function show() {
 	 $('#trans1').css('display','none');
+	 
+}
+function hey() { 
+		 
+var con = confirm("${ member.member_name }(${ member.member_number })로 스토어 교환권이 발송됩니다");
+			if (con)
+				 document.frm.submit();
+			else{  
+				alert("취소되었습니다");
+			
+			    return;
+			}   
 	
 }
- 
-/*  function go1() {
-	 alert("${ member.member_name }(${ member.member_number })로 스토어 교환권이 발송됩니다");
-} */
 
 </script>
 
@@ -35,12 +43,15 @@
 
 <div class="container" align="center">
 <div align="left"><h3>구매상품 정보</h3> </div>
+	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
+	<br>
 
 <form action="order.do" method="post" name="frm" enctype="multipart/form-data">
 
 <input type ="hidden" name = "s_num" value = "${store.s_num }">
 <input type ="hidden" name = "member_id" value = "${member.member_id }">
 <input type ="hidden" name = "s_purchase" value = "${ord.s_purchase }">
+<input type="hidden" name="t_price" value="${store.s_prive * ord.s_purchase }">
 
 
 <table class="table" style="width: 1000px; height: 150px; ">
@@ -69,6 +80,7 @@
         
       <tr>
         <td colspan="4">총 결제 예정금액</td>
+         <td>할인액 ${store.s_sale }%</td>
         <td>
         
  <td><fmt:formatNumber  pattern="###,###" value="${(store.s_prive * ord.s_purchase)-(store.s_prive * ord.s_purchase)*store.s_sale/100}"/>원
@@ -90,15 +102,15 @@
     
     
  <!-- ====================================== -->     
-  <input type="hidden" name="t_price" value="${store.s_prive * ord.s_purchase }">
+
   
    <tr>
    <td>결제 수단</td>         
    <td><input type="radio" name="t_deal" value="휴대폰 결제" onclick="show()" checked>휴대폰 결제</td> 
    <td><input type="radio" name="t_deal" value="계좌이체" onclick="trans()">계좌이체 
-  <select name="t_deal" id="trans1">		
+  <!-- <select name="t_deal" id="trans1">		
 				<option value="신한">신한</option>
-				<option value="BC">BC</option></select> </td>
+				<option value="BC">BC</option></select> </td> -->
    </tr>
    
   </tfoot>
@@ -108,13 +120,13 @@
 
 <!-- ====================================== -->  
    <a href="storeMainForm.do" class="btn btn-danger">구매 취소</a>
-    <button type="submit" class="btn btn-info">구매하기</button> 
+    <input type="button"  onclick="hey()" class="btn btn-info" value="구매하기"> 
 </form>
 
 
 
 </div>
-
+<%@ include file="../mainFloor.jsp" %>
 </body>
 </html>
 

@@ -36,6 +36,10 @@ public interface StoreDao {
 
 	int counts(int s_num);
 
+	void update_total(Store store);
+
+	
+
 
 
 }

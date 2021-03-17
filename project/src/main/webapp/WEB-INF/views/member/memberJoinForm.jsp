@@ -17,31 +17,62 @@
 }
 </style>
 <script type="text/javascript">
-	function chk() {
-		if (frm.member_password.value != frm.member_password2.value) {
-			alert("암호와 암호확인이 다릅니다");
-			frm.member_password.focus();
-			frm.member_password.value("");
+ 	function chk() {
+		if (frm5.member_password.value != frm5.member_password2.value) {
+			alert("비밀번호가 다릅니다");
+			frm5.member_password.focus();
+			frm5.member_password2.value("");
 			return false;
+		}
+		if(frm5.member_password.value.length < 8 || frm5.member_password.value.length > 16) {
+			 alert("비밀번호를 8~16자로 입력해주세요");
+			 frm5.member_password.focus();	
+			 frm5.member_password.value="";
+			 return false;
 		}
 	}
 	function idChk() {
-		if (!frm.member_id.value) {
+		if (!frm5.member_id.value) {
 			alert("아이디 입력 후 중복체크 하세요");
-			frm.member_id.focus();
+			frm5.member_id.focus();
 			return false;
 		}
-		$.post("idChk.do", "member_id=" + frm.member_id.value, function(data) {
+		$.post("idChk.do", "member_id=" + frm5.member_id.value, function(data) {
 			$('#disp').html(data);
 		});
 	}
+/* 	function chkId() { //공백여부
+		 if(frm5.member_id.value.indexOf(" ") >= 0){
+			 alert("아이디에 공백을 사용할 수 없습니다.");
+			 frm5.member_id.focus();
+			 frm5.member_id.select();
+			 return false;
+		 }
+		 // 아이디 4~12 글자 입력
+		 if(frm5.member_id.value.length < 4 || frm5.member_id.value.length > 12){
+			 alert("아이디를 4~12자까지 입력해주세요.");
+			 frm5.member_id.focus();
+			 frm5.member_id.select();
+		 	return false;
+		 }
+		 // 영문(소문자, 숫자만 허용)
+		 for(var i = 0; i<frm5.member_id.value.length; i++) {
+			 ch = frm5.member_id.value.charAt(i);
+			 if(!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z') && !(ch >= 'A' && ch <= 'Z')){
+			 alert("소문자, 숫자로만 입력해주세요");
+			 frm5.member_id.focus();
+			 frm5.member_id.select();
+			 return false;
+		 }
+	} */
 </script>
 </head>
 <body>
 	<%@ include file="../mainTop.jsp"%>
 	<%@ include file="../mainNav.jsp"%>
 	<div class="container" align="center">
-		<form action="memberJoin.do" method="post" name="frm" onsubmit="return chk()">
+		<form action="memberJoin.do" method="post" name="frm5"
+			onsubmit="return chk()">
 			<table class="table">
 				<tr>
 					<td colspan="2" align="center"><button type="button"
@@ -53,18 +84,17 @@
 				</tr>
 				<tr>
 					<td align="center">아이디</td>
-					<td><input type="text" name="member_id"
-						required="required" autofocus="autofocus" class="form-control">
-						<input class="btn btn-outline-warning" type="button" value="중복체크" onclick="idChk()">
-<!-- 						<button type="button" class="btn btn-outline-warning"
-							onclick="idChk()">중복체크</button> -->
-						<div id="disp" class="err"></div>
+					<td><input type="text" name="member_id" autofocus="autofocus"
+						class="form-control" placeholder="소문자 또는 숫자로 4-12자 입력해주세요 " onsubmit="chkId()">
+						<button type="button" class="btn btn-outline-warning"
+							onclick="idChk()">중복체크</button> <span id="disp" class="err"></span>
 					</td>
 				</tr>
 				<tr>
 					<td align="center">비밀번호</td>
 					<td><input type="password" name="member_password"
-						required="required" class="form-control"></td>
+						required="required" class="form-control"
+						placeholder="비밀번호는 8-12자로 입력해주세요"></td>
 				</tr>
 				<tr>
 					<td align="center">비밀번호 확인</td>
@@ -78,10 +108,10 @@
 				</tr>
 				<tr>
 					<td align="center">성별</td>
-					<td><label for="g1" > 남성 &nbsp;</label>
-					<input type="radio" name="member_gender" value="남성"
-						checked="checked"> <label for="g1">	&nbsp; 여성 	&nbsp;</label><input type="radio"
-						name="member_gender" value="여성" ></td>
+					<td><label for="g1"> 남성 &nbsp;</label> <input type="radio"
+						name="member_gender" value="남성" checked="checked"> <label
+						for="g1"> &nbsp; 여성 &nbsp;</label><input type="radio"
+						name="member_gender" value="여성"></td>
 				</tr>
 				<tr>
 					<td align="center">생년월일</td>
@@ -96,7 +126,7 @@
 				<tr>
 					<td align="center">전화번호</td>
 					<td><input type="tel" name="member_number" required="required"
-						placeholder="휴대폰번호를 입력하세요" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+						placeholder="휴대폰번호를 입력해주세요" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
 						class="form-control"></td>
 				</tr>
 				<tr>
@@ -106,8 +136,15 @@
 				</tr>
 				<tr>
 					<td colspan="4" align="center"><button id="c" type="submit"
-							class="btn btn-outline-warning btn-lg">
-							<b>Join</b>
+							class="btn btn-outline-warning btn-lg" onclick="chkPwId()">
+							<b>JOIN</b>
+						</button></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right"><button
+							class="btn btn-outline-warning btn-lg"
+							onclick="location.href='memberLoginForm.do'">
+							<b>LOGIN</b>
 						</button></td>
 				</tr>
 			</table>

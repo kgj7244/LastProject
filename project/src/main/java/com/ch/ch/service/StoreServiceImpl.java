@@ -94,6 +94,13 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
+	
+	public void update_total(Store store) {
+		 sd.update_total(store);
+		
+	}
+
+
 	}
 
 

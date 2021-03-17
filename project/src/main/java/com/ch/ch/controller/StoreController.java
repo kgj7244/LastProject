@@ -173,7 +173,6 @@ public class StoreController {
 		ord.setS_validity(date1);
 		
 		ord.setFull_price((store.getS_prive() *ord.getS_purchase())-(store.getS_prive() *ord.getS_purchase())*store.getS_sale()/100);
-
 		
 		
 		model.addAttribute("ord", ord);		
@@ -210,18 +209,20 @@ public class StoreController {
 			bank.setT_price(store.getS_prive() *ord.getS_purchase());
 			
 		
-			result = ss.insertOrd(ord);
-			int ord2_num = ss.maxOrd_num();
-			bank.setOrd_num(ord2_num);
-			result = bdo.insert_bank(bank);
+			result = ss.insertOrd(ord); // result
+			int ord2_num = ss.maxOrd_num();//최신번호찾기
+			bank.setOrd_num(ord2_num); // 뱅크에 넣음
 			
-			int count = ss.counts(s_num);
-			model.addAttribute("count",count);	
-
+			result = bdo.insert_bank(bank); // result 
+			
+			store.setS_total(store.getS_total()-ord.getS_purchase());
+			ss.update_total(store);
+			
 			model.addAttribute("result", result);
 			model.addAttribute("ord", ord);
 			model.addAttribute("member", member);	
 			model.addAttribute("bank", bank);	
+			model.addAttribute("store", store);	
 			
 			return "store/order";
 		}
@@ -277,7 +278,7 @@ public class StoreController {
 	}
 	//구매 상품 상세
 	@RequestMapping("memberStoreInfo") 
-	public String memberStoreInfo( Bank bank,Ord ord,Model model,HttpSession session)throws IOException {
+	public String memberStoreInfo(Bank bank,Ord ord,Model model,HttpSession session)throws IOException {
 		String member_id = (String)session.getAttribute("member_id");
 		
 	
@@ -290,8 +291,7 @@ public class StoreController {
 	
 		
 //		System.out.println(ord.getOrd_num());
-//		System.out.println(ord.getMember_id());	
-//		System.out.println(ord.getFull_price());			
+//		System.out.println(ord.getMember_id());			
 //		System.out.println("들어갑시다");	
 	
 		

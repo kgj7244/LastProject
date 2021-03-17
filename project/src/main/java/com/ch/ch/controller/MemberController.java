@@ -83,7 +83,7 @@ public class MemberController {
 			result = -1;
 		}
 		model.addAttribute("result", result);
-		model.addAttribute("member", member);
+		// model.addAttribute("member", member);
 		return "/member/memberJoin";
 	}
 
