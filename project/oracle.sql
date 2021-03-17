@@ -452,3 +452,8 @@ create table bank(
 	ord_num number(10) references ord(ord_num)		            --주문번호(스토어
 );
 create sequence t_account increment by 1 start with 1;
+
+SELECT * FROM (select * from notice order by n_date desc) WHERE ROWNUM <= 5;
+select * from notice WHERE ROWNUM <= 5 order by n_date desc;
+select * from (select * from notice order by n_num desc) where ROWNUM <= 5
+select * from notice;

@@ -39,7 +39,7 @@
 				<td>장르</td>
 				<td>개봉일</td>
 				<td>개봉상태</td>
-				<td>수정여부</td>
+				<td width="90px;">수정여부</td>
 			</tr>
 			<c:forEach var="movie" items="${list}">
 				<tr>
@@ -53,7 +53,7 @@
 					<td>${movie.m_opendate}</td>
 					<td>${movie.m_state}</td>
 					<td>
-						<a class="btn btn-warning btn-sm"
+						<a class="btn btn-warning" style="width: 70px;"
 							href="movieUpdateForm.do?m_num=${movie.m_num}">수정</a>
 					</td>
 				</tr>
