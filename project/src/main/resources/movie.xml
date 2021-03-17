@@ -97,7 +97,7 @@
 			 		${search} like '%'||#{keyword}||'%' 
 			 	</if>
 			 </where>
-		 order by m_num)a) 
+		 order by m_num desc)a) 
 			where rn between #{startRow} and #{endRow}  
 	</select>
 	<select id="allMovieTotal" parameterType="movie" resultType="integer">

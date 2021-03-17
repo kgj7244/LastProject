@@ -22,10 +22,6 @@
 	<update id="update" parameterType="rv">
 		update review set re_con=#{re_con},	re_update=sysdate where re_num=#{re_num}
 	</update>
-	<!-- <update id="update" parameterType="rv">
-		update review set re_con=#{re_con}, re_grade=#{re_grade}, 
-			re_update=sysdate where re_num=#{re_num}
-	</update> --><!-- 평점 수정 구현하면 바꿀 예정 -->
 	<select id="count" parameterType="rv" resultType="integer">
 		select nvl(count(*), 0) from review where m_num=#{m_num}
 	</select>

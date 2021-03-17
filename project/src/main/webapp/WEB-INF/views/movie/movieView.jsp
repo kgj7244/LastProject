@@ -54,6 +54,7 @@
 	
 	function rUpdate(m_num, re_num) {
 		var txt = $('#td_' + re_num).text();
+		var txt1 = $('#gr_' + re_num).text();
 		
 		$('#td_' + re_num).html("<textarea rows='3' cols=90' id='rt'>" + 
 				txt + "</textarea>");
@@ -111,13 +112,12 @@
 				<p>평점 : ${movie.m_grade}점</p>
 			<a class="btn btn-secondary" 
 				style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0" 
-				href="ticketMainForm.do">예매</a>
-			<br><br>
+				href="ticketMainForm.do">예매</a>&nbsp;&nbsp;
 			<c:if test="${sessionScope.member_id == 'master'}">
 				<a href="movieUpdateForm.do?m_num=${movie.m_num}" class="btn btn-danger"
-					style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0">영화 수정</a>
+					style="width: 175px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0">영화 수정</a>
 				<a href="allMovieList.do" class="btn btn-success"
-					style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0">영화 전체 목록</a>
+					style="width: 175px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0">영화 전체 목록</a>
 			</c:if>
 			</div>
 		</div>
@@ -163,7 +163,7 @@
 		</div>
 		<h2 class="display-4" id="review" align="left">한줄평</h2>
 		<hr class="my-4">
-		<div class="jumbotron" id="rvListDisp">
+		<div class="jumbotron" id="rvListDisp" style="padding: 0 0 0 10px;">
 			<p>${movie.m_title}에 대한 ${tot}개의 이야기가 있어요!</p>
 			<c:if test="${empty rvList}">
 				<table class="table table-striped">
@@ -176,9 +176,9 @@
 				<table class="table table-striped">
 					<c:forEach var="rv" items="${rvList}">
 						<tr>
-							<td>${rv.member_id}</td>
+							<td width="100px">${rv.member_id}</td>
 							<td width="50px">${rv.re_grade}점</td>
-							<td id="td_${rv.re_num}" style="word-break:break-all">${rv.re_con}</td>
+							<td id="td_${rv.re_num}" style="word-break:break-all" height="60px;" width="1000px">${rv.re_con}</td>
 							<td>
 								<fmt:formatDate value="${rv.re_update}" pattern="yy.MM.dd HH:mm"/>
 							</td>
@@ -216,11 +216,11 @@
 								</select>
 							</td>
 							<td>
-								<textarea rows="3" cols="90" name="re_con" 
-									placeholder="'${movie.m_title}' 재미있게 보셨나요?&#13;&#10;영화의 어떤 점이 좋았는지 500자 이내로 이야기해주세요."></textarea>
+								<textarea rows="4" cols="90" name="re_con" 
+									placeholder="'${movie.m_title}' 재미있게 보셨나요?&#13;&#10;영화의 어떤 점이 좋았는지 500자 이내로 자우롭게 이야기해주세요.&#13;&#10;※ 단, 평점은 수정이 불가하니 신중해서 선택해주세요※"></textarea>
 							</td>
 							<td>
-								<input type="button" value="댓글 입력" id="rInsert" class="btn btn-warning">
+								<input type="button" value="댓글 입력" id="rInsert" class="btn btn-warning" style="line-height: 85px;">
 							</td>
 						</tr>
 					</table>
