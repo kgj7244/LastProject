@@ -58,7 +58,7 @@
 	
 	<!-- mainNav -->
 	<div class="row" id="mainNav"> 
-		<<!-- div class="col-md-1" align="center"></div> -->
+		<!-- div class="col-md-1" align="center"></div> -->
 		<div class="col-md-12">
 			<%@include file="mainNav.jsp" %>
 		</div>

@@ -61,8 +61,7 @@
 		</div>
 		
 		<div id="theaterView"></div><!-- 아래에다가 극장에 대한 정보를 뿌려줄 예쩡 -->
-		
-		<div>
+
 			<input type="button" class="btn btn-Secondary btn-lg" style="width: 80px; height: 40px; font-size: 20px; font-weight: bold;" value="영화" onclick="location.href='movieMainForm.do?m_ing=0'">&nbsp;&nbsp;
 			<input type="button" class="btn btn-warning btn-lg" style="width: 80px; height: 40px; font-size: 20px; font-weight: bold;" value="예매" onclick="location.href='ticketMainForm.do'">&nbsp;&nbsp;
 			<input type="button" class="btn btn-info btn-lg" style="width: 80px; height: 40px; font-size: 20px; font-weight: bold;" value="스토어" onclick="location.href='storeMainForm.do'">
