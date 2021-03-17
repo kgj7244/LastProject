@@ -95,13 +95,13 @@
 			<!-- board.num을 숨겨서 넘겨 -->
 			<input type="hidden" name="b_num" value="${board.b_num }"> <input
 				type="hidden" name="pageNum" value="${pageNum }">
-			<c:if test="${member.member_id == 'master' }">
+			<c:if test="${member_id == 'master' }">
 			<h1 class="text-warning">REPLY</h1>
 				<table class="table" id="rt">
 					<tr>
 						<td align="center">작성자</td>
 						<td><input type="text" name="member_id"
-							value="${member.member_id }" size="4" readonly="readonly" class="form-control"></td>
+							value="${member_id }" size="4" readonly="readonly" class="form-control"></td>
 						<td align="center">댓글</td>
 						<td><textarea rows="2" cols="100" name="r_text" class="form-control"></textarea></td>
 						<th><input type="button" value="WRITE" id="reInsert"

@@ -44,9 +44,8 @@
 
   <div class="name"><h4>${store.s_Pname }</h4></div>  
   </a>
- 
+
   <div>${store.s_Pconfig }</div>
- 
   <div>${store.s_prive }원</div>
 		
 			
@@ -55,16 +54,13 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
 <fmt:formatDate value="${store.s_pernd }" pattern="yyyy-MM-dd" var="s_pernd"/>
 
-<c:if test="${today >= s_pernd }">
+							<c:if test="${today >= s_pernd }">
+									<h3 style="color: red;">현재 구매가 불가능한 상품입니다</h3>
+								</c:if>
 
-<h3 style="color: red;">현재 구매가 불가능한 상품입니다</h3>
 
+</div></div>
 </c:if>
-
-			
-			
- </div></div>
- 		</c:if>
  </c:forEach>
  
  

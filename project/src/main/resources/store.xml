@@ -69,9 +69,9 @@
 	 update store set s_del='n' where s_num=#{s_num}
 	</update>
 	
-	<update id="counts" parameterType="integer">
+	<update id="update_total" parameterType="store">
 	 update store 
-	 set s_total=#{s_total-s_purchase}
+	 set s_total=#{s_total}
 	 where s_num=#{s_num}
 	</update>
 <!--  from ord o, store s  -->

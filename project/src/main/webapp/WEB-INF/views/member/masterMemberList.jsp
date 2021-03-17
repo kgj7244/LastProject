@@ -16,10 +16,10 @@ font-weight: bold;
 text-decoration:none !important;}
 </style>
 <script type="text/javascript">
-function del() {
+function del(member_id) {
 	var con = confirm("정말 삭제하시겠습니까?");
 	if (con)
-		location.href = "masterMemberDelete.do?member_id=${member.member_id }&member_del=${member.member_del}";
+		location.href = "masterMemberDelete.do?member_id="+member_id;
 	else {
 		alert("삭제가 취소되었습니다");
 		return;
@@ -86,7 +86,7 @@ function del() {
 						<td align="center">${member.member_del }</td>
 						<td align="center"><a
 							href="masterMemberUpdateForm.do?member_id=${member.member_id }">수정</a></td>
-						<td align="center"><a onclick="del()" id="d">삭제</a></td>
+						<td align="center"><a onclick="del('${member.member_id }')" id="d">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</c:if>

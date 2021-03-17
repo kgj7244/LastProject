@@ -55,12 +55,15 @@
 				<tr>
 					<td align="center"><b>카테고리</b></td>
 					<td><select name="b_code" required="required" class="form-control" id="ct">
-							<option id="b_code" hidden="hidden"></option>
-							<!-- 선택안했을시 required호출용 -->
-							<option value='mem'>회원</option>
-							<option value='tk'>예매</option>
-							<option value='st'>스토어</option>
-							<option value='etc'>기타</option>
+											<c:forTokens var="i"
+								items="회원,예매,스토어,기타" delims=",">
+								<c:if test="${i==board.b_code }">
+									<option selected="selected">${i }</option>
+								</c:if>
+								<c:if test="${i!=board.b_code }">
+									<option>${i }</option>
+								</c:if>
+							</c:forTokens>
 					</select></td>
 					<td align="center"><b>아이디</b></td>
 					<td>${board.member_id }</td>
@@ -68,7 +71,7 @@
 				<tr>
 					<td align="center"><b>제목</b></td>
 					<td colspan="3"><input type="text" id="ti" class="form-control" name="b_title"
-						required="required" autofocus="autofocus" value=${board.b_title }></td>
+						required="required" autofocus="autofocus" value="${board.b_title }"></td>
 				</tr>
 				<tr>
 					<td align="center"><b>내용</b></td>

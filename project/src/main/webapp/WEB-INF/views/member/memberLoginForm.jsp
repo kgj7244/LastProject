@@ -7,7 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-#b {padding-top: 15px; padding-bottom: 15px;margin-top:60px; margin-bottom:15px;}
+#b {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-top: 60px;
+	margin-bottom: 15px;
+}
 </style>
 </head>
 <body>
@@ -16,10 +21,12 @@
 	<div class="container" align="center">
 		<button id="b" type="button"
 			class="btn btn-warning disabled btn-block btn-sm">
-			<h2><b>LOG-IN</b></h2>
+			<h2>
+				<b>LOG-IN</b>
+			</h2>
 		</button>
 		<form action="memberLogin.do" method="post">
-			<table class="table table-bordered">
+			<table class="table">
 				<tr>
 					<td align="center"><b>ID</b></td>
 					<td><input type="text" class="form-control" name="member_id"
@@ -32,7 +39,15 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><button type="submit"
-							class="btn btn-outline-warning btn-lg"><b>Login</b></button></td>
+							class="btn btn-outline-warning btn-lg">
+							<b>LOGIN</b>
+						</button></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right"><button class="btn btn-outline-warning btn-lg"
+							onclick="location.href='memberJoinForm.do'">
+							<b>JOIN</b>
+						</button></td>
 				</tr>
 			</table>
 		</form>

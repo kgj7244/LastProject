@@ -83,7 +83,7 @@ public class MemberController {
 			result = -1;
 		}
 		model.addAttribute("result", result);
-		model.addAttribute("member", member);
+		// model.addAttribute("member", member);
 		return "/member/memberJoin";
 	}
 
@@ -194,7 +194,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("masterMemberDelete")
-	public String masterMemberDelete(String member_id, String member_del, Member member, Model model, HttpSession session) {
+	public String masterMemberDelete(String member_id, Member member, Model model, HttpSession session) {
 		int result = ms.delete(member_id);
 		if (result > 0)
 			session.invalidate();
