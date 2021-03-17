@@ -21,7 +21,7 @@
 		if (frm5.member_password.value != frm5.member_password2.value) {
 			alert("비밀번호가 다릅니다");
 			frm5.member_password.focus();
-			frm5.member_password2.value("");
+			frm5.member_password2.value="";
 			return false;
 		}
 		if(frm5.member_password.value.length < 8 || frm5.member_password.value.length > 16) {
@@ -30,6 +30,26 @@
 			 frm5.member_password.value="";
 			 return false;
 		}
+		 if(frm5.member_id.value.indexOf(" ") >= 0){
+			 alert("아이디에 공백을 사용할 수 없습니다.");
+			 frm5.member_id.focus();
+			 frm5.member_id.select();
+			 return false;
+		 }
+		// 파이썬 11장 정규식
+		// /^: 시작,  $/: 끝, []: 속에 글자 중에 하나
+		// .*(?=.{4,8}) 점을 포함한 한글자 이상을 사용하는 4~8이내
+		// (?=.*[0-9]) 숫자 하나는 포함
+		// (?=.*[a-zA-Z]) 소문자/대문자 구별없이 한글자 이상
+		// (?=.*[@!#$*()_&]) []속의 글자(특수문자) 하나는 있어야한다
+		var reg_id = 
+			 /^.*(?=.{4,8})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; 
+		if(!reg_id.test(frm5.member_id.value)) { 
+			alert("대소문자 구별없이 숫자를 포함하여 4-8자로 입력해주세요"); 
+			frm5.member_id.focus(); 
+			return false;
+		}
+		return true;
 	}
 	function idChk() {
 		if (!frm5.member_id.value) {
@@ -41,30 +61,6 @@
 			$('#disp').html(data);
 		});
 	}
-/* 	function chkId() { //공백여부
-		 if(frm5.member_id.value.indexOf(" ") >= 0){
-			 alert("아이디에 공백을 사용할 수 없습니다.");
-			 frm5.member_id.focus();
-			 frm5.member_id.select();
-			 return false;
-		 }
-		 // 아이디 4~12 글자 입력
-		 if(frm5.member_id.value.length < 4 || frm5.member_id.value.length > 12){
-			 alert("아이디를 4~12자까지 입력해주세요.");
-			 frm5.member_id.focus();
-			 frm5.member_id.select();
-		 	return false;
-		 }
-		 // 영문(소문자, 숫자만 허용)
-		 for(var i = 0; i<frm5.member_id.value.length; i++) {
-			 ch = frm5.member_id.value.charAt(i);
-			 if(!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z') && !(ch >= 'A' && ch <= 'Z')){
-			 alert("소문자, 숫자로만 입력해주세요");
-			 frm5.member_id.focus();
-			 frm5.member_id.select();
-			 return false;
-		 }
-	} */
 </script>
 </head>
 <body>
@@ -84,10 +80,10 @@
 				</tr>
 				<tr>
 					<td align="center">아이디</td>
-					<td><input type="text" name="member_id" autofocus="autofocus"
-						class="form-control" placeholder="소문자 또는 숫자로 4-12자 입력해주세요 " onsubmit="chkId()">
-						<button type="button" class="btn btn-outline-warning"
-							onclick="idChk()">중복체크</button> <span id="disp" class="err"></span>
+					<td><input type="text" name="member_id" autofocus="autofocus" required="required"
+						class="form-control" placeholder="대소문자 구별없이 숫자를 포함하여 4-8자 입력해주세요 ">
+						<input type="button" class="btn btn-outline-warning" onclick="idChk()"
+						value="중복체크"><span id="disp" class="err"></span>
 					</td>
 				</tr>
 				<tr>
@@ -136,7 +132,7 @@
 				</tr>
 				<tr>
 					<td colspan="4" align="center"><button id="c" type="submit"
-							class="btn btn-outline-warning btn-lg" onclick="chkPwId()">
+							class="btn btn-outline-warning btn-lg">
 							<b>JOIN</b>
 						</button></td>
 				</tr>

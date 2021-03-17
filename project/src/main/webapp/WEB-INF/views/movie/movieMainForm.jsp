@@ -31,7 +31,7 @@
 	<div><%@include file="../mainTop.jsp" %></div>
 	<div><%@include file="../mainNav.jsp" %></div>
 	<div class="container">
-		<div align="left"><h2>무비리스트</h2></div>
+	<div align="left"><h2>무비리스트</h2></div>
 		<hr style="border: 0px; height: 3px; background-color: #cccccc;">
 		<div class="nowshow">
         	<c:if test="${movie.m_ing == '1'}">

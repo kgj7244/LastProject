@@ -59,7 +59,7 @@ li>a {
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>			
-		<div class="collapse navbar-collapse row" id="navbarColor03">
+		<div class="collapse show navbar-collapse row" id="navbarColor03">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-4" align="left">
 				<ul class="navbar-nav mr-auto">
