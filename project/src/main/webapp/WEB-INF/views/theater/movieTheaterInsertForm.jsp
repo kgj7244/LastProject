@@ -43,8 +43,8 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="목록으로" class="btn btn-info" onclick="location.href='mypage.do'">
-					<input type="submit" value="등록" class="btn btn-warning">
+					<input type="button" value="목록으로" class="btn btn-info btn-lg" onclick="location.href='mypage.do'">
+					<input type="submit" value="등록" class="btn btn-warning btn-lg">
 				</td>
 			</tr>
 		</table>

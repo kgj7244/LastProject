@@ -24,12 +24,12 @@
 			
 			<div class="col-sm-4" align="right" style="margin-top: 20px;">
 				<c:if test="${member_id == null}"><!-- 진짜 css 모르겠다 그냥 다이렉트로 넣음 (ㅡ.ㅡ) -->
-					<a href="memberLoginForm.do" style="color:#dbdbdb; font-size: 20px; font-weight: bold;">로그인</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="memberLoginForm.do" style="color:#dbdbdb; font-size: 20px; font-weight: bold;">로그인</a> &nbsp;&nbsp;
 					<a href="memberJoinForm.do" style="color:#dbdbdb; font-size: 20px; font-weight: bold;">회원가입</a>
 				</c:if>
 				<c:if test="${member_id != null && member_del == n}">
-						<span style="color:#dbdbdb; font-size: 20px; font-weight: bold;">${member_id}님 &nbsp;&nbsp;&nbsp;&nbsp; </span>
-						<a href="mypage.do" style="color:#dbdbdb; font-size: 20px; font-weight: bold;">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span style="color:#dbdbdb; font-size: 20px; font-weight: bold;">${member_id}님 &nbsp;&nbsp;</span>
+						<a href="mypage.do" style="color:#dbdbdb; font-size: 20px; font-weight: bold;">마이페이지</a>&nbsp;&nbsp;
 						<a href="memberLogout.do" style="color:#dbdbdb; font-size: 20px; font-weight: bold;">로그아웃</a>
 				</c:if>
 			</div>
