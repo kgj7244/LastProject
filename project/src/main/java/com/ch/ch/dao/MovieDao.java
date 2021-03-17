@@ -28,4 +28,6 @@ public interface MovieDao {
 	List<Movie> allMovieList(Movie movie);
 
 	int allMovieTotal(Movie movie);
+
+	void gradeupdate(Movie movie);
 }

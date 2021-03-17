@@ -34,6 +34,12 @@ public interface StoreDao {
 
 	int resurrection(int s_num);
 
+	int counts(int s_num);
+
+	void update_total(Store store);
+
+	
+
 
 
 }

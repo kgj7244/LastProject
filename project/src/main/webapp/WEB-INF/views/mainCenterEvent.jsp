@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table style="width: 1600px;">
+	<table style="width: 1600px;height: 425px;">
 		<tr height="380px;">
-			<td width="25%" align="center"><a href="#"></a><img src="${path}/resources/images/home/팝콘짤.png" width="90%" height="360px;%"></a></td>
+			<td width="25%" align="center"><a href="eventForm.do"><img src="${path}/resources/images/home/팝콘짤.png" width="90%" height="360px;" style="margin-top: 10px;"></a></td>
 			<td width="50%" align="center" style="vertical-align:middle;">
 				
 				<div>

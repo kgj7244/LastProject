@@ -38,10 +38,22 @@ public class StoreController {
 	public String storeMainForm(Model model) {
 		
         List<Store> storeList = ss.list();
-		model.addAttribute("storeList", storeList);		
+		model.addAttribute("storeList", storeList);	
 		
 		return "store/storeMainForm";
 	}
+	
+
+	
+	//카테고리별 리스트
+	@RequestMapping("i_snack")
+	public String i_snack(int s_Pclass, Model model){	
+		List<Store> storeList = ss.pclist(s_Pclass);
+		model.addAttribute("s_Pclass", s_Pclass);
+		model.addAttribute("storeList", storeList);		
+		return "store/i_snack";
+	}
+
 	
 	//스토어 추가
 	@RequestMapping("storeInsertForm")
@@ -123,14 +135,7 @@ public class StoreController {
 			return "/store/storeRestore";	
 		}
 	
-	//카테고리별 리스트
-	@RequestMapping("i_snack")
-	public String i_snack(int s_Pclass, Model model){	
-		List<Store> storeList = ss.pclist(s_Pclass);
-		model.addAttribute("s_Pclass", s_Pclass);
-		model.addAttribute("storeList", storeList);		
-		return "store/i_snack";
-	}
+
 	
 	//관리자 스토어 목록
 	@RequestMapping("master_Storelist")
@@ -145,7 +150,7 @@ public class StoreController {
 	
 	
 //====================================================
-	
+
 	
  //상품 상세
 	@RequestMapping("storeContent")
@@ -172,7 +177,7 @@ public class StoreController {
 		ord.setBuy_date(date);
 		ord.setS_validity(date1);
 		
-		ord.setFull_price(store.getS_prive() *ord.getS_purchase());
+		ord.setFull_price((store.getS_prive() *ord.getS_purchase())-(store.getS_prive() *ord.getS_purchase())*store.getS_sale()/100);
 		
 		
 		model.addAttribute("ord", ord);		
@@ -186,7 +191,7 @@ public class StoreController {
 	
 	//결제 진행 
 		@RequestMapping("order")
-		public String order(Bank bank,Ord ord,Model model,HttpSession session)throws IOException {	
+		public String order(int s_num,Bank bank,Ord ord,Model model,HttpSession session)throws IOException {	
 			String member_id = (String)session.getAttribute("member_id");
 			Member member = ms.select(member_id);
 			
@@ -205,22 +210,30 @@ public class StoreController {
 			bank.setMember_id(member_id);
 			
 			
-			ord.setFull_price(store.getS_prive() *ord.getS_purchase());
+			ord.setFull_price((store.getS_prive() *ord.getS_purchase())-(store.getS_prive() *ord.getS_purchase())*store.getS_sale()/100);
 			bank.setT_price(store.getS_prive() *ord.getS_purchase());
 			
-		
-			result = ss.insertOrd(ord);
+			//총수량 감소
+			store.setS_total(store.getS_total()-ord.getS_purchase());
+			ss.update_total(store);
+			
+		//최신번호 찾아 뱅크에 넣음
+			result = ss.insertOrd(ord); 
 			int ord2_num = ss.maxOrd_num();
-			bank.setOrd_num(ord2_num);
-			result = bdo.insert_bank(bank);
-
+			bank.setOrd_num(ord2_num); 	
+			result = bdo.insert_bank(bank); 
+			
+	
+			
 			model.addAttribute("result", result);
 			model.addAttribute("ord", ord);
 			model.addAttribute("member", member);	
 			model.addAttribute("bank", bank);	
+			model.addAttribute("store", store);	
 			
 			return "store/order";
 		}
+
 	
 	//구매 목록
 	@RequestMapping("memberStore") 
@@ -234,7 +247,7 @@ public class StoreController {
 	}
 	//구매 상품 상세
 	@RequestMapping("memberStoreInfo") 
-	public String memberStoreInfo( Bank bank,Ord ord,Model model,HttpSession session)throws IOException {
+	public String memberStoreInfo(Bank bank,Ord ord,Model model,HttpSession session)throws IOException {
 		String member_id = (String)session.getAttribute("member_id");
 		
 	
@@ -245,11 +258,8 @@ public class StoreController {
 		
 		Member member = ms.select(member_id);	
 	
-		
-		System.out.println(ord.getOrd_num());
-		System.out.println(ord.getMember_id());	
-		System.out.println(ord.getFull_price());			
-		System.out.println("들어갑시다");	
+//		System.out.println(ord.getMember_id());			
+//		System.out.println("들어갑시다");	
 	
 		
 		model.addAttribute("ord", ord);
@@ -259,9 +269,7 @@ public class StoreController {
 		
 		return "/member/memberStoreInfo";
 	}
-
-	
-	
+		
 	//환불
 	@RequestMapping("memberStoreRefund") 
 	public String memberStoreRefund(Model model,int ord_num, HttpSession session) {
@@ -271,9 +279,6 @@ public class StoreController {
 			
 		return "/member/memberStoreRefund";
 	}
-	
-
-	
 		
 	}
 

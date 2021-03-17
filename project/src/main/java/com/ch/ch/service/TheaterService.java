@@ -28,4 +28,6 @@ public interface TheaterService {
 	int numInsert(String mt_name, int mt_count, int t_num);
 
 	List<Theater> locList(String t_loc);
+
+	Theater theaterView(int t_num);
 }

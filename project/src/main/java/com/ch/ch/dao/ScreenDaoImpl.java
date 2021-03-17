@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.ch.ch.model.Event;
 import com.ch.ch.model.Event_over;
 import com.ch.ch.model.MovieTheater;
+import com.ch.ch.model.Notice;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
 import com.ch.ch.model.Theater;

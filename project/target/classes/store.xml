@@ -60,8 +60,7 @@
 			,  s_Pimage=#{s_Pimage}
 	</if>
 	 ,s_purchase=#{s_purchase},s_prive=#{s_prive},del=#{del},
-	 s_per=#{s_per}, s_pernd=#{s_pernd},s_total=#{s_total},s_sale=#{s_sale}
-	 
+	 s_per=#{s_per}, s_pernd=#{s_pernd},s_total=#{s_total},s_sale=#{s_sale} 
 	 where s_num=#{s_num} 
 	</update>
 
@@ -69,6 +68,12 @@
 	<update id="resurrection" parameterType="integer">
 	 update store set s_del='n' where s_num=#{s_num}
 	</update>
-
+	
+	<update id="update_total" parameterType="store">
+	 update store 
+	 set s_total=#{s_total}
+	 where s_num=#{s_num}
+	</update>
+<!--  from ord o, store s  -->
 
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 // 극장
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.ch.model.Movie;
@@ -39,7 +40,7 @@ public class TheaterController {
 		model.addAttribute("showLocList",showLocList);
 		return "theater/theaterLoc";
 	}
-	//영화 선택
+	//영화별 선택
 	@RequestMapping("choiceMovie")
 	public String choiceMovie(Model model) {
 		List<Movie> movieList = ms.list(); //영화 제목 나열
@@ -53,13 +54,7 @@ public class TheaterController {
 		model.addAttribute("list", list);
 		return "theater/choiceTheater";
 	}
-	//모든 영화 선택
-	@RequestMapping("choiceAllMovie")
-	public String choiceAllMovie(Model model) {
-		List<Movie> movieList = ms.list(); //영화 제목 나열
-		model.addAttribute("movieList",movieList);
-		return "theater/choiceAllMovie";
-	}
+	
 	//극장 입력 폼
 	@RequestMapping("theaterInsertForm")
 	public String theaterInsertForm(Model model) {
@@ -70,7 +65,7 @@ public class TheaterController {
 	}
 	//극장 입력
 	@RequestMapping("theaterInsert")
-	public String theaterInsert(Theater theater, Model model) {		
+	public String theaterInsert(Theater theater, Model model) {
 		int result = tts.insert(theater);
 		model.addAttribute("result", result);
 		
@@ -132,5 +127,10 @@ public class TheaterController {
 	 public String seoul4(){
 		 return "theater/seoul4";
 	 }
-	 
+	 @RequestMapping("theaterView")
+	 public String theaterView(Model model, int t_num) {
+		 Theater theaterView = tts.theaterView(t_num); // 극장번호 클릭시 t_num값을 받아와서 극장에 대한 모든 정보를 담아서 뿌려줌
+		 model.addAttribute("theaterView", theaterView);
+		 return "theater/theaterView";
+	 }
 }

@@ -13,7 +13,15 @@
 
 
 
+
 <div class="container" align="center">
+
+	<table class="table table-hover" style="margin-top: 30px;">
+		<tr>
+			<td align="center" style="font-weight: bold; background-color: #fedf9e; vertical-align: middle; color: #908c88; height: 60px; font-size: 30px; margin-top: 30px;">
+			상품 수정</td>
+		</tr>
+	</table>	
 
 <form action="storeUpload.do" method="post" name="frm"
  enctype="multipart/form-data">
@@ -23,20 +31,17 @@
 <input type="hidden" name="del" value="${store.del }"> 
 <input type="hidden" name="s_del" value="${store.s_del }"> 
 
-<h2 class="text-primary">상품 수정</h2>
+
 
 
 <table class="table table-bordered">
 
 
-<tr><td>상품 분류</td>
+<tr><td style="font-weight: bold; color: red;">상품 분류</td>
 <td>
 
  <select name="s_Pclass">
-   <option value="${store.s_Pclass }">
-   ${store.s_Pclass }</option>
-   
-    
+  <%--  <option value="${store.s_Pclass }">${store.s_Pclass }</option> --%>   
    <option value="1">관람권</option>
    <option value="2">콤보</option>
    <option value="3">팝콘/음료</option>
@@ -83,5 +88,6 @@ value="${store.s_sale }"></td></tr>
 </form>
 </div>
 
+<%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

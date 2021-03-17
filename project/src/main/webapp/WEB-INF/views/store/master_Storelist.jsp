@@ -11,10 +11,13 @@
 	<div><%@include file="../mainTop.jsp" %></div>
 	<div><%@include file="../mainNav.jsp" %></div>
 	<div class="container" align="center">
-		<div align="left"><h2>스토어 전체 목록</h2></div>
-		
-		<hr style="border: 0px; height: 3px; background-color: #cccccc;">
-		
+	
+	<table class="table table-hover" style="margin-top: 30px;">
+		<tr>
+			<td align="center" style="font-weight: bold; background-color: #fedf9e; vertical-align: middle; color: #908c88; height: 60px; font-size: 30px; margin-top: 30px;">
+			스토어 상품 목록</td>
+		</tr>
+	</table>	
 		
 		<table class="table table-bordered table-striped">
 			<tr>
@@ -72,7 +75,6 @@
 	<td>
 		<a class="btn btn-warning btn-sm"
 			href="storeUploadForm.do?s_num=${store.s_num}">수정</a>
-
 		<a class="btn btn-danger btn-sm"
 			href="storeDelete.do?s_num=${store.s_num}">삭제</a>
 			</td>
@@ -95,4 +97,7 @@
 		<a href="storeInsertForm.do" class="btn btn-success">스토어 상품 추가</a>
 		</div>
 		
-		
+
+<%@ include file="../mainFloor.jsp" %>
+</body>
+</html>

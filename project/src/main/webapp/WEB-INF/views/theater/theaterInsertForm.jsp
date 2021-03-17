@@ -56,10 +56,21 @@
 				<td width="50%" align="right"style="vertical-align:middle;">주소 &nbsp;&nbsp;</td>
 				<td width="50%" align="left"style="vertical-align:middle;"><input type="text" name="t_addr" required="required"></td>
 			</tr>
+			
+			
+			<tr>
+				<td width="50%" align="right"style="vertical-align:middle;">극장정보 &nbsp;&nbsp;</td>
+				<td width="50%" align="left"style="vertical-align:middle;"><input type="text" name="t_content" required="required"></td>
+			</tr>
+			<tr>
+				<td width="50%" align="right"style="vertical-align:middle;">층별안내 &nbsp;&nbsp;</td>
+				<td width="50%" align="left"style="vertical-align:middle;"><input type="text" name="t_floor" required="required"></td>
+			</tr>
+			
 			<tr>
 				<td width="50%" align="right"style="vertical-align:middle;">전화번호 &nbsp;&nbsp;</td>
 				<td width="50%" align="left"style="vertical-align:middle;">
-					<input type="tel" name="t_number" pattern="\d{2,3}-\d{3,4}-\d{4}" placeholder="xx-xxx-xxxx" required="required">
+					<input type="tel" name="t_number" pattern="\d{2,3}-\d{3,4}-\d{4}" placeholder="xxx-xxxx-xxxx" required="required">
 				</td>
 			</tr>
 			<tr>

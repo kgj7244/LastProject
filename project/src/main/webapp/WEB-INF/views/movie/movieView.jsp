@@ -54,6 +54,7 @@
 	
 	function rUpdate(m_num, re_num) {
 		var txt = $('#td_' + re_num).text();
+		var txt1 = $('#gr_' + re_num).text();
 		
 		$('#td_' + re_num).html("<textarea rows='3' cols=90' id='rt'>" + 
 				txt + "</textarea>");
@@ -105,29 +106,23 @@
 					</c:if>
 				</h2>
 				<hr class="my-4">
-			<%-- <c:choose>
-				<c:when test="${grade > 0}">
-					<fmt:formatNumber value="${grade}" pattern=".00"/>
-				</c:when>
-				<c:otherwise>아직 평점이 없습니다. 평점을 등록해주세요</c:otherwise>
-			</c:choose> --%>
 				<p>감독 : ${movie.m_director}&nbsp;&nbsp;/&nbsp;&nbsp;배우 : ${movie.m_actor}</p>
 				<p>장르 : ${movie.m_genre}&nbsp;&nbsp;/&nbsp;&nbsp;등급 : ${movie.m_rank}</p>
 				<p>개봉일 : <fmt:formatDate value="${movie.m_opendate}" pattern="yyyy.MM.dd (E)"/></p>
-			<a class="btn btn-warning" 
+				<p>평점 : ${movie.m_grade}점</p>
+			<a class="btn btn-secondary" 
 				style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0" 
-				href="ticketMainForm.do">예매</a>
-			<br><br>
+				href="ticketMainForm.do">예매</a>&nbsp;&nbsp;
 			<c:if test="${sessionScope.member_id == 'master'}">
 				<a href="movieUpdateForm.do?m_num=${movie.m_num}" class="btn btn-danger"
-					style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0">영화 수정</a>
+					style="width: 175px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0">영화 수정</a>
 				<a href="allMovieList.do" class="btn btn-success"
-					style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0">영화 전체 목록</a>
+					style="width: 175px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0">영화 전체 목록</a>
 			</c:if>
 			</div>
 		</div>
 		<div class="header navbar navbar-fixed-top" role="navigation">
-			<table class="table table-hover table-bordered">
+			<table class="table table-hover table-bordered" style="width: 1260px;">
 				<tr class="table-warning">
 					<th><a href="#content" style="text-decoration: none; color: black">주요정보</a></th>
 					<th><a href="#stillcut" style="text-decoration: none; color: black">스틸컷</a></th>
@@ -137,12 +132,9 @@
 		</div>
 		<h2 class="display-4" id="content">줄거리</h2>
 		<hr class="my-4">
-		<div class="jumbotron" style="white-space:pre;">
+		<div class="jumbotron" style="white-space: pre; padding: 0 0 0 10px;">
 			<p>${movie.m_content}</p>		
 		</div>
-		<%-- <div class="jumbotron" style="white-space:pre;">
-			<p>${movie.m_content}</p>		
-		</div> --%>
 		<h2 class="display-4" id="stillcut" align="left">스틸컷</h2>
 		<hr class="my-4">
 		<div class="jumbotron">
@@ -171,7 +163,7 @@
 		</div>
 		<h2 class="display-4" id="review" align="left">한줄평</h2>
 		<hr class="my-4">
-		<div class="jumbotron" id="rvListDisp">
+		<div class="jumbotron" id="rvListDisp" style="padding: 0 0 0 10px;">
 			<p>${movie.m_title}에 대한 ${tot}개의 이야기가 있어요!</p>
 			<c:if test="${empty rvList}">
 				<table class="table table-striped">
@@ -183,28 +175,22 @@
 			<c:if test="${not empty rvList}">
 				<table class="table table-striped">
 					<c:forEach var="rv" items="${rvList}">
-						<c:if test="${rv.re_del != 'y'}">
-							<tr>
-								<!-- 작성자 -->
-								<td>${rv.member_id}</td>
-								<!-- 평점 -->
-								<td>${rv.re_grade}점</td>
-								<!-- 댓글 -->
-								<td id="td_${rv.re_num}">${rv.re_con}</td>
-								<!-- 작성일 -->
-								<td>
-									<fmt:formatDate value="${rv.re_update}" pattern="yy.MM.dd HH:mm"/>
+						<tr>
+							<td width="100px">${rv.member_id}</td>
+							<td width="50px">${rv.re_grade}점</td>
+							<td id="td_${rv.re_num}" style="word-break:break-all" height="60px;" width="1000px">${rv.re_con}</td>
+							<td>
+								<fmt:formatDate value="${rv.re_update}" pattern="yy.MM.dd HH:mm"/>
+							</td>
+							<c:if test="${rv.member_id == sessionScope.member_id or sessionScope.member_id == 'master'}">
+								<td id="btn_${rv.re_num}">
+									<button class="btn btn-success btn-sm" 
+										onclick="rUpdate(${rv.m_num}, ${rv.re_num})">수정</button>
+									<button class="btn btn-danger btn-sm" 
+										onclick="rDelete(${rv.m_num}, ${rv.re_num})">삭제</button>
 								</td>
-								<c:if test="${rv.member_id == sessionScope.member_id or sessionScope.member_id == 'master'}">
-									<td id="btn_${rv.re_num}">
-										<button class="btn btn-success btn-sm" 
-											onclick="rUpdate(${rv.m_num}, ${rv.re_num})">수정</button>
-										<button class="btn btn-danger btn-sm" 
-											onclick="rDelete(${rv.m_num}, ${rv.re_num})">삭제</button>
-									</td>
-								</c:if>
-							</tr>
-						</c:if>
+							</c:if>
+						</tr>
 					</c:forEach>
 				</table>
 			</c:if>
@@ -230,11 +216,11 @@
 								</select>
 							</td>
 							<td>
-								<textarea rows="3" cols="90" name="re_con" 
-									placeholder="'${movie.m_title}' 재미있게 보셨나요?&#13;&#10;영화의 어떤 점이 좋았는지 500자 이내로 이야기해주세요."></textarea>
+								<textarea rows="4" cols="90" name="re_con" 
+									placeholder="'${movie.m_title}' 재미있게 보셨나요?&#13;&#10;영화의 어떤 점이 좋았는지 500자 이내로 자우롭게 이야기해주세요.&#13;&#10;※ 단, 평점은 수정이 불가하니 신중해서 선택해주세요※"></textarea>
 							</td>
 							<td>
-								<input type="button" value="댓글 입력" id="rInsert" class="btn btn-warning">
+								<input type="button" value="댓글 입력" id="rInsert" class="btn btn-warning" style="line-height: 85px;">
 							</td>
 						</tr>
 					</table>

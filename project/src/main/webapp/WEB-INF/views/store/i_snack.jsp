@@ -36,19 +36,34 @@
  
  		<c:if test="${store.s_del != 'y' }">	
  <div class="image">
+ 
  <div class="a1">
+ 
+ 			
  <a href="storeContent.do?s_num=${store.s_num }">
-<span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150"></span>
+<span><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="170"></span>
 
   <div class="name"><h4>${store.s_Pname }</h4></div>  
   </a>
- 
-  <div>${store.s_Pconfig }</div>
- 
-  <div>${store.s_prive }원</div>
 
- </div></div>
- 		</c:if>
+  		  <div><h6>${store.s_Pconfig }</h6></div> 
+  <div><h3><fmt:formatNumber pattern="###,###" value="${store.s_prive }"/>원</h3></div>		
+			
+ 			
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
+<fmt:formatDate value="${store.s_pernd }" pattern="yyyy-MM-dd" var="s_pernd"/>
+
+					<c:if test="${today >= s_pernd }">
+									<h3 style="color: red;">현재 구매가 불가능한 상품입니다</h3>
+								</c:if>	
+
+
+</div>
+
+
+</div>
+</c:if>
  </c:forEach>
  
  

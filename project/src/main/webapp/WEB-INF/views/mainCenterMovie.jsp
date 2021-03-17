@@ -52,8 +52,8 @@
 							<input type="text" name="keyword" value="${moive.keyword}" placeholder="영화 검색">
 							<input type="submit" class="btn btn-warning btn-sm" style="height:26px" width="26px;" value="검색">
 						</td>
-						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="#" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-calendar"></span>상영시간표</a></td>
-						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="movieMainForm.do" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-film"></span>영화</a></td>
+						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="theaterMainForm.do" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-calendar"></span>극장</a></td>
+						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="movieMainForm.do?m_ing=0" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-film"></span>영화</a></td>
 						<td width="25%" align="center" style="vertical-align:middle; font-weight: bold; font-size: 15px;"><a href="ticketMainForm.do" style="color:black; text-decoration:none;"><span class="glyphicon glyphicon-phone"></span>예매</a></td>
 					</tr>
 				</table>

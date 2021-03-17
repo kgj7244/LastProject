@@ -59,7 +59,7 @@ li>a {
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>			
-		<div class="collapse navbar-collapse row" id="navbarColor03">
+		<div class="collapse show navbar-collapse row" id="navbarColor03">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-4" align="left">
 				<ul class="navbar-nav mr-auto">
@@ -89,9 +89,15 @@ li>a {
 					style="width: 220px;">
 					<input type="hidden" name="m_ing" value="1">
 					<input type="hidden" name="pageNum" value="1">
+<<<<<<< HEAD
 					<input class="form-control mr-sm-2" type="text" name="keyword" size="11px;"
 						id="keyword" value="${moive.keyword}" placeholder="영화 검색">
 					<button class="btn btn-warning my-2 my-sm-0 btn-lg" type="submit">
+=======
+					<input class="form-control mr-sm-2" type="text" name="keyword"
+						id="keyword" value="${moive.keyword}" placeholder="영화 검색" size="10px;">
+					<button class="btn btn-warning my-2 my-sm-0 btn-lg" style="border: 1px solid #FFFFFF;" type="submit">
+>>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 						<b>SEARCH</b>
 					</button>
 				</form>

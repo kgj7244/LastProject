@@ -212,7 +212,7 @@
 							</tr>
 						</table>
 					</td>
-					<td width="20%" align="center" style="vertical-align:middle;"><input type="submit" value="결제" class="btn btn-Secondary" style="padding :30px; 30px; font-size: 30px;"></td>
+					<td width="20%" align="center" style="vertical-align:middle;"><input type="submit" value="결제" class="btn btn-Secondary" style="padding :30px; 30px; font-size: 30px; border: 1px solid #FFFFFF;"></td>
 					<td width="20%"></td>
 				</tr>
 			</table>

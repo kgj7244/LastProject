@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +14,12 @@
 <div style="background-color: #0d0908; height: 110px;">
 	<div class="container" id="mainTop" style="background-color: #0d0908; height: 110px;">
 		<div class="row">
-			<div class="col-sm-4" align="center">
+			<div class="col-sm-4" align="center" style="height: 110px;">
 			
 			</div>
 			
-			<div class="col-sm-4" align="center">
-				<img src="${path}/resources/images/home/로고.png" width="50%" height="50%" style="margin-top: 7px;" onclick="location.href='mainForm.do'">
+			<div class="col-sm-4" align="center" style="height: 110px;">
+				<img src="${path}/resources/images/home/로고.png" width="175px;" height="95px;" style="margin-top: 7px;" onclick="location.href='mainForm.do'">
 			</div>
 			
 			<div class="col-sm-4" align="right" style="margin-top: 20px;">

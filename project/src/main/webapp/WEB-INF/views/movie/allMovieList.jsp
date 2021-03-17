@@ -39,7 +39,7 @@
 				<td>장르</td>
 				<td>개봉일</td>
 				<td>개봉상태</td>
-				<td>수정여부</td>
+				<td width="90px;">수정여부</td>
 			</tr>
 			<c:forEach var="movie" items="${list}">
 				<tr>
@@ -53,7 +53,7 @@
 					<td>${movie.m_opendate}</td>
 					<td>${movie.m_state}</td>
 					<td>
-						<a class="btn btn-warning btn-sm"
+						<a class="btn btn-warning" style="width: 70px;"
 							href="movieUpdateForm.do?m_num=${movie.m_num}">수정</a>
 					</td>
 				</tr>
@@ -62,7 +62,7 @@
 		<a href="mypage.do" class="btn btn-info">관리자 페이지</a>
 		<a href="movieInsertForm.do" class="btn btn-success">영화 추가</a>
 		<div align="center">
-			<ul class="pagination">
+			<ul class="pagination justify-content-center">
 				<c:if test="${mpb.startPage > mpb.pagePerBlock}">
 					<li>
 						<a href="allMovieList.do?pageNum=1&search=${movie.search}&keyword=${movie.keyword}">

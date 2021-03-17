@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ch.ch.model.Member;
 import com.ch.ch.model.Movie;
 import com.ch.ch.model.MovieTheater;
+import com.ch.ch.model.Notice;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Theater;
 import com.ch.ch.model.Ticket;
@@ -35,7 +36,6 @@ public class MemberController {
 	@RequestMapping("mainForm")
 	public String mainForm(Model model, Movie movie) { // 다혜씨 조금 수정합니다~ 나중에 주석만 지워주세요 
 		List<Movie> movieList = mvs.movieMainList(); // 메인 홈페이지 영화부분 평점 기준으로 순서대로 출력
-		
 		model.addAttribute("movieList", movieList);
 		return "mainForm";
 	}
@@ -83,7 +83,7 @@ public class MemberController {
 			result = -1;
 		}
 		model.addAttribute("result", result);
-		model.addAttribute("member", member);
+		// model.addAttribute("member", member);
 		return "/member/memberJoin";
 	}
 
@@ -194,7 +194,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("masterMemberDelete")
-	public String masterMemberDelete(String member_id, String member_del, Member member, Model model, HttpSession session) {
+	public String masterMemberDelete(String member_id, Member member, Model model, HttpSession session) {
 		int result = ms.delete(member_id);
 		if (result > 0)
 			session.invalidate();

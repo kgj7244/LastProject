@@ -97,7 +97,7 @@
 			 		${search} like '%'||#{keyword}||'%' 
 			 	</if>
 			 </where>
-		 order by m_num)a) 
+		 order by m_num desc)a) 
 			where rn between #{startRow} and #{endRow}  
 	</select>
 	<select id="allMovieTotal" parameterType="movie" resultType="integer">
@@ -108,4 +108,9 @@
 			 	</if>
 			 </where>
 	</select>
+	<update id="gradeupdate" parameterType="movie">
+		update movie set m_grade = (
+			select rtrim(to_char(nvl(sum(re_grade)/count(*), 0), 'fm90d00'), '.') 
+			from review where m_num=#{m_num}) where m_num=#{m_num}
+	</update>
 </mapper>

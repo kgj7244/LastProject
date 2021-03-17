@@ -88,6 +88,19 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
+	
+	public int counts(int s_num) {
+		return sd.counts(s_num);
+	}
+
+
+	
+	public void update_total(Store store) {
+		 sd.update_total(store);
+		
+	}
+
+
 	}
 
 
