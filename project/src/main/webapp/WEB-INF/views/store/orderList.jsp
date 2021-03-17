@@ -9,7 +9,7 @@
 <style type="text/css">
 #trans1 {display: none;}
 
-th{color:black;  }
+th{color:black; text-align: center; }
 
 </style>
 <script type="text/javascript">
@@ -57,7 +57,7 @@ var con = confirm("${ member.member_name }(${ member.member_number })로 스토�
 <input type="hidden" name="t_price" value="${store.s_prive * ord.s_purchase }">
 
 
-<table class="table" border="1" style="width: 1100px; height: 200px;  ">
+<table class="table" border="2" style="width: 1100px; height: 200px;  ">
 
 <tr  style="background-color: #ffce67; text-align: center; font-size: 17px; font-weight: bold;" >
 <th colspan="2">상품명</th>
@@ -72,29 +72,33 @@ var con = confirm("${ member.member_name }(${ member.member_number })로 스토�
 
    
   <tr>
-  <td colspan="2"><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150">
+  <td colspan="2" style="color: black;"><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150">
   ${ store.s_Pname } /${store.s_Pconfig }</td>
           
-            <td><fmt:formatNumber pattern="###,###" value="${ store.s_prive }"/>원</td>
-            <td>${ord.s_purchase}</td>
+            <td align="center" style="color: black;"><fmt:formatNumber pattern="###,###" value="${ store.s_prive }"/>원</td>
+            <td align="center" style="color: black;">${ord.s_purchase}</td>
             
-            <td><fmt:formatNumber pattern="###,###" value="${store.s_prive * ord.s_purchase }"/>원
+            <td align="center" style="color: black;"><fmt:formatNumber pattern="###,###" value="${store.s_prive * ord.s_purchase }"/>원
             </td>
 	</tr>
-        
+   
+
   </table>
-  
-   <h2>최종결제</h2>
+  <br>
+   <h2 style="color: black;">최종결제</h2>  <br>
         
+ <!--  <table class="table-info" style="color:white;  width: 1000px; height: 200px;font-size: 17px; font-weight: bold; border-radius: 10px;">  
+
+  -->
   <table class="table" style="color:white; width: 1000px; height: 200px;
-  background-color: #434343; font-size: 17px; font-weight: bold; border-radius: 10px;">  
+  background-color: #F5A9A9; font-size: 17px; font-weight: bold; border-radius: 10px;">  
 
       <tr>
         <td colspan="1">총 결제 예정금액</td>
-         <td>할인율 ${store.s_sale }%</td>
+         <td >할인율 ${store.s_sale }%</td>
 
         
- <td style="color: pink; font-size: x-large;"><fmt:formatNumber  pattern="###,###" 
+ <td style="color: #0080FF; font-size: x-large; margin-left: 10cm;"><fmt:formatNumber  pattern="###,###" 
  value="${(store.s_prive * ord.s_purchase)-(store.s_prive * ord.s_purchase)*store.s_sale/100}"/>원
  </td></tr>
 

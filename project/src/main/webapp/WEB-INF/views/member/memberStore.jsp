@@ -91,7 +91,10 @@
 			</c:if>
 		</tr>
 		<tr>
-			<td align="center" colspan="7"><input type="button" value="목록으로" onclick="location.href='mypage.do'" class="btn btn-warning"></td>
+			<td align="center" colspan="7">
+			<input type="button" value="목록으로" 
+			onclick="location.href='mypage.do'" class="btn btn-warning"
+			 style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0"></td>
 		</tr>
 		
 	</table>
