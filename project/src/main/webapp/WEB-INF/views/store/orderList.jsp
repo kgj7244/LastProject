@@ -48,6 +48,11 @@ var con = confirm("${ member.member_name }(${ member.member_number })로 스토�
 <div align="left"><h2>구매상품 정보</h2> </div>
 	<hr style="border: 0px; height: 3px; background-color: #cccccc;">
 	<br>
+	
+	<div style="width:30%;">
+	 <div><img src="resources/images/s_pop/결제순서 (1).jpg" width="450"></div>
+	</div>
+	
 
 <form action="order.do" method="post" name="frm" enctype="multipart/form-data">
 

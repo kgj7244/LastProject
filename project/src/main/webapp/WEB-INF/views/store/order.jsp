@@ -8,8 +8,8 @@
 <title>결제 완료</title>
 <style type="text/css">
 
-th{color:black; text-align: center; }
-td{color:black; text-align: center; }
+th{color:black; text-align: center; font-size: 17px; }
+td{color:black; text-align: center; font-size: 17px;  }
 
 </style>
 
@@ -27,10 +27,16 @@ td{color:black; text-align: center; }
  <script type="text/javascript">
  alert("결제가 완료되었습니다"); 
  </script>
+ 
+ <div style="width:30%;" >
+	 <div><img src="resources/images/s_pop/결제순서 (2).jpg" width="450"></div>
+	</div>
+	<hr style="border: 0px; height: 1px; background-color: #cccccc;">
+	<br>
 
 
  <table ><tr><td><h2>상품 구매가 완료되었습니다</h2></td></tr></table>
- 	<hr style="border: 0px; height: 1px; background-color: #cccccc;">
+ <br>
  
  <table style="width: 500px; height: 200px;">
  
