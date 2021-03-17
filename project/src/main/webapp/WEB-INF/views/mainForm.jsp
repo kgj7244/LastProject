@@ -1,21 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file ="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
 	#bodyCss{height: auto;}
 	div{margin: 0px;padding: 0px;}
 	#mainTop{
 		background-color: #0d0908; 
-		height: 95px;"
+		height: 110px;"
 	}
 	#mainNav{
 		background-color: #0d0908; 
-		height: 75px;"
+		height: 60px;"
 	}
 	#mainCenterVideo{
 		height:850px;
@@ -28,9 +30,6 @@
 		background-image:url('${path}/resources/images/home/배경1.jpg');
 		background-size: 30%;
 		background-repeat: repeat-x;
-		/* background-image:url('${path}/resources/images/home/배경1.png');
-		background-size:100%;
-		background-repeat: repeat-x; */
 	}
 	#mainCenterEvent{
 		height:400px;
@@ -38,31 +37,23 @@
 		background-size: 100%;
 		background-repeat: no-repeat;
 	}
-	/* #mainCenterEvent{
-		height:560px;
-		background-image:url('${path}/resources/images/home/배경.png');
-		background-size: 100%;
-		background-repeat: no-repeat;
-	} */
 </style>
 </head>
 <body id="bodyCss">
 	<!-- mainTop -->
 	<div class="row" id="mainTop"> 
-		<div class="col-md-1" align="center"></div>
-		<div class="col-md-10">
+		<!-- <div class="col-md-1" align="center"></div> -->
+		<div class="col-md-12">
 			<%@include file="mainTop.jsp"%>
 		</div>
-		<div class="col-md-1" align="center"></div>
+		<!-- <div class="col-md-1" align="center"></div> -->
 	</div>
 	
 	<!-- mainNav -->
 	<div class="row" id="mainNav"> 
-		<!-- div class="col-md-1" align="center"></div> -->
 		<div class="col-md-12">
 			<%@include file="mainNav.jsp" %>
 		</div>
-<!-- 		<div class="col-md-1" align="center"></div> -->
 	</div>
 	
 	<hr style="margin: 0px;	padding: 0px;">
