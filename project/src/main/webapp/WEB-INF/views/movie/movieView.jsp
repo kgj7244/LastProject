@@ -122,7 +122,7 @@
 			</div>
 		</div>
 		<div class="header navbar navbar-fixed-top" role="navigation">
-			<table class="table table-hover table-bordered" style="width: 1260px;">
+			<table class="table table-hover table-bordered">
 				<tr class="table-warning">
 					<th><a href="#content" style="text-decoration: none; color: black">주요정보</a></th>
 					<th><a href="#stillcut" style="text-decoration: none; color: black">스틸컷</a></th>
