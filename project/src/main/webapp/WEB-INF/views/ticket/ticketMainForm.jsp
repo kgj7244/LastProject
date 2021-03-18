@@ -7,9 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<style type="text/css">
-	@import url("${path}/resources/bootstrap/css/reset.css");
-</style>
 
 <script type="text/javascript">
 	var Mchk =0; var Tchk =0; var Dchk =0; 

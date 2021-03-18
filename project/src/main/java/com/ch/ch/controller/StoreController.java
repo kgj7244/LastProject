@@ -38,10 +38,22 @@ public class StoreController {
 	public String storeMainForm(Model model) {
 		
         List<Store> storeList = ss.list();
-		model.addAttribute("storeList", storeList);		
+		model.addAttribute("storeList", storeList);	
 		
 		return "store/storeMainForm";
 	}
+	
+
+	
+	//카테고리별 리스트
+	@RequestMapping("i_snack")
+	public String i_snack(int s_Pclass, Model model){	
+		List<Store> storeList = ss.pclist(s_Pclass);
+		model.addAttribute("s_Pclass", s_Pclass);
+		model.addAttribute("storeList", storeList);		
+		return "store/i_snack";
+	}
+
 	
 	//스토어 추가
 	@RequestMapping("storeInsertForm")
@@ -123,14 +135,7 @@ public class StoreController {
 			return "/store/storeRestore";	
 		}
 	
-	//카테고리별 리스트
-	@RequestMapping("i_snack")
-	public String i_snack(int s_Pclass, Model model){	
-		List<Store> storeList = ss.pclist(s_Pclass);
-		model.addAttribute("s_Pclass", s_Pclass);
-		model.addAttribute("storeList", storeList);		
-		return "store/i_snack";
-	}
+
 	
 	//관리자 스토어 목록
 	@RequestMapping("master_Storelist")
@@ -208,15 +213,17 @@ public class StoreController {
 			ord.setFull_price((store.getS_prive() *ord.getS_purchase())-(store.getS_prive() *ord.getS_purchase())*store.getS_sale()/100);
 			bank.setT_price(store.getS_prive() *ord.getS_purchase());
 			
-		
-			result = ss.insertOrd(ord); // result
-			int ord2_num = ss.maxOrd_num();//최신번호찾기
-			bank.setOrd_num(ord2_num); // 뱅크에 넣음
-			
-			result = bdo.insert_bank(bank); // result 
-			
+			//총수량 감소
 			store.setS_total(store.getS_total()-ord.getS_purchase());
 			ss.update_total(store);
+			
+		//최신번호 찾아 뱅크에 넣음
+			result = ss.insertOrd(ord); 
+			int ord2_num = ss.maxOrd_num();
+			bank.setOrd_num(ord2_num); 	
+			result = bdo.insert_bank(bank); 
+			
+	
 			
 			model.addAttribute("result", result);
 			model.addAttribute("ord", ord);
@@ -226,45 +233,7 @@ public class StoreController {
 			
 			return "store/order";
 		}
-//		//결제 진행 
-//		@RequestMapping("order")
-//		public String order(Bank bank,Ord ord,Model model,HttpSession session)throws IOException {	
-//			String member_id = (String)session.getAttribute("member_id");
-//			Member member = ms.select(member_id);
-//			
-//			int result = 0;			
-//			
-//			Store store = ss.select(ord.getS_num());		
-//			Date date = new Date(System.currentTimeMillis());
-//			Date date1 = new Date(System.currentTimeMillis());
-//			Date date2 = new Date(System.currentTimeMillis());
-//			date1.setYear(date.getYear()+1);
-//			
-//			ord.setBuy_date(date);
-//			ord.setS_validity(date1);		
-//			bank.setT_date(date2);
-//			ord.setMember_id(member_id);
-//			bank.setMember_id(member_id);
-//			
-//			
-//			ord.setFull_price(store.getS_prive() *ord.getS_purchase());
-//			bank.setT_price(store.getS_prive() *ord.getS_purchase());
-//			
-//			
-//			result = ss.insertOrd(ord);
-//			int ord2_num = ss.maxOrd_num();
-//			bank.setOrd_num(ord2_num);
-//			result = bdo.insert_bank(bank);
-//			
-//			
-//			
-//			model.addAttribute("result", result);
-//			model.addAttribute("ord", ord);
-//			model.addAttribute("member", member);	
-//			model.addAttribute("bank", bank);	
-//			
-//			return "store/order";
-//		}
+
 	
 	//구매 목록
 	@RequestMapping("memberStore") 
@@ -289,8 +258,6 @@ public class StoreController {
 		
 		Member member = ms.select(member_id);	
 	
-		
-//		System.out.println(ord.getOrd_num());
 //		System.out.println(ord.getMember_id());			
 //		System.out.println("들어갑시다");	
 	
@@ -302,18 +269,7 @@ public class StoreController {
 		
 		return "/member/memberStoreInfo";
 	}
-	
-	@RequestMapping("orderResult")
-	public String orderResult(int ord_num,Model model) {
-	
-		Ord ord= ss.select_ord(ord_num);
 		
-		model.addAttribute("ord", ord);	
-	return "store/orderResult";
-	}
-
-				
-	
 	//환불
 	@RequestMapping("memberStoreRefund") 
 	public String memberStoreRefund(Model model,int ord_num, HttpSession session) {
@@ -323,9 +279,6 @@ public class StoreController {
 			
 		return "/member/memberStoreRefund";
 	}
-	
-
-	
 		
 	}
 

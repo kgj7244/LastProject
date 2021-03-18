@@ -10,6 +10,7 @@ import com.ch.ch.dao.ScreenDao;
 import com.ch.ch.model.Event;
 import com.ch.ch.model.Event_over;
 import com.ch.ch.model.MovieTheater;
+import com.ch.ch.model.Notice;
 import com.ch.ch.model.Screen;
 import com.ch.ch.model.Seat;
 import com.ch.ch.model.Theater;
@@ -116,6 +117,5 @@ public class ScreenServiceImpl implements ScreenService{
 	}
 	public void event_use(int eo_num) {
 		sd.event_use(eo_num);
-		
-	}	
+	}
 }

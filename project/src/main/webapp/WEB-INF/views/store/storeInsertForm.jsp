@@ -5,18 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 추가 페이지</title>
 </head>
 <body>
 <%@include file="../mainTop.jsp" %>
 <%@include file="../mainNav.jsp" %>
 <div class="container" align="center">
 
+
+
+	<table class="table table-hover" style="margin-top: 30px;">
+		<tr>
+			<td align="center" style="font-weight: bold; background-color: #fedf9e; vertical-align: middle; color: #908c88; height: 60px; font-size: 30px; margin-top: 30px;">
+			상품 추가</td>
+		</tr>
+	</table>	
 <form action="storeInsert.do" method="post" name="frm"
  enctype="multipart/form-data">
-
-<h2 class="text-primary">상품 추가</h2>
-
 
 <table class="table table-bordered">
 
@@ -31,7 +36,7 @@
 </td></tr>
 
 
-<tr><td>상품 이름</td><td><input type="text" name="s_Pname" 
+<tr><td >상품 이름</td><td><input type="text" name="s_Pname" 
 required="required"></td></tr>
 
 <tr><td>상품 구성</td><td><input type="text" name="s_Pconfig"
@@ -62,5 +67,6 @@ required="required"></td></tr>
 </form>
 </div>
 
+<%@ include file="../mainFloor.jsp" %>
 </body>
 </html>

@@ -431,8 +431,6 @@ create table ord (
 );
 
 create sequence ord_num increment by 1 start with 1;
-
-insert into ord values(500,'q1',18,1,1,sysdate,'2002-03-18','y','n');
 --------------------------------------관리자계좌
 create table aam_bank(
 	aam_account nvarchar2(50) primary key not null,     --계좌번호
@@ -454,3 +452,8 @@ create table bank(
 	ord_num number(10) references ord(ord_num)		            --주문번호(스토어
 );
 create sequence t_account increment by 1 start with 1;
+
+SELECT * FROM (select * from notice order by n_date desc) WHERE ROWNUM <= 5;
+select * from notice WHERE ROWNUM <= 5 order by n_date desc;
+select * from (select * from notice order by n_num desc) where ROWNUM <= 5
+select * from notice;
