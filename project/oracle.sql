@@ -1,23 +1,4 @@
 --삭제 시퀀스 (테이블 삭제전에 꼭 먼저 삭제해주세요)
---drop sequence theater_t_num_seq;
---drop sequence st_num; 
---drop sequence re_num; 
---drop sequence s_num; 
---drop sequence t_ordernum; 
---drop sequence sc_num; 
---drop sequence mt_num;
---drop sequence sv_num;
---drop sequence t_account;
---drop sequence r_num;
---drop sequence e_num;
---drop sequence eo_num;
---drop sequence p_num;
---drop sequence n_num;
---drop sequence b_num;
---drop sequence ord_num;
-
-
-
 drop sequence eo_num; 			-- 이벤트중복체크
 drop sequence e_num;  			-- 이벤트 
 drop sequence t_account;  		-- 입금금액
@@ -35,28 +16,6 @@ drop sequence st_num; 			-- 스틸컷
 
 
 -----------------------------------삭제 테이블 (순서대로 삭제해주세요.)
-
---drop table ord CASCADE CONSTRAINTS;
---drop table store CASCADE CONSTRAINTS;
---drop table bank CASCADE CONSTRAINTS;
---drop table aam_bank CASCADE CONSTRAINTS;
---drop table seat CASCADE CONSTRAINTS;
---drop table ticket CASCADE CONSTRAINTS;
---drop table screen CASCADE CONSTRAINTS;
---drop table board CASCADE CONSTRAINTS;
---drop table review CASCADE CONSTRAINTS;
---drop table stillcut CASCADE CONSTRAINTS;
---drop table movie CASCADE CONSTRAINTS;
---drop table movieTheater CASCADE CONSTRAINTS;
---drop table theater CASCADE CONSTRAINTS;
---drop table member CASCADE CONSTRAINTS;
---drop table event_over CASCADE CONSTRAINTS;
---drop table event CASCADE CONSTRAINTS;
---drop table master CASCADE CONSTRAINTS;
---drop table reBoard CASCADE CONSTRAINTS;
---drop table notice CASCADE CONSTRAINTS;
-
-
 drop table event_over CASCADE CONSTRAINTS;    	-- 이벤트 중복
 drop table event CASCADE CONSTRAINTS; 			-- 이벤트
 drop table bank CASCADE CONSTRAINTS; 			-- 입금금액
@@ -292,9 +251,6 @@ create table ticket(
 );
 create sequence t_ordernum increment by 1 start with 1;
 
-<<<<<<< HEAD
-select * from movie;
-select * from stillcut;
 --------------------------------------한줄평
 
 create table review (
@@ -308,10 +264,6 @@ create table review (
 );
 create sequence re_num increment by 1 start with 1;
 
-
-select* from review;
-=======
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
 --------------------------------------회원 게시판
 
 create table board(
@@ -459,10 +411,8 @@ create table bank(
 	t_ordernum number references ticket(t_ordernum),            -- 예매번호(티켓)
 	ord_num number(10) references ord(ord_num)		            -- 주문번호(스토어)
 );
-<<<<<<< HEAD
 create sequence t_account increment by 1 start with 1;
-=======
-create sequence t_account increment by 1 start with 1;
+
 
 -------------------------------------- 이벤트(추가)
 create table event(
@@ -484,4 +434,3 @@ create table event_over(
 	e_num number(10) references event(e_num)  	-- 이벤트번호
 );
 create sequence eo_num increment by 1 start with 1;
->>>>>>> branch 'master' of https://github.com/kgj7244/LastProject.git
