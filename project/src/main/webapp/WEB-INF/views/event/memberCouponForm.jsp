@@ -30,6 +30,7 @@
 			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;">쿠폰번호</td>
 			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;">사용여부</td>
 			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;">이벤트제목</td>
+			<td align="center" style="font-weight: bold; background-color: #f8f9fb; color: #908c88;">가격</td>
 		</tr>
 		<c:if test="${empty coupon}">
 			<tr>
@@ -41,12 +42,13 @@
 				<tr>
 					<td align="center" style="color:#8c8b9b;vertical-align: middle;">${c.eo_num}</td>
 					<td align="center" style="color:#8c8b9b;vertical-align: middle;">${c.eo_state}</td>
-					<td align="center" style="color:#8c8b9b;vertical-align: middle;">${c.e_num}</td>
+					<td align="center" style="color:#8c8b9b;vertical-align: middle;">${c.e_title}</td>
+					<td align="center" style="color:#8c8b9b;vertical-align: middle;">${c.e_sale}</td>
 				</tr>
 			</c:forEach>
 		</c:if>
 		<tr>
-			<td align="center" colspan="3"><input type="button" value="목록으로" onclick="location.href='mypage.do'" class="btn btn-warning"></td>
+			<td align="center" colspan="4"><input type="button" value="목록으로" onclick="location.href='mypage.do'" class="btn btn-warning btn-lg" style="width: 150px;"></td>
 		</tr>
 	</table>
 </div>
