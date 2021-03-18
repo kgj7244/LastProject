@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세</title>
+<style type="text/css">
+#trans1 {display: none;}
+
+th{color:#2E2E2E;  }
+li{color:#2E2E2E;  }
+
+</style>
+
+
 <script type="text/javascript">
  $(function() {
 	 var full_price =(1*order.s_prive.value)-(order.s_purchase.value*order.s_prive.value)*(order.s_sale.value/100);
@@ -94,7 +103,7 @@
 
 
    <c:if test="${store.s_sale!=0}">
-   <tr style="color: blue;"><th>할인율 </th><td style="font-weight: bold;"> ${store.s_sale }%</td></tr>
+   <tr style="color: blue;"><th>할인율 </th><td style="font-weight: bold; font-size: large;"> ${store.s_sale }%</td></tr>
    </c:if>
 </c:if>
 
@@ -124,7 +133,7 @@
 
     <c:when test="${today >= s_pernd }">
  <th colspan="2">   
-     <h3 style="color: red;">현재 구매가 불가능한 상품입니다</h3>
+     <h3 style="color: red;">종료된 이벤트입니다</h3>
     </c:when>
     
 

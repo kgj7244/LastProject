@@ -11,7 +11,7 @@
 	<c:if test="${result > 0}">
 		<script type="text/javascript">
 			alert("입력 성공했습니다.");
-			location.href="movieMainForm.do";
+			location.href="movieMainForm.do?m_ing=0&keyword=${movie.keyword}&pageNum=1";
 		</script>
 	</c:if>
 	<c:if test="${result == 0}">

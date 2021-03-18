@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>결제 완료</title>
+<style type="text/css">
+
+th{color:black; text-align: center; font-size: 17px; }
+td{color:black; text-align: center; font-size: 17px;  }
+
+</style>
 
 
 </head>
@@ -19,19 +25,28 @@
 
 <c:if test="${result >0 }">
  <script type="text/javascript">
- alert("결제가 완료되었습니다");
+ alert("결제가 완료되었습니다"); 
  </script>
+ 
+ <div style="width:30%;" >
+	 <div><img src="resources/images/s_pop/결제순서 (2).jpg" width="450"></div>
+	</div>
+	<hr style="border: 0px; height: 1px; background-color: #cccccc;">
+	<br>
 
 
  <table ><tr><td><h2>상품 구매가 완료되었습니다</h2></td></tr></table>
- 	<hr style="border: 0px; height: 1px; background-color: #cccccc;">
+ <br>
  
  <table style="width: 500px; height: 200px;">
  
    <tr>
   <td colspan="2"><img alt="" src="resources/images/s_pop/${store.s_Pimage}" height="150">
   ${ store.s_Pname }</td></tr>
-
+  
+<tr>
+<th colspan="2"> 	<hr style="border: 0px; height: 1px; background-color: #cccccc;"></th> 
+</tr>
 
 
 				<tr>
@@ -60,14 +75,27 @@
 <th>유효기간</th>
 <td>${ord.s_validity}</td> 
 </tr>
+
+<tr>
+<th colspan="2"> 	<hr style="border: 0px; height: 1px; background-color: #cccccc;"></th> 
+</tr>
  	
  </table>
 </c:if>
 
+
+<br>
+
+<div>
+
+	<a href="memberStore.do" class="btn btn-outline-info" 
+   style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; 
+   vertical-align:middle; bottom: 0; margin-right: 5px; text-align: center;">결제내역</a>
+   
 	<a href="mainForm.do" class="btn btn-warning"
    style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; 
    vertical-align:middle; bottom: 0; margin-right: 5px;">메인으로</a>
-
+</div>
 </div>
 
 

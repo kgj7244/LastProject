@@ -62,9 +62,12 @@
 						<td>${ord.buy_date}</td>													
 						<td>~${ord.s_validity}</td>
 										
-						<td><input type="button" value="상세 정보" 
+						<td><input type="button" value="상세 정보" class="btn btn-success" 
+						style="width: 100px; height: 30px; font-weight: bold; font-size: 15px; text-align: center;"
 						onclick='location.href="memberStoreInfo.do?ord_num=${ord.ord_num}&s_num=${ord.s_num}"'>
 						</td>
+						
+						
 						
 			<!-- 		&s_num=${ord.s_num}&s_validity=${ord.s_validity}	 -->	
 						<c:if test="${ord.del=='n'}">						
@@ -91,7 +94,10 @@
 			</c:if>
 		</tr>
 		<tr>
-			<td align="center" colspan="7"><input type="button" value="목록으로" onclick="location.href='mypage.do'" class="btn btn-warning"></td>
+			<td align="center" colspan="7">
+			<input type="button" value="목록으로" 
+			onclick="location.href='mypage.do'" class="btn btn-warning"
+			 style="width: 230px; height: 40px; font-weight: bold; font-size: 15px; vertical-align:middle; bottom: 0"></td>
 		</tr>
 		
 	</table>
