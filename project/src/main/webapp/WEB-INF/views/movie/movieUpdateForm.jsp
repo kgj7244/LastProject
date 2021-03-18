@@ -71,7 +71,7 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="3">
-						<textarea rows="20" cols="120" required="required" name="m_content" >${movie.m_content}</textarea>
+						<textarea rows="20" cols="110" required="required" name="m_content">${movie.m_content}</textarea>
 					</td>
 				</tr>
 				<tr>
